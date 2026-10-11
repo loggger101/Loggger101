@@ -1,8 +1,10 @@
 """Generate the 'by the numbers' stat tiles (docs/stats/*.svg) in the banner's style.
 
 Each tile comes in two versions. `<name>.svg` is the full tile for desktop widths.
-`<name>-compact.svg` has a larger number and a short label, for phones, where four
-tiles in a row leave each one about 80px wide; the README swaps it in with <picture>.
+`<name>-compact.svg` has a larger number and a one- or two-word label, for phones, where
+four tiles in a row leave each one about 70px wide; the README swaps it in with <picture>.
+Neither shows the repo name: the tile links to the repo and its alt text names it, and at
+laptop widths (tiles about 140px) a third line of text is too small to read.
 """
 import random
 import sys
@@ -15,9 +17,9 @@ FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 
 # name: (number, label, short label for the compact tile, repo)
 TILES = {
-    "catalog": ("1.57M", "asteroids cataloged", "asteroids cataloged", "AsteroidCatalog"),
-    "belt": ("161,659", "classified asteroids analyzed", "asteroids analyzed", "asteroid-belt-gradient"),
-    "star": ("84.3%", "spectral letter, top-1", "spectral letter", "star-spectral-classifier"),
+    "catalog": ("1.57M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
+    "belt": ("161,659", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
+    "star": ("84.3%", "spectral letter, top-1", "spectral type", "star-spectral-classifier"),
     "drone": ("91.2%", "valid/invalid accuracy", "valid/invalid", "drone-target-id"),
 }
 
@@ -37,15 +39,14 @@ def frame(i, label):
 
 for i, (name, (num, label, short, repo)) in enumerate(TILES.items()):
     full = frame(i, f"{num} {label}, {repo}") + f"""<g font-family="{FONT}">
-<text x="20" y="54" font-size="36" font-weight="700" fill="#5ba3dc">{num}</text>
-<text x="20" y="80" font-size="17" fill="#dbe3f5">{label}</text>
-<text x="20" y="103" font-size="13" fill="#93a0c4">{repo}</text>
+<text x="20" y="62" font-size="44" font-weight="700" fill="#5ba3dc">{num}</text>
+<text x="20" y="96" font-size="20" fill="#dbe3f5">{label}</text>
 </g>
 </svg>
 """
     compact = frame(i, f"{num} {short}") + f"""<g font-family="{FONT}" text-anchor="middle">
-<text x="{W / 2}" y="66" font-size="56" font-weight="700" fill="#5ba3dc">{num}</text>
-<text x="{W / 2}" y="102" font-size="26" fill="#dbe3f5">{short}</text>
+<text x="{W / 2}" y="70" font-size="62" font-weight="700" fill="#5ba3dc">{num}</text>
+<text x="{W / 2}" y="106" font-size="30" fill="#dbe3f5">{short}</text>
 </g>
 </svg>
 """
