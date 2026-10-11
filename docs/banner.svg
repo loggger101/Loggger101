@@ -233,6 +233,10 @@
 </g>
 <circle cx="170" cy="150" r="95" fill="url(#halo)"/>
 <polygon class="pulse" points="170.0,78.0 180.7,124.1 220.9,99.1 195.9,139.3 242.0,150.0 195.9,160.7 220.9,200.9 180.7,175.9 170.0,222.0 159.3,175.9 119.1,200.9 144.1,160.7 98.0,150.0 144.1,139.3 119.1,99.1 159.3,124.1" fill="#5ba3dc"/>
+<g transform="rotate(-18 170 150)">
+<path d="M 295 150 A 125 42 0 0 1 45 150" fill="none" stroke="#8fb6e8" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 5"/>
+<circle r="4.5" fill="#e8c27a"><animateMotion dur="9s" repeatCount="indefinite" path="M 295 150 A 125 42 0 1 1 45 150 A 125 42 0 1 1 295 150"/><animate attributeName="opacity" dur="9s" repeatCount="indefinite" calcMode="discrete" values="1;0" keyTimes="0;0.5"/></circle>
+</g>
 <text class="t" x="360" y="138" font-size="62" font-weight="700" fill="#ffffff">Logan M Edwards</text>
 <text class="t" x="362" y="186" font-size="26" fill="#aab6d3">Astronomy &amp; Astrophysics  •  Planetary Science</text>
 <text class="t" x="362" y="226" font-size="18" fill="#7d89ad">Florida Tech  •  loganmedwardsastrophy.com</text>

@@ -12,9 +12,20 @@
 </p>
 
 * 🔭 Astronomy & Astrophysics undergraduate at Florida Tech, with a second major in Planetary Science.
-* ☄️ Latest work: [asteroid-belt-gradient](https://github.com/loggger101/asteroid-belt-gradient), testing whether the main belt's S/C compositional gradient is primordial across 161k classified asteroids. Every figure and number in the paper regenerates from two public inputs.
+* ☄️ Latest paper: *Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data* ([asteroid-belt-gradient](https://github.com/loggger101/asteroid-belt-gradient)), testing whether the main belt's S/C gradient is primordial across 161,659 classified asteroids. Every figure and number in it regenerates from two public inputs.
 * 🛰️ Building: [economicspace](https://github.com/loggger101/economicspace), a pipeline that asks whether an asteroid mining mission pays for itself, and [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight), an orbit simulator in pure Python.
 * 🧬 Outside research: Chief Technology Officer at [AspireCURES](https://www.aspirecures.com) and Vice President of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org), building the platforms and patient databases for two rare-disease nonprofits.
+
+<table>
+  <tr>
+    <td width="50%" align="center"><a href="https://github.com/loggger101/Satellite-Space-Flight"><img src="docs/gallery/satellite.jpg" alt="Satellite-Space-Flight: ISS orbit with orbital elements and ground stations"></a><br/><sub><b>Satellite-Space-Flight</b>: the ISS orbit, live elements and ground-station passes</sub></td>
+    <td width="50%" align="center"><a href="https://github.com/loggger101/asteroid-belt-gradient"><img src="docs/gallery/belt.jpg" alt="Proper elements of S-like and C-like main-belt asteroids"></a><br/><sub><b>asteroid-belt-gradient</b>: S-like and C-like background bodies in proper elements</sub></td>
+  </tr>
+  <tr>
+    <td width="50%" align="center"><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"><img src="docs/gallery/mars.jpg" alt="Mars landform classification across Tharsis and Valles Marineris"></a><br/><sub><b>Mars Global Mosaic</b>: SVM landform classes across Tharsis and Valles Marineris</sub></td>
+    <td width="50%" align="center"><a href="https://github.com/loggger101/drone-target-id"><img src="docs/gallery/drone.jpg" alt="drone-target-id overlay on aerial footage"></a><br/><sub><b>drone-target-id</b>: per-target valid/invalid scores on aerial footage</sub></td>
+  </tr>
+</table>
 
 ### 🪐 Space economics
 
@@ -31,7 +42,7 @@ A four-repo stack answering whether an asteroid mining mission pays for itself:
 
 | | |
 |---|---|
-| **[asteroid-belt-gradient](https://github.com/loggger101/asteroid-belt-gradient)** | Is the main belt's S/C compositional gradient primordial? A family-collapsed, size-debiased analysis of 161k classified asteroids from the catalog above. Every figure and number in the accompanying paper regenerates from two public inputs.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/SciPy-1f3354?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"> <img src="https://img.shields.io/badge/LaTeX-1f3354?style=flat-square&logo=latex&logoColor=white" alt="LaTeX"> <img src="https://img.shields.io/github/v/release/loggger101/asteroid-belt-gradient?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> |
+| **[asteroid-belt-gradient](https://github.com/loggger101/asteroid-belt-gradient)** | Is the main belt's S/C compositional gradient primordial? A family-collapsed, size-debiased analysis of 161k classified asteroids from the catalog above. Every figure and number in the accompanying paper regenerates from two public inputs.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/SciPy-1f3354?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"> <img src="https://img.shields.io/badge/LaTeX-1f3354?style=flat-square&logo=latex&logoColor=white" alt="LaTeX"> <img src="https://img.shields.io/github/v/release/loggger101/asteroid-belt-gradient?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="https://img.shields.io/badge/Paper-AASTeX-5ba3dc?style=flat-square&labelColor=1f3354" alt="Paper"></a> |
 | **[Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data)** | ArcGIS Pro project co-registering Viking color, THEMIS day/night infrared and HRSC/MOLA elevation at ±60° to map lava flows, fluvial channels and impact craters.<br/><img src="https://img.shields.io/badge/ArcGIS_Pro-1f3354?style=flat-square&logo=arcgis&logoColor=white" alt="ArcGIS Pro"> <img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> |
 
 ### 🧠 Deep learning
@@ -65,6 +76,9 @@ I build and run the web platforms and patient databases for two rare-disease non
 <summary>📈 GitHub activity</summary>
 <br/>
 <p align="center">
-  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=loggger101&theme=tokyonight" width="100%" alt="GitHub contribution summary">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=loggger101&theme=github_dark">
+    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=loggger101&theme=github" width="100%" alt="GitHub contribution summary">
+  </picture>
 </p>
 </details>
