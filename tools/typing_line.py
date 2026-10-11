@@ -3,6 +3,10 @@
 Self-hosted so the top of the profile does not depend on a third-party image service.
 Uses SMIL only (works inside <img>, where scripts are stripped), and system monospace
 fonts, so character width is estimated at 0.6 em and each line is centred from that.
+
+The text sits on its own dark bar, styled like the link buttons below it, so it keeps
+its contrast in GitHub's light theme as well as the dark one. The bar is as wide as the
+longest line plus padding; the README's <img width> should match W.
 """
 import sys
 
@@ -11,9 +15,10 @@ LINES = [
     "Deep learning on survey imagery",
     "Orbit simulation in pure Python",
 ]
-W, H = 640, 40
 SIZE = 18
 CHAR = 0.6 * SIZE          # estimated monospace advance
+H = 36
+W = round(max(len(s) for s in LINES) * CHAR + 2 * 36)
 TYPE_PER_CHAR = 0.06       # seconds per character typed
 HOLD = 1.8                 # seconds the full line stays up
 ERASE = 0.35               # seconds to clear it
@@ -78,6 +83,7 @@ for i, (line, slot) in enumerate(zip(LINES, slots)):
     start = end
 
 out.append("</defs>")
+out.append(f'<rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="{H / 2 - 0.75}" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>')
 out += body
 out.append("</svg>")
 

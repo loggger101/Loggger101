@@ -1,9 +1,7 @@
 <p align="center">
   <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/banner.svg" width="100%" alt="Logan M Edwards, Astronomy and Astrophysics, Planetary Science"></a>
   <br/>
-  <a href="https://github.com/loggger101">
-    <img src="docs/typing.svg" width="640" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python.">
-  </a>
+  <a href="https://github.com/loggger101"><img src="docs/typing.svg" width="482" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python."></a>
   <br/>
   <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/links/website.svg" height="36" alt="Website: loganmedwardsastrophy.com"></a>
   <a href="https://www.loganmedwardsastrophy.com/Logan_Edwards_CV.pdf"><img src="docs/links/cv.svg" height="36" alt="CV (PDF)"></a>
