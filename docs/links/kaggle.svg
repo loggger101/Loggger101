@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104 36" width="104" height="36" role="img" aria-label="Kaggle: loggger">
+<rect x="0.75" y="0.75" width="102.5" height="34.5" rx="17.25" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
+<g transform="translate(14 9.0)"><rect width="18" height="18" rx="3.5" fill="#5ba3dc"/><text x="9" y="13.6" text-anchor="middle" font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#0b1020">k</text></g>
+<text x="40" y="23.2" font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#dbe3f5">Kaggle</text>
+</svg>

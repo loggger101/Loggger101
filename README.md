@@ -5,10 +5,10 @@
     <img src="docs/typing.svg" width="640" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python.">
   </a>
   <br/>
-  <a href="https://www.loganmedwardsastrophy.com/"><img src="https://img.shields.io/badge/Website-loganmedwardsastrophy.com-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white&labelColor=1f3354" alt="Website"></a>
-  <a href="https://www.loganmedwardsastrophy.com/Logan_Edwards_CV.pdf"><img src="https://img.shields.io/badge/CV-PDF-5ba3dc?style=flat-square&logo=readdotcv&logoColor=white&labelColor=1f3354" alt="CV"></a>
-  <a href="https://www.linkedin.com/in/logan-edwards-shf/"><img src="https://img.shields.io/badge/LinkedIn-logan--edwards-5ba3dc?style=flat-square&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iI2ZmZiIvPjxyZWN0IHg9IjQuNSIgeT0iOS41IiB3aWR0aD0iMy4yIiBoZWlnaHQ9IjEwIiBmaWxsPSIjMGIxMDIwIi8+PGNpcmNsZSBjeD0iNi4xIiBjeT0iNiIgcj0iMS45IiBmaWxsPSIjMGIxMDIwIi8+PHBhdGggZD0iTTEwLjIgOS41aDMuMXYxLjVjLjUtLjkgMS43LTEuOCAzLjQtMS44IDMgMCAzLjggMiAzLjggNC42djUuN2gtMy4ydi01YzAtMS4zLS4zLTIuNS0xLjctMi41cy0yLjEgMS0yLjEgMi41djVoLTMuM3oiIGZpbGw9IiMwYjEwMjAiLz48L3N2Zz4=&labelColor=1f3354" alt="LinkedIn"></a>
-  <a href="https://www.kaggle.com/loggger"><img src="https://img.shields.io/badge/Kaggle-loggger-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle"></a>
+  <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/links/website.svg" height="36" alt="Website: loganmedwardsastrophy.com"></a>
+  <a href="https://www.loganmedwardsastrophy.com/Logan_Edwards_CV.pdf"><img src="docs/links/cv.svg" height="36" alt="CV (PDF)"></a>
+  <a href="https://www.linkedin.com/in/logan-edwards-shf/"><img src="docs/links/linkedin.svg" height="36" alt="LinkedIn: logan-edwards"></a>
+  <a href="https://www.kaggle.com/loggger"><img src="docs/links/kaggle.svg" height="36" alt="Kaggle: loggger"></a>
 </p>
 
 I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Planetary Science. Most of the work here is about asteroids. I built a catalog of about 1.57 million of them and a pipeline that estimates whether mining one would make money, then used the catalog for a [paper](https://github.com/loggger101/asteroid-belt-gradient) on whether the belt's S/C composition gradient is left over from when the planets formed. I've also trained two image classifiers and written an orbit simulator.

@@ -1,6 +1,6 @@
 # Image generators
 
-The banner, typing line, stat tiles, repo diagram and gallery thumbnails in `docs/` are generated, not hand-edited.
+The banner, typing line, link buttons, stat tiles, repo diagram and gallery cards in `docs/` are generated, not hand-edited.
 Run from the repo root:
 
 ```bash
@@ -9,6 +9,7 @@ python tools/tiles.py docs/stats      # full tiles plus the -compact versions ph
 python tools/gallery.py docs/gallery  # project cards, plus the -compact versions phones get
 python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
+python tools/links.py docs/links      # the Website / CV / LinkedIn / Kaggle buttons under the banner
 ```
 
 `gallery.py` reads each project's images from the local clones under
