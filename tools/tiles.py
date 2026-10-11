@@ -26,8 +26,8 @@ for i, (name, (num, label, repo)) in enumerate(TILES.items()):
 {stars}
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="20" y="54" font-size="36" font-weight="700" fill="#5ba3dc">{num}</text>
-<text x="20" y="80" font-size="15" fill="#dbe3f5">{label}</text>
-<text x="20" y="102" font-size="12" fill="#7d89ad">{repo}</text>
+<text x="20" y="80" font-size="17" fill="#dbe3f5">{label}</text>
+<text x="20" y="103" font-size="13" fill="#93a0c4">{repo}</text>
 </g>
 </svg>
 """

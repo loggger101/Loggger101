@@ -4,7 +4,7 @@
 <circle cx="155.6" cy="28.3" r="1.0" fill="#fff" opacity="0.57"/><circle cx="126.7" cy="77.0" r="0.6" fill="#fff" opacity="0.44"/><circle cx="241.1" cy="58.5" r="0.6" fill="#fff" opacity="0.33"/><circle cx="119.2" cy="34.5" r="0.6" fill="#fff" opacity="0.24"/><circle cx="203.6" cy="46.1" r="0.8" fill="#fff" opacity="0.51"/><circle cx="68.7" cy="90.3" r="0.8" fill="#fff" opacity="0.28"/><circle cx="117.3" cy="39.6" r="0.6" fill="#fff" opacity="0.46"/><circle cx="166.7" cy="42.2" r="0.8" fill="#fff" opacity="0.36"/><circle cx="104.3" cy="52.0" r="0.8" fill="#fff" opacity="0.50"/><circle cx="114.3" cy="98.7" r="0.6" fill="#fff" opacity="0.41"/><circle cx="95.8" cy="10.3" r="1.0" fill="#fff" opacity="0.34"/><circle cx="74.6" cy="93.2" r="0.6" fill="#fff" opacity="0.37"/><circle cx="78.5" cy="87.4" r="0.8" fill="#fff" opacity="0.47"/><circle cx="193.0" cy="45.7" r="1.0" fill="#fff" opacity="0.43"/>
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="20" y="54" font-size="36" font-weight="700" fill="#5ba3dc">161,659</text>
-<text x="20" y="80" font-size="15" fill="#dbe3f5">classified asteroids analyzed</text>
-<text x="20" y="102" font-size="12" fill="#7d89ad">asteroid-belt-gradient</text>
+<text x="20" y="80" font-size="17" fill="#dbe3f5">classified asteroids analyzed</text>
+<text x="20" y="103" font-size="13" fill="#93a0c4">asteroid-belt-gradient</text>
 </g>
 </svg>

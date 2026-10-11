@@ -4,7 +4,7 @@
 <circle cx="45.6" cy="72.1" r="0.6" fill="#fff" opacity="0.42"/><circle cx="175.9" cy="27.0" r="0.8" fill="#fff" opacity="0.45"/><circle cx="151.8" cy="12.5" r="1.0" fill="#fff" opacity="0.42"/><circle cx="197.6" cy="100.0" r="0.6" fill="#fff" opacity="0.49"/><circle cx="103.8" cy="31.6" r="0.6" fill="#fff" opacity="0.23"/><circle cx="21.4" cy="27.1" r="1.0" fill="#fff" opacity="0.38"/><circle cx="135.3" cy="31.1" r="1.0" fill="#fff" opacity="0.41"/><circle cx="132.7" cy="50.9" r="0.8" fill="#fff" opacity="0.47"/><circle cx="70.6" cy="17.6" r="0.8" fill="#fff" opacity="0.35"/><circle cx="57.4" cy="52.5" r="1.0" fill="#fff" opacity="0.37"/><circle cx="109.2" cy="102.4" r="0.6" fill="#fff" opacity="0.35"/><circle cx="26.2" cy="32.7" r="0.8" fill="#fff" opacity="0.37"/><circle cx="149.7" cy="53.8" r="1.0" fill="#fff" opacity="0.51"/><circle cx="75.9" cy="40.9" r="1.0" fill="#fff" opacity="0.39"/>
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="20" y="54" font-size="36" font-weight="700" fill="#5ba3dc">84.3%</text>
-<text x="20" y="80" font-size="15" fill="#dbe3f5">spectral letter, top-1</text>
-<text x="20" y="102" font-size="12" fill="#7d89ad">star-spectral-classifier</text>
+<text x="20" y="80" font-size="17" fill="#dbe3f5">spectral letter, top-1</text>
+<text x="20" y="103" font-size="13" fill="#93a0c4">star-spectral-classifier</text>
 </g>
 </svg>

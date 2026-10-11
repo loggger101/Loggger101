@@ -4,7 +4,7 @@
 <circle cx="45.0" cy="55.3" r="0.6" fill="#fff" opacity="0.48"/><circle cx="193.9" cy="53.1" r="0.6" fill="#fff" opacity="0.41"/><circle cx="28.4" cy="55.4" r="0.6" fill="#fff" opacity="0.46"/><circle cx="172.5" cy="29.3" r="0.6" fill="#fff" opacity="0.32"/><circle cx="203.1" cy="29.2" r="0.6" fill="#fff" opacity="0.26"/><circle cx="234.8" cy="46.5" r="0.8" fill="#fff" opacity="0.59"/><circle cx="61.6" cy="107.4" r="1.0" fill="#fff" opacity="0.31"/><circle cx="209.3" cy="47.0" r="1.0" fill="#fff" opacity="0.46"/><circle cx="53.9" cy="70.7" r="0.6" fill="#fff" opacity="0.51"/><circle cx="151.8" cy="28.0" r="0.6" fill="#fff" opacity="0.57"/><circle cx="68.3" cy="54.6" r="1.0" fill="#fff" opacity="0.57"/><circle cx="106.5" cy="72.9" r="0.6" fill="#fff" opacity="0.44"/><circle cx="190.2" cy="88.6" r="1.0" fill="#fff" opacity="0.49"/><circle cx="183.2" cy="43.2" r="1.0" fill="#fff" opacity="0.34"/>
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="20" y="54" font-size="36" font-weight="700" fill="#5ba3dc">1.57M</text>
-<text x="20" y="80" font-size="15" fill="#dbe3f5">asteroids cataloged</text>
-<text x="20" y="102" font-size="12" fill="#7d89ad">AsteroidCatalog</text>
+<text x="20" y="80" font-size="17" fill="#dbe3f5">asteroids cataloged</text>
+<text x="20" y="103" font-size="13" fill="#93a0c4">AsteroidCatalog</text>
 </g>
 </svg>
