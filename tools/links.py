@@ -22,6 +22,7 @@ ICONS = {
     "globe": f'<circle cx="9" cy="9" r="7.5" {LINE}/><ellipse cx="9" cy="9" rx="3.2" ry="7.5" {LINE}/>'
              f'<path d="M1.8 6.5h14.4M1.8 11.5h14.4" {LINE}/>',
     "page": f'<path d="M4 1.5h6.5l4 4v11h-10.5z" {LINE}/><path d="M10.5 1.5v4h4M6.8 9.5h5M6.8 12.5h5" {LINE}/>',
+    "mail": f'<rect x="1.5" y="3.5" width="15" height="11" rx="2" {LINE}/><path d="M2 4.5l7 5.5 7-5.5" {LINE}/>',
     "linkedin": f'<rect width="18" height="18" rx="3.5" fill="{BLUE}"/><rect x="3.4" y="7.1" width="2.4" height="7.5" fill="{NAVY}"/>'
                 f'<circle cx="4.6" cy="4.5" r="1.45" fill="{NAVY}"/>'
                 f'<path d="M7.6 7.1h2.3v1.1c.4-.7 1.3-1.35 2.55-1.35 2.25 0 2.85 1.5 2.85 3.45v4.3h-2.4v-3.75c0-1-.2-1.9-1.3-1.9s-1.6.75-1.6 1.9v3.75h-2.45z" fill="{NAVY}"/>',
@@ -35,6 +36,7 @@ LINKS = {
     "cv": ("CV", "page", "CV (PDF)"),
     "linkedin": ("LinkedIn", "linkedin", "LinkedIn: logan-edwards"),
     "kaggle": ("Kaggle", "kaggle", "Kaggle: loggger"),
+    "contact": ("Contact form", "mail", "Contact form on loganmedwardsastrophy.com"),
 }
 
 for name, (label, icon, alt) in LINKS.items():

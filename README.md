@@ -108,18 +108,26 @@ Both repos are private, but the sites are public.
 
 ### Elsewhere
 
-- [website](https://github.com/loggger101/website) is the code for my portfolio site. Plain HTML, CSS and JavaScript with no build step.
-- [Hermes_Skills](https://github.com/loggger101/Hermes_Skills) is my library of 253 agent skills in 23 categories, built for my Hermes agent setup.
+<!-- GitHub sizes each table to its content. These two descriptions are short, so the spacer image (1px tall, transparent) widens the table to match the others; on phones it shrinks to nothing. -->
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/website">website</a></b><br/><sub>portfolio site</sub></td>
+    <td valign="top"><p>The code for my portfolio site. Plain HTML, CSS and JavaScript with no build step.</p><img src="https://img.shields.io/badge/HTML5-1f3354?style=flat-square&logo=html5&logoColor=white" alt="HTML5"> <img src="https://img.shields.io/badge/CSS-1f3354?style=flat-square&logo=css&logoColor=white" alt="CSS"> <img src="https://img.shields.io/badge/JavaScript-1f3354?style=flat-square&logo=javascript&logoColor=white" alt="JavaScript"> <a href="https://www.loganmedwardsastrophy.com/"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=github&logoColor=white" alt="Live site"></a><br/><img src="docs/spacer.svg" width="2000" height="1" alt=""></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Hermes_Skills">Hermes_Skills</a></b><br/><sub>agent skills</sub></td>
+    <td valign="top"><p>My library of 253 agent skills in 23 categories, built for my Hermes agent setup.</p><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/Markdown-1f3354?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"></td>
+  </tr>
+</table>
 
-To get in touch, use the [contact form on my site](https://www.loganmedwardsastrophy.com/#contact) (it goes straight to my email) or message me on [LinkedIn](https://www.linkedin.com/in/logan-edwards-shf/).
+### Get in touch
 
-<details>
-<summary>GitHub activity</summary>
-<br/>
+<p align="center">The contact form on my site goes straight to my email, or you can message me on LinkedIn.</p>
+
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=loggger101&theme=github_dark">
-    <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=loggger101&theme=github" width="100%" alt="GitHub contribution summary">
-  </picture>
+  <a href="https://www.loganmedwardsastrophy.com/#contact"><img src="docs/links/contact.svg" height="36" alt="Contact form on loganmedwardsastrophy.com"></a>
+  <a href="https://www.linkedin.com/in/logan-edwards-shf/"><img src="docs/links/linkedin.svg" height="36" alt="LinkedIn: logan-edwards"></a>
 </p>
-</details>
+
+<br/>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="docs/footer-compact.svg"><img src="docs/footer.svg" width="100%" alt=""></picture></p>

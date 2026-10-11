@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 36" width="150" height="36" role="img" aria-label="Contact form on loganmedwardsastrophy.com">
+<rect x="0.75" y="0.75" width="148.5" height="34.5" rx="17.25" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
+<g transform="translate(14 9.0)"><rect x="1.5" y="3.5" width="15" height="11" rx="2" fill="none" stroke="#5ba3dc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 4.5l7 5.5 7-5.5" fill="none" stroke="#5ba3dc" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></g>
+<text x="40" y="23.2" font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#dbe3f5">Contact form</text>
+</svg>
