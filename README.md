@@ -35,43 +35,80 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com) and VP o
 
 ### Space economics
 
-These four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit.
+These four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit. The catalog also feeds my paper.
 
-| | |
-|---|---|
-| **[economicspace](https://github.com/loggger101/economicspace)** | The main pipeline. It builds a catalog from public astronomy databases, prices the minerals, costs the transport, then runs the rocket equation and a cost cascade to rank targets by profit.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/badge/Docker-1f3354?style=flat-square&logo=docker&logoColor=white" alt="Docker"> |
-| **[AsteroidCatalog](https://github.com/loggger101/AsteroidCatalog)** | The pipeline's catalog stage, moved into its own repo. About 1.57 million asteroids from JPL SBDB, SsODNet, NEOWISE and MP3C, cross-matched, with the source of every value recorded and a cited composition estimate for each taxonomy class. Releases are frozen so other projects can pin one.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/Parquet-1f3354?style=flat-square&logo=apacheparquet&logoColor=white" alt="Parquet"> <img src="https://img.shields.io/github/v/release/loggger101/AsteroidCatalog?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://www.loganmedwardsastrophy.com/asteroid-catalog.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
-| **[spacecost](https://github.com/loggger101/spacecost)** | The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
-| **[General_Research](https://github.com/loggger101/General_Research)** | The sources behind the other three, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.<br/><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog and spacecost cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost and ranks mining targets by profit."></picture>
+</p>
+
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b></td>
+    <td valign="top">The main pipeline. It builds a catalog from public astronomy databases, prices the minerals, costs the transport, then runs the rocket equation and a cost cascade to rank targets by profit.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/badge/Docker-1f3354?style=flat-square&logo=docker&logoColor=white" alt="Docker"></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/AsteroidCatalog">AsteroidCatalog</a></b></td>
+    <td valign="top">The pipeline's catalog stage, moved into its own repo. About 1.57 million asteroids from JPL SBDB, SsODNet, NEOWISE and MP3C, cross-matched, with the source of every value recorded and a cited composition estimate for each taxonomy class. Releases are frozen so other projects can pin one.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/Parquet-1f3354?style=flat-square&logo=apacheparquet&logoColor=white" alt="Parquet"> <img src="https://img.shields.io/github/v/release/loggger101/AsteroidCatalog?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://www.loganmedwardsastrophy.com/asteroid-catalog.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/spacecost">spacecost</a></b></td>
+    <td valign="top">The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b></td>
+    <td valign="top">The sources behind the other three, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.<br/><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+</table>
 
 ### Planetary science
 
-| | |
-|---|---|
-| **[asteroid-belt-gradient](https://github.com/loggger101/asteroid-belt-gradient)** | Code and paper for *Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data*. It tests whether the belt's switch from S-types to C-types dates back to formation, using 161,659 classified asteroids from AsteroidCatalog after collapsing collisional families and correcting for the brightness bias that favors S-types. The code rebuilds every figure and number in the paper from two public input files.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/SciPy-1f3354?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"> <img src="https://img.shields.io/badge/LaTeX-1f3354?style=flat-square&logo=latex&logoColor=white" alt="LaTeX"> <img src="https://img.shields.io/github/v/release/loggger101/asteroid-belt-gradient?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="https://img.shields.io/badge/Paper-AASTeX-5ba3dc?style=flat-square&labelColor=1f3354&logo=latex&logoColor=white" alt="Paper"></a> |
-| **[Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data)** | My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S, then mapped lava flows, river channels and impact craters.<br/><img src="https://img.shields.io/badge/ArcGIS_Pro-1f3354?style=flat-square&logo=arcgis&logoColor=white" alt="ArcGIS Pro"> <img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> |
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/asteroid-belt-gradient">asteroid-belt-gradient</a></b></td>
+    <td valign="top">Code and paper for <i>Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data</i>. It tests whether the belt's switch from S-types to C-types dates back to formation, using 161,659 classified asteroids from AsteroidCatalog after collapsing collisional families and correcting for the brightness bias that favors S-types. The code rebuilds every figure and number in the paper from two public input files.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/SciPy-1f3354?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"> <img src="https://img.shields.io/badge/LaTeX-1f3354?style=flat-square&logo=latex&logoColor=white" alt="LaTeX"> <img src="https://img.shields.io/github/v/release/loggger101/asteroid-belt-gradient?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="https://img.shields.io/badge/Paper-AASTeX-5ba3dc?style=flat-square&labelColor=1f3354&logo=latex&logoColor=white" alt="Paper"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b></td>
+    <td valign="top">My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S, then mapped lava flows, river channels and impact craters.<br/><img src="https://img.shields.io/badge/ArcGIS_Pro-1f3354?style=flat-square&logo=arcgis&logoColor=white" alt="ArcGIS Pro"> <img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></td>
+  </tr>
+</table>
 
 ### Deep learning
 
-| | |
-|---|---|
-| **[star-spectral-classifier](https://github.com/loggger101/star-spectral-classifier)** | A multi-task CNN that predicts a star's Morgan-Keenan spectral letter and subclass digit from Pan-STARRS color cutouts, without any spectra. On 14k held-out cutouts it gets the letter right 84.3% of the time, and 98.4% within its top two guesses. Finished 10/21/2025.<br/><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/Astropy-1f3354?style=flat-square" alt="Astropy"> <a href="https://www.kaggle.com/datasets/loggger/star-image-bundles"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/star-catalog.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
-| **[drone-target-id](https://github.com/loggger101/drone-target-id)** | YOLO finds and segments targets in aerial footage, then a multi-output CNN gives each one a fine class and a valid/invalid call. On a 27k held-out test set it scores 87.6% on fine class and 91.2% on valid/invalid. Finished 12/6/2025.<br/><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/YOLO-1f3354?style=flat-square&logo=ultralytics&logoColor=white" alt="YOLO"> <img src="https://img.shields.io/badge/OpenCV-1f3354?style=flat-square&logo=opencv&logoColor=white" alt="OpenCV"> <a href="https://www.kaggle.com/datasets/loggger/fpv-images"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/drone-target.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/star-spectral-classifier">star-spectral-classifier</a></b></td>
+    <td valign="top">A multi-task CNN that predicts a star's Morgan-Keenan spectral letter and subclass digit from Pan-STARRS color cutouts, without any spectra. On 14k held-out cutouts it gets the letter right 84.3% of the time, and 98.4% within its top two guesses. Finished 10/21/2025.<br/><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/Astropy-1f3354?style=flat-square" alt="Astropy"> <a href="https://www.kaggle.com/datasets/loggger/star-image-bundles"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/star-catalog.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/drone-target-id">drone-target-id</a></b></td>
+    <td valign="top">YOLO finds and segments targets in aerial footage, then a multi-output CNN gives each one a fine class and a valid/invalid call. On a 27k held-out test set it scores 87.6% on fine class and 91.2% on valid/invalid. Finished 12/6/2025.<br/><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/YOLO-1f3354?style=flat-square&logo=ultralytics&logoColor=white" alt="YOLO"> <img src="https://img.shields.io/badge/OpenCV-1f3354?style=flat-square&logo=opencv&logoColor=white" alt="OpenCV"> <a href="https://www.kaggle.com/datasets/loggger/fpv-images"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/drone-target.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+</table>
 
 ### Simulation
 
-| | |
-|---|---|
-| **[Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight)** | A 3-D Earth orbit simulator in pure Python. The physics runs in numpy (J2 to J4 gravity, drag, Sun and Moon, solar radiation pressure, maneuvers) and pygame draws it. You can also fly a multi-stage rocket to orbit from anywhere on Earth, or from one of fifteen real launch complexes.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/NumPy-1f3354?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"> <img src="https://img.shields.io/badge/pygame-1f3354?style=flat-square" alt="pygame"> |
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Satellite-Space-Flight">Satellite-Space-Flight</a></b></td>
+    <td valign="top">A 3-D Earth orbit simulator in pure Python. The physics runs in numpy (J2 to J4 gravity, drag, Sun and Moon, solar radiation pressure, maneuvers) and pygame draws it. You can also fly a multi-stage rocket to orbit from anywhere on Earth, or from one of fifteen real launch complexes.<br/><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/NumPy-1f3354?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"> <img src="https://img.shields.io/badge/pygame-1f3354?style=flat-square" alt="pygame"></td>
+  </tr>
+</table>
 
 ### Nonprofit work
 
 Both repos are private, but the sites are public.
 
-| | |
-|---|---|
-| **[AspireCURES](https://www.aspirecures.com)** | I'm the CTO. AspireCURES matches patients with rare brain diseases to research. The site runs on Cloudflare Pages with serverless registration and a research feed that updates itself.<br/><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.aspirecures.com"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/aspire-cures.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a> |
-| **[Sisters Hope Foundation](https://www.sistershopefoundation.org)** | I'm the VP of Database Management. Sisters Hope is a 501(c)(3) patient advocacy group for ALSP and CSF1R-related disorders. I moved their site off Squarespace and onto Cloudflare Pages.<br/><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.sistershopefoundation.org"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> |
+<table>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://www.aspirecures.com">AspireCURES</a></b></td>
+    <td valign="top">I'm the CTO. AspireCURES matches patients with rare brain diseases to research. The site runs on Cloudflare Pages with serverless registration and a research feed that updates itself.<br/><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.aspirecures.com"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/aspire-cures.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://www.sistershopefoundation.org">Sisters Hope Foundation</a></b></td>
+    <td valign="top">I'm the VP of Database Management. Sisters Hope is a 501(c)(3) patient advocacy group for ALSP and CSF1R-related disorders. I moved their site off Squarespace and onto Cloudflare Pages.<br/><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.sistershopefoundation.org"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a></td>
+  </tr>
+</table>
 
 ### Elsewhere
 
