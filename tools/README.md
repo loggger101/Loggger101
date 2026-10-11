@@ -5,7 +5,7 @@ Run from the repo root:
 
 ```bash
 python tools/banner.py docs/banner.svg
-python tools/tiles.py docs/stats
+python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
 python tools/gallery.py docs/gallery
 python tools/typing.py docs/typing.svg
 ```
