@@ -22,16 +22,12 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com) and VP o
   <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="24%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
-<table>
-  <tr>
-    <td width="50%" align="center"><a href="https://github.com/loggger101/Satellite-Space-Flight"><img src="docs/gallery/satellite.jpg" alt="Satellite-Space-Flight: ISS orbit with orbital elements and ground stations"></a><br/><sub><b>Satellite-Space-Flight</b>: the ISS orbit, live elements and ground-station passes</sub></td>
-    <td width="50%" align="center"><a href="https://github.com/loggger101/asteroid-belt-gradient"><img src="docs/gallery/belt.jpg" alt="Proper elements of S-like and C-like main-belt asteroids"></a><br/><sub><b>asteroid-belt-gradient</b>: S-like and C-like background bodies in proper elements</sub></td>
-  </tr>
-  <tr>
-    <td width="50%" align="center"><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"><img src="docs/gallery/mars.jpg" alt="Mars landform classification across Tharsis and Valles Marineris"></a><br/><sub><b>Mars Global Mosaic</b>: SVM landform classes across Tharsis and Valles Marineris</sub></td>
-    <td width="50%" align="center"><a href="https://github.com/loggger101/drone-target-id"><img src="docs/gallery/drone.jpg" alt="drone-target-id overlay on aerial footage"></a><br/><sub><b>drone-target-id</b>: per-target valid/invalid scores on aerial footage</sub></td>
-  </tr>
-</table>
+<p align="center">
+  <a href="https://github.com/loggger101/Satellite-Space-Flight"><picture><source media="(max-width: 600px)" srcset="docs/gallery/satellite-compact.webp"><img src="docs/gallery/satellite.webp" width="48.5%" alt="Satellite-Space-Flight: the ISS orbit, live elements and ground-station passes"></picture></a>
+  <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/gallery/belt-compact.webp"><img src="docs/gallery/belt.webp" width="48.5%" alt="asteroid-belt-gradient: S-types give way to C-types farther from the Sun (fraction by number across semimajor axis, D of at least 53 km, families collapsed)"></picture></a>
+  <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"><picture><source media="(max-width: 600px)" srcset="docs/gallery/mars-compact.webp"><img src="docs/gallery/mars.webp" width="48.5%" alt="Mars Global Mosaic: SVM landform classes across Tharsis and Valles Marineris"></picture></a>
+  <a href="https://github.com/loggger101/drone-target-id"><picture><source media="(max-width: 600px)" srcset="docs/gallery/drone-compact.webp"><img src="docs/gallery/drone.webp" width="48.5%" alt="drone-target-id: per-target valid/invalid scores on aerial footage"></picture></a>
+</p>
 
 ### Space economics
 
