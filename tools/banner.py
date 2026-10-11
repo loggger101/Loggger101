@@ -36,6 +36,9 @@ a("""<defs>
   .t { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
   @media (prefers-reduced-motion: reduce) { .tw, .pulse { animation: none; } }
 </style>""")
+# Rounded corners, to match the stat tiles
+a(f'<clipPath id="round"><rect width="{W}" height="{H}" rx="16"/></clipPath>')
+a('<g clip-path="url(#round)">')
 a(f'<rect width="{W}" height="{H}" fill="url(#bg)"/>')
 a(f'<rect width="{W}" height="{H}" fill="url(#glow)"/>')
 a(f'<rect width="{W}" height="{H}" fill="url(#glow2)"/>')
@@ -82,7 +85,8 @@ a("</g>")
 # Text
 a('<text class="t" x="360" y="138" font-size="62" font-weight="700" fill="#ffffff">Logan M Edwards</text>')
 a('<text class="t" x="362" y="186" font-size="26" fill="#aab6d3">Astronomy &amp; Astrophysics  •  Planetary Science</text>')
-a('<text class="t" x="362" y="226" font-size="18" fill="#7d89ad">Florida Tech  •  loganmedwardsastrophy.com</text>')
+a('<text class="t" x="362" y="228" font-size="20" fill="#93a0c4">Florida Tech  •  loganmedwardsastrophy.com</text>')
+a("</g>")
 a("</svg>")
 
 with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
