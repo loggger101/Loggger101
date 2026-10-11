@@ -1,12 +1,13 @@
 # Image generators
 
-The banner, stat tiles and gallery thumbnails in `docs/` are generated, not hand-edited.
+The banner, typing line, stat tiles and gallery thumbnails in `docs/` are generated, not hand-edited.
 Run from the repo root:
 
 ```bash
 python tools/banner.py docs/banner.svg
 python tools/tiles.py docs/stats
 python tools/gallery.py docs/gallery
+python tools/typing.py docs/typing.svg
 ```
 
 `gallery.py` reads each project's images from the local clones under

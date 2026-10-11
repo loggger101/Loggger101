@@ -2,7 +2,7 @@
   <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/banner.svg" width="100%" alt="Logan M Edwards, Astronomy and Astrophysics, Planetary Science"></a>
   <br/>
   <a href="https://github.com/loggger101">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=2600&pause=900&color=5BA3DC&center=true&vCenter=true&width=640&height=40&lines=Asteroid+catalogs+and+mining+economics;Deep+learning+on+survey+imagery;Orbit+simulation+in+pure+Python" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python.">
+    <img src="docs/typing.svg" width="640" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python.">
   </a>
   <br/>
   <a href="https://www.loganmedwardsastrophy.com/"><img src="https://img.shields.io/badge/Website-loganmedwardsastrophy.com-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white&labelColor=1f3354" alt="Website"></a>
@@ -77,6 +77,8 @@ Both repos are private, but the sites are public.
 
 - [website](https://github.com/loggger101/website) is the code for my portfolio site. Plain HTML, CSS and JavaScript with no build step.
 - [Hermes_Skills](https://github.com/loggger101/Hermes_Skills) is my library of 253 agent skills in 23 categories, built for my Hermes agent setup.
+
+To get in touch, use the [contact form on my site](https://www.loganmedwardsastrophy.com/#contact) (it goes straight to my email) or message me on [LinkedIn](https://www.linkedin.com/in/logan-edwards-shf/).
 
 <details>
 <summary>GitHub activity</summary>
