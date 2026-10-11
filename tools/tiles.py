@@ -19,8 +19,8 @@ FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 TILES = {
     "catalog": ("1.57M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
     "belt": ("161,659", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
-    "star": ("84.3%", "spectral letter, top-1", "spectral type", "star-spectral-classifier"),
-    "drone": ("91.2%", "valid/invalid accuracy", "valid/invalid", "drone-target-id"),
+    "sources": ("562", "research sources", "sources", "General_Research"),
+    "skills": ("253", "agent skills", "agent skills", "Hermes_Skills"),
 }
 
 

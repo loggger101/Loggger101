@@ -18,8 +18,8 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com) and VP o
 <p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="24%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="24%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
-  <a href="https://github.com/loggger101/star-spectral-classifier"><picture><source media="(max-width: 600px)" srcset="docs/stats/star-compact.svg"><img src="docs/stats/star.svg" width="24%" alt="84.3% spectral letter top-1 accuracy (star-spectral-classifier)"></picture></a>
-  <a href="https://github.com/loggger101/drone-target-id"><picture><source media="(max-width: 600px)" srcset="docs/stats/drone-compact.svg"><img src="docs/stats/drone.svg" width="24%" alt="91.2% valid/invalid accuracy (drone-target-id)"></picture></a>
+  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="24%" alt="562 research sources (General_Research)"></picture></a>
+  <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="24%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
 <table>
