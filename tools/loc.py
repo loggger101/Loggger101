@@ -4,11 +4,19 @@ Counts what is on each repo's default branch on GitHub, not a local clone: it ma
 shallow partial clone that downloads only the source files (General_Research is 833 MB,
 almost all of it hosted papers), counts them, and deletes it.
 
-A line of code is a line with code on it. Blank lines, comment lines and Python docstrings
-don't count; notebooks count their code cells only. Config, data, prose and LaTeX don't
-count. Neither do files the repo generates or archives (economicspace's master.py is its
-modules joined together; the two nonprofit sites commit their built pages) or files it
-hosts but didn't write (General_Research's full_texts).
+The rules are the usual ones, cloc's for counting lines and GitHub Linguist's for which
+files are code:
+- A line of code has code on it. Blank lines and comment-only lines don't count; a line
+  with code and a trailing comment does. Python docstrings count as comments (cloc's
+  default), and notebooks count their code cells only.
+- Programming and markup languages count (Python, JavaScript, HTML, CSS, shell, Perl,
+  PowerShell, batch, VBScript, Dockerfiles, scripts found by their #! line). Data and
+  prose don't (JSON, YAML, TOML, CSV, Markdown, TeX).
+- Files a repo marks linguist-generated, linguist-vendored or linguist-documentation in
+  its .gitattributes don't count, nor do vendored folders and minified files. Identical
+  files count once.
+- REPOS lists what each repo generates, archives or hosts without marking it (the two
+  nonprofit sites commit their built pages; General_Research hosts papers).
 
 Writes tools/counts.json ("loc") and the "N lines of code" line under each repo's name in
 the README. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
@@ -18,6 +26,7 @@ already in counts.json.
     python tools/loc.py                 # every repo
     python tools/loc.py --public-only   # skip the private ones
 """
+import hashlib
 import io
 import json
 import re
@@ -26,14 +35,15 @@ import sys
 import tempfile
 import tokenize
 from fnmatch import fnmatch
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 ROOT = Path(__file__).resolve().parent.parent
 COUNTS = ROOT / "tools" / "counts.json"
 
-# repo: (link in its README row, private, extra exclude patterns)
+# repo: (link in its README row, private, what it generates, archives or hosts without
+# marking it in .gitattributes)
 REPOS = {
-    "economicspace": ("https://github.com/loggger101/economicspace", False, ["master.py"]),
+    "economicspace": ("https://github.com/loggger101/economicspace", False, []),
     "AsteroidCatalog": ("https://github.com/loggger101/AsteroidCatalog", False, []),
     "spacecost": ("https://github.com/loggger101/spacecost", False, []),
     "General_Research": ("https://github.com/loggger101/General_Research", False, ["*/full_texts/*"]),
@@ -52,10 +62,18 @@ REPOS = {
 # Patterns match the whole path (fnmatch's * crosses "/"); a "!" pattern keeps what it matches.
 EXCLUDE = ["*node_modules/*", "*vendor/*", "*third_party/*", "*.min.js", "*.min.css"]
 
-HASH = {".sh", ".ps1", ".pl", ".pm", ".r"}       # '#' line comments
-SLASH = {".js", ".mjs", ".ts", ".css"}           # '//' and /* */ comments
-OTHER = {".py", ".ipynb", ".html", ".htm", ".bat"}
-EXTS = HASH | SLASH | OTHER
+# How each language marks comments.
+BY_EXT = {
+    ".py": "python", ".ipynb": "notebook",
+    ".js": "c", ".mjs": "c", ".cjs": "c", ".ts": "c", ".css": "css",
+    ".html": "html", ".htm": "html",
+    ".sh": "hash", ".bash": "hash", ".command": "hash", ".r": "hash",
+    ".pl": "perl", ".pm": "perl", ".ps1": "powershell",
+    ".bat": "batch", ".cmd": "batch", ".vbs": "vbscript",
+}
+BY_NAME = {"Dockerfile": "hash", "Makefile": "hash"}
+BY_SHEBANG = {"python": "python", "node": "c", "perl": "perl"}  # anything else uses '#'
+LINGUIST = ("linguist-generated", "linguist-vendored", "linguist-documentation")
 
 
 def python_lines(src):
@@ -77,36 +95,138 @@ def python_lines(src):
     return len(lines)
 
 
+def c_lines(src, line_comments=True):
+    """Lines with code in C-style syntax (JavaScript; CSS without // comments). Quotes are
+    tracked, so a /* or // inside a string is not a comment. One exception: a template
+    literal can hold a whole program (a page's <script>, a stub module), and a line in it
+    that starts with // is a comment line of that program, so it doesn't count."""
+    code, line, i, n = set(), 1, 0, len(src)
+    state, quote, quiet = "code", "", 0
+    while i < n:
+        ch, two = src[i], src[i:i + 2]
+        if ch == "\n":
+            line += 1
+            if state == "line" or (state == "string" and quote != "`"):
+                state = "code"
+            if line_comments and state == "string":         # still inside a template literal
+                end = src.find("\n", i + 1)
+                if src[i + 1:end if end != -1 else n].lstrip().startswith("//"):
+                    quiet = line
+            i += 1
+            continue
+        if state == "code":
+            if two == "/*":
+                state, i = "block", i + 2
+                continue
+            if line_comments and two == "//":
+                state, i = "line", i + 2
+                continue
+            if ch in "'\"`":
+                state, quote = "string", ch
+            if not ch.isspace():
+                code.add(line)
+        elif state == "block":
+            if two == "*/":
+                state, i = "code", i + 2
+                continue
+        elif state == "string":
+            if line != quiet and not ch.isspace():
+                code.add(line)
+            if ch == "\\":
+                i += 2
+                if i - 1 < n and src[i - 1] == "\n":
+                    line += 1
+                continue
+            if ch == quote:
+                state = "code"
+        i += 1
+    return len(code)
+
+
 def strip_blocks(src, start, end):
     return re.sub(re.escape(start) + r".*?" + re.escape(end), lambda m: "\n" * m[0].count("\n"), src, flags=re.S)
 
 
-def count(path):
-    ext = path.suffix.lower()
+def nonblank(src, comment):
+    """Lines that aren't blank and don't match the comment regex."""
+    return sum(1 for l in src.splitlines() if l.strip() and not re.match(comment, l))
+
+
+def count(path, lang):
     src = path.read_text(encoding="utf-8", errors="replace")
-    if ext == ".py":
-        try:
+    try:
+        if lang == "python":
             return python_lines(src)
-        except (tokenize.TokenError, SyntaxError, IndentationError) as e:
-            sys.exit(f"can't tokenize {path}: {e}")
-    if ext == ".ipynb":
-        cells = json.loads(src).get("cells", [])
-        code = ["".join(c["source"]) if isinstance(c["source"], list) else c["source"] for c in cells if c["cell_type"] == "code"]
-        # Cells may hold %magics or !shell lines that don't tokenize; count those as code.
-        return sum(1 for cell in code for l in cell.splitlines() if l.strip() and not l.lstrip().startswith("#"))
-    if ext in (".html", ".htm"):
-        src = strip_blocks(src, "<!--", "-->")
-        return sum(1 for l in src.splitlines() if l.strip())
-    if ext == ".bat":
-        return sum(1 for l in src.splitlines() if l.strip() and not re.match(r"\s*(rem\b|::)", l, re.I))
-    if ext in SLASH:
-        src = strip_blocks(src, "/*", "*/")
-        return sum(1 for l in src.splitlines() if l.strip() and not l.lstrip().startswith("//"))
-    if ext == ".ps1":
+        if lang == "notebook":
+            total = 0
+            for cell in json.loads(src).get("cells", []):
+                if cell["cell_type"] != "code":
+                    continue
+                text = "".join(cell["source"]) if isinstance(cell["source"], list) else cell["source"]
+                # %magic and !shell lines are code but not Python; stand in a statement for each.
+                text = re.sub(r"(?m)^(\s*)[%!].*$", r"\1pass", text)
+                total += python_lines(text)
+            return total
+    except (tokenize.TokenError, SyntaxError) as e:
+        sys.exit(f"can't tokenize {path}: {e}")
+    if lang == "c":
+        return c_lines(src)
+    if lang == "css":
+        return c_lines(src, line_comments=False)
+    if lang == "html":
+        return nonblank(strip_blocks(src, "<!--", "-->"), r"$^")
+    if lang == "batch":
+        return nonblank(src, r"(?i)\s*@?(rem\b|::)")
+    if lang == "vbscript":
+        return nonblank(src, r"(?i)\s*('|rem\b)")
+    if lang == "powershell":
         src = strip_blocks(src, "<#", "#>")
-    if ext in (".pl", ".pm"):
-        src = re.sub(r"^=[a-zA-Z].*?^=cut\b.*?$", "", src, flags=re.S | re.M)
-    return sum(1 for l in src.splitlines() if l.strip() and not l.lstrip().startswith("#"))
+    if lang == "perl":
+        src = re.split(r"(?m)^__(?:END|DATA)__\s*$", src)[0]       # the rest is data
+        src = re.sub(r"(?ms)^=[a-zA-Z].*?^=cut\b.*?$", "", src)    # POD documentation
+    return nonblank(src, r"\s*#")
+
+
+def language(path, read_head):
+    """The comment syntax a file uses, or None if it isn't code."""
+    p = PurePosixPath(path)
+    if p.suffix.lower() in BY_EXT:
+        return BY_EXT[p.suffix.lower()]
+    if p.name in BY_NAME or p.name.startswith("Dockerfile."):
+        return BY_NAME.get(p.name, "hash")
+    if p.suffix == "":
+        head = read_head(path)
+        # "#!/bin/bash", "#!/usr/bin/env python3": the interpreter's name, letters only.
+        m = re.match(rb"#!\s*(?:\S*/)?(?:env\s+(?:-\S+\s+)*)?([A-Za-z]+)", head)
+        if m:
+            return BY_SHEBANG.get(m[1].decode(), "hash")
+    return None
+
+
+def linguist_excluded(path, rules):
+    """Whether .gitattributes marks the path generated, vendored or documentation."""
+    state = dict.fromkeys(LINGUIST, False)
+    for pattern, attrs in rules:
+        p = pattern.lstrip("/").replace("**", "*")
+        hit = fnmatch(PurePosixPath(path).name, p) if "/" not in pattern.rstrip("/") else fnmatch(path, p)
+        if not hit:
+            continue
+        for a in attrs:
+            name, _, value = a.lstrip("-!").partition("=")
+            if name in state:
+                state[name] = not a.startswith(("-", "!")) and value != "false"
+    return any(state.values())
+
+
+def gitattributes(repo):
+    f = repo / ".gitattributes"
+    rules = []
+    if f.exists():
+        for line in f.read_text(encoding="utf-8").splitlines():
+            parts = line.split()
+            if parts and not parts[0].startswith("#"):
+                rules.append((parts[0], parts[1:]))
+    return rules
 
 
 def excluded(path, patterns):
@@ -118,16 +238,39 @@ def excluded(path, patterns):
 def repo_loc(name, excludes):
     with tempfile.TemporaryDirectory() as tmp:
         url = f"https://github.com/loggger101/{name}.git"
-        run = lambda *a: subprocess.run(a, cwd=tmp, check=True, capture_output=True, text=True)
+        run = lambda *a, **kw: subprocess.run(a, cwd=tmp, check=True, capture_output=True, **kw)
         run("git", "clone", "--quiet", "--depth", "1", "--filter=blob:none", "--sparse", url, "r")
         repo = Path(tmp, "r")
-        run("git", "-C", "r", "sparse-checkout", "set", "--no-cone", *[f"*{e}" for e in sorted(EXTS)])
-        files = run("git", "-C", "r", "ls-files").stdout.splitlines()
-        total = 0
-        for f in files:
-            if Path(f).suffix.lower() not in EXTS or excluded(f, EXCLUDE + excludes):
+        # No -l: asking a partial clone for blob sizes downloads every blob, one at a time.
+        listing = run("git", "-C", "r", "ls-tree", "-r", "-z", "HEAD").stdout.decode("utf-8").split("\0")
+        paths = []
+        for entry in filter(None, listing):
+            meta, path = entry.split("\t", 1)
+            mode, kind, _ = meta.split()
+            if kind == "blob" and mode != "120000":      # files, not submodules or symlinks
+                paths.append(path)
+        # Fetch the source files, plus every extensionless file so its #! line can be read
+        # (in these repos they are git hooks, licences and ArcGIS log messages, all small).
+        escape = lambda p: "/" + re.sub(r"([\\*?\[!#])", r"\\\1", p)
+        maybe = [escape(p) for p in paths if PurePosixPath(p).suffix == ""]
+        patterns = ["/.gitattributes", "Dockerfile*", "Makefile", *[f"*{e}" for e in BY_EXT], *maybe]
+        run("git", "-C", "r", "sparse-checkout", "set", "--no-cone", "--stdin", input="\n".join(patterns).encode())
+        rules = gitattributes(repo)
+        head = lambda p: (repo / p).read_bytes()[:128]
+        total, seen = 0, set()
+        for path in sorted(paths):
+            if excluded(path, EXCLUDE + excludes) or linguist_excluded(path, rules):
                 continue
-            total += count(repo / f)
+            lang = language(path, head)
+            if lang is None:
+                continue
+            if not (repo / path).is_file():
+                sys.exit(f"{name}: {path} wasn't checked out")
+            digest = hashlib.sha1((repo / path).read_bytes()).digest()
+            if digest in seen:          # identical files count once, as cloc does
+                continue
+            seen.add(digest)
+            total += count(repo / path, lang)
         return total
 
 

@@ -38,11 +38,23 @@ General_Research's `sources.csv` and Hermes_Skills' README, along with the READM
 them. A weekly workflow (`.github/workflows/refresh-counts.yml`) runs it and `tiles.py`, and commits
 only when a count has changed.
 
-`loc.py` counts each repo's default branch on GitHub, not the local clone. A line of code
-is any line that isn't blank, a comment or a docstring (cloc's definition); notebooks count
-code cells only. Generated, archived and hosted files are excluded per repo in its `REPOS`
-table, with the reason beside each. Hermes_Skills has no count, because many of its skills
-were ported from other repos. The workflow runs it with `--public-only`, since its token
-can't clone aspirecures or SistersHopeFoundation; run it locally to refresh those two.
+`loc.py` counts each repo's default branch on GitHub, not the local clone, by the usual
+rules: cloc's for lines, GitHub Linguist's for files.
+
+- A line of code isn't blank and isn't only a comment; a trailing comment doesn't stop a
+  line counting. Python docstrings are comments (cloc's default). Comment markers inside
+  strings are not comments.
+- Programming and markup languages count, including Dockerfiles and extensionless scripts
+  found by their `#!` line. Data and prose (JSON, YAML, TOML, CSV, Markdown, TeX) don't.
+- Files a repo's `.gitattributes` marks `linguist-generated`, `-vendored` or
+  `-documentation` don't count. That is why the two classifiers count `src/` only: both mark
+  their notebooks as documentation. Vendored folders, minified files and duplicate files
+  (counted once) are left out too.
+- What a repo generates, archives or hosts without marking it is listed in `REPOS`, with
+  the reason beside each.
+
+Hermes_Skills has no count, because many of its skills were ported from other repos. The
+workflow runs `loc.py` with `--public-only`, since its token can't clone aspirecures or
+SistersHopeFoundation; run it locally to refresh those two.
 The arrows in `pipeline.py` follow what each repo's README says it reads from
 the others; check both READMEs before adding or moving one.
