@@ -18,10 +18,21 @@ files are code:
 - REPOS lists what each repo generates, archives or hosts without marking it (the two
   nonprofit sites commit their built pages; General_Research hosts papers).
 
-Writes tools/counts.json ("loc") and the "N lines of code" line under each repo's name in
-the README. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
-login to clone; with --public-only, which the weekly workflow uses, they keep the count
-already in counts.json.
+"Total lines" is every line of every text file of your own in the repo: the code with its
+blank and comment lines, notebooks (all their cells, not their outputs), docs, the paper's
+TeX, data, config and logs. It leaves out:
+- binary files (images, PDFs, models, ArcGIS geodatabases);
+- what lines of code also leave out for being built, archived, hosted or vendored (REPOS,
+  EXCLUDE, linguist-generated and linguist-vendored; linguist-documentation still counts);
+- TOTAL_EXCLUDE: other people's text (licences, a downloaded survey table, the AAS LaTeX
+  template, fetched paper abstracts) and machine output (ArcGIS metadata, generated
+  sitemaps and feeds, lock files).
+Identical files count once.
+
+Writes tools/counts.json ("loc" and "lines") and the "N lines of code" and "N total lines"
+lines under each repo's name in the README. The private repos (aspirecures,
+SistersHopeFoundation) need your own GitHub login to clone; with --public-only, which the
+weekly workflow uses, they keep the counts already in counts.json.
 
     python tools/loc.py                 # every repo
     python tools/loc.py --public-only   # skip the private ones
@@ -61,6 +72,36 @@ REPOS = {
 }
 # Patterns match the whole path (fnmatch's * crosses "/"); a "!" pattern keeps what it matches.
 EXCLUDE = ["*node_modules/*", "*vendor/*", "*third_party/*", "*.min.js", "*.min.css"]
+
+# Text files that stay out of the total lines though they aren't built or vendored, because
+# someone else wrote them or a program did. repo: patterns ("*" applies to every repo).
+TOTAL_EXCLUDE = {
+    # Standard licence texts, and lock files pip and npm write.
+    "*": ["LICENSE*", "*/LICENSE*", "requirements-lock.txt", "*package-lock.json"],
+    # The SDSS asteroid taxonomy table, downloaded for a probe script.
+    "economicspace": ["research/starred-repos/sdsstax_ast.tab"],
+    # The AAS journal class and bibliography styles the paper is set with.
+    "asteroid-belt-gradient": ["paper/aastex*.cls", "paper/*.bst"],
+    # ArcGIS writes these: training-sample dumps, raster metadata sidecars, world files,
+    # geoprocessing messages, the unpacked .aprx project and the file geodatabase.
+    # Plus the PDS label that came with a downloaded Mars mosaic.
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": ["*/LabeledObjects/*", "*.aux.xml", "*.tif.xml", "*.tfw",
+                                               "*/GpMessages/*", "*/aprx_live/*", "*.gdb/*", "*.lbl"],
+    # Natural Earth coastlines.
+    "Satellite-Space-Flight": ["assets/coastlines.json"],
+    # The weekly research feed's output (paper titles and abstracts fetched from PubMed and
+    # others, and the RSS feeds made from them), and the sitemap gen-sitemap.pl writes.
+    "aspirecures": ["data/research/*", "research.xml", "research/*.xml", "sitemap.xml"],
+    # tools/build.py writes the sitemap and llms.txt; build_events.py the calendar files.
+    "SistersHopeFoundation": ["sitemap.xml", "llms.txt", "events/*.ics"],
+}
+# Not fetched, so General_Research's papers and the Mars rasters aren't downloaded. Anything
+# else holding a NUL byte is binary too.
+BINARY = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".ico", ".tif", ".tiff", ".pdf", ".zip", ".gz",
+          ".xlsx", ".docx", ".pptx", ".parquet", ".npy", ".npz", ".h5", ".keras", ".pt", ".pkl",
+          ".mp4", ".webm", ".mp3", ".wav", ".ttf", ".otf", ".woff", ".woff2",
+          ".aprx", ".atbx", ".gdbtable", ".gdbtablx", ".gdbindexes", ".freelist", ".spx", ".atx",
+          ".shp", ".shx", ".dbf", ".cpg", ".ecd", ".ecs", ".emd", ".gsg", ".horizon"}
 
 # How each language marks comments.
 BY_EXT = {
@@ -189,6 +230,17 @@ def count(path, lang):
     return nonblank(src, r"\s*#")
 
 
+def total_lines(path, lang):
+    """Every line of the file, blank and comment lines included (cloc's blank + comment +
+    code). A notebook's are the lines of its cells, code and Markdown; its outputs are what
+    the code printed, so they don't count."""
+    src = path.read_text(encoding="utf-8", errors="replace")
+    if lang == "notebook":
+        cells = [c["source"] for c in json.loads(src).get("cells", [])]
+        return sum(len(("".join(s) if isinstance(s, list) else s).splitlines()) for s in cells)
+    return len(src.splitlines())
+
+
 def language(path, read_head):
     """The comment syntax a file uses, or None if it isn't code."""
     p = PurePosixPath(path)
@@ -205,9 +257,10 @@ def language(path, read_head):
     return None
 
 
-def linguist_excluded(path, rules):
-    """Whether .gitattributes marks the path generated, vendored or documentation."""
-    state = dict.fromkeys(LINGUIST, False)
+def linguist_excluded(path, rules, attrs=LINGUIST):
+    """Whether .gitattributes marks the path with any of attrs (generated, vendored or
+    documentation)."""
+    state = dict.fromkeys(attrs, False)
     for pattern, attrs in rules:
         p = pattern.lstrip("/").replace("**", "*")
         hit = fnmatch(PurePosixPath(path).name, p) if "/" not in pattern.rstrip("/") else fnmatch(path, p)
@@ -251,38 +304,43 @@ def repo_loc(name, excludes):
             mode, kind, _ = meta.split()
             if kind == "blob" and mode != "120000":      # files, not submodules or symlinks
                 paths.append(path)
-        # Fetch the source files, plus every extensionless file so its #! line can be read
-        # (in these repos they are git hooks, licences and ArcGIS log messages, all small).
+        # Fetch every file that may be text and isn't built, archived or hosted.
         escape = lambda p: "/" + re.sub(r"([\\*?\[!#])", r"\\\1", p)
-        maybe = [escape(p) for p in paths if PurePosixPath(p).suffix == ""]
-        patterns = ["/.gitattributes", "Dockerfile*", "Makefile", *[f"*{e}" for e in BY_EXT], *maybe]
+        wanted = [p for p in paths if PurePosixPath(p).suffix.lower() not in BINARY and not excluded(p, EXCLUDE + excludes)]
+        patterns = ["/.gitattributes", *map(escape, wanted)]
         run("git", "-C", "r", "sparse-checkout", "set", "--no-cone", "--stdin", input="\n".join(patterns).encode())
         rules = gitattributes(repo)
         head = lambda p: (repo / p).read_bytes()[:128]
-        total, seen = 0, set()
-        for path in sorted(paths):
-            if excluded(path, EXCLUDE + excludes) or linguist_excluded(path, rules):
-                continue
-            lang = language(path, head)
-            if lang is None:
+        not_own = TOTAL_EXCLUDE["*"] + TOTAL_EXCLUDE.get(name, [])
+        code, total, seen_code, seen_all = 0, 0, set(), set()
+        for path in wanted:
+            if linguist_excluded(path, rules, ("linguist-generated", "linguist-vendored")):
                 continue
             if not (repo / path).is_file():
                 sys.exit(f"{name}: {path} wasn't checked out")
-            digest = hashlib.sha1((repo / path).read_bytes()).digest()
-            if digest in seen:          # identical files count once, as cloc does
+            data = (repo / path).read_bytes()
+            if b"\0" in data[:8000]:
                 continue
-            seen.add(digest)
-            total += count(repo / path, lang)
-        return total
+            # Identical files count once, as cloc does.
+            digest = hashlib.sha1(data).digest()
+            lang = language(path, head)
+            if lang and not linguist_excluded(path, rules) and digest not in seen_code:
+                seen_code.add(digest)
+                code += count(repo / path, lang)
+            if not excluded(path, not_own) and digest not in seen_all:
+                seen_all.add(digest)
+                total += total_lines(repo / path, lang)
+        return code, total
 
 
-def update_readme(readme, loc):
+def update_readme(readme, loc, lines):
     """The README with these line counts written in. check.py calls it with the stored counts."""
     for name, (link, _, _) in REPOS.items():
-        # The repo's name cell: <b><a href="LINK">Name</a></b><br/><sub>role</sub>, then this line.
+        # The repo's name cell: <b><a href="LINK">Name</a></b><br/><sub>role</sub>, then these two lines.
         pattern = (r'(<b><a href="' + re.escape(link) + r'">[^<]*</a></b><br/><sub>[^<]*</sub>)'
-                   r'(?:<br/><sub>[\d,]+ lines of code</sub>)?')
-        readme, n = re.subn(pattern, lambda m: f"{m[1]}<br/><sub>{loc[name]:,} lines of code</sub>", readme)
+                   r'(?:<br/><sub>[\d,]+ lines of code</sub>)?(?:<br/><sub>[\d,]+ total lines</sub>)?')
+        readme, n = re.subn(pattern, lambda m: (f"{m[1]}<br/><sub>{loc[name]:,} lines of code</sub>"
+                                                f"<br/><sub>{lines[name]:,} total lines</sub>"), readme)
         if n != 1:
             sys.exit(f"README row for {name} matched {n} times, expected 1")
     return readme
@@ -291,18 +349,19 @@ def update_readme(readme, loc):
 def main():
     public_only = "--public-only" in sys.argv[1:]
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
-    loc = data.get("loc", {})
+    loc, lines = data.get("loc", {}), data.get("lines", {})
     for name, (_, private, excludes) in REPOS.items():
         if private and public_only:
-            if name not in loc:
+            if name not in loc or name not in lines:
                 sys.exit(f"{name} is private and has no stored count; run without --public-only once")
             continue
-        loc[name] = repo_loc(name, excludes)
-        print(f"{loc[name]:>8,}  {name}")
+        loc[name], lines[name] = repo_loc(name, excludes)
+        print(f"{loc[name]:>8,} code {lines[name]:>8,} total  {name}")
 
     readme_path = ROOT / "README.md"
-    readme = update_readme(readme_path.read_text(encoding="utf-8"), loc)
+    readme = update_readme(readme_path.read_text(encoding="utf-8"), loc, lines)
     data["loc"] = {name: loc[name] for name in REPOS}
+    data["lines"] = {name: lines[name] for name in REPOS}
     readme_path.write_text(readme, encoding="utf-8", newline="\n")
     COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
 

@@ -112,7 +112,7 @@ def check_references(readme):
 def check_counts(readme):
     counts = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
     for name, update in (("refresh_counts", lambda m: m.update_readme(readme, counts)),
-                         ("loc", lambda m: m.update_readme(readme, counts["loc"]))):
+                         ("loc", lambda m: m.update_readme(readme, counts["loc"], counts["lines"]))):
         try:
             rewritten = update(load(name))
         except SystemExit as e:
