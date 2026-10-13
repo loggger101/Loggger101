@@ -38,6 +38,7 @@ GENERATORS = {
     "pipeline.py": ".",
     "links.py": "links",
     "badge_logos.py": "logos",
+    "icons.py": "icons",
 }
 # Generators that need something only the Windows machines have. Where it's missing (CI),
 # the check says it skipped them and doesn't look at their files.

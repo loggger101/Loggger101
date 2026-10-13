@@ -14,6 +14,7 @@ python tools/pipeline.py docs         # the repo diagram, plus the -compact vers
 python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
 python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
+python tools/icons.py docs/icons       # the icons beside the section headings
 ```
 
 Before committing, run
@@ -26,6 +27,8 @@ It reruns the generators and fails if anything in `docs/` differs from their out
 `docs/` file is missing or unused, if the README's numbers disagree with `counts.json`, or
 if an OneDrive conflict copy is present. CI runs it on every push (`check.yml`), and the
 weekly workflow runs it before committing and checks the links in a separate job.
+
+`links.py` and `icons.py` draw their glyphs from `glyphs.py`.
 
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
 there and rerun both.

@@ -27,7 +27,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
   <a href="https://github.com/loggger101/drone-target-id"><picture><source media="(max-width: 600px)" srcset="docs/gallery/drone-compact.webp"><img src="docs/gallery/drone.webp" width="48.5%" alt="drone-target-id: per-target valid/invalid scores on aerial footage"></picture></a>
 </p>
 
-### Space economics
+### <img src="docs/icons/economics.svg" width="24" height="24" align="top" alt=""> Space economics
 
 These four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit. The catalog also feeds my paper.
 
@@ -54,7 +54,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
 </table>
 
-### Planetary science
+### <img src="docs/icons/planetary.svg" width="24" height="24" align="top" alt=""> Planetary science
 
 <table>
   <tr>
@@ -67,7 +67,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
 </table>
 
-### Deep learning
+### <img src="docs/icons/learning.svg" width="24" height="24" align="top" alt=""> Deep learning
 
 <table>
   <tr>
@@ -80,7 +80,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
 </table>
 
-### Simulation
+### <img src="docs/icons/simulation.svg" width="24" height="24" align="top" alt=""> Simulation
 
 <table>
   <tr>
@@ -89,7 +89,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
 </table>
 
-### Rare-disease work
+### <img src="docs/icons/rare-disease.svg" width="24" height="24" align="top" alt=""> Rare-disease work
 
 Both repos are private, but the sites are public.
 
@@ -104,7 +104,7 @@ Both repos are private, but the sites are public.
   </tr>
 </table>
 
-### Elsewhere
+### <img src="docs/icons/elsewhere.svg" width="24" height="24" align="top" alt=""> Elsewhere
 
 <!-- GitHub sizes each table to its content. These two descriptions are short, so the spacer image (1px tall, transparent) widens the table to match the others; on phones it shrinks to nothing. -->
 <table>
@@ -118,7 +118,7 @@ Both repos are private, but the sites are public.
   </tr>
 </table>
 
-### Get in touch
+### <img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""> Get in touch
 
 <p align="center">The contact form on my site goes straight to my email, or you can message me on LinkedIn.</p>
 
