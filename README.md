@@ -14,10 +14,10 @@ I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Plan
 Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a company that matches patients with rare brain diseases to research, and VP of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org), a rare-disease nonprofit. I run the websites and patient databases for both.
 
 <p align="center">
-  <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="24%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
-  <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="24%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
-  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="24%" alt="573 research sources (General_Research)"></picture></a>
-  <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="24%" alt="253 agent skills (Hermes_Skills)"></picture></a>
+  <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
+  <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
+  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="573 research sources (General_Research)"></picture></a>
+  <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
 <p align="center">
