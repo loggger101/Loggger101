@@ -51,7 +51,14 @@
   .rays2 { animation: rays2 4.5s ease-in-out infinite; transform-origin: 170px 150px; }
   @keyframes rays2 { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.9; } }
   .t { font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
-  @media (prefers-reduced-motion: reduce) { .tw, .breathe, .rays, .rays2 { animation: none; } }
+  .meteor { opacity: 0; animation: meteor 14s linear infinite; animation-delay: 3s; }
+  @keyframes meteor {
+    0% { transform: translate(0, 0); opacity: 0; }
+    1% { opacity: 0.9; }
+    5.6% { opacity: 0.9; }
+    8.0%, 100% { transform: translate(230px, 84px); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tw, .meteor, .breathe, .rays, .rays2 { animation: none; } }
 </style>
 <clipPath id="round"><rect width="1200" height="300" rx="16"/></clipPath>
 <g clip-path="url(#round)">
@@ -256,6 +263,7 @@
 <circle class="tw" cx="345.9" cy="283.6" r="1.6" fill="#dbe7ff" style="animation-delay:-0.15s;animation-duration:3.26s"/>
 <circle class="tw" cx="302.9" cy="34.8" r="1.4" fill="#dbe7ff" style="animation-delay:-3.46s;animation-duration:5.47s"/>
 <circle class="tw" cx="1.4" cy="260.8" r="1.4" fill="#dbe7ff" style="animation-delay:-1.65s;animation-duration:3.56s"/>
+<g transform="translate(880 18)"><g class="meteor"><linearGradient id="trail" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="110" y2="40"><stop offset="0" stop-color="#9ccaf2" stop-opacity="0"/><stop offset="1" stop-color="#ffffff"/></linearGradient><line x1="0" y1="0" x2="110" y2="40" stroke="url(#trail)" stroke-width="1.6" stroke-linecap="round"/><circle cx="110" cy="40" r="1.8" fill="#ffffff"/></g></g>
 <g transform="rotate(-18 170 150)">
 <ellipse cx="170" cy="150" rx="125" ry="42" fill="none" stroke="#8fb6e8" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 5"/>
 <circle r="5" fill="url(#body)"><animateMotion dur="9s" repeatCount="indefinite" path="M 295 150 A 125 42 0 1 1 45 150 A 125 42 0 1 1 295 150"/></circle>
