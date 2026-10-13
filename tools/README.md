@@ -6,7 +6,7 @@ Run from the repo root:
 ```bash
 python tools/banner.py docs/banner.svg
 python tools/refresh_counts.py         # pull the sources and skills counts from their repos
-python tools/loc.py                    # lines of code under each repo's name (--public-only skips the private two)
+python tools/loc.py                    # lines of code and total lines under each repo's name (--public-only skips the private two)
 python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
 python tools/gallery.py docs/gallery  # project cards, plus the -compact versions phones get
 python tools/typing_line.py docs/typing.svg
@@ -55,6 +55,14 @@ rules: cloc's for lines, GitHub Linguist's for files.
   (counted once) are left out too.
 - What a repo generates, archives or hosts without marking it is listed in `REPOS`, with
   the reason beside each.
+
+The "total lines" under each count are every line of every text file of the repo owner's own:
+code with its blank and comment lines, notebooks (all cells, no outputs), docs, the paper's
+TeX, data, config and logs. Binary files don't count, nor does anything lines of code leave
+out for being built, archived, hosted or vendored (notebooks marked documentation do count).
+`TOTAL_EXCLUDE` in `loc.py` lists the rest that's left out, with the reason beside each:
+other people's text (licences, a downloaded SDSS table, the AAS LaTeX template, fetched
+paper abstracts) and machine output (ArcGIS metadata, generated sitemaps and feeds, lock files).
 
 Hermes_Skills has no count, because many of its skills were ported from other repos. The
 workflow runs `loc.py` with `--public-only`, since its token can't clone aspirecures or

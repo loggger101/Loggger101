@@ -41,6 +41,16 @@ p = HERE / "t.vbs"; p.write_text("' c\nRem c\nDim x\nx = 1 ' trailing\n", encodi
 p = HERE / "t.ps1"; p.write_text("<#\nhelp\n#>\n# c\nWrite-Host 1\n", encoding="utf-8"); eq("powershell", m.count(p, "powershell"), 1)
 p = HERE / "t.ipynb"; p.write_text('{"cells":[{"cell_type":"code","source":["%matplotlib inline\\n","\\"\\"\\"doc\\"\\"\\"\\n","x = 1\\n","!pip install y\\n"]},{"cell_type":"markdown","source":["# Title"]}]}', encoding="utf-8")
 eq("notebook", m.count(p, "notebook"), 3)
+eq("notebook total lines: every cell", m.total_lines(p, "notebook"), 5)
+# Total lines leave out other people's text and machine output.
+not_own = lambda repo, path: m.excluded(path, m.TOTAL_EXCLUDE["*"] + m.TOTAL_EXCLUDE.get(repo, []))
+eq("licence", not_own("website", "LICENSE"), True)
+eq("nested licence", not_own("Satellite-Space-Flight", "assets/fonts/LICENSE_DEJAVU"), True)
+eq("AAS class", not_own("asteroid-belt-gradient", "paper/aastex701.cls"), True)
+eq("the paper itself", not_own("asteroid-belt-gradient", "paper/main.tex"), False)
+eq("ArcGIS sidecar", not_own("Mars_Terrestrial_GlobalMosaic_GIS-Data", "Mars Project/Global60/a.tif.aux.xml"), True)
+eq("Mars notes", not_own("Mars_Terrestrial_GlobalMosaic_GIS-Data", "Mars Remote Sensing Project/NEXT-STEPS.md"), False)
+p = HERE / "t.py"; p.write_text('"""doc"""\n\n# c\nx = 1\n', encoding="utf-8"); eq("total lines", m.total_lines(p, "python"), 4)
 # Language detection.
 heads = {"hooks/post-merge": b"#!/bin/sh\n", "bin/tool": b"#!/usr/bin/env python3\n", "LICENSE": b"MIT License", "run": b"#!/usr/bin/env -S node --x\n"}
 lang = lambda path: m.language(path, lambda q: heads[q])
