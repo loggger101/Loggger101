@@ -12,6 +12,7 @@ python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
 python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
+python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
 ```
 
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
