@@ -10,8 +10,10 @@ every push (.github/workflows/check.yml).
    stored counts, with refresh_counts.py's and loc.py's own code, changes nothing.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
    badges carry the logos badge_logos.py draws.
-5. No OneDrive conflict copies (*-DESKTOP-*) are in the repo.
-6. With --links (online; the weekly workflow): every link and badge in the README answers.
+5. Every SVG in docs/ is valid XML, every <img> in the README has alt text, and the
+   README's HTML tags are balanced.
+6. No OneDrive conflict copies (*-DESKTOP-*) are in the repo.
+7. With --links (online; the weekly workflow): every link and badge in the README answers.
 
 Prints each problem and exits 1 if there are any.
 """
@@ -129,6 +131,47 @@ def check_typing_and_badges(readme, badge_urls):
             problems.append(f"README badge isn't badge_logos.py's current output: {url[:70]}...")
 
 
+def check_markup(readme):
+    """Every SVG parses (GitHub shows a broken image otherwise), every <img> has alt text,
+    and the README's HTML tags are balanced."""
+    import xml.etree.ElementTree as ET
+    from html.parser import HTMLParser
+    for f in sorted(DOCS.rglob("*.svg")):
+        try:
+            ET.parse(f)
+        except ET.ParseError as e:
+            problems.append(f"docs/{f.relative_to(DOCS).as_posix()} isn't valid XML: {e}")
+
+    class Tags(HTMLParser):
+        VOID = {"img", "br", "source", "hr", "meta", "input"}
+
+        def __init__(self):
+            super().__init__()
+            self.stack = []
+
+        def handle_starttag(self, tag, attrs):
+            if tag == "img" and "alt" not in dict(attrs):
+                problems.append(f"README line {self.getpos()[0]}: <img> without alt")
+            if tag not in self.VOID:
+                self.stack.append((tag, self.getpos()[0]))
+
+        def handle_endtag(self, tag):
+            if tag in self.VOID:
+                return
+            if not self.stack or self.stack[-1][0] != tag:
+                problems.append(f"README line {self.getpos()[0]}: </{tag}> doesn't close "
+                                f"{'<%s> from line %d' % self.stack[-1] if self.stack else 'anything'}")
+                return
+            self.stack.pop()
+
+    # Markdown lines aren't HTML; only the HTML blocks are parsed.
+    html = "\n".join(l if l.lstrip().startswith("<") else "" for l in readme.splitlines())
+    parser = Tags()
+    parser.feed(html)
+    for tag, line in parser.stack:
+        problems.append(f"README line {line}: <{tag}> is never closed")
+
+
 def check_conflict_copies():
     tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True).stdout.split("\n")
     on_disk = [p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*-DESKTOP-*") if ".git" not in p.parts]
@@ -167,6 +210,7 @@ def main():
     check_references(readme)
     check_counts(readme)
     check_typing_and_badges(readme, badge_urls)
+    check_markup(readme)
     check_conflict_copies()
     if "--links" in sys.argv[1:]:
         check_links(readme)
