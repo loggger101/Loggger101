@@ -11,7 +11,7 @@
 
 I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Planetary Science. Most of the work here is about asteroids. I built a catalog of about 1.57 million of them and a pipeline that estimates whether mining one would make money, then used the catalog for a [paper](https://github.com/loggger101/asteroid-belt-gradient) on whether the belt's S/C composition gradient is left over from when the planets formed. I've also trained two image classifiers and written an orbit simulator.
 
-Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com) and VP of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org). Both are rare-disease nonprofits, and I run their websites and patient databases.
+Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a company that matches patients with rare brain diseases to research, and VP of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org), a rare-disease nonprofit. I run the websites and patient databases for both.
 
 <p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="24%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
@@ -89,18 +89,18 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
 </table>
 
-### Nonprofit work
+### Rare-disease work
 
 Both repos are private, but the sites are public.
 
 <table>
   <tr>
     <td width="24%" valign="top"><b><a href="https://www.aspirecures.com">AspireCURES</a></b><br/><sub>CTO</sub></td>
-    <td valign="top"><p>I'm the CTO. AspireCURES matches patients with rare brain diseases to research. The site runs on Cloudflare Pages with serverless registration and a research feed that updates itself.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.aspirecures.com"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/aspire-cures.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+    <td valign="top"><p>AspireCURES connects patients with rare brain diseases such as CSF1R-ALSP to clinical trials, studies and specialists. Its site runs on Cloudflare Pages with serverless registration, and I've built a weekly research feed for its nine disease pages.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.aspirecures.com"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/aspire-cures.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://www.sistershopefoundation.org">Sisters Hope Foundation</a></b><br/><sub>VP, Database Management</sub></td>
-    <td valign="top"><p>I'm the VP of Database Management. Sisters Hope is a 501(c)(3) patient advocacy group for ALSP and CSF1R-related disorders. I moved their site off Squarespace and onto Cloudflare Pages.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.sistershopefoundation.org"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a></td>
+    <td valign="top"><p>Sisters Hope is a 501(c)(3) patient advocacy group for ALSP and CSF1R-related disorders. I moved their site off Squarespace and onto Cloudflare Pages.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.sistershopefoundation.org"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a></td>
   </tr>
 </table>
 
