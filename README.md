@@ -1,7 +1,7 @@
 <p align="center">
   <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/banner.svg" width="100%" alt="Logan M Edwards, Astronomy and Astrophysics, Planetary Science"></a>
   <br/>
-  <a href="https://github.com/loggger101"><img src="docs/typing.svg" width="482" alt="Asteroid catalogs and mining economics. Deep learning on survey imagery. Orbit simulation in pure Python."></a>
+  <a href="https://github.com/loggger101"><img src="docs/typing.svg" width="482" alt="Asteroid catalogs and mining economics. Asteroid belt origins and Mars mapping. Deep learning on survey imagery. Orbit simulation in pure Python."></a>
   <br/>
   <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/links/website.svg" height="36" alt="Website: loganmedwardsastrophy.com"></a>
   <a href="https://www.loganmedwardsastrophy.com/Logan_Edwards_CV.pdf"><img src="docs/links/cv.svg" height="36" alt="CV (PDF)"></a>
@@ -76,7 +76,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/drone-target-id">drone-target-id</a></b><br/><sub>aerial target ID</sub></td>
-    <td valign="top"><p>YOLO finds and segments targets in aerial footage, then a multi-output CNN gives each one a fine class and a valid/invalid call. On a 27k held-out test set it scores 87.6% on fine class and 91.2% on valid/invalid. Finished 12/6/2025.</p><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/YOLO-1f3354?style=flat-square&logo=ultralytics&logoColor=white" alt="YOLO"> <img src="https://img.shields.io/badge/OpenCV-1f3354?style=flat-square&logo=opencv&logoColor=white" alt="OpenCV"> <a href="https://www.kaggle.com/datasets/loggger/fpv-images"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/drone-target.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+    <td valign="top"><p>YOLO finds and segments targets in aerial footage, then a multi-output CNN gives each one a fine class and a valid/invalid call. On a 27k held-out test set it scores 87.1% on fine class and 91.3% on valid/invalid. Finished 12/6/2025.</p><img src="https://img.shields.io/badge/TensorFlow-1f3354?style=flat-square&logo=tensorflow&logoColor=white" alt="TensorFlow"> <img src="https://img.shields.io/badge/YOLO-1f3354?style=flat-square&logo=ultralytics&logoColor=white" alt="YOLO"> <img src="https://img.shields.io/badge/OpenCV-1f3354?style=flat-square&logo=opencv&logoColor=white" alt="OpenCV"> <a href="https://www.kaggle.com/datasets/loggger/fpv-images"><img src="https://img.shields.io/badge/Dataset-Kaggle-5ba3dc?style=flat-square&logo=kaggle&logoColor=white&labelColor=1f3354" alt="Kaggle dataset"></a> <a href="https://www.loganmedwardsastrophy.com/drone-target.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
 </table>
 

@@ -12,6 +12,7 @@ import sys
 
 LINES = [
     "Asteroid catalogs and mining economics",
+    "Asteroid belt origins and Mars mapping",
     "Deep learning on survey imagery",
     "Orbit simulation in pure Python",
 ]
