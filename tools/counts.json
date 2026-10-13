@@ -1,5 +1,19 @@
 {
   "sources": 573,
   "skills": 253,
-  "skill_categories": 23
+  "skill_categories": 23,
+  "loc": {
+    "economicspace": 22604,
+    "AsteroidCatalog": 5609,
+    "spacecost": 8311,
+    "General_Research": 2411,
+    "asteroid-belt-gradient": 2862,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 14461,
+    "star-spectral-classifier": 5930,
+    "drone-target-id": 3099,
+    "Satellite-Space-Flight": 12773,
+    "website": 7577,
+    "aspirecures": 9898,
+    "SistersHopeFoundation": 5220
+  }
 }

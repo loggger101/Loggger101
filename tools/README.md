@@ -6,6 +6,7 @@ Run from the repo root:
 ```bash
 python tools/banner.py docs/banner.svg
 python tools/refresh_counts.py         # pull the sources and skills counts from their repos
+python tools/loc.py                    # lines of code under each repo's name (--public-only skips the private two)
 python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
 python tools/gallery.py docs/gallery  # project cards, plus the -compact versions phones get
 python tools/typing_line.py docs/typing.svg
@@ -25,5 +26,12 @@ The sources and skills numbers are in `counts.json`, which `refresh_counts.py` r
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes
 them. A weekly workflow (`.github/workflows/refresh-counts.yml`) runs it and `tiles.py`, and commits
 only when a count has changed.
+
+`loc.py` counts each repo's default branch on GitHub, not the local clone. A line of code
+is any line that isn't blank, a comment or a docstring (cloc's definition); notebooks count
+code cells only. Generated, archived and hosted files are excluded per repo in its `REPOS`
+table, with the reason beside each. Hermes_Skills has no count, because many of its skills
+were ported from other repos. The workflow runs it with `--public-only`, since its token
+can't clone aspirecures or SistersHopeFoundation; run it locally to refresh those two.
 The arrows in `pipeline.py` follow what each repo's README says it reads from
 the others; check both READMEs before adding or moving one.

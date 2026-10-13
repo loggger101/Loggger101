@@ -59,7 +59,10 @@ def main():
         if n != 1:
             sys.exit(f"README pattern matched {n} times, expected 1: {pattern}")
     readme_path.write_text(readme, encoding="utf-8", newline="\n")
-    (ROOT / "tools" / "counts.json").write_text(json.dumps(counts, indent=2) + "\n", encoding="utf-8", newline="\n")
+    # counts.json also holds loc.py's line counts; keep them.
+    path = ROOT / "tools" / "counts.json"
+    data = json.loads(path.read_text(encoding="utf-8")) | counts
+    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(" ".join(f"{k}={v}" for k, v in counts.items()))
 
 
