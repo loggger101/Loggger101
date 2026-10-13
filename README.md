@@ -32,7 +32,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 These four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit. The catalog also feeds my paper.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog and spacecost cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost and ranks mining targets by profit."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost and ranks mining targets by profit."></picture>
 </p>
 
 <table>

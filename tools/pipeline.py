@@ -29,6 +29,7 @@ NODES = {
 EDGES = [
     ("gr", "ac", True),
     ("gr", "sc", True),
+    ("gr", "es", True),    # routed around spacecost, see detour()
     ("ac", "abg", False),
     ("ac", "es", False),
     ("sc", "es", False),
@@ -36,8 +37,8 @@ EDGES = [
     ("es", "targets", False),
 ]
 ALT = (
-    "How the repos connect: General_Research holds the sources that AsteroidCatalog and "
-    "spacecost cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
+    "How the repos connect: General_Research holds the sources that AsteroidCatalog, "
+    "spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
     "paper, and economicspace, which also installs spacecost and ranks mining targets by profit."
 )
 
@@ -92,6 +93,29 @@ def edge(a, b, dashed, horizontal):
     return f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
 
 
+def detour(boxes, horizontal):
+    """The General_Research -> economicspace path. A direct curve would cross spacecost,
+    which sits between them in both layouts, so it goes round: on desktop along a lane
+    under the bottom row and up into economicspace from below; on phones down the gap
+    between the two columns and across into economicspace's top."""
+    gx, gy, gw, gh = boxes["gr"]
+    ex, ey, ew, eh = boxes["es"]
+    sx, sy, sw, sh = boxes["sc"]
+    r = 12
+    if horizontal:
+        x1, y1, x2, lane = gx + gw / 2, gy + gh, ex + ew / 2, sy + sh + 20
+        d = (f"M{x1:.1f} {y1:.1f} V{lane - r:.1f} Q{x1:.1f} {lane:.1f} {x1 + r:.1f} {lane:.1f} "
+             f"H{x2 - r:.1f} Q{x2:.1f} {lane:.1f} {x2:.1f} {lane - r:.1f} V{ey + eh + 3:.1f}")
+    else:
+        ax, _, aw, _ = boxes["ac"]
+        gap = (ax + aw + sx) / 2
+        lane = (sy + sh + ey) / 2
+        x2 = ex + ew * 0.3
+        d = (f"M{gap:.1f} {gy + gh:.1f} V{lane - r:.1f} "
+             f"C{gap:.1f} {lane + r:.1f} {x2:.1f} {lane - r:.1f} {x2:.1f} {ey - 3:.1f}")
+    return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
+
+
 def legend(x, y, size):
     return f"""<g font-size="{size}" fill="#b9c6e4">
 <line x1="{x}" y1="{y - size * 0.35:.1f}" x2="{x + 34}" y2="{y - size * 0.35:.1f}" stroke="#5ba3dc" stroke-width="2.5"/>
@@ -103,7 +127,8 @@ def legend(x, y, size):
 
 def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">']
-    parts += [edge(boxes[a], boxes[b], dashed, horizontal) for a, b, dashed in EDGES]
+    parts += [detour(boxes, horizontal) if (a, b) == ("gr", "es") else edge(boxes[a], boxes[b], dashed, horizontal)
+              for a, b, dashed in EDGES]
     parts += [card(k, *boxes[k], title_size, line_size) for k in NODES]
     parts.append(legend(*legend_at, line_size - 1))
     parts.append("</g>\n</svg>\n")
@@ -137,7 +162,7 @@ tall = {
 }
 
 files = {
-    "pipeline.svg": render(1200, 336, wide, True, 22, 17, (CX[1], 320), 7),
+    "pipeline.svg": render(1200, 356, wide, True, 22, 17, (CX[1], 340), 7),
     "pipeline-compact.svg": render(640, 20 + 3 * ROW + PH + 64, tall, False, 25, 21, (left + 4, 20 + 3 * ROW + PH + 42), 8),
 }
 for name, svg in files.items():
