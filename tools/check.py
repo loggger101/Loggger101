@@ -2,8 +2,9 @@
 every push (.github/workflows/check.yml).
 
 1. Every generated image in docs/ is what its generator makes today, so nothing was edited
-   by hand or left behind after a generator changed. (gallery.py is skipped: it reads
-   the project clones, which CI doesn't have.)
+   by hand or left behind after a generator changed. gallery.py is skipped: it reads
+   the project clones, which CI doesn't have. So is links.py where Segoe UI isn't
+   installed (CI again); it says so when it does.
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
    stored counts, with refresh_counts.py's and loc.py's own code, changes nothing.
@@ -36,6 +37,9 @@ GENERATORS = {
     "links.py": "links",
     "badge_logos.py": "logos",
 }
+# Generators that need something only the Windows machines have. Where it's missing (CI),
+# the check says it skipped them and doesn't look at their files.
+NEEDS = {"links.py": Path(r"C:\Windows\Fonts\segoeuib.ttf")}   # measures labels in Segoe UI Bold
 # In docs/ but not made by a generator above.
 NOT_GENERATED = {"spacer.svg"}
 # In docs/ but not referenced by path: the logos reach the README inside badge URLs.
@@ -56,10 +60,14 @@ def load(name):
 
 
 def check_generated():
-    made, badge_urls = set(), []
+    made, badge_urls, skipped = set(), [], []
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp)
         for script, target in GENERATORS.items():
+            if script in NEEDS and not NEEDS[script].exists():
+                print(f"skipped {script}: needs {NEEDS[script]}, which this machine doesn't have")
+                skipped.append(target)
+                continue
             dest = out / target
             if target.endswith(".svg"):
                 dest.parent.mkdir(parents=True, exist_ok=True)
@@ -80,6 +88,8 @@ def check_generated():
                 problems.append(f"docs/{rel} differs from what tools/ makes; rerun its generator")
     for f in sorted(p for p in DOCS.rglob("*") if p.is_file()):
         rel = f.relative_to(DOCS).as_posix()
+        if any(rel.startswith(t + "/") for t in skipped):
+            continue
         if rel not in made and rel not in NOT_GENERATED and not rel.startswith("gallery/"):
             problems.append(f"docs/{rel} has no generator; add it to GENERATORS or NOT_GENERATED")
     return badge_urls
