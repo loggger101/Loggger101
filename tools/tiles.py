@@ -6,6 +6,7 @@ four tiles in a row leave each one about 70px wide; the README swaps it in with 
 Neither shows the repo name: the tile links to the repo and its alt text names it, and at
 laptop widths (tiles about 140px) a third line of text is too small to read.
 """
+import json
 import random
 import sys
 from pathlib import Path
@@ -15,12 +16,16 @@ OUT.mkdir(parents=True, exist_ok=True)
 W, H = 270, 120
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 
+# The catalog and belt numbers are fixed by the releases they come from. The two that grow
+# are in counts.json, which refresh_counts.py keeps current.
+COUNTS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))
+
 # name: (number, label, short label for the compact tile, repo)
 TILES = {
     "catalog": ("1.57M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
     "belt": ("161,659", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
-    "sources": ("562", "research sources", "sources", "General_Research"),
-    "skills": ("253", "agent skills", "agent skills", "Hermes_Skills"),
+    "sources": (f"{COUNTS['sources']:,}", "research sources", "sources", "General_Research"),
+    "skills": (f"{COUNTS['skills']:,}", "agent skills", "agent skills", "Hermes_Skills"),
 }
 
 
