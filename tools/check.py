@@ -151,22 +151,33 @@ def check_markup(readme):
             self.stack = []
 
         def handle_starttag(self, tag, attrs):
-            if tag == "img" and "alt" not in dict(attrs):
-                problems.append(f"README line {self.getpos()[0]}: <img> without alt")
+            line = self.getpos()[0]
+            if tag == "img":
+                if "alt" not in dict(attrs):
+                    problems.append(f"README line {line}: <img> without alt")
+                # GitHub turns any other image into a link to the image file.
+                if not any(t in ("a href", "picture") for t, _ in self.stack):
+                    problems.append(f"README line {line}: <img> is neither in a link nor in a <picture>, "
+                                    "so GitHub makes it a link to the image file")
             if tag not in self.VOID:
-                self.stack.append((tag, self.getpos()[0]))
+                self.stack.append(("a href" if tag == "a" and "href" in dict(attrs) else tag, line))
 
         def handle_endtag(self, tag):
             if tag in self.VOID:
                 return
-            if not self.stack or self.stack[-1][0] != tag:
+            if not self.stack or self.stack[-1][0].split()[0] != tag:
                 problems.append(f"README line {self.getpos()[0]}: </{tag}> doesn't close "
                                 f"{'<%s> from line %d' % self.stack[-1] if self.stack else 'anything'}")
                 return
             self.stack.pop()
 
-    # Markdown lines aren't HTML; only the HTML blocks are parsed.
-    html = "\n".join(l if l.lstrip().startswith("<") else "" for l in readme.splitlines())
+    # Markdown lines aren't HTML; only the HTML blocks, and the HTML in headings, are parsed.
+    def html_part(line):
+        if line.lstrip().startswith("<"):
+            return line
+        heading = re.match(r"#+\s+(<.*)", line)
+        return heading[1] if heading else ""
+    html = "\n".join(html_part(l) for l in readme.splitlines())
     parser = Tags()
     parser.feed(html)
     for tag, line in parser.stack:
