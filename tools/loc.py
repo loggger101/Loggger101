@@ -92,7 +92,9 @@ def python_lines(src):
         prev = tok.type
         if not docstring:
             lines.update(range(tok.start[0], tok.end[0] + 1))
-    return len(lines)
+    # A multi-line string spans its blank lines too; a blank line never counts.
+    blank = {i for i, l in enumerate(src.splitlines(), 1) if not l.strip()}
+    return len(lines - blank)
 
 
 def c_lines(src, line_comments=True):

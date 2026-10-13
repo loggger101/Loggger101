@@ -37,7 +37,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>22,662 lines of code</sub></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>22,606 lines of code</sub></td>
     <td valign="top"><p>The main pipeline. It builds a catalog from public astronomy databases, prices the minerals, costs the transport, then runs the rocket equation and a cost cascade to rank targets by profit.</p><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/badge/Docker-1f3354?style=flat-square&logo=docker&logoColor=white" alt="Docker"></td>
   </tr>
   <tr>
@@ -49,7 +49,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
     <td valign="top"><p>The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.</p><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"> <img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,411 lines of code</sub></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,397 lines of code</sub></td>
     <td valign="top"><p>The sources behind the other three, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
 </table>
@@ -62,7 +62,7 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
     <td valign="top"><p>Code and paper for <i>Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data</i>. It tests whether the belt's switch from S-types to C-types dates back to formation, using 161,659 classified asteroids from AsteroidCatalog after collapsing collisional families and correcting for the brightness bias that favors S-types. The code rebuilds every figure and number in the paper from two public input files.</p><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"> <img src="https://img.shields.io/badge/SciPy-1f3354?style=flat-square&logo=scipy&logoColor=white" alt="SciPy"> <img src="https://img.shields.io/badge/LaTeX-1f3354?style=flat-square&logo=latex&logoColor=white" alt="LaTeX"> <img src="https://img.shields.io/github/v/release/loggger101/asteroid-belt-gradient?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="https://img.shields.io/badge/Paper-AASTeX-5ba3dc?style=flat-square&labelColor=1f3354&logo=latex&logoColor=white" alt="Paper"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>14,461 lines of code</sub></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>14,445 lines of code</sub></td>
     <td valign="top"><p>My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S, then mapped lava flows, river channels and impact craters.</p><img src="https://img.shields.io/badge/ArcGIS_Pro-1f3354?style=flat-square&logo=arcgis&logoColor=white" alt="ArcGIS Pro"> <img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></td>
   </tr>
 </table>
@@ -99,7 +99,7 @@ Both repos are private, but the sites are public.
     <td valign="top"><p>AspireCURES connects patients with rare brain diseases such as CSF1R-ALSP to clinical trials, studies and specialists. Its site runs on Cloudflare Pages with serverless registration, and I've built a weekly research feed for its nine disease pages.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.aspirecures.com"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/aspire-cures.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://www.sistershopefoundation.org">Sisters Hope Foundation</a></b><br/><sub>VP, Database Management</sub><br/><sub>5,220 lines of code</sub></td>
+    <td width="24%" valign="top"><b><a href="https://www.sistershopefoundation.org">Sisters Hope Foundation</a></b><br/><sub>VP, Database Management</sub><br/><sub>5,219 lines of code</sub></td>
     <td valign="top"><p>Sisters Hope is a 501(c)(3) patient advocacy group for ALSP and CSF1R-related disorders. I moved their site off Squarespace and onto Cloudflare Pages.</p><img src="https://img.shields.io/badge/Cloudflare_Pages-1f3354?style=flat-square&logo=cloudflarepages&logoColor=white" alt="Cloudflare Pages"> <a href="https://www.sistershopefoundation.org"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=cloudflare&logoColor=white" alt="Live site"></a></td>
   </tr>
 </table>

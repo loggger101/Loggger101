@@ -32,6 +32,7 @@ eq("css", m.c_lines('a { content: "/* no */"; }\n/* c */\nb { }\n', line_comment
 eq("css url //", m.c_lines('a { background: url(//cdn/x.png); }\n', line_comments=False), 1)
 # Python: docstrings out, other strings in, trailing comments in.
 eq("python", m.python_lines('"""doc"""\nx = 1  # c\n# c\ndef f():\n    """doc\n    two"""\n    return """a\n    b"""\n'), 4)
+eq("python blank lines in a string", m.python_lines('x = """a\n\n   \nb"""\n'), 2)
 # Perl: POD and __END__ data out.
 src = "use strict;\n# c\n=pod\n\nabout\n\n=cut\nprint 1;\n__END__\nnot code\n"
 p = HERE / "t.pl"; p.write_text(src, encoding="utf-8"); eq("perl", m.count(p, "perl"), 2)
