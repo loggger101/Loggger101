@@ -1,6 +1,9 @@
 # Keeps the research-sources and agent-skills tiles, and each repo's lines of code, in step
 # with their repos. The private repos' line counts are refreshed by running loc.py locally.
-# Commits only when a count has changed.
+# Commits only when a count has changed, and only if tools/check.py passes on the result
+# (a push made with the workflow's token doesn't trigger check.yml, so it runs here).
+# A separate job checks every README link, so a dead link fails the run without holding
+# back the counts.
 name: Refresh counts
 
 on:
@@ -10,6 +13,11 @@ on:
 
 permissions:
   contents: write
+
+# A manual run and the Monday run must not both push.
+concurrency:
+  group: refresh-counts
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -22,6 +30,7 @@ jobs:
       - run: python tools/refresh_counts.py
       - run: python tools/tiles.py docs/stats
       - run: python tools/loc.py --public-only
+      - run: python tools/check.py
       - name: Commit if anything changed
         run: |
           if git diff --quiet; then
@@ -32,3 +41,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -am "Refresh the profile's counts"
           git push
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python tools/check.py --links

@@ -8,7 +8,7 @@ in with <picture>, as it does for the tiles.
 
 Cards are drawn at twice their display size so the text stays sharp on high-DPI
 screens, and saved as WebP so the rounded corners can be transparent in both GitHub
-themes. Images come from the local clones under GH; needs Pillow and numpy.
+themes. Images come from the local clones beside this repo (GH); needs Pillow and numpy.
 """
 import random
 import sys
@@ -17,7 +17,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
-GH = Path(r"C:\Users\Loggg\OneDrive\Documents\GitHub")
+# The folder holding this repo and the project clones, on either machine.
+GH = Path(__file__).resolve().parents[2]
 FONTS = Path(r"C:\Windows\Fonts")
 OUT = Path(sys.argv[1])
 OUT.mkdir(parents=True, exist_ok=True)

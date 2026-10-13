@@ -50,14 +50,19 @@ README_PATTERNS = [
 ]
 
 
-def main():
-    counts = live_counts()
-    readme_path = ROOT / "README.md"
-    readme = readme_path.read_text(encoding="utf-8")
+def update_readme(readme, counts):
+    """The README with these counts written in. check.py calls it with the stored counts."""
     for pattern, repl in README_PATTERNS:
         readme, n = re.subn(pattern, repl(counts), readme)
         if n != 1:
             sys.exit(f"README pattern matched {n} times, expected 1: {pattern}")
+    return readme
+
+
+def main():
+    counts = live_counts()
+    readme_path = ROOT / "README.md"
+    readme = update_readme(readme_path.read_text(encoding="utf-8"), counts)
     readme_path.write_text(readme, encoding="utf-8", newline="\n")
     # counts.json also holds loc.py's line counts; keep them.
     path = ROOT / "tools" / "counts.json"

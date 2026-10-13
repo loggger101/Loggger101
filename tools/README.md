@@ -16,11 +16,22 @@ python tools/footer.py docs           # the strip that closes the page, plus the
 python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
 ```
 
+Before committing, run
+
+```bash
+python tools/check.py           # add --links to also check every link in the README (online)
+```
+
+It reruns the generators and fails if anything in `docs/` differs from their output, if a
+`docs/` file is missing or unused, if the README's numbers disagree with `counts.json`, or
+if an OneDrive conflict copy is present. CI runs it on every push (`check.yml`), and the
+weekly workflow runs it before committing and checks the links in a separate job.
+
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
 there and rerun both.
 
 `gallery.py` reads each project's images from the local clones under
-`C:\Users\Loggg\OneDrive\Documents\GitHub` and needs Pillow and numpy. The catalog and belt
+the `GitHub` folder this repo sits in and needs Pillow and numpy. The catalog and belt
 numbers on the tiles are set in `tiles.py`; check them against the source repos before changing.
 The sources and skills numbers are in `counts.json`, which `refresh_counts.py` rewrites from
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes

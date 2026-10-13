@@ -1,0 +1,18 @@
+# Fails a push or pull request that leaves the profile inconsistent: a generated image that
+# no longer matches its generator, a missing or unused docs/ file, README numbers that
+# disagree with tools/counts.json, or an OneDrive conflict copy. See tools/check.py.
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python tools/check.py

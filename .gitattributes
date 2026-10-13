@@ -1,0 +1,5 @@
+# The generators in tools/ write LF; keep LF in every checkout (core.autocrlf would
+# otherwise turn it into CRLF on Windows, so a fresh checkout would differ from a rerun).
+* text=auto eol=lf
+*.webp binary
+*.png binary

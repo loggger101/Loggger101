@@ -131,6 +131,18 @@ def repo_loc(name, excludes):
         return total
 
 
+def update_readme(readme, loc):
+    """The README with these line counts written in. check.py calls it with the stored counts."""
+    for name, (link, _, _) in REPOS.items():
+        # The repo's name cell: <b><a href="LINK">Name</a></b><br/><sub>role</sub>, then this line.
+        pattern = (r'(<b><a href="' + re.escape(link) + r'">[^<]*</a></b><br/><sub>[^<]*</sub>)'
+                   r'(?:<br/><sub>[\d,]+ lines of code</sub>)?')
+        readme, n = re.subn(pattern, lambda m: f"{m[1]}<br/><sub>{loc[name]:,} lines of code</sub>", readme)
+        if n != 1:
+            sys.exit(f"README row for {name} matched {n} times, expected 1")
+    return readme
+
+
 def main():
     public_only = "--public-only" in sys.argv[1:]
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
@@ -144,14 +156,7 @@ def main():
         print(f"{loc[name]:>8,}  {name}")
 
     readme_path = ROOT / "README.md"
-    readme = readme_path.read_text(encoding="utf-8")
-    for name, (link, _, _) in REPOS.items():
-        # The repo's name cell: <b><a href="LINK">Name</a></b><br/><sub>role</sub>, then this line.
-        pattern = (r'(<b><a href="' + re.escape(link) + r'">[^<]*</a></b><br/><sub>[^<]*</sub>)'
-                   r'(?:<br/><sub>[\d,]+ lines of code</sub>)?')
-        readme, n = re.subn(pattern, lambda m: f"{m[1]}<br/><sub>{loc[name]:,} lines of code</sub>", readme)
-        if n != 1:
-            sys.exit(f"README row for {name} matched {n} times, expected 1")
+    readme = update_readme(readme_path.read_text(encoding="utf-8"), loc)
     data["loc"] = {name: loc[name] for name in REPOS}
     readme_path.write_text(readme, encoding="utf-8", newline="\n")
     COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
