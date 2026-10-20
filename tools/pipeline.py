@@ -1,4 +1,4 @@
-"""Generate the diagram of how the asteroid repos feed each other (docs/pipeline*.svg).
+"""Generate the diagram of how the space-economics repos feed each other (docs/pipeline*.svg).
 
 `pipeline.svg` runs left to right for desktop widths. `pipeline-compact.svg` runs top to
 bottom with larger text, for phones, where the wide version shrinks to about 350px; the
@@ -24,6 +24,8 @@ NODES = {
     "es": ("economicspace", "prices minerals, costs", "transport, sums profit", "repo"),
     "paper": ("Paper", "AASTeX, rebuilt from", "two public inputs", "out"),
     "targets": ("Mining targets", "ranked by net", "mission profit", "out"),
+    "ql": ("quietlaunch", "windowless dashboard", "launcher, pip package", "repo"),
+    "sr": ("starred-repos", "the pipeline audited", "against 17 repos", "repo"),
 }
 # (from, to, dashed)
 EDGES = [
@@ -35,11 +37,14 @@ EDGES = [
     ("sc", "es", False),
     ("abg", "paper", False),
     ("es", "targets", False),
+    ("ql", "es", False),   # economicspace's launcher installs the pinned package; see from_below()
+    ("sr", "es", True),    # economicspace cites the audit's orbit-quality measurement
 ]
 ALT = (
     "How the repos connect: General_Research holds the sources that AsteroidCatalog, "
     "spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
-    "paper, and economicspace, which also installs spacecost and ranks mining targets by profit."
+    "paper, and economicspace, which also installs spacecost and quietlaunch, cites the starred-repos audit, "
+    "and ranks mining targets by profit."
 )
 
 
@@ -116,6 +121,37 @@ def detour(boxes, horizontal):
     return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
 
 
+def from_below(a, e, dashed, horizontal, frac, lane=None):
+    """An arrow into economicspace (e) from a card in a row below it. On desktop it runs
+    along the card's row and turns up into economicspace's bottom, frac of the way across;
+    on phones, where targets sits under economicspace, it climbs the gap between the
+    columns at x=lane and turns into economicspace's left side, frac of the way down."""
+    ax, ay, aw, ah = a
+    ex, ey, ew, eh = e
+    r = 8
+    y1 = ay + ah / 2
+    if horizontal:
+        x2 = ex + ew * frac
+        x1, turn = (ax + aw, x2 - r) if ax < ex else (ax, x2 + r)
+        d = f"M{x1:.1f} {y1:.1f} H{turn:.1f} Q{x2:.1f} {y1:.1f} {x2:.1f} {y1 - r:.1f} V{ey + eh + 3:.1f}"
+    else:
+        y2 = ey + eh * frac
+        x1, turn = (ax + aw, lane - r) if ax < lane else (ax, lane + r)
+        d = (f"M{x1:.1f} {y1:.1f} H{turn:.1f} Q{lane:.1f} {y1:.1f} {lane:.1f} {y1 - r:.1f} "
+             f"V{y2 + r:.1f} Q{lane:.1f} {y2:.1f} {lane + r:.1f} {y2:.1f} H{ex - 3:.1f}")
+    if dashed:
+        return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
+    return f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
+
+
+def route(a, b, dashed, boxes, horizontal, below):
+    if (a, b) == ("gr", "es"):
+        return detour(boxes, horizontal)
+    if a in below:
+        return from_below(boxes[a], boxes[b], dashed, horizontal, *below[a])
+    return edge(boxes[a], boxes[b], dashed, horizontal)
+
+
 def legend(x, y, size):
     return f"""<g font-size="{size}" fill="#b9c6e4">
 <line x1="{x}" y1="{y - size * 0.35:.1f}" x2="{x + 34}" y2="{y - size * 0.35:.1f}" stroke="#5ba3dc" stroke-width="2.5"/>
@@ -125,20 +161,20 @@ def legend(x, y, size):
 </g>"""
 
 
-def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed):
+def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, below):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">']
-    parts += [detour(boxes, horizontal) if (a, b) == ("gr", "es") else edge(boxes[a], boxes[b], dashed, horizontal)
-              for a, b, dashed in EDGES]
+    parts += [route(a, b, dashed, boxes, horizontal, below) for a, b, dashed in EDGES]
     parts += [card(k, *boxes[k], title_size, line_size) for k in NODES]
     parts.append(legend(*legend_at, line_size - 1))
     parts.append("</g>\n</svg>\n")
     return "\n".join(parts)
 
 
-# Desktop: four columns, left to right.
+# Desktop: four columns, left to right, and a third row whose two repos feed economicspace
+# from below.
 CW = {1: 250, 2: 220, 3: 270, 4: 226}
 CX = {1: 24, 2: 336, 3: 618, 4: 950}
-TOP, BOT, CH = 34, 180, 104
+TOP, BOT, R3, CH = 34, 180, 326, 104
 wide = {
     "gr": (CX[1], (TOP + BOT) / 2, CW[1], CH),
     "ac": (CX[2], TOP, CW[2], CH),
@@ -147,23 +183,30 @@ wide = {
     "es": (CX[3], BOT, CW[3], CH),
     "paper": (CX[4], TOP, CW[4], CH),
     "targets": (CX[4], BOT, CW[4], CH),
+    "ql": (CX[2], R3, CW[2], CH),
+    "sr": (CX[4], R3, CW[4], CH),
 }
-# Phones: four rows, top to bottom, two cards a row; General_Research sits centred on its own.
+# Phones: five rows, top to bottom, two cards a row; General_Research sits centred on its
+# own. The columns stand far enough apart for two arrows to climb the gap between them.
 PW, PH, ROW = 300, 118, 168
-left, right = 14, 326
+PWIDTH, left, right = 680, 12, 368
 tall = {
-    "gr": ((640 - PW) / 2, 20, PW, PH),
+    "gr": ((PWIDTH - PW) / 2, 20, PW, PH),
     "ac": (left, 20 + ROW, PW, PH),
     "sc": (right, 20 + ROW, PW, PH),
     "abg": (left, 20 + 2 * ROW, PW, PH),
     "es": (right, 20 + 2 * ROW, PW, PH),
     "paper": (left, 20 + 3 * ROW, PW, PH),
     "targets": (right, 20 + 3 * ROW, PW, PH),
+    "ql": (left, 20 + 4 * ROW, PW, PH),
+    "sr": (right, 20 + 4 * ROW, PW, PH),
 }
 
 files = {
-    "pipeline.svg": render(1200, 356, wide, True, 22, 17, (CX[1], 340), 7),
-    "pipeline-compact.svg": render(640, 20 + 3 * ROW + PH + 64, tall, False, 25, 21, (left + 4, 20 + 3 * ROW + PH + 42), 8),
+    "pipeline.svg": render(1200, 482, wide, True, 22, 17, (CX[1], 466), 7, {"ql": (0.7,), "sr": (0.9,)}),
+    "pipeline-compact.svg": render(PWIDTH, 20 + 4 * ROW + PH + 64, tall, False, 25, 21,
+                                   (left + 4, 20 + 4 * ROW + PH + 42), 8,
+                                   {"ql": (0.35, left + PW + 12), "sr": (0.75, left + PW + 28)}),
 }
 for name, svg in files.items():
     (OUT / name).write_text(svg, encoding="utf-8", newline="\n")
