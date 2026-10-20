@@ -1,14 +1,14 @@
 {
-  "sources": 626,
+  "sources": 632,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 25371,
+    "economicspace": 26300,
     "AsteroidCatalog": 5609,
     "spacecost": 8413,
     "General_Research": 2399,
     "asteroid-belt-gradient": 2862,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 16056,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 16761,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 12796,
@@ -17,12 +17,12 @@
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 98852,
+    "economicspace": 100649,
     "AsteroidCatalog": 13146,
     "spacecost": 16835,
-    "General_Research": 48035,
+    "General_Research": 48241,
     "asteroid-belt-gradient": 6529,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 33171,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 36628,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22010,
