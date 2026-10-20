@@ -29,7 +29,7 @@ def render(w, seed):
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0" stop-color="#0b1020"/>
     <stop offset="0.55" stop-color="#0f1e3d"/>
-    <stop offset="1" stop-color="#1e1640"/>
+    <stop offset="1" stop-color="#112650"/>
   </linearGradient>
   <radialGradient id="glow" cx="0.14" cy="0.5" r="0.3">
     <stop offset="0" stop-color="#1d3f74" stop-opacity="0.55"/>

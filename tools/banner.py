@@ -22,15 +22,15 @@ a(f"""<defs>
   <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
     <stop offset="0" stop-color="#0b1020"/>
     <stop offset="0.55" stop-color="#0f1e3d"/>
-    <stop offset="1" stop-color="#1e1640"/>
+    <stop offset="1" stop-color="#112650"/>
   </linearGradient>
   <radialGradient id="glow" cx="0.3" cy="0.35" r="0.5">
     <stop offset="0" stop-color="#1d3f74" stop-opacity="0.55"/>
     <stop offset="1" stop-color="#1d3f74" stop-opacity="0"/>
   </radialGradient>
   <radialGradient id="glow2" cx="0.85" cy="0.95" r="0.45">
-    <stop offset="0" stop-color="#3b2470" stop-opacity="0.5"/>
-    <stop offset="1" stop-color="#3b2470" stop-opacity="0"/>
+    <stop offset="0" stop-color="#1d3f74" stop-opacity="0.5"/>
+    <stop offset="1" stop-color="#1d3f74" stop-opacity="0"/>
   </radialGradient>
 {star.DEFS}
 </defs>

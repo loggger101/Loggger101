@@ -71,10 +71,10 @@ def rounded_mask(size, radius):
 
 
 def frame(h, seed):
-    """The tiles' frame: diagonal navy-to-violet gradient, faint stars, a thin border."""
+    """The tiles' frame: diagonal navy gradient, faint stars, a thin border."""
     y, x = np.mgrid[0:h, 0:W]
     t = (x / W + y / h) / 2
-    stops = [(0, (11, 16, 32)), (0.6, (15, 30, 61)), (1, (30, 22, 64))]
+    stops = [(0, (11, 16, 32)), (0.6, (15, 30, 61)), (1, (17, 38, 80))]
     rgb = np.zeros((h, W, 3))
     for (t0, c0), (t1, c1) in zip(stops, stops[1:]):
         m = (t >= t0) & (t <= t1)
