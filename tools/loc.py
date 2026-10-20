@@ -58,12 +58,14 @@ REPOS = {
     "AsteroidCatalog": ("https://github.com/loggger101/AsteroidCatalog", False, []),
     "spacecost": ("https://github.com/loggger101/spacecost", False, []),
     "General_Research": ("https://github.com/loggger101/General_Research", False, ["*/full_texts/*"]),
+    "starred-repos": ("https://github.com/loggger101/starred-repos", False, []),
     "asteroid-belt-gradient": ("https://github.com/loggger101/asteroid-belt-gradient", False, []),
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": ("https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data", False, []),
     "star-spectral-classifier": ("https://github.com/loggger101/star-spectral-classifier", False, []),
     "drone-target-id": ("https://github.com/loggger101/drone-target-id", False, []),
     "Satellite-Space-Flight": ("https://github.com/loggger101/Satellite-Space-Flight", False, []),
     "website": ("https://github.com/loggger101/website", False, []),
+    "quietlaunch": ("https://github.com/loggger101/quietlaunch", False, []),
     # Pages are built by tools/build-*.pl and committed; the Perl is the source.
     "aspirecures": ("https://www.aspirecures.com", True, ["*.html"]),
     # archive/ is the old Squarespace site and content/ the page text; tools/build.py wraps each
@@ -79,7 +81,7 @@ TOTAL_EXCLUDE = {
     # Standard licence texts, and lock files pip and npm write.
     "*": ["LICENSE*", "*/LICENSE*", "requirements-lock.txt", "*package-lock.json"],
     # The SDSS asteroid taxonomy table, downloaded for a probe script.
-    "economicspace": ["research/starred-repos/sdsstax_ast.tab"],
+    "starred-repos": ["sdsstax_ast.tab"],
     # The AAS journal class and bibliography styles the paper is set with.
     "asteroid-belt-gradient": ["paper/aastex*.cls", "paper/*.bst"],
     # ArcGIS writes these: training-sample dumps, raster metadata sidecars, world files,

@@ -29,7 +29,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 
 ### <picture><img src="docs/icons/economics.svg" width="24" height="24" align="top" alt=""></picture> Space economics
 
-These four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit. The catalog also feeds my paper.
+The first four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit, and the fifth checks the pipeline against other people's code. The catalog also feeds my paper.
 
 <p align="center">
   <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost and ranks mining targets by profit."></picture>
@@ -50,7 +50,11 @@ These four repos work together to estimate whether an uncrewed asteroid mining m
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,399 lines of code</sub><br/><sub>48,246 total lines</sub></td>
-    <td valign="top"><p>The sources behind the other three, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+    <td valign="top"><p>The sources behind the three repos above, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/starred-repos">starred-repos</a></b><br/><sub>pipeline audit</sub><br/><sub>705 lines of code</sub><br/><sub>2,528 total lines</sub></td>
+    <td valign="top"><p>An audit of 17 repos I'd starred, read for code and data the pipeline could use. Its probe scripts check economicspace's delta-v estimates against JPL's NHATS and against optimized Lambert transfers, and found two errors that partly cancel: the plane change is overcharged, and the transfer geometry undercharged by more.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/NumPy-1f3354?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture></td>
   </tr>
 </table>
 
@@ -106,11 +110,15 @@ Both repos are private, but the sites are public.
 
 ### <picture><img src="docs/icons/elsewhere.svg" width="24" height="24" align="top" alt=""></picture> Elsewhere
 
-<!-- GitHub sizes each table to its content. These two descriptions are short, so the spacer image (1px tall, transparent) widens the table to match the others; on phones it shrinks to nothing. -->
+<!-- GitHub sizes each table to its content. Two of these descriptions are short, so the spacer image (1px tall, transparent) widens the table to match the others; on phones it shrinks to nothing. -->
 <table>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/website">website</a></b><br/><sub>portfolio site</sub><br/><sub>7,615 lines of code</sub><br/><sub>10,124 total lines</sub></td>
     <td valign="top"><p>The code for my portfolio site. Plain HTML, CSS and JavaScript with no build step.</p><picture><img src="https://img.shields.io/badge/HTML5-1f3354?style=flat-square&logo=html5&logoColor=white" alt="HTML5"></picture> <picture><img src="https://img.shields.io/badge/CSS-1f3354?style=flat-square&logo=css&logoColor=white" alt="CSS"></picture> <picture><img src="https://img.shields.io/badge/JavaScript-1f3354?style=flat-square&logo=javascript&logoColor=white" alt="JavaScript"></picture> <a href="https://www.loganmedwardsastrophy.com/"><img src="https://img.shields.io/badge/Live-5ba3dc?style=flat-square&logo=github&logoColor=white" alt="Live site"></a> <a href="https://www.loganmedwardsastrophy.com/portfolio-website.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a><br/><picture><img src="docs/spacer.svg" width="2000" height="1" alt=""></picture></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/quietlaunch">quietlaunch</a></b><br/><sub>Streamlit launcher</sub><br/><sub>1,077 lines of code</sub><br/><sub>2,202 total lines</sub></td>
+    <td valign="top"><p>Starts a Streamlit app with no console window. A small control window shows the server booting, and why it failed if it does, opens the browser once the port answers, and stops the server and its children when closed. I split it out of economicspace's dashboard launcher; it uses only the standard library and is tested on Windows, Linux and macOS.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/Streamlit-1f3354?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"></picture> <a href="https://github.com/loggger101/quietlaunch/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/quietlaunch?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Hermes_Skills">Hermes_Skills</a></b><br/><sub>agent skills</sub></td>
