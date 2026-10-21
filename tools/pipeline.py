@@ -26,6 +26,7 @@ NODES = {
     "targets": ("Mining targets", "ranked by net", "mission profit", "out"),
     "ql": ("quietlaunch", "windowless dashboard", "launcher, pip package", "repo"),
     "sr": ("starred-repos", "the pipeline audited", "against 17 repos", "repo"),
+    "qq": ("quietqueue", "the campaign's job", "runner, pip package", "repo"),
 }
 # (from, to, dashed)
 EDGES = [
@@ -39,11 +40,12 @@ EDGES = [
     ("es", "targets", False),
     ("ql", "es", False),   # economicspace's launcher installs the pinned package; see from_below()
     ("sr", "es", True),    # economicspace cites the audit's orbit-quality measurement
+    ("qq", "es", False),   # economicspace's campaign installs the pinned package
 ]
 ALT = (
     "How the repos connect: General_Research holds the sources that AsteroidCatalog, "
     "spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
-    "paper, and economicspace, which also installs spacecost and quietlaunch, cites the starred-repos audit, "
+    "paper, and economicspace, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, "
     "and ranks mining targets by profit."
 )
 
@@ -170,11 +172,11 @@ def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, belo
     return "\n".join(parts)
 
 
-# Desktop: four columns, left to right, and a third row whose two repos feed economicspace
-# from below.
+# Desktop: four columns, left to right, and a third and fourth row whose repos feed
+# economicspace from below.
 CW = {1: 250, 2: 220, 3: 270, 4: 226}
 CX = {1: 24, 2: 336, 3: 618, 4: 950}
-TOP, BOT, R3, CH = 34, 180, 326, 104
+TOP, BOT, R3, R4, CH = 34, 180, 326, 472, 104
 wide = {
     "gr": (CX[1], (TOP + BOT) / 2, CW[1], CH),
     "ac": (CX[2], TOP, CW[2], CH),
@@ -185,9 +187,10 @@ wide = {
     "targets": (CX[4], BOT, CW[4], CH),
     "ql": (CX[2], R3, CW[2], CH),
     "sr": (CX[4], R3, CW[4], CH),
+    "qq": (CX[2], R4, CW[2], CH),
 }
-# Phones: five rows, top to bottom, two cards a row; General_Research sits centred on its
-# own. The columns stand far enough apart for two arrows to climb the gap between them.
+# Phones: six rows, top to bottom, two cards a row; General_Research and quietqueue sit on
+# their own. The columns stand far enough apart for three arrows to climb the gap between them.
 PW, PH, ROW = 300, 118, 168
 PWIDTH, left, right = 680, 12, 368
 tall = {
@@ -200,13 +203,16 @@ tall = {
     "targets": (right, 20 + 3 * ROW, PW, PH),
     "ql": (left, 20 + 4 * ROW, PW, PH),
     "sr": (right, 20 + 4 * ROW, PW, PH),
+    "qq": (left, 20 + 5 * ROW, PW, PH),
 }
 
 files = {
-    "pipeline.svg": render(1200, 482, wide, True, 22, 17, (CX[1], 466), 7, {"ql": (0.7,), "sr": (0.9,)}),
-    "pipeline-compact.svg": render(PWIDTH, 20 + 4 * ROW + PH + 64, tall, False, 25, 21,
-                                   (left + 4, 20 + 4 * ROW + PH + 42), 8,
-                                   {"ql": (0.35, left + PW + 12), "sr": (0.75, left + PW + 28)}),
+    "pipeline.svg": render(1200, R4 + CH + 52, wide, True, 22, 17, (CX[1], R4 + CH + 36), 7,
+                           {"ql": (0.7,), "qq": (0.8,), "sr": (0.9,)}),
+    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 21,
+                                   (left + 4, 20 + 5 * ROW + PH + 42), 8,
+                                   {"ql": (0.35, left + PW + 12), "qq": (0.55, left + PW + 28),
+                                    "sr": (0.75, left + PW + 44)}),
 }
 for name, svg in files.items():
     (OUT / name).write_text(svg, encoding="utf-8", newline="\n")

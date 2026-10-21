@@ -66,6 +66,7 @@ REPOS = {
     "Satellite-Space-Flight": ("https://github.com/loggger101/Satellite-Space-Flight", False, []),
     "website": ("https://github.com/loggger101/website", False, []),
     "quietlaunch": ("https://github.com/loggger101/quietlaunch", False, []),
+    "quietqueue": ("https://github.com/loggger101/quietqueue", False, []),
     # Pages are built by tools/build-*.pl and committed; the Perl is the source.
     "aspirecures": ("https://www.aspirecures.com", True, ["*.html"]),
     # archive/ is the old Squarespace site and content/ the page text; tools/build.py wraps each

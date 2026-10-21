@@ -16,7 +16,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 <p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
-  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="632 research sources (General_Research)"></picture></a>
+  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="633 research sources (General_Research)"></picture></a>
   <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
@@ -32,12 +32,12 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 The first four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit, and the fifth checks the pipeline against other people's code. The catalog also feeds my paper.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost and quietlaunch, cites the starred-repos audit, and ranks mining targets by profit."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, and ranks mining targets by profit."></picture>
 </p>
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>25,474 lines of code</sub><br/><sub>98,183 total lines</sub></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>25,421 lines of code</sub><br/><sub>98,268 total lines</sub></td>
     <td valign="top"><p>The main pipeline. It builds a catalog from public astronomy databases, prices the minerals, costs the transport, then runs the rocket equation and a cost cascade to rank targets by profit.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <picture><img src="https://img.shields.io/badge/Docker-1f3354?style=flat-square&logo=docker&logoColor=white" alt="Docker"></picture></td>
   </tr>
   <tr>
@@ -49,7 +49,7 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <a href="https://github.com/loggger101/spacecost/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,399 lines of code</sub><br/><sub>48,246 total lines</sub></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,399 lines of code</sub><br/><sub>48,260 total lines</sub></td>
     <td valign="top"><p>The sources behind the three repos above, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
@@ -119,6 +119,10 @@ Both repos are private, but the sites are public.
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/quietlaunch">quietlaunch</a></b><br/><sub>Streamlit launcher</sub><br/><sub>1,077 lines of code</sub><br/><sub>2,202 total lines</sub></td>
     <td valign="top"><p>Starts a Streamlit app with no console window. A small control window shows the server booting, and why it failed if it does, opens the browser once the port answers, and stops the server and its children when closed. I split it out of economicspace's dashboard launcher; it uses only the standard library and is tested on Windows, Linux and macOS.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/Streamlit-1f3354?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"></picture> <a href="https://github.com/loggger101/quietlaunch/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/quietlaunch?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
+  </tr>
+  <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/quietqueue">quietqueue</a></b><br/><sub>unattended job queue</sub><br/><sub>646 lines of code</sub><br/><sub>1,589 total lines</sub></td>
+    <td valign="top"><p>Runs a queue of long jobs unattended on Windows and keeps it alive through a closed shell, a stray Ctrl+C, a reboot or a second copy started at logon. Each job is one subprocess, a ledger records what's finished so a restart picks up where it stopped, and the whole process tree can be paused and resumed without losing the job in flight. I split it out of economicspace's campaign runner, which ran a 28-job model campaign over several days.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <a href="https://github.com/loggger101/quietqueue/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/quietqueue?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Hermes_Skills">Hermes_Skills</a></b><br/><sub>agent skills</sub></td>
