@@ -64,5 +64,6 @@ jobs:
         with:
           python-version: "3.14"
       # Also fails if the data the refresh keeps current is more than a week old, which is
-      # how a step allowed to fail (the flybys) can't fail every week unnoticed.
-      - run: python tools/check.py --links --fresh
+      # how a step allowed to fail (the flybys) can't fail every week unnoticed, or if a
+      # figure the profile quotes is gone from its repo's README.
+      - run: python tools/check.py --links --fresh --facts
