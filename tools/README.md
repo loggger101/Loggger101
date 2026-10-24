@@ -58,8 +58,11 @@ if a `docs/` file is missing or unused, if the README's numbers or alt text disa
 `counts.json`, if a section link names no heading, or if an OneDrive conflict copy is
 present. CI runs all three on every push (`check.yml`), and the weekly workflow runs
 `check.py` before committing and, in a separate job, `check.py --links --fresh`: every link
-answers, and the flyby and activity data are no more than eight days old, so the flyby
-step, which is allowed to fail, can't fail week after week unnoticed.
+answers, the flyby and activity data are no more than eight days old (so the flyby step,
+which is allowed to fail, can't fail week after week unnoticed), and every figure the
+profile quotes from another repo (`FACTS` in `check.py`: 84.3%, 161,659, "fifteen real
+launch complexes" and the rest) is still in that repo's README. When a project changes a
+result, that job turns red until the profile catches up.
 
 The wide panels (activity, languages, break-even, flybys, repo diagram) open with
 `panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which

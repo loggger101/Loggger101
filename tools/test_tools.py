@@ -134,6 +134,33 @@ ck.check_fresh(today=oldest + dt.timedelta(days=15))
 eq("two weeks on: both flagged", len(ck.problems), 2)
 ck.problems.clear()
 
+# Quoted figures (check.py FACTS): the README holds each phrase; a source that drops its
+# figure, or can't be read, is reported.
+readme = (TOOLS.parent / "README.md").read_text(encoding="utf-8")
+ck.problems.clear()
+ck.check_fact_phrases(readme)
+eq("every quoted phrase in the README", ck.problems, [])
+ck.problems.clear()
+ck.check_fact_phrases(readme.replace("87.1% on fine class", "87.6% on fine class"))
+eq("a reworded figure flagged", len(ck.problems), 1)
+everything = " ".join(b for _, _, b in ck.FACTS)
+ck.problems.clear()
+ck.check_facts(fetch=lambda repo: everything)
+eq("sources that still say it", ck.problems, [])
+ck.problems.clear()
+ck.check_facts(fetch=lambda repo: everything.replace("84.30%", "85.10%"))
+eq("a source whose result changed", len(ck.problems), 1)
+
+
+def unreachable(repo):
+    raise OSError("no network")
+
+
+ck.problems.clear()
+ck.check_facts(fetch=unreachable)
+eq("an unreadable source, once per repo", len(ck.problems), len({r for _, r, _ in ck.FACTS}))
+ck.problems.clear()
+
 # The shared frame (panel.py): every animated class is stopped under reduced motion.
 pn = load("panel")
 svg = pn.background(400, 300, 1, 'a "quoted" alt', rules=pn.FADE, animated=("fade", "spin"))

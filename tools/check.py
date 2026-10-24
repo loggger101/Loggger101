@@ -19,7 +19,12 @@ every push (.github/workflows/check.yml).
 7. Every link to a place in the README (href="#...") names a heading's anchor, so renaming
    a section can't leave the section links pointing nowhere.
 8. With --links (online; the weekly workflow): every link and badge in the README answers.
-9. With --fresh (the weekly workflow): the week-by-week data was refreshed within FRESH_DAYS.
+9. Every figure the README quotes from another repo (FACTS) is still in the README as
+   written, so the list can't go on checking a sentence that's gone.
+10. With --facts (online; the weekly workflow): each of those figures is still in its own
+   repo's README, so a project that changes a result can't leave the profile quoting the
+   old one.
+11. With --fresh (the weekly workflow): the week-by-week data was refreshed within FRESH_DAYS.
    The flyby step may fail without stopping the others, so this is what notices if it
    keeps failing; a week the whole refresh missed shows here too.
 
@@ -229,6 +234,54 @@ def check_conflict_copies():
         problems.append(f"OneDrive conflict copy: {f}")
 
 
+# Figures the README quotes from other repos: (the README's words, the repo, what its own
+# README must still say). The source's wording is often more exact ("84.30%" for "84.3%").
+FACTS = [
+    ("An audit of 17 repos I'd starred", "starred-repos", "17 starred repositories"),
+    ("against JPL's NHATS and against optimized Lambert transfers", "starred-repos", "NHATS"),
+    ("using 161,659 classified asteroids", "asteroid-belt-gradient", "161,659"),
+    ("scoring 73.8% on areas", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "73.8%"),
+    ("On 14k held-out cutouts", "star-spectral-classifier", "14,406"),
+    ("gets the letter right 84.3% of the time", "star-spectral-classifier", "84.30%"),
+    ("98.4% within its top two guesses", "star-spectral-classifier", "98.41%"),
+    ("On a 27k held-out test set", "drone-target-id", "27,362"),
+    ("87.1% on fine class", "drone-target-id", "87.08%"),
+    ("91.3% on valid/invalid", "drone-target-id", "91.31%"),
+    ("fifteen real launch complexes", "Satellite-Space-Flight", "fifteen real launch complexes"),
+    ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
+    ("28-job model campaign", "quietqueue", "28-job"),
+]
+
+
+def check_fact_phrases(readme):
+    for phrase, repo, _ in FACTS:
+        if readme.count(phrase) != 1:
+            problems.append(f"FACTS quotes {phrase!r} ({repo}), which the README says {readme.count(phrase)} times, "
+                            "not once; update FACTS with the README")
+
+
+def readme_of(repo):
+    import urllib.request
+    url = f"https://raw.githubusercontent.com/loggger101/{repo}/HEAD/README.md"
+    with urllib.request.urlopen(url, timeout=30) as r:
+        return r.read().decode("utf-8")
+
+
+def check_facts(fetch=readme_of):
+    """Each quoted figure is still in its repo's README. Online, so only with --facts."""
+    sources = {}
+    for phrase, repo, backing in FACTS:
+        if repo not in sources:
+            try:
+                sources[repo] = fetch(repo)
+            except OSError as e:
+                problems.append(f"{repo}'s README couldn't be read to check the profile's figures: {e}")
+                sources[repo] = None
+        if sources[repo] is not None and backing not in sources[repo]:
+            problems.append(f"the README says {phrase!r}, but {repo}'s README no longer says {backing!r}")
+    print(f"checked {len(FACTS)} figures against {len(sources)} repos")
+
+
 # The weekly refresh runs every 7 days; a day's grace for a late run.
 FRESH_DAYS = 8
 
@@ -279,6 +332,9 @@ def main():
     check_markup(readme)
     check_conflict_copies()
     check_anchors(readme)
+    check_fact_phrases(readme)
+    if "--facts" in sys.argv[1:]:
+        check_facts()
     if "--links" in sys.argv[1:]:
         check_links(readme)
     if "--fresh" in sys.argv[1:]:
