@@ -1,27 +1,48 @@
-# Image generators
+# How the profile is made
 
-The banner, typing line, link buttons, stat tiles, repo diagram, gallery cards, activity and languages panels and footer in `docs/` are generated, not hand-edited.
-Run from the repo root:
+Apart from a one-pixel spacer, nothing in `docs/` is drawn by hand. Each picture on the
+profile comes from a script in this folder, most of them from data the scripts fetch from
+the repos themselves, and a weekly workflow (`.github/workflows/refresh-counts.yml`,
+Mondays) fetches it again and redraws them.
+
+| on the profile | drawn by | from | refreshed |
+|---|---|---|---|
+| banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
+| stat tiles | `tiles.py` | General_Research's `sources.csv` and Hermes_Skills' README (`refresh_counts.py`); the catalog and belt numbers are set in `tiles.py` | weekly |
+| gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video and the simulator running | by hand |
+| repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
+| line counts under each repo, the languages panel | `loc.py`, `languages.py` | each repo's default branch | weekly; the two private repos by hand |
+| sparklines, the activity panel, the latest commits | `refresh_activity.py`, `sparks.py`, `activity.py` | each repo's commit history | weekly; the two private repos by hand |
+| break-even chart | `refresh_counts.py`, `breakeven.py` | the destinations table in economicspace's README | weekly |
+| flyby chart | `refresh_flybys.py`, `flybys.py` | NASA/JPL's close-approach API | weekly |
+
+Run from the repo root. Fetch the data first (each writes `counts.json` and the README's
+alt text):
 
 ```bash
-python tools/banner.py docs/banner.svg
-python tools/refresh_counts.py         # pull the sources and skills counts from their repos
-python tools/loc.py                    # lines of code and total lines under each repo's name, and by language (--public-only skips the private two)
-python tools/refresh_activity.py       # every commit of mine to each repo, by week, for the activity panel (--public-only as above)
-python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
-python tools/gallery.py docs/gallery  # project cards (three animated), plus the -compact versions phones get; add card names (mars drone) to make only those
-python tools/typing_line.py docs/typing.svg
-python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
-python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
-python tools/sparks.py docs/sparks     # the commits-per-week line under each repo's name
-python tools/languages.py docs        # lines of code by language, plus the -compact version phones get
-python tools/breakeven.py docs        # economicspace's cost per dollar earned for each destination, plus -compact
+python tools/refresh_counts.py         # research sources, agent skills, economicspace's destinations
+python tools/loc.py                    # lines of code and total lines per repo, and by language (--public-only skips the private two)
+python tools/refresh_activity.py       # every commit of mine to each repo, by week, and the latest few (--public-only as above)
 python tools/refresh_flybys.py         # NASA/JPL's close approaches to Earth for the week ahead
-python tools/flybys.py docs           # those approaches as a chart, plus -compact
-python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
-python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
-python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
+```
+
+then draw:
+
+```bash
+python tools/tiles.py docs/stats       # stat tiles, plus the -compact versions phones get
+python tools/pipeline.py docs          # the repo diagram, plus -compact
+python tools/breakeven.py docs         # economicspace's cost per dollar earned for each destination, plus -compact
+python tools/activity.py docs          # every commit so far as orbits, plus -compact
+python tools/sparks.py docs/sparks     # the commits-per-week line under each repo's name
+python tools/languages.py docs         # lines of code by language, plus -compact
+python tools/flybys.py docs            # the week's close approaches, plus -compact
+python tools/gallery.py docs/gallery   # project cards (three animated), plus -compact; name cards (mars drone) to make only those
+python tools/banner.py docs/banner.svg
+python tools/typing_line.py docs/typing.svg
+python tools/footer.py docs            # the strip that closes the page, plus -compact
+python tools/links.py docs/links       # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/icons.py docs/icons       # the icons beside the section headings
+python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
 ```
 
 Before committing, run

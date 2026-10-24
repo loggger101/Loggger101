@@ -184,5 +184,7 @@ The asteroids coming within 20 lunar distances of Earth in the week ahead, from 
   <a href="https://www.linkedin.com/in/logan-edwards-shf/"><img src="docs/links/linkedin.svg" height="36" alt="LinkedIn: logan-edwards"></a>
 </p>
 
+<p align="center"><sub>The charts, counts and cards on this page are drawn by Python scripts from the repos' own data, and most of them refresh every Monday. <a href="https://github.com/loggger101/Loggger101/tree/main/tools">See how they're made</a>.</sub></p>
+
 <br/>
 <p align="center"><picture><source media="(max-width: 600px)" srcset="docs/footer-compact.svg"><img src="docs/footer.svg" width="100%" alt=""></picture></p>
