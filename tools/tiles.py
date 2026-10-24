@@ -17,6 +17,8 @@ import random
 import sys
 from pathlib import Path
 
+from refresh_counts import millions
+
 OUT = Path(sys.argv[1])
 OUT.mkdir(parents=True, exist_ok=True)
 W, H = 270, 120
@@ -25,13 +27,13 @@ FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 ADVANCE = {**dict.fromkeys("0123456789", 0.575), ",": 0.271, ".": 0.271, "M": 0.957}
 ROLL = 1.8              # seconds a digit column spins
 
-# The catalog and belt numbers are fixed by the releases they come from. The two that grow
-# are in counts.json, which refresh_counts.py keeps current.
+# The belt number is fixed by the release the paper pins. The catalog's size, and the two
+# that grow, are in counts.json, which refresh_counts.py keeps current.
 COUNTS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))
 
 # name: (number, label, short label for the compact tile, repo)
 TILES = {
-    "catalog": ("1.57M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
+    "catalog": (f"{millions(COUNTS['catalog_rows'])}M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
     "belt": ("161,659", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
     "sources": (f"{COUNTS['sources']:,}", "research sources", "sources", "General_Research"),
     "skills": (f"{COUNTS['skills']:,}", "agent skills", "agent skills", "Hermes_Skills"),

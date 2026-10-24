@@ -35,7 +35,7 @@
 <text x="206.0" y="119.1" font-size="21" fill="#b9c6e4">other repos cite</text>
 <rect x="12" y="188" width="300" height="118" rx="10" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
 <text x="28" y="228.4" font-size="25" font-weight="700" fill="#5ba3dc">AsteroidCatalog</text>
-<text x="28" y="259.8" font-size="21" fill="#b9c6e4">1.57M asteroids,</text>
+<text x="28" y="259.8" font-size="21" fill="#b9c6e4">1.58M asteroids,</text>
 <text x="28" y="287.1" font-size="21" fill="#b9c6e4">frozen releases</text>
 <rect x="368" y="188" width="300" height="118" rx="10" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
 <text x="384" y="228.4" font-size="25" font-weight="700" fill="#5ba3dc">spacecost</text>

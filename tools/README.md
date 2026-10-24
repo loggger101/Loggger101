@@ -8,7 +8,7 @@ Mondays) fetches it again and redraws them.
 | on the profile | drawn by | from | refreshed |
 |---|---|---|---|
 | banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
-| stat tiles | `tiles.py` | General_Research's `sources.csv` and Hermes_Skills' README (`refresh_counts.py`); the catalog and belt numbers are set in `tiles.py` | weekly |
+| stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest (`refresh_counts.py`); the belt number is set in `tiles.py` | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
 | repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
 | line counts under each repo, the languages panel | `loc.py`, `languages.py` | each repo's default branch | weekly; the two private repos by hand |
@@ -20,7 +20,7 @@ Run from the repo root. Fetch the data first (each writes `counts.json` and the 
 alt text):
 
 ```bash
-python tools/refresh_counts.py         # research sources, agent skills, economicspace's destinations
+python tools/refresh_counts.py         # research sources, agent skills, the catalog's size, economicspace's destinations
 python tools/loc.py                    # lines of code and total lines per repo, and by language (--public-only skips the private two)
 python tools/refresh_activity.py       # every commit of mine to each repo, by week, and the latest few (--public-only as above)
 python tools/refresh_flybys.py         # NASA/JPL's close approaches to Earth for the week ahead
@@ -57,7 +57,9 @@ python tools/test_tools.py      # the economicspace and JPL readers, commit subj
 if a `docs/` file is missing or unused, if the README's numbers or alt text disagree with
 `counts.json`, if a section link names no heading, or if an OneDrive conflict copy is
 present. CI runs all three on every push (`check.yml`), and the weekly workflow runs
-`check.py` before committing and checks the links in a separate job.
+`check.py` before committing and, in a separate job, `check.py --links --fresh`: every link
+answers, and the flyby and activity data are no more than eight days old, so the flyby
+step, which is allowed to fail, can't fail week after week unnoticed.
 
 The wide panels (activity, languages, break-even, flybys, repo diagram) open with
 `panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which
@@ -91,8 +93,10 @@ The README shows them to everyone but those who ask for reduced motion, who get 
 card through a `<picture>` source. A full run takes about twelve minutes, nearly all of it
 WebP compressing the animations; name cards after the output folder to make only those.
 
-The catalog and belt numbers on the tiles are set in `tiles.py`; check them against the
-source repos before changing.
+The belt number on its tile is set in `tiles.py`, fixed by the release the paper pins;
+check it against asteroid-belt-gradient before changing. The catalog's size comes from
+its latest release's manifest, and the tile, the intro, the AsteroidCatalog row and the
+repo diagram all write it the same way (`millions()` in `refresh_counts.py`).
 The sources and skills numbers are in `counts.json`, which `refresh_counts.py` rewrites from
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes
 them. A weekly workflow (`.github/workflows/refresh-counts.yml`) runs it and `tiles.py`, along
