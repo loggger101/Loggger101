@@ -7,12 +7,12 @@ Run from the repo root:
 python tools/banner.py docs/banner.svg
 python tools/refresh_counts.py         # pull the sources and skills counts from their repos
 python tools/loc.py                    # lines of code and total lines under each repo's name, and by language (--public-only skips the private two)
-python tools/refresh_activity.py       # my commits to each repo, week by week, for the activity panel (--public-only as above)
+python tools/refresh_activity.py       # every commit of mine to each repo, by week, for the activity panel (--public-only as above)
 python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
 python tools/gallery.py docs/gallery  # project cards, plus the -compact versions phones get
 python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
-python tools/activity.py docs         # the last 12 months as orbits, plus the -compact version phones get
+python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
 python tools/languages.py docs        # lines of code by language, plus the -compact version phones get
 python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
@@ -51,8 +51,9 @@ README's alt text, which `refresh_activity.py` and `loc.py` call after a refresh
 `loggger101`, which leaves out the bots (the website's deploy workflow, General_Research's
 cron), from a commit-only clone of each repo. The panel's rings follow `SECTIONS` in
 `activity.py`; a repo added to the README goes there too, or `activity.py` stops with an
-error. The year ends at the week `refresh_activity.py` last ran, so the weekly workflow
-commits a new panel every Monday.
+error. The orbit runs from my first commit to the week `refresh_activity.py` last ran, so
+the weekly workflow commits a new panel every Monday. Past 60 weeks a dot takes in several
+weeks (`MAX_DOTS`), so the rings stay readable as the history grows.
 
 `loc.py` counts each repo's default branch on GitHub, not the local clone, by the usual
 rules: cloc's for lines, GitHub Linguist's for files.

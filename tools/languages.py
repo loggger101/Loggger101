@@ -105,7 +105,7 @@ def update_readme(readme):
     """The README with this panel's alt text written in, so a screen reader hears the numbers
     the image shows. loc.py calls it after refreshing the counts; check.py checks it."""
     pattern = r'(src="docs/languages\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT) + m[2], readme)
+    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
     if n != 1:
         sys.exit(f"README image docs/languages.svg matched {n} times, expected 1")
     return readme

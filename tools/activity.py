@@ -1,12 +1,14 @@
-"""Generate the activity panel (docs/activity.svg, docs/activity-compact.svg): my commits over
-the last 52 weeks, drawn as orbits round the banner's star.
+"""Generate the activity panel (docs/activity.svg, docs/activity-compact.svg): every commit
+I've made to the repos the README lists, drawn as orbits round the banner's star.
 
-Each ring is one section of the README, the outermost the first. The year runs clockwise
-from twelve o'clock and stops short of it, leaving the wedge where the rings are named;
-a dot is one week's commits to that section's repos, its area in proportion to the count.
-Beside the rings: the year's total, each section's, the busiest week and the latest commit.
+Each ring is one section of the README, the outermost the first. Time runs clockwise from
+my first commit at twelve o'clock to this week, stopping short of twelve to leave the wedge
+where the rings are named. A dot is one week's commits to that section's repos, its area in
+proportion to the count; past MAX_DOTS weeks, a dot takes in as many weeks as it needs to
+keep the rings from running together. Beside the rings: the total, each section's, the
+busiest week and the latest commit.
 
-The numbers are refresh_activity.py's, from tools/counts.json, and the year ends at the
+The numbers are refresh_activity.py's, from tools/counts.json, and the orbit ends at the
 week it last ran, so this draws the same thing until the counts change.
 
 `activity.svg` puts the panel beside the rings, for desktop widths; `activity-compact.svg`
@@ -40,16 +42,20 @@ listed = [r for repos in SECTIONS.values() for r in repos]
 if sorted(listed) != sorted(ACTIVITY["repos"]):
     sys.exit(f"SECTIONS and counts.json disagree on the repos: {sorted(set(listed) ^ set(ACTIVITY['repos']))}")
 
-N_WEEKS = 52
 GAP = 62            # degrees left empty at the top left for the ring names
+MAX_DOTS = 60       # dots a ring holds at most; the inner ring can't fit more apart
 AS_OF = dt.date.fromisoformat(ACTIVITY["as_of"])
+FIRST_DAY = min(dt.date.fromisoformat(r["first"]) for r in ACTIVITY["repos"].values())
+FIRST_MONDAY = FIRST_DAY - dt.timedelta(days=FIRST_DAY.weekday())
 LAST_MONDAY = AS_OF - dt.timedelta(days=AS_OF.weekday())
-FIRST_MONDAY = LAST_MONDAY - dt.timedelta(weeks=N_WEEKS - 1)
+N_WEEKS = (LAST_MONDAY - FIRST_MONDAY).days // 7 + 1
 WEEKS = [FIRST_MONDAY + dt.timedelta(weeks=i) for i in range(N_WEEKS)]
+PER_DOT = math.ceil(N_WEEKS / MAX_DOTS)     # weeks in a dot
+N_DOTS = math.ceil(N_WEEKS / PER_DOT)
 
 
 def by_section():
-    """{section: [commits in each of the 52 weeks]}"""
+    """{section: [commits in each week from the first]}"""
     out = {}
     for section, repos in SECTIONS.items():
         counts = [0] * N_WEEKS
@@ -63,8 +69,9 @@ def by_section():
 
 
 COUNTS = by_section()
+DOTS = {s: [sum(c[i:i + PER_DOT]) for i in range(0, N_WEEKS, PER_DOT)] for s, c in COUNTS.items()}
 TOTAL = sum(map(sum, COUNTS.values()))
-PEAK = max(max(c) for c in COUNTS.values())
+PEAK = max(max(d) for d in DOTS.values())
 WEEK_TOTALS = [sum(c[i] for c in COUNTS.values()) for i in range(N_WEEKS)]
 BUSIEST = max(range(N_WEEKS), key=lambda i: (WEEK_TOTALS[i], i))
 LATEST = max(ACTIVITY["repos"], key=lambda r: (ACTIVITY["repos"][r]["last"], r))
@@ -76,7 +83,7 @@ def day(d):
 
 
 def angle(t):
-    """Degrees clockwise from twelve o'clock for t in [0, 1] of the year."""
+    """Degrees clockwise from twelve o'clock for t in [0, 1] of the way from the first week to now."""
     return t * (360 - GAP)
 
 
@@ -91,8 +98,8 @@ def arc(cx, cy, r, d0, d1):
     return f"M{x0:.1f} {y0:.1f} A{r} {r} 0 {int(d1 - d0 > 180)} 1 {x1:.1f} {y1:.1f}"
 
 
-ALT = (f"My commits over the 52 weeks to {day(AS_OF)}, drawn as one orbit per section of this page: "
-       f"{TOTAL:,} in all, "
+ALT = (f"Every commit I've made to these repos, from the first on {day(FIRST_DAY)} to {day(AS_OF)}, "
+       f"drawn as one orbit per section of this page: {TOTAL:,} in all, "
        + ", ".join(f"{s} {sum(c):,}" for s, c in COUNTS.items())
        + f". Busiest week: {WEEK_TOTALS[BUSIEST]:,} commits, the week of {day(WEEKS[BUSIEST])}. "
        f"Latest: {README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}.")
@@ -116,7 +123,7 @@ def background(w, h, seed):
 
 def field(cx, cy, r_in, r_step, label_size, month_size):
     """The star, the rings with their dots, the month names and the ring names."""
-    rings = list(COUNTS.items())[::-1]       # innermost first: the README's last section
+    rings = list(DOTS.items())[::-1]         # innermost first: the README's last section
     r_out = r_in + r_step * (len(rings) - 1)
     dot_max = r_step * 0.42
     parts = [f'<circle cx="{cx}" cy="{cy}" r="{r_in * 0.55:.1f}" fill="url(#corona)"/>',
@@ -127,25 +134,35 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
                      f'stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 5"/>')
         for i, n in enumerate(counts):
             if n:
-                x, y = point(cx, cy, r, angle((i + 0.5) / N_WEEKS))
+                # A dot sits at the middle of its weeks; the last one may hold fewer.
+                mid = (i * PER_DOT + min((i + 1) * PER_DOT, N_WEEKS)) / 2
+                x, y = point(cx, cy, r, angle(mid / N_WEEKS))
                 size = 1.8 + (dot_max - 1.8) * math.sqrt(n / PEAK)
                 parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{size:.1f}" fill="{BLUE}" fill-opacity="0.8"/>')
-        # The ring's name, right-aligned just left of where its year begins.
+        # The ring's name, right-aligned just left of where its orbit begins.
         parts.append(f'<text x="{cx - 10}" y="{cy - r + label_size * 0.35:.1f}" text-anchor="end" '
                      f'font-size="{label_size}" fill="{TEXT}">{section}</text>')
-    # Month names outside the rings, each at its first day; none falls in the wedge.
-    span = (WEEKS[-1] + dt.timedelta(days=7) - FIRST_MONDAY).days
+    # A tick outside the rings at the first of each month; none falls in the wedge. January
+    # is named by its year. The other months are named too while there are few enough of
+    # them (two years' worth) to read.
+    span = N_WEEKS * 7
+    months = []
     m = dt.date(FIRST_MONDAY.year, FIRST_MONDAY.month, 1)
     while m <= AS_OF:
-        t = (m - FIRST_MONDAY).days / span
-        if 0 <= t <= 1:
-            tick0, tick1 = point(cx, cy, r_out + 12, angle(t)), point(cx, cy, r_out + 20, angle(t))
-            tx, ty = point(cx, cy, r_out + 22 + month_size * 0.9, angle(t))
-            parts.append(f'<line x1="{tick0[0]:.1f}" y1="{tick0[1]:.1f}" x2="{tick1[0]:.1f}" y2="{tick1[1]:.1f}" stroke="{DIM}" stroke-width="1.2"/>')
-            parts.append(f'<text x="{tx:.1f}" y="{ty + month_size * 0.35:.1f}" text-anchor="middle" '
-                         f'font-size="{month_size}" fill="{DIM}">{m:%b}</text>')
+        if m >= FIRST_MONDAY:
+            months.append(m)
         m = dt.date(m.year + m.month // 12, m.month % 12 + 1, 1)
-    # Where the year ends: this week.
+    for m in months:
+        t = (m - FIRST_MONDAY).days / span
+        named = m.month == 1 or len(months) <= 24
+        tick0, tick1 = point(cx, cy, r_out + 12, angle(t)), point(cx, cy, r_out + (20 if named else 16), angle(t))
+        parts.append(f'<line x1="{tick0[0]:.1f}" y1="{tick0[1]:.1f}" x2="{tick1[0]:.1f}" y2="{tick1[1]:.1f}" stroke="{DIM}" stroke-width="1.2"/>')
+        if named:
+            tx, ty = point(cx, cy, r_out + 22 + month_size * (1.3 if m.month == 1 else 0.9), angle(t))
+            parts.append(f'<text x="{tx:.1f}" y="{ty + month_size * 0.35:.1f}" text-anchor="middle" '
+                         f'font-size="{month_size}" fill="{TEXT if m.month == 1 else DIM}">'
+                         f'{m.year if m.month == 1 else f"{m:%b}"}</text>')
+    # Where the orbit ends: this week.
     e0, e1 = point(cx, cy, r_in - r_step * 0.6, angle(1)), point(cx, cy, r_out + r_step * 0.6, angle(1))
     parts.append(f'<line x1="{e0[0]:.1f}" y1="{e0[1]:.1f}" x2="{e1[0]:.1f}" y2="{e1[1]:.1f}" stroke="{GOLD}" '
                  f'stroke-width="1.5" stroke-dasharray="2 4" stroke-linecap="round"/>')
@@ -158,7 +175,7 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
 def panel(x, y, big, size, row_gap, width):
     """The total, each section's count with a bar, the busiest week and the latest commit."""
     parts = [f'<text x="{x}" y="{y + big * 0.8:.1f}" font-size="{big}" font-weight="700" fill="{BLUE}">{TOTAL:,}</text>',
-             f'<text x="{x}" y="{y + big * 0.8 + size * 1.5:.1f}" font-size="{size}" fill="{TEXT}">commits in the last 12 months</text>']
+             f'<text x="{x}" y="{y + big * 0.8 + size * 1.5:.1f}" font-size="{size}" fill="{TEXT}">commits since my first, in {FIRST_DAY:%B %Y}</text>']
     top = y + big * 0.8 + size * 1.5 + row_gap * 1.1
     most = max(sum(c) for c in COUNTS.values())
     name_w, num_w = size * 9.2, size * 3.2
@@ -194,7 +211,7 @@ def update_readme(readme):
     """The README with this panel's alt text written in, so a screen reader hears the numbers
     the image shows. refresh_activity.py calls it after refreshing the counts; check.py checks it."""
     pattern = r'(src="docs/activity\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT) + m[2], readme)
+    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
     if n != 1:
         sys.exit(f"README image docs/activity.svg matched {n} times, expected 1")
     return readme
