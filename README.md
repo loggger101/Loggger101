@@ -21,10 +21,10 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 </p>
 
 <p align="center">
-  <a href="https://github.com/loggger101/Satellite-Space-Flight"><picture><source media="(max-width: 600px)" srcset="docs/gallery/satellite-compact.webp"><img src="docs/gallery/satellite.webp" width="48.5%" alt="Satellite-Space-Flight: the ISS orbit, live elements and ground-station passes"></picture></a>
+  <a href="https://github.com/loggger101/Satellite-Space-Flight"><picture><source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="docs/gallery/satellite-compact.webp"><source media="(prefers-reduced-motion: reduce)" srcset="docs/gallery/satellite.webp"><source media="(max-width: 600px)" srcset="docs/gallery/satellite-motion-compact.webp"><img src="docs/gallery/satellite-motion.webp" width="48.5%" alt="Satellite-Space-Flight: the ISS orbit, live elements and ground-station passes"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/gallery/belt-compact.webp"><img src="docs/gallery/belt.webp" width="48.5%" alt="asteroid-belt-gradient: S-types give way to C-types farther from the Sun (fraction by number across semimajor axis, D of at least 53 km, families collapsed)"></picture></a>
   <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data"><picture><source media="(max-width: 600px)" srcset="docs/gallery/mars-compact.webp"><img src="docs/gallery/mars.webp" width="48.5%" alt="Mars Global Mosaic: SVM landform classes across Tharsis and Valles Marineris"></picture></a>
-  <a href="https://github.com/loggger101/drone-target-id"><picture><source media="(max-width: 600px)" srcset="docs/gallery/drone-compact.webp"><img src="docs/gallery/drone.webp" width="48.5%" alt="drone-target-id: per-target valid/invalid scores on aerial footage"></picture></a>
+  <a href="https://github.com/loggger101/drone-target-id"><picture><source media="(prefers-reduced-motion: reduce) and (max-width: 600px)" srcset="docs/gallery/drone-compact.webp"><source media="(prefers-reduced-motion: reduce)" srcset="docs/gallery/drone.webp"><source media="(max-width: 600px)" srcset="docs/gallery/drone-motion-compact.webp"><img src="docs/gallery/drone-motion.webp" width="48.5%" alt="drone-target-id: per-target valid/invalid scores on aerial footage"></picture></a>
 </p>
 
 ### <picture><img src="docs/icons/economics.svg" width="24" height="24" align="top" alt=""></picture> Space economics
