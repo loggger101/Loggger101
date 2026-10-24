@@ -1,7 +1,7 @@
 # Keeps the research-sources and agent-skills tiles, each repo's lines of code, and the
 # activity and languages panels in step with their repos. The private repos' counts are
-# refreshed by running loc.py and refresh_activity.py locally. The activity panel's year
-# ends at the run's week, so a run commits every week; it commits only if tools/check.py
+# refreshed by running loc.py and refresh_activity.py locally. The activity panel runs to
+# the week of the run, so a run commits every week; it commits only if tools/check.py
 # passes on the result
 # (a push made with the workflow's token doesn't trigger check.yml, so it runs here).
 # A separate job checks every README link, so a dead link fails the run without holding

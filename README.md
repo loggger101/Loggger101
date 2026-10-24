@@ -130,12 +130,12 @@ Both repos are private, but the sites are public.
   </tr>
 </table>
 
-### <picture><img src="docs/icons/activity.svg" width="24" height="24" align="top" alt=""></picture> The last 12 months
+### <picture><img src="docs/icons/activity.svg" width="24" height="24" align="top" alt=""></picture> Every commit so far
 
-My commits to the repos above, week by week. Each ring is one section of this page, the outermost the first; the year runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
+Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="My commits over the 52 weeks to 24 Oct 2026, drawn as one orbit per section of this page: 3,153 in all, Space economics 609, Planetary science 119, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,854. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: Mars Global Mosaic, 23 Oct 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 24 Oct 2026, drawn as one orbit per section of this page: 3,153 in all, Space economics 609, Planetary science 119, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,854. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: Mars Global Mosaic, 23 Oct 2026."></picture>
 </p>
 
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
