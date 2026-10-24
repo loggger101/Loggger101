@@ -124,7 +124,24 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 19
-        }
+        },
+        "recent": [
+          [
+            "bf66e35365e04a42183f381e2f7420c2cff65a10",
+            "2026-10-21",
+            "Repin the catalog to data-2026-10-21b, data contract 1.10.0 (master v1.56.0) (#168)"
+          ],
+          [
+            "352323af477c12a9d208c2540e1dd8d0c092faa9",
+            "2026-10-21",
+            "Cite the sources behind eight calc dials and Star 48B (no stamp) (#167)"
+          ],
+          [
+            "31f8fb57b5279229aa42db93d0db48c594a90a4e",
+            "2026-10-21",
+            "Apply six General_Research revision candidates to comments and docs (no stamp) (#166)"
+          ]
+        ]
       },
       "AsteroidCatalog": {
         "first": "2026-09-22",
@@ -135,7 +152,24 @@
           "2026-10-05": 1,
           "2026-10-12": 1,
           "2026-10-19": 4
-        }
+        },
+        "recent": [
+          [
+            "58396172187e10335bd5291bb73aac41efbbc2ab",
+            "2026-10-21",
+            "Docs: data-2026-10-21b is the current release (data contract 1.10.0) (#23)"
+          ],
+          [
+            "6915077953281309d0677f3a685bc4d8d5a6d5e4",
+            "2026-10-21",
+            "Tagish Lake carbon for the primitive types; Vesta and Bennu shape volumes (data contract 1.10.0) (#22)"
+          ],
+          [
+            "61051c753f2355dca836a024a22b043fcd6b8a99",
+            "2026-10-21",
+            "Docs: data-2026-10-21 is the current release (data contract 1.9.0) (#21)"
+          ]
+        ]
       },
       "spacecost": {
         "first": "2026-09-07",
@@ -148,7 +182,24 @@
           "2026-10-05": 17,
           "2026-10-12": 8,
           "2026-10-19": 13
-        }
+        },
+        "recent": [
+          [
+            "643a7832ddcfd99eecc202ebfa2c36b7e8b175e6",
+            "2026-10-21",
+            "Cut 0.12.6: seven wording and citation RCs (data contract 1.23.6)"
+          ],
+          [
+            "9d10401dd12bfc0987eb07f735cc70b48ceea5db",
+            "2026-10-21",
+            "Cut 0.12.5: six storage and power RCs, two resting on NASA test data (data contract 1.23.5)"
+          ],
+          [
+            "a899b77d512cf9183e34776f576f8f97a9033352",
+            "2026-10-21",
+            "0.12.4: the Centaur history is NASA SP-2004-4230, and its figures are not dated 1959"
+          ]
+        ]
       },
       "General_Research": {
         "first": "2026-09-17",
@@ -160,7 +211,24 @@
           "2026-10-05": 23,
           "2026-10-12": 24,
           "2026-10-19": 14
-        }
+        },
+        "recent": [
+          [
+            "f846ef86da9911b955c29117d23acb1a65e7b8d9",
+            "2026-10-22",
+            "Round 240: owner rejects 8 sources; new \"Sources to replace\" list with 15 flags"
+          ],
+          [
+            "5418e8879a66ad91b9d3eda61258a634b000619d",
+            "2026-10-22",
+            "Round 239: source audit; owner rejects 25 sources that back no cell or that upstream stopped citing"
+          ],
+          [
+            "1096ca2af7a0361a250226e0894d2857a4e0791d",
+            "2026-10-22",
+            "Maintenance: split closed revision candidates into revision_candidates_closed.csv"
+          ]
+        ]
       },
       "starred-repos": {
         "first": "2026-09-03",
@@ -171,7 +239,24 @@
           "2026-09-21": 1,
           "2026-10-12": 2,
           "2026-10-19": 5
-        }
+        },
+        "recent": [
+          [
+            "223bfef746d4e9c5fdf37552f9b0268d61be9991",
+            "2026-10-21",
+            "README: economicspace's orbital.py keeps only elements_to_state; the solvers are here alone (#2)"
+          ],
+          [
+            "6133e4ad497ef7667e5da7476f5324b699e30ec0",
+            "2026-10-20",
+            "Set the repo up to stand alone, and write the notes in plain prose (#1)"
+          ],
+          [
+            "c1d554cea7410d3107936ca09daa0208dff1aad2",
+            "2026-10-20",
+            "Keep text files LF on every checkout, as economicspace did"
+          ]
+        ]
       },
       "asteroid-belt-gradient": {
         "first": "2026-09-23",
@@ -180,7 +265,24 @@
           "2026-09-21": 16,
           "2026-09-28": 1,
           "2026-10-05": 19
-        }
+        },
+        "recent": [
+          [
+            "9fbe7f5ec00f4a81e7da6b154fb04424458a8bb8",
+            "2026-10-11",
+            "Paper: plainer prose, without stock phrasing (#23)"
+          ],
+          [
+            "09e4a95650912c38a5d097d7b92724125e643e5c",
+            "2026-10-10",
+            "Paper: cite the 2026 work on the belt's composition and implantation (#22)"
+          ],
+          [
+            "9c0999eb89e80b2ae8730937587f4b5f23f814f6",
+            "2026-10-10",
+            "Paper: say exactly what the data show in four sentences (#21)"
+          ]
+        ]
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
@@ -189,7 +291,24 @@
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 27
-        }
+        },
+        "recent": [
+          [
+            "cdac6d75d9f4f2c7d8f7766468186a8d484d9019",
+            "2026-10-23",
+            "The label proposals built on the drive: 1,086 rows, the laptop's result exactly (KB \u00a769.2)"
+          ],
+          [
+            "e11642d6741d03d4b351e48535689d411ade6eda",
+            "2026-10-23",
+            "The final started: AASTeX paper and final deck, and the drive merged with \u00a768 (KB \u00a769, \u00a769.1)"
+          ],
+          [
+            "05c697e74a257f003ece7c15951826899ffd66f7",
+            "2026-10-23",
+            "The v2 runs scripted (--labels v2), D18's verdict, an exact faster scorer (KB \u00a768.6) (#2)"
+          ]
+        ]
       },
       "star-spectral-classifier": {
         "first": "2026-09-18",
@@ -198,7 +317,24 @@
           "2026-09-14": 5,
           "2026-09-21": 1,
           "2026-10-05": 2
-        }
+        },
+        "recent": [
+          [
+            "2b02daabd682eab9a741346251cab8e108734bc0",
+            "2026-10-11",
+            "Fix inference letter names and the builder's torch crash; correct the README"
+          ],
+          [
+            "79fb0c1e6dd9f412b4a827ee456256f16401fdef",
+            "2026-09-26",
+            "Exclude notebooks from GitHub language stats"
+          ],
+          [
+            "7fa52ea3bc3f6940eec9c30dafb031633f1539e0",
+            "2026-09-18",
+            "Match train_star_cnn.py's input size to the shipped checkpoint"
+          ]
+        ]
       },
       "drone-target-id": {
         "first": "2026-09-18",
@@ -207,7 +343,24 @@
           "2026-09-14": 4,
           "2026-09-21": 1,
           "2026-10-05": 2
-        }
+        },
+        "recent": [
+          [
+            "6271d9e335739329d0a1f74927c6192b1fde4223",
+            "2026-10-11",
+            "Fix the live overlay's coarse labels and make the README match the code"
+          ],
+          [
+            "19bf128448c910ebcc6d0fcffe058554249654b8",
+            "2026-09-26",
+            "Exclude notebooks from GitHub language stats"
+          ],
+          [
+            "4f026d96610da66397333ff4f797ae62e5caf5fe",
+            "2026-09-18",
+            "Ship the run the published numbers actually come from"
+          ]
+        ]
       },
       "Satellite-Space-Flight": {
         "first": "2026-09-29",
@@ -215,7 +368,24 @@
         "weeks": {
           "2026-09-28": 59,
           "2026-10-05": 6
-        }
+        },
+        "recent": [
+          [
+            "e39cc2c6d922664e984fea6ff18db8c732dd70b3",
+            "2026-10-11",
+            "Fix CI: tolerate last-bit float noise in generated scenarios; pass a negative --advance as --advance=-1h"
+          ],
+          [
+            "5defe512a6af7be32693d554402f620e822c76ea",
+            "2026-10-11",
+            "CI on Python 3.14 and Windows, selfcheck step; document the no-silent-failure rules"
+          ],
+          [
+            "cb3196dfb3b431b60143e6383259a08653553e08",
+            "2026-10-11",
+            "Show bad input and unusable files in the UI; let everything else raise"
+          ]
+        ]
       },
       "website": {
         "first": "2025-11-23",
@@ -265,7 +435,24 @@
           "2026-09-28": 32,
           "2026-10-05": 19,
           "2026-10-12": 2
-        }
+        },
+        "recent": [
+          [
+            "5fab61eba4292a7f4857827878e244fbc1e1882e",
+            "2026-10-13",
+            "Paint text before the sky: hold the sky layers for the first frame"
+          ],
+          [
+            "7920031c138c36380ef39bfd34dbfe5b1c53275e",
+            "2026-10-11",
+            "Make the star project page match the code and the shipped model"
+          ],
+          [
+            "ab7f1b3173aac869920473998c447bbfa881d68e",
+            "2026-10-11",
+            "Make the drone project page match the code and the shipped model"
+          ]
+        ]
       },
       "quietlaunch": {
         "first": "2026-08-23",
@@ -276,7 +463,24 @@
           "2026-08-31": 3,
           "2026-10-12": 1,
           "2026-10-19": 8
-        }
+        },
+        "recent": [
+          [
+            "a90543421eab5c54ad043eeacf41c2209367680d",
+            "2026-10-20",
+            "Docs say what happens instead of how much it matters (#2)"
+          ],
+          [
+            "90838e6a6789cfd6df4f08d7fd2463d497f62aae",
+            "2026-10-20",
+            "README names each option's flag; three docstrings say what the code does (#1)"
+          ],
+          [
+            "453dc4a0dd1dbc6eb3257e9c0ea3a9a03936e99a",
+            "2026-10-20",
+            "Fake server listens without a reverse-DNS lookup, and says why it did not"
+          ]
+        ]
       },
       "quietqueue": {
         "first": "2026-08-24",
@@ -287,7 +491,24 @@
           "2026-09-07": 4,
           "2026-10-12": 3,
           "2026-10-19": 8
-        }
+        },
+        "recent": [
+          [
+            "67ac65e9c4b5067f268067ef252e466af120f2a9",
+            "2026-10-20",
+            "Runner docstring: --only south, as the README's example (#3)"
+          ],
+          [
+            "3544d0a8c4128fd09eb9dd5a714178656ded0e5b",
+            "2026-10-20",
+            "README and supervisor docstring: plain statements for the traps' headings (#2)"
+          ],
+          [
+            "5628b4d5430ee1e7a4bc5a159d94f1643a23fce7",
+            "2026-10-20",
+            "Runner example names no campaign; CLAUDE.md names the consumer's pin files (#1)"
+          ]
+        ]
       },
       "aspirecures": {
         "first": "2026-06-14",
@@ -341,7 +562,24 @@
           "2026-09-28": 22,
           "2026-10-05": 195,
           "2026-10-12": 1
-        }
+        },
+        "recent": [
+          [
+            "db359c3c6b9d2a9379d0848ff3e2d19c1a6c52e7",
+            "2026-10-06",
+            "diagram-design: say verify-geometry/verify-motion live upstream, not in this skill"
+          ],
+          [
+            "9d7b772381ed3175778027b06833a444afb7b3be",
+            "2026-10-05",
+            "round-255: promote eight more reference clusters into skills (245 -> 253)"
+          ],
+          [
+            "c2d7e8e158813777e30c4878890ae24c4cbfa568",
+            "2026-10-05",
+            "round-254: promote five more reference clusters into skills (240 -> 245)"
+          ]
+        ]
       }
     }
   }

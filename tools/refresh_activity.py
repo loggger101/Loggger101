@@ -8,9 +8,11 @@ and the bots (the website's deploy workflow, General_Research's cron) don't. Wee
 on Monday and are dated by the commit's author date.
 
 Writes "activity" in tools/counts.json: the date it ran, and for each repo the date of my
-first and last commits and my commits in every week between, by the week's Monday. Then
-writes the activity panel's alt text into the README; run activity.py afterwards to redraw
-the panel. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
+first and last commits, my commits in every week between, by the week's Monday, and, for
+a public repo, my last RECENT commits other than merges (hash, date, subject line) for the
+README's list of latest commits. A private repo's commit messages are never kept. Then
+writes the activity panel's alt text and that list into the README; run activity.py
+afterwards to redraw the panel. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
 login to clone; with --public-only, which the weekly workflow uses, they keep what is
 stored.
 
@@ -32,20 +34,23 @@ COUNTS = ROOT / "tools" / "counts.json"
 # but is still my work.
 ACTIVITY_REPOS = {name: private for name, (_, private, _) in REPOS.items()} | {"Hermes_Skills": False}
 AUTHOR = "loggger101"
+RECENT = 3      # latest commits kept from each public repo
 
 
 def monday(day):
     return day - dt.timedelta(days=day.weekday())
 
 
-def repo_activity(name):
+def repo_activity(name, private):
     with tempfile.TemporaryDirectory() as tmp:
         url = f"https://github.com/loggger101/{name}.git"
         subprocess.run(["git", "clone", "--quiet", "--bare", "--filter=tree:0", url, "r"],
                        cwd=tmp, check=True, capture_output=True)
         # --author matches the name or the email.
-        dates = subprocess.run(["git", "-C", "r", "log", f"--author={AUTHOR}", "--format=%ad", "--date=short", "HEAD"],
-                               cwd=tmp, check=True, capture_output=True, text=True).stdout.split()
+        log = lambda *a: subprocess.run(["git", "-C", "r", "log", f"--author={AUTHOR}", "--date=short", *a, "HEAD"],
+                                        cwd=tmp, check=True, capture_output=True, text=True, encoding="utf-8").stdout
+        dates = log("--format=%ad").split()
+        recent = [] if private else [line.split("\t", 2) for line in log("--no-merges", f"-n{RECENT}", "--format=%H%x09%ad%x09%s").splitlines()]
     days = [dt.date.fromisoformat(d) for d in dates]
     if not days:
         sys.exit(f"{name}: no commits by {AUTHOR}; has the author check stopped matching?")
@@ -53,7 +58,10 @@ def repo_activity(name):
     for day in days:
         key = monday(day).isoformat()
         weeks[key] = weeks.get(key, 0) + 1
-    return {"first": min(days).isoformat(), "last": max(days).isoformat(), "weeks": dict(sorted(weeks.items()))}
+    out = {"first": min(days).isoformat(), "last": max(days).isoformat(), "weeks": dict(sorted(weeks.items()))}
+    if recent:
+        out["recent"] = recent
+    return out
 
 
 def main():
@@ -68,7 +76,7 @@ def main():
                 sys.exit(f"{name} is private and has no stored activity; run without --public-only once")
             repos[name] = stored[name]
             continue
-        repos[name] = repo_activity(name)
+        repos[name] = repo_activity(name, private)
         print(f"{sum(repos[name]['weeks'].values()):>6,} commits, last {repos[name]['last']}  {name}")
     data["activity"] = {"as_of": today.isoformat(), "repos": repos}
     COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
