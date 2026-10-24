@@ -24,6 +24,7 @@ SECTIONS = {
     "elsewhere": "external",
     "activity": "rings",
     "languages": "code",
+    "flybys": "flyby",
     "contact": "mail",
 }
 

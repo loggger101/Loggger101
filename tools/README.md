@@ -15,6 +15,8 @@ python tools/pipeline.py docs         # the repo diagram, plus the -compact vers
 python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
 python tools/languages.py docs        # lines of code by language, plus the -compact version phones get
 python tools/breakeven.py docs        # economicspace's cost per dollar earned for each destination, plus -compact
+python tools/refresh_flybys.py         # NASA/JPL's close approaches to Earth for the week ahead
+python tools/flybys.py docs           # those approaches as a chart, plus -compact
 python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
 python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
@@ -71,6 +73,12 @@ with `loc.py`, `refresh_activity.py` and the two panels, and commits whatever ch
 full-catalog run for each place the pipeline delivers to), which `refresh_counts.py` reads
 into `counts.json`, keeping the winning asteroid but not its vehicle. If that table changes
 shape, `refresh_counts.py` stops with an error instead of publishing a half-read chart.
+
+`flybys.py` draws the asteroids passing Earth within 20 lunar distances in the week after
+`refresh_flybys.py` last ran, from JPL's close-approach API. Sizes come from H at albedos
+0.25 to 0.05 unless JPL has a measured diameter. The API is the one outside source the
+weekly workflow can't vouch for, so that step may fail without stopping the others; the
+chart prints its week, so a stale one is plainly dated.
 
 `activity.py` and `languages.py` draw only from `counts.json`, so `check.py` can rerun them
 offline. Each also has an `update_readme()` that writes its panel's numbers into the

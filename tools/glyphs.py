@@ -45,6 +45,10 @@ ICONS = {
     "rings": f'<path d="M9 1.4A7.6 7.6 0 1 1 2.42 5.2M9 4.4A4.6 4.6 0 1 1 5.02 6.7" {LINE}/>'
              f'<circle cx="9" cy="9" r="1.5" fill="{BLUE}"/><circle cx="15.58" cy="12.8" r="1.5" fill="{BLUE}"/>'
              f'<circle cx="7.43" cy="13.32" r="1.2" fill="{BLUE}"/>',
+    # Earth, with an asteroid going by, its trail behind it.
+    "flyby": f'<circle cx="7" cy="11" r="4.6" {LINE}/><path d="M2.6 9.6q4.4-1.6 8.8 0" {LINE} stroke-opacity="0.55"/>'
+             f'<path d="M15.6 4.2 17.3 2.5M13.4 2.4l1-1M17.4 6.5l1-1" {LINE} stroke-opacity="0.6"/>'
+             f'<circle cx="14.2" cy="5.6" r="1.8" fill="{BLUE}"/>',
     # Angle brackets round a slash.
     "code": f'<path d="M5.5 4.5 1.5 9l4 4.5M12.5 4.5l4 4.5-4 4.5M10.6 2.8 7.4 15.2" {LINE}/>',
     # A box with an arrow leaving it.
