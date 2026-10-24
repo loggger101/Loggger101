@@ -9,7 +9,7 @@ python tools/refresh_counts.py         # pull the sources and skills counts from
 python tools/loc.py                    # lines of code and total lines under each repo's name, and by language (--public-only skips the private two)
 python tools/refresh_activity.py       # every commit of mine to each repo, by week, for the activity panel (--public-only as above)
 python tools/tiles.py docs/stats      # full tiles plus the -compact versions phones get
-python tools/gallery.py docs/gallery  # project cards, plus the -compact versions phones get
+python tools/gallery.py docs/gallery  # project cards (two animated), plus the -compact versions phones get
 python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
 python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
@@ -45,7 +45,13 @@ shooting star or the diagram's points of light, is hidden when still.
 there and rerun both.
 
 `gallery.py` reads each project's images from the local clones under
-the `GitHub` folder this repo sits in and needs Pillow and numpy. The catalog and belt
+the `GitHub` folder this repo sits in and needs Pillow and numpy. The satellite and drone
+cards also come animated (`-motion.webp`, listed in `MOTION`): the drone card is five
+seconds of the website's demo video, cut with ffmpeg, and the satellite card is one ISS
+orbit recorded from the simulator itself by `sim_clip.py`, which needs the simulator's
+clone and pygame. The README shows them to everyone but those who ask for reduced motion,
+who get the still card through a `<picture>` source. A full run takes about nine minutes,
+nearly all of it WebP compressing the animations. The catalog and belt
 numbers on the tiles are set in `tiles.py`; check them against the source repos before changing.
 The sources and skills numbers are in `counts.json`, which `refresh_counts.py` rewrites from
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes

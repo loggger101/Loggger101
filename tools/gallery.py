@@ -9,9 +9,14 @@ in with <picture>, as it does for the tiles.
 Cards are drawn at twice their display size so the text stays sharp on high-DPI
 screens, and saved as WebP so the rounded corners can be transparent in both GitHub
 themes. Images come from the local clones beside this repo (GH); needs Pillow and numpy.
+
+The cards in MOTION also come animated, from the project's demo video (needs ffmpeg) or
+from the project itself running (sim_clip.py).
 """
 import random
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -124,12 +129,53 @@ CARDS = {
     "drone": (lambda: cover(Image.open(GH / "website/assets/projects/drone/overlay_demo_poster.jpg")),
               "drone-target-id", "Per-target valid/invalid scores on aerial footage"),
 }
+def clip(video, start, seconds, fps):
+    """The video's frames from start for seconds, fps a second, as images."""
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run(["ffmpeg", "-v", "error", "-ss", str(start), "-t", str(seconds), "-i", str(video),
+                        "-vf", f"fps={fps}", str(Path(tmp, "%03d.png"))], check=True)
+        return [Image.open(f).convert("RGB") for f in sorted(Path(tmp).glob("*.png"))]
+
+
+def simulation(frames):
+    """frames frames of Satellite-Space-Flight running, one ISS orbit (sim_clip.py)."""
+    with tempfile.TemporaryDirectory() as tmp:
+        subprocess.run([sys.executable, str(Path(__file__).with_name("sim_clip.py")), tmp, str(frames)], check=True)
+        return [Image.open(f).convert("RGB") for f in sorted(Path(tmp).glob("*.png"))]
+
+
+# name: (frames at a given rate, frames a second). These cards also come as an animated
+# `<name>-motion.webp` (and `-motion-compact`): the project moving, in the same frame. The
+# README shows the still card to anyone who asks for reduced motion, since an animated
+# image can't be paused by CSS. Kept short and at the display size (2x, not 4x) so each
+# file stays near a megabyte.
+MOTION = {
+    # A drone pass with targets scored as they come into view, from the demo video.
+    "drone": (lambda fps: clip(GH / "website/assets/projects/drone/overlay_demo.mp4", 9.0, 5.0, fps), 10),
+    # The overview scene through one ISS orbit, in six seconds.
+    "satellite": (lambda fps: simulation(6 * fps), 10),
+}
+
+
+def save(frames, path, compact, fps=None):
+    """Save one card, or an animation of several, at the display size for its width."""
+    scale = 4 if fps and compact else 2 if fps or compact else 1
+    if scale > 1:   # the still compact card is shown about 170px wide, so half is still 2x
+        frames = [f.resize((f.width // scale, f.height // scale), Image.LANCZOS) for f in frames]
+    if fps:
+        frames[0].save(path, save_all=True, append_images=frames[1:], duration=round(1000 / fps), loop=0,
+                       quality=70, method=6, minimize_size=True)
+    else:
+        frames[0].save(path, quality=82, method=6)
+    print(path.name, path.stat().st_size)
+
+
 for i, (name, (make, title, caption)) in enumerate(CARDS.items()):
     img = make()
     for compact, suffix in ((False, ""), (True, "-compact")):
-        path = OUT / f"{name}{suffix}.webp"
-        out = card(img, title, caption, 200 + i, compact)
-        if compact:  # shown about 170px wide, so half the pixels is still 2x
-            out = out.resize((out.width // 2, out.height // 2), Image.LANCZOS)
-        out.save(path, quality=82, method=6)
-        print(path.name, path.stat().st_size)
+        save([card(img, title, caption, 200 + i, compact)], OUT / f"{name}{suffix}.webp", compact)
+    if name in MOTION:
+        make_frames, fps = MOTION[name]
+        frames = [cover(f) for f in make_frames(fps)]
+        for compact, suffix in ((False, "-motion"), (True, "-motion-compact")):
+            save([card(f, title, caption, 200 + i, compact) for f in frames], OUT / f"{name}{suffix}.webp", compact, fps)
