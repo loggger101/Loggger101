@@ -83,6 +83,15 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
   </tr>
 </table>
 
+Four of the paper's figures (each links to the full size):
+
+<p align="center">
+  <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig1_c_fraction_vs_a.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-fraction-compact.webp"><img src="docs/figures/belt-fraction.webp" width="48.5%" alt="Carbonaceous fraction against semimajor axis in three samples, the Kirkwood gaps dotted"></picture></a>
+  <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig7_crossover_fits.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-crossover-compact.webp"><img src="docs/figures/belt-crossover.webp" width="48.5%" alt="Logistic fits of the S/C transition to four samples, each crossover with its bootstrap interval"></picture></a>
+  <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig6_size_distance_map.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-size-distance-compact.webp"><img src="docs/figures/belt-size-distance.webp" width="48.5%" alt="C/(S+C) in cells 0.1 au wide for four ranges of diameter"></picture></a>
+  <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig8_proper_elements.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-proper-compact.webp"><img src="docs/figures/belt-proper.webp" width="48.5%" alt="Proper semimajor axis and inclination of the S-like and C-like background bodies over the families"></picture></a>
+</p>
+
 ### <picture><img src="docs/icons/learning.svg" width="24" height="24" align="top" alt=""></picture> Deep learning
 
 <table>
@@ -104,6 +113,15 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>A 3-D Earth orbit simulator in pure Python. The physics runs in numpy (J2 to J4 gravity, drag, Sun and Moon, solar radiation pressure, maneuvers) and pygame draws it. You can also fly a multi-stage rocket to orbit from anywhere on Earth, or from one of fifteen real launch complexes.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/NumPy-1f3354?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"></picture> <picture><img src="https://img.shields.io/badge/pygame-1f3354?style=flat-square&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI%2BPHBhdGggZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNNyA2aDEwYTYgNiAwIDAgMSA1LjkgNC45bC45IDUuMmEzLjMgMy4zIDAgMCAxLTUuNiAyLjhMMTUuNiAxNi40SDguNGwtMi42IDIuNWEzLjMgMy4zIDAgMCAxLTUuNi0yLjhsLjktNS4yQTYgNiAwIDAgMSA3IDZaCk02IDguNnYxLjlINC4xdjIuMkg2djEuOWgyLjJ2LTEuOWgxLjl2LTIuMkg4LjJWOC42WgpNMTUuMDUgMTAuMmExLjM1IDEuMzUgMCAxIDAgMi43IDBhMS4zNSAxLjM1IDAgMSAwLTIuNyAwWgpNMTcuNDUgMTIuNmExLjM1IDEuMzUgMCAxIDAgMi43IDBhMS4zNSAxLjM1IDAgMSAwLTIuNyAwWiIvPjwvc3ZnPg%3D%3D" alt="pygame"></picture></td>
   </tr>
 </table>
+
+Four of the scenes it draws for its own README (each links to the full size):
+
+<p align="center">
+  <a href="https://github.com/loggger101/Satellite-Space-Flight/blob/main/docs/images/hohmann.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/sim-hohmann-compact.webp"><img src="docs/figures/sim-hohmann.webp" width="48.5%" alt="Satellite-Space-Flight: half-way up a Hohmann transfer to GEO"></picture></a>
+  <a href="https://github.com/loggger101/Satellite-Space-Flight/blob/main/docs/images/starlink.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/sim-starlink-compact.webp"><img src="docs/figures/sim-starlink.webp" width="48.5%" alt="Satellite-Space-Flight: 1,584 Starlink satellites in one shell"></picture></a>
+  <a href="https://github.com/loggger101/Satellite-Space-Flight/blob/main/docs/images/molniya_ecef_map.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/sim-molniya-compact.webp"><img src="docs/figures/sim-molniya.webp" width="48.5%" alt="Satellite-Space-Flight: Molniya and Tundra ground tracks in the Earth-fixed frame"></picture></a>
+  <a href="https://github.com/loggger101/Satellite-Space-Flight/blob/main/docs/images/launch_ascent.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/sim-launch-compact.webp"><img src="docs/figures/sim-launch.webp" width="48.5%" alt="Satellite-Space-Flight: following a Falcon 9 through its second-stage burn"></picture></a>
+</p>
 
 ### <picture><img src="docs/icons/rare-disease.svg" width="24" height="24" align="top" alt=""></picture> Rare-disease work
 
