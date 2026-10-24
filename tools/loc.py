@@ -29,8 +29,9 @@ TeX, data, config and logs. It leaves out:
   sitemaps and feeds, lock files).
 Identical files count once.
 
-Writes tools/counts.json ("loc" and "lines") and the "N lines of code" and "N total lines"
-lines under each repo's name in the README. The private repos (aspirecures,
+Writes tools/counts.json ("loc", "lines", and "languages": each repo's lines of code split
+by language, which languages.py draws) and the "N lines of code" and "N total lines" lines
+under each repo's name in the README, and the languages panel's alt text. The private repos (aspirecures,
 SistersHopeFoundation) need your own GitHub login to clone; with --public-only, which the
 weekly workflow uses, they keep the counts already in counts.json.
 
@@ -73,6 +74,9 @@ REPOS = {
     # page in templates/base.html and commits the result all over the tree.
     "SistersHopeFoundation": ("https://www.sistershopefoundation.org", True, ["archive/*", "content/*", "*.html", "!templates/*"]),
 }
+# The name a repo's README row shows, where it isn't the repo's own (the panels use it).
+README_NAMES = {"Mars_Terrestrial_GlobalMosaic_GIS-Data": "Mars Global Mosaic", "aspirecures": "AspireCURES",
+                "SistersHopeFoundation": "Sisters Hope Foundation"}
 # Patterns match the whole path (fnmatch's * crosses "/"); a "!" pattern keeps what it matches.
 EXCLUDE = ["*node_modules/*", "*vendor/*", "*third_party/*", "*.min.js", "*.min.css"]
 
@@ -118,6 +122,19 @@ BY_EXT = {
 BY_NAME = {"Dockerfile": "hash", "Makefile": "hash"}
 BY_SHEBANG = {"python": "python", "node": "c", "perl": "perl"}  # anything else uses '#'
 LINGUIST = ("linguist-generated", "linguist-vendored", "linguist-documentation")
+
+# The language a file is in, by Linguist's names, for the languages panel (languages.py).
+# Several share a comment syntax above, so this is its own table.
+NAME_BY_EXT = {
+    ".py": "Python", ".ipynb": "Jupyter Notebook",
+    ".js": "JavaScript", ".mjs": "JavaScript", ".cjs": "JavaScript", ".ts": "TypeScript", ".css": "CSS",
+    ".html": "HTML", ".htm": "HTML",
+    ".sh": "Shell", ".bash": "Shell", ".command": "Shell", ".r": "R",
+    ".pl": "Perl", ".pm": "Perl", ".ps1": "PowerShell",
+    ".bat": "Batchfile", ".cmd": "Batchfile", ".vbs": "VBScript",
+}
+# An extensionless script's language follows from the syntax its #! line gave it.
+NAME_BY_SHEBANG = {"python": "Python", "c": "JavaScript", "perl": "Perl", "hash": "Shell"}
 
 
 def python_lines(src):
@@ -260,6 +277,18 @@ def language(path, read_head):
     return None
 
 
+def language_name(path, syntax):
+    """The language a code file is in (syntax is what language() gave it)."""
+    p = PurePosixPath(path)
+    if p.suffix.lower() in NAME_BY_EXT:
+        return NAME_BY_EXT[p.suffix.lower()]
+    if p.name == "Makefile":
+        return "Makefile"
+    if p.name == "Dockerfile" or p.name.startswith("Dockerfile."):
+        return "Dockerfile"
+    return NAME_BY_SHEBANG[syntax]
+
+
 def linguist_excluded(path, rules, attrs=LINGUIST):
     """Whether .gitattributes marks the path with any of attrs (generated, vendored or
     documentation)."""
@@ -315,7 +344,7 @@ def repo_loc(name, excludes):
         rules = gitattributes(repo)
         head = lambda p: (repo / p).read_bytes()[:128]
         not_own = TOTAL_EXCLUDE["*"] + TOTAL_EXCLUDE.get(name, [])
-        code, total, seen_code, seen_all = 0, 0, set(), set()
+        code, total, seen_code, seen_all, by_language = 0, 0, set(), set(), {}
         for path in wanted:
             if linguist_excluded(path, rules, ("linguist-generated", "linguist-vendored")):
                 continue
@@ -329,11 +358,14 @@ def repo_loc(name, excludes):
             lang = language(path, head)
             if lang and not linguist_excluded(path, rules) and digest not in seen_code:
                 seen_code.add(digest)
-                code += count(repo / path, lang)
+                n = count(repo / path, lang)
+                code += n
+                lang_name = language_name(path, lang)
+                by_language[lang_name] = by_language.get(lang_name, 0) + n
             if not excluded(path, not_own) and digest not in seen_all:
                 seen_all.add(digest)
                 total += total_lines(repo / path, lang)
-        return code, total
+        return code, total, {k: v for k, v in sorted(by_language.items(), key=lambda kv: -kv[1]) if v}
 
 
 def update_readme(readme, loc, lines):
@@ -352,21 +384,23 @@ def update_readme(readme, loc, lines):
 def main():
     public_only = "--public-only" in sys.argv[1:]
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
-    loc, lines = data.get("loc", {}), data.get("lines", {})
+    loc, lines, languages = data.get("loc", {}), data.get("lines", {}), data.get("languages", {})
     for name, (_, private, excludes) in REPOS.items():
         if private and public_only:
-            if name not in loc or name not in lines:
+            if name not in loc or name not in lines or name not in languages:
                 sys.exit(f"{name} is private and has no stored count; run without --public-only once")
             continue
-        loc[name], lines[name] = repo_loc(name, excludes)
+        loc[name], lines[name], languages[name] = repo_loc(name, excludes)
         print(f"{loc[name]:>8,} code {lines[name]:>8,} total  {name}")
 
     readme_path = ROOT / "README.md"
     readme = update_readme(readme_path.read_text(encoding="utf-8"), loc, lines)
     data["loc"] = {name: loc[name] for name in REPOS}
     data["lines"] = {name: lines[name] for name in REPOS}
-    readme_path.write_text(readme, encoding="utf-8", newline="\n")
+    data["languages"] = {name: languages[name] for name in REPOS}
     COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
+    import languages as panel     # reads the counts just written
+    readme_path.write_text(panel.update_readme(readme), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

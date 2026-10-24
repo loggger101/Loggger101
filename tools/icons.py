@@ -22,6 +22,8 @@ SECTIONS = {
     "simulation": "orbit",
     "rare-disease": "heart",
     "elsewhere": "external",
+    "activity": "rings",
+    "languages": "code",
     "contact": "mail",
 }
 
