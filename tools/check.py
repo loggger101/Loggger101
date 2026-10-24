@@ -48,6 +48,7 @@ GENERATORS = {
     "languages.py": ".",
     "breakeven.py": ".",
     "flybys.py": ".",
+    "sparks.py": "sparks",
 }
 # Generators that need something only the Windows machines have. Where it's missing (CI),
 # the check says it skipped them and doesn't look at their files.

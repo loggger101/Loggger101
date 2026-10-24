@@ -35,6 +35,7 @@ jobs:
       - run: python tools/breakeven.py docs
       - run: python tools/loc.py --public-only
       - run: python tools/refresh_activity.py --public-only
+      - run: python tools/sparks.py docs/sparks
       # JPL's API is outside our hands; if it's down, keep last week's flybys (the chart
       # prints its dates) and refresh everything else.
       - run: python tools/refresh_flybys.py
