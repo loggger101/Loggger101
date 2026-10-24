@@ -249,10 +249,7 @@ def update_readme(readme):
     """The README with this panel's alt text written in, so a screen reader hears the numbers
     the image shows, and the list of latest commits under it. refresh_activity.py calls it
     after refreshing the counts; check.py checks it."""
-    pattern = r'(src="docs/activity\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
-    if n != 1:
-        sys.exit(f"README image docs/activity.svg matched {n} times, expected 1")
+    readme = panel.write_alt(readme, "activity.svg", ALT)
     # The list sits between two markers, on lines of its own; it can be empty.
     readme, n = re.subn(r"(<!-- latest commits -->\n)(?:.*?\n)?(<!-- /latest commits -->)",
                         lambda m: m[1] + latest_list() + "\n" + m[2], readme, flags=re.S)

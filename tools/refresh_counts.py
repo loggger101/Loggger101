@@ -14,7 +14,8 @@ redraw the tiles and the repo diagram. The weekly workflow
 - economics: the destinations table in economicspace's README, the latest full-catalog
   run for each place the pipeline delivers to (best cost per dollar of revenue, the
   winning asteroid, the median body's). breakeven.py draws it; this also writes that
-  chart's alt text into the README, so run breakeven.py afterwards to redraw the chart.
+  chart's alt text and the sentence above it into the README, so run breakeven.py
+  afterwards to redraw the chart.
 
 Stops with an error, changing nothing, if a source can't be read or a README sentence
 it rewrites has gone missing, so a reworded README can't leave a stale number behind.

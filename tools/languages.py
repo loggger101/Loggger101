@@ -10,9 +10,7 @@ stars twinkle; with reduced motion it is drawn finished and still.
 `languages.svg` is for desktop widths. `languages-compact.svg` drops the repo names and
 uses larger text, for phones; the README swaps it in with <picture>.
 """
-import html
 import json
-import re
 import sys
 from pathlib import Path
 
@@ -101,10 +99,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, bar_w, num_w, with_repos):
 def update_readme(readme):
     """The README with this panel's alt text written in, so a screen reader hears the numbers
     the image shows. loc.py calls it after refreshing the counts; check.py checks it."""
-    pattern = r'(src="docs/languages\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
-    if n != 1:
-        sys.exit(f"README image docs/languages.svg matched {n} times, expected 1")
+    readme = panel.write_alt(readme, "languages.svg", ALT)
     return readme
 
 

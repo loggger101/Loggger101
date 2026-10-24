@@ -9,7 +9,7 @@ from pathlib import Path
 
 from PIL import ImageFont
 
-from glyphs import BLUE, FONT, ICONS, NAVY, TEXT
+from glyphs import FONT, ICONS, TEXT
 
 OUT = Path(sys.argv[1])
 OUT.mkdir(parents=True, exist_ok=True)

@@ -1,6 +1,6 @@
 """Tests for the parts of the tools that read other people's formats or write the README's
 text: the economicspace and JPL readers, the commit-subject cleaner, the heading-anchor
-rule, the flyby sizes and alt text, and the shared panel frame. One small sample per rule, with what it
+rule, the break-even verdict, the flyby sizes and alt text, and the shared panel frame. One small sample per rule, with what it
 should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
     python tools/test_tools.py
@@ -116,6 +116,22 @@ eq("alt names a row", "2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 
 eq("alt counts the rows left off", fb.alt_text([ROW] * (fb.MAX_ROWS + 2)).endswith("; and 2 more farther out."), True)
 eq("alt leaves nothing off", "farther out" in fb.alt_text([ROW] * fb.MAX_ROWS), False)
 eq("alt for a quiet week", fb.alt_text([]).endswith("none this week."), True)
+
+# The break-even verdict (breakeven.py) follows the numbers, so the chart, its alt text and
+# the README's sentence can't say none breaks even once one does.
+be = load("breakeven")
+NONE = [{"dest": "mars_surface", "best": 1.09}, {"dest": "leo", "best": 17.0}]
+ONE = [{"dest": "leo", "best": 17.0}, {"dest": "mars_surface", "best": 0.92}]
+TWO = ONE + [{"dest": "lunar_surface", "best": 0.98}]
+eq("none yet", (be.verdict(NONE), be.clause(NONE)), ("No destination breaks even yet.", "none does yet"))
+eq("one pays", (be.verdict(ONE), be.short_verdict(ONE), be.clause(ONE)),
+   ("The best mission to the surface of Mars breaks even.", "1 destination breaks even.",
+    "the best mission to the surface of Mars does"))
+eq("two pay, best first", (be.verdict(TWO), be.short_verdict(TWO)),
+   ("The best missions to the surface of Mars and the Moon's surface break even.", "2 destinations break even."))
+profile = (TOOLS.parent / "README.md").read_text(encoding="utf-8")
+eq("README sentence follows", "pays for itself; none does yet." in be.update_readme(profile), True)
+stops("README sentence gone", be.update_readme, profile.replace("Left of the dashed line", "Left of the line"))
 
 # Commit subjects for the latest-commits list (activity.py).
 ac = load("activity")

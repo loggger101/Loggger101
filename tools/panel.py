@@ -1,5 +1,6 @@
 """The frame the profile's wide panels share: activity.py, breakeven.py, flybys.py,
-languages.py and pipeline.py all start their SVG with `background`.
+languages.py and pipeline.py all start their SVG with `background`, and all but the last
+write their alt text into the README with `write_alt`.
 
 It draws the tiles' navy gradient in a rounded border, a field of still stars, and a few
 twinkling ones drawn after them (so adding twinkles never moved a still star), then opens
@@ -9,6 +10,8 @@ stops them is written here, beside the twinkle's, so no panel can forget it.
 """
 import html
 import random
+import re
+import sys
 
 GRADIENT = ('<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/>'
             '<stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>')
@@ -50,3 +53,13 @@ def background(w, h, seed, alt, defs=(), rules=(), animated=()):
 {stars}
 {twinkles}
 """
+
+
+def write_alt(readme, image, alt):
+    """The README with alt written into the full-width <img> of docs/<image>, so a screen
+    reader hears what the panel shows. Stops unless that image is there exactly once."""
+    pattern = rf'(src="docs/{re.escape(image)}" width="100%" alt=")[^"]*(")'
+    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(alt, quote=False).replace('"', '&quot;') + m[2], readme)
+    if n != 1:
+        sys.exit(f"README image docs/{image} matched {n} times, expected 1")
+    return readme

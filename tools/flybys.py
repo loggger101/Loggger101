@@ -22,7 +22,6 @@ import datetime as dt
 import html
 import json
 import math
-import re
 import sys
 from pathlib import Path
 
@@ -168,10 +167,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
 def update_readme(readme):
     """The README with this chart's alt text written in, so a screen reader hears what it
     shows. refresh_flybys.py calls it after refreshing; check.py checks it."""
-    pattern = r'(src="docs/flybys\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
-    if n != 1:
-        sys.exit(f"README image docs/flybys.svg matched {n} times, expected 1")
+    readme = panel.write_alt(readme, "flybys.svg", ALT)
     return readme
 
 

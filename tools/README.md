@@ -51,7 +51,7 @@ Before committing, run
 ```bash
 python tools/check.py           # add --links to also check every link in the README (online)
 python tools/test_loc.py        # loc.py's counting rules
-python tools/test_tools.py      # the economicspace and JPL readers, flyby alt text, commit subjects, anchors, the panel frame
+python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, flyby alt text, commit subjects, anchors, the panel frame
 ```
 
 `check.py` reruns the generators and fails if anything in `docs/` differs from their output,
@@ -110,6 +110,8 @@ with `loc.py`, `refresh_activity.py` and the two panels, and commits whatever ch
 full-catalog run for each place the pipeline delivers to), which `refresh_counts.py` reads
 into `counts.json`, keeping the winning asteroid but not its vehicle. If that table changes
 shape, `refresh_counts.py` stops with an error instead of publishing a half-read chart.
+Whether any destination breaks even is read from the numbers too, so the day one does, the
+chart's subtitle, its alt text and the README's sentence above it all say so.
 
 `flybys.py` draws the asteroids passing Earth within 20 lunar distances in the week after
 `refresh_flybys.py` last ran, from JPL's close-approach API. Sizes come from H at albedos

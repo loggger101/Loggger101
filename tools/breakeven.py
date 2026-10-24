@@ -55,8 +55,41 @@ def ratio(x):
     return f"{x:,.0f}×"
 
 
-ALT = (f"Where the asteroid-mining pipeline stands: no destination breaks even yet. Cost per dollar earned, "
-       f"best mission and median asteroid, from economicspace's latest full-catalog runs: "
+def paying(rows):
+    """The places whose best mission earns more than it costs, best first."""
+    return [place(r["dest"]) for r in sorted(rows, key=lambda r: r["best"]) if r["best"] < 1]
+
+
+def listed(words):
+    return words[0] if len(words) == 1 else f"{', '.join(words[:-1])} and {words[-1]}"
+
+
+def verdict(rows):
+    """The chart's answer, from the numbers: none of the rows is left of the line yet, or which are."""
+    pay = paying(rows)
+    if not pay:
+        return "No destination breaks even yet."
+    return (f"The best mission to {pay[0]} breaks even." if len(pay) == 1
+            else f"The best missions to {listed(pay)} break even.")
+
+
+def short_verdict(rows):
+    """verdict() short enough for a phone."""
+    n = len(paying(rows))
+    return "No destination breaks even yet." if not n else f"{n} destination{'s' if n > 1 else ''} break{'s' if n == 1 else ''} even."
+
+
+def clause(rows):
+    """How the README's sentence above the chart ends ("...a mission pays for itself; none does yet.")."""
+    pay = paying(rows)
+    if not pay:
+        return "none does yet"
+    return f"the best mission to {pay[0]} does" if len(pay) == 1 else f"the best missions to {listed(pay)} do"
+
+
+VERDICT = verdict(ROWS)
+ALT = (f"Where the asteroid-mining pipeline stands: {VERDICT[0].lower() + VERDICT[1:-1]}. Cost per dollar earned, "
+       "best mission and median asteroid, from economicspace's latest full-catalog runs: "
        + "; ".join(f"{name(r['dest'])} {ratio(r['best'])} ({r['winner']}), median {ratio(r['median'])}" for r in ROWS)
        + ".")
 
@@ -74,15 +107,16 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
     top = head + size * 1.6 + size * 0.9 + row_gap * 1.3
     h = round(top + (len(ROWS) - 1) * row_gap + row_gap * 0.9 + size * 3.2 + pad * 0.6)
     x0 = pad + name_w
-    at = lambda v: x0 + track_w * math.log10(v / LO) / math.log10(HI / LO)
+    # A ratio off the axis is drawn at its end; the number beside the row still says it.
+    at = lambda v: x0 + track_w * math.log10(min(max(v, LO), HI) / LO) / math.log10(HI / LO)
     parts = [background(w, h, seed), f'<g font-family="{FONT}">',
              f'<text x="{pad}" y="{head:.1f}" font-size="{big}" font-weight="700" fill="{BLUE}">{ratio(BEST["best"])}</text>',
              f'<text x="{pad}" y="{head + size * 1.5:.1f}" font-size="{size}" fill="{TEXT}">'
              + (f'cost per dollar earned, at best: {html.escape(BEST["winner"])} to {html.escape(place(BEST["dest"]))}'
                 if with_winners else "cost per dollar earned, at best") + '</text>',
              f'<text x="{pad}" y="{head + size * 2.6:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">'
-             + ("No destination breaks even yet. One row for each, from economicspace's latest full-catalog runs."
-                if with_winners else "No destination breaks even yet.") + '</text>']
+             + html.escape(f"{VERDICT} One row for each, from economicspace's latest full-catalog runs."
+                           if with_winners else short_verdict(ROWS), quote=False) + '</text>']
     bottom = top + (len(ROWS) - 1) * row_gap + row_gap * 0.6
     # The side of the line where a mission pays, and the line itself.
     parts.append(f'<rect x="{at(LO):.1f}" y="{top - row_gap * 0.7:.1f}" width="{at(1) - at(LO):.1f}" '
@@ -128,11 +162,14 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
 
 def update_readme(readme):
     """The README with this chart's alt text written in, so a screen reader hears the numbers
-    it shows. refresh_counts.py calls it after refreshing the counts; check.py checks it."""
-    pattern = r'(src="docs/breakeven\.svg" width="100%" alt=")[^"]*(")'
-    readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
+    it shows, and the sentence above it ending in clause(), so the prose can't go on saying
+    none breaks even once one does. refresh_counts.py calls it after refreshing the counts;
+    check.py checks it."""
+    readme = panel.write_alt(readme, "breakeven.svg", ALT)
+    readme, n = re.subn(r"(Left of the dashed line, a mission pays for itself; )[^.]*\.",
+                        lambda m: f"{m[1]}{clause(ROWS)}.", readme)
     if n != 1:
-        sys.exit(f"README image docs/breakeven.svg matched {n} times, expected 1")
+        sys.exit(f"README's sentence above the break-even chart matched {n} times, expected 1")
     return readme
 
 
