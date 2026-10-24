@@ -1,5 +1,5 @@
 {
-  "sources": 602,
+  "sources": 605,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
@@ -582,5 +582,49 @@
         ]
       }
     }
-  }
+  },
+  "economics": [
+    {
+      "dest": "mars_surface",
+      "best": 1.0914,
+      "winner": "2015 DS (X)",
+      "median": 2.0246
+    },
+    {
+      "dest": "lunar_surface",
+      "best": 2.9353,
+      "winner": "2005 QP87 (X)",
+      "median": 8.2537
+    },
+    {
+      "dest": "mars_orbit",
+      "best": 4.5908,
+      "winner": "350751 (B)",
+      "median": 13.941
+    },
+    {
+      "dest": "cislunar",
+      "best": 4.8379,
+      "winner": "2018 DT (M)",
+      "median": 20.9073
+    },
+    {
+      "dest": "geo",
+      "best": 6.8572,
+      "winner": "2016 GS2 (D)",
+      "median": 92.9549
+    },
+    {
+      "dest": "leo",
+      "best": 17.0106,
+      "winner": "2005 QP87 (X)",
+      "median": 60.478
+    },
+    {
+      "dest": "earth_surface",
+      "best": 6154.06,
+      "winner": "2018 DT (M)",
+      "median": 24301.21
+    }
+  ]
 }
