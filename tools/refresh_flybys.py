@@ -36,23 +36,27 @@ def fetch(today):
         return json.loads(r.read().decode("utf-8"))
 
 
+def rows_from(answer):
+    """The approaches in an answer from the API, or an error if it isn't in the form expected."""
+    if "fields" not in answer and int(answer.get("count", -1)) == 0:
+        return []                                       # a quiet week: the API sends no fields
+    missing = [f for f in FIELDS if f not in answer.get("fields", [])]
+    if missing:
+        sys.exit(f"JPL's close-approach API answered without {missing}: {str(answer)[:200]}")
+    at = {f: answer["fields"].index(f) for f in FIELDS}
+    return [{"des": raw[at["des"]], "time": raw[at["cd"]], "dist_au": float(raw[at["dist"]]),
+             "v_kms": float(raw[at["v_rel"]]), "h": float(raw[at["h"]]) if raw[at["h"]] else None,
+             "diameter_km": float(raw[at["diameter"]]) if raw[at["diameter"]] else None}
+            for raw in answer.get("data", [])]
+
+
 def main():
     today = dt.datetime.now(dt.timezone.utc).date()
     try:
         answer = fetch(today)
     except (OSError, ValueError) as e:
         sys.exit(f"JPL's close-approach API couldn't be read: {e}")
-    if "fields" not in answer and int(answer.get("count", -1)) == 0:
-        answer = {"fields": FIELDS, "data": []}         # a quiet week: the API sends no fields
-    missing = [f for f in FIELDS if f not in answer.get("fields", [])]
-    if missing:
-        sys.exit(f"JPL's close-approach API answered without {missing}: {str(answer)[:200]}")
-    at = {f: answer["fields"].index(f) for f in FIELDS}
-    rows = []
-    for raw in answer.get("data", []):
-        rows.append({"des": raw[at["des"]], "time": raw[at["cd"]], "dist_au": float(raw[at["dist"]]),
-                     "v_kms": float(raw[at["v_rel"]]), "h": float(raw[at["h"]]) if raw[at["h"]] else None,
-                     "diameter_km": float(raw[at["diameter"]]) if raw[at["diameter"]] else None})
+    rows = rows_from(answer)
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
     data["flybys"] = {"from": today.isoformat(), "to": (today + dt.timedelta(days=7)).isoformat(),
                       "source": "NASA/JPL SBDB Close Approach Data API", "rows": rows}

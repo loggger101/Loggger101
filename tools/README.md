@@ -28,14 +28,21 @@ Before committing, run
 
 ```bash
 python tools/check.py           # add --links to also check every link in the README (online)
+python tools/test_loc.py        # loc.py's counting rules
+python tools/test_tools.py      # the economicspace and JPL readers, commit subjects, anchors, the panel frame
 ```
 
-It reruns the generators and fails if anything in `docs/` differs from their output, if a
-`docs/` file is missing or unused, if the README's numbers disagree with `counts.json`, or
-if an OneDrive conflict copy is present. CI runs it on every push (`check.yml`), and the
-weekly workflow runs it before committing and checks the links in a separate job.
+`check.py` reruns the generators and fails if anything in `docs/` differs from their output,
+if a `docs/` file is missing or unused, if the README's numbers or alt text disagree with
+`counts.json`, if a section link names no heading, or if an OneDrive conflict copy is
+present. CI runs all three on every push (`check.yml`), and the weekly workflow runs
+`check.py` before committing and checks the links in a separate job.
 
-The banner, footer, tiles, repo diagram and both panels move, with CSS animations in each
+The wide panels (activity, languages, break-even, flybys, repo diagram) open with
+`panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which
+stops every class a panel names as animated. Change the frame there.
+
+The banner, footer, tiles, repo diagram and the panels move, with CSS animations in each
 SVG: stars twinkle everywhere; the tiles' numbers roll up like an odometer; points of light
 run along the diagram's data arrows and its citation dashes creep; the activity panel's
 dots come in round the orbit in time order; and the bars grow in. The odometer places each

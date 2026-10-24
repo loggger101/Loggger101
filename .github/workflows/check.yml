@@ -1,6 +1,7 @@
-# Fails a push or pull request that leaves the profile inconsistent: a generated image that
+# Fails a push or pull request that leaves the profile inconsistent (a generated image that
 # no longer matches its generator, a missing or unused docs/ file, README numbers that
-# disagree with tools/counts.json, or an OneDrive conflict copy. See tools/check.py.
+# disagree with tools/counts.json, a section link to no heading, or an OneDrive conflict
+# copy; see tools/check.py) or that breaks a test (test_loc.py, test_tools.py).
 name: Check
 
 on:
@@ -17,3 +18,4 @@ jobs:
           python-version: "3.14"
       - run: python tools/check.py
       - run: python tools/test_loc.py
+      - run: python tools/test_tools.py
