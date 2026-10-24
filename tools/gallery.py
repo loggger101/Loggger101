@@ -118,7 +118,8 @@ def card(img, title, caption, seed, compact):
     return out
 
 
-# name: (image, repo name, caption). The caption is also the README's alt text.
+# name: (image, repo name, caption). The caption is also the README's alt text; where an
+# animated card shows more (MOTION), the alt text says so.
 CARDS = {
     "satellite": (lambda: cover(Image.open(GH / "Satellite Space Flight/docs/images/overview.png")),
                   "Satellite-Space-Flight", "The ISS orbit, live elements and ground-station passes"),
@@ -144,16 +145,43 @@ def simulation(frames):
         return [Image.open(f).convert("RGB") for f in sorted(Path(tmp).glob("*.png"))]
 
 
-# name: (frames at a given rate, frames a second). These cards also come as an animated
+MARS = GH / "Mars_Terrestrial_GlobalMosaic_GIS-Data/Mars Project"
+# The Ius Chasma type-area layouts share one map frame, so their maps line up exactly.
+TYPE_AREA_MAP = (68, 206, 1582, 911)
+
+
+def crossfade(images, fps, hold=1.6, fade=0.4):
+    """A loop through images (each IW x IH), holding each for hold seconds and fading into
+    the next over fade seconds; the last fades back into the first."""
+    frames = []
+    for a, b in zip(images, images[1:] + images[:1]):
+        frames += [a] * round(hold * fps)
+        n = round(fade * fps)
+        frames += [Image.blend(a, b, (k + 1) / (n + 1)) for k in range(n)]
+    return frames
+
+
+def mars_sequence(fps):
+    """Ius Chasma in visible light, night-time infrared and the Iso Cluster classes, then
+    the published landform map over the whole band (the still card's picture)."""
+    views = [cover(Image.open(MARS / f"TypeArea/layouts/{n}.png"), TYPE_AREA_MAP)
+             for n in ("01_visible", "02_night_ir", "03_classification")]
+    return crossfade(views + [CARDS["mars"][0]()], fps)
+
+
+# name: (frames at a given rate, frames a second, caption, or None to keep the still
+# card's). These cards also come as an animated
 # `<name>-motion.webp` (and `-motion-compact`): the project moving, in the same frame. The
 # README shows the still card to anyone who asks for reduced motion, since an animated
 # image can't be paused by CSS. Kept short and at the display size (2x, not 4x) so each
 # file stays near a megabyte.
 MOTION = {
     # A drone pass with targets scored as they come into view, from the demo video.
-    "drone": (lambda fps: clip(GH / "website/assets/projects/drone/overlay_demo.mp4", 9.0, 5.0, fps), 10),
+    "drone": (lambda fps: clip(GH / "website/assets/projects/drone/overlay_demo.mp4", 9.0, 5.0, fps), 10, None),
     # The overview scene through one ISS orbit, in six seconds.
-    "satellite": (lambda fps: simulation(6 * fps), 10),
+    "satellite": (lambda fps: simulation(6 * fps), 10, None),
+    # One canyon three ways, then the whole band classified; it ends on the still card.
+    "mars": (mars_sequence, 10, "Ius Chasma in visible, night IR and clusters, then ±60° landforms"),
 }
 
 
@@ -170,12 +198,19 @@ def save(frames, path, compact, fps=None):
     print(path.name, path.stat().st_size)
 
 
+# python tools/gallery.py OUT [NAME ...]: every card, or only the ones named.
+ONLY = set(sys.argv[2:]) or set(CARDS)
+if ONLY - set(CARDS):
+    sys.exit(f"unknown card {', '.join(sorted(ONLY - set(CARDS)))}; choose from {', '.join(CARDS)}")
 for i, (name, (make, title, caption)) in enumerate(CARDS.items()):
+    if name not in ONLY:
+        continue
     img = make()
     for compact, suffix in ((False, ""), (True, "-compact")):
         save([card(img, title, caption, 200 + i, compact)], OUT / f"{name}{suffix}.webp", compact)
     if name in MOTION:
-        make_frames, fps = MOTION[name]
+        make_frames, fps, motion_caption = MOTION[name]
         frames = [cover(f) for f in make_frames(fps)]
+        caption = motion_caption or caption
         for compact, suffix in ((False, "-motion"), (True, "-motion-compact")):
             save([card(f, title, caption, 200 + i, compact) for f in frames], OUT / f"{name}{suffix}.webp", compact, fps)
