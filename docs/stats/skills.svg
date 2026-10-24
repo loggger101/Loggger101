@@ -3,13 +3,20 @@
 <style>
   .tw { animation: tw 4s ease-in-out infinite; }
   @keyframes tw { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .tw { animation: none; } }
+  .roll { animation: roll 1.8s cubic-bezier(0.15, 0.85, 0.25, 1) both; }
+  @keyframes roll { from { transform: translateY(var(--from)); } }
+  @media (prefers-reduced-motion: reduce) { .tw, .roll { animation: none; } }
 </style>
 <rect x="0.5" y="0.5" width="269" height="119" rx="10" fill="url(#g)" stroke="#2a3b63"/>
 <circle cx="256.7" cy="55.5" r="1.0" fill="#fff" opacity="0.48"/><circle cx="215.8" cy="79.7" r="1.0" fill="#fff" opacity="0.50"/><circle cx="174.2" cy="56.0" r="0.8" fill="#fff" opacity="0.55"/><circle cx="38.1" cy="16.6" r="0.6" fill="#fff" opacity="0.43"/><circle cx="255.1" cy="12.6" r="0.6" fill="#fff" opacity="0.48"/><circle cx="162.2" cy="38.5" r="1.0" fill="#fff" opacity="0.36"/><circle cx="194.2" cy="83.2" r="0.8" fill="#fff" opacity="0.29"/><circle cx="174.9" cy="88.2" r="1.0" fill="#fff" opacity="0.30"/><circle cx="101.8" cy="68.4" r="1.0" fill="#fff" opacity="0.45"/><circle cx="128.6" cy="34.1" r="0.8" fill="#fff" opacity="0.56"/><circle cx="200.5" cy="62.9" r="0.8" fill="#fff" opacity="0.41"/><circle cx="187.9" cy="38.8" r="0.8" fill="#fff" opacity="0.53"/><circle cx="41.3" cy="61.3" r="0.6" fill="#fff" opacity="0.39"/><circle cx="96.4" cy="95.4" r="1.0" fill="#fff" opacity="0.48"/>
 <circle class="tw" cx="30.9" cy="58.5" r="1.2" fill="#dbe7ff" style="animation-delay:-3.98s;animation-duration:5.96s"/><circle class="tw" cx="151.1" cy="88.3" r="1.2" fill="#dbe7ff" style="animation-delay:-2.83s;animation-duration:3.88s"/><circle class="tw" cx="147.7" cy="70.1" r="1.2" fill="#dbe7ff" style="animation-delay:-1.58s;animation-duration:5.46s"/>
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
-<text x="20" y="62" font-size="44" font-weight="700" fill="#5ba3dc">253</text>
+<clipPath id="window"><rect x="18.0" y="20.2" width="79.9" height="52.8"/></clipPath>
+<g clip-path="url(#window)" text-anchor="start" font-weight="700" fill="#5ba3dc" font-size="44">
+<g class="roll" style="--from:686.4px;animation-delay:0.15s"><text x="20.0" y="-624.4">0</text><text x="20.0" y="-567.2">1</text><text x="20.0" y="-510.0">2</text><text x="20.0" y="-452.8">3</text><text x="20.0" y="-395.6">4</text><text x="20.0" y="-338.4">5</text><text x="20.0" y="-281.2">6</text><text x="20.0" y="-224.0">7</text><text x="20.0" y="-166.8">8</text><text x="20.0" y="-109.6">9</text><text x="20.0" y="-52.4">0</text><text x="20.0" y="4.8">1</text><text x="20.0" y="62.0">2</text></g>
+<g class="roll" style="--from:858.0px;animation-delay:0.23s"><text x="45.3" y="-796.0">0</text><text x="45.3" y="-738.8">1</text><text x="45.3" y="-681.6">2</text><text x="45.3" y="-624.4">3</text><text x="45.3" y="-567.2">4</text><text x="45.3" y="-510.0">5</text><text x="45.3" y="-452.8">6</text><text x="45.3" y="-395.6">7</text><text x="45.3" y="-338.4">8</text><text x="45.3" y="-281.2">9</text><text x="45.3" y="-224.0">0</text><text x="45.3" y="-166.8">1</text><text x="45.3" y="-109.6">2</text><text x="45.3" y="-52.4">3</text><text x="45.3" y="4.8">4</text><text x="45.3" y="62.0">5</text></g>
+<g class="roll" style="--from:743.6px;animation-delay:0.31s"><text x="70.6" y="-681.6">0</text><text x="70.6" y="-624.4">1</text><text x="70.6" y="-567.2">2</text><text x="70.6" y="-510.0">3</text><text x="70.6" y="-452.8">4</text><text x="70.6" y="-395.6">5</text><text x="70.6" y="-338.4">6</text><text x="70.6" y="-281.2">7</text><text x="70.6" y="-224.0">8</text><text x="70.6" y="-166.8">9</text><text x="70.6" y="-109.6">0</text><text x="70.6" y="-52.4">1</text><text x="70.6" y="4.8">2</text><text x="70.6" y="62.0">3</text></g>
+</g>
 <text x="20" y="96" font-size="20" fill="#dbe3f5">agent skills</text>
 </g>
 </svg>
