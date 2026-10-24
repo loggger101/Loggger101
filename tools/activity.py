@@ -22,12 +22,12 @@ import datetime as dt
 import html
 import json
 import math
-import random
 import re
 import sys
 from pathlib import Path
 
 from loc import README_NAMES
+import panel
 
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 BLUE, TEXT, DIM, GOLD = "#5ba3dc", "#dbe3f5", "#7d8fb3", "#e8c27a"
@@ -110,42 +110,21 @@ ALT = (f"Every commit I've made to these repos, from the first on {day(FIRST_DAY
        f"Latest: {README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}.")
 
 
+CORONA = ('<radialGradient id="corona" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>'
+          '<stop offset="0.1" stop-color="#e6f2ff" stop-opacity="0.7"/><stop offset="0.35" stop-color="#9ccaf2" stop-opacity="0.35"/>'
+          '<stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>')
+
+
 def background(w, h, seed):
-    rng = random.Random(seed)
-    stars = "".join(
-        f'<circle cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
-        for _ in range(int(w * h / 4500))
-    )
-    # Drawn after the still stars, so those stay where they were.
-    twinkles = "".join(
-        f'<circle class="tw" cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([1.1, 1.3])}" '
-        f'fill="#dbe7ff" style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
-        for _ in range(int(w * h / 60000))
-    )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{html.escape(ALT)}">
-<defs>
-<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
-<radialGradient id="corona" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/><stop offset="0.1" stop-color="#e6f2ff" stop-opacity="0.7"/><stop offset="0.35" stop-color="#9ccaf2" stop-opacity="0.35"/><stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>
-</defs>
-<style>
-  .tw {{ animation: tw 4s ease-in-out infinite; }}
-  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
-  .grow {{ transform-box: fill-box; transform-origin: left center; animation: grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }}
-  @keyframes grow {{ from {{ transform: scaleX(0); }} }}
-  .fade {{ animation: fade 0.8s ease-out both; }}
-  @keyframes fade {{ from {{ opacity: 0; }} }}
-  .dot {{ transform-box: fill-box; transform-origin: center; animation: pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both; }}
-  @keyframes pop {{ from {{ transform: scale(0); opacity: 0; }} }}
-  .breathe {{ transform-box: fill-box; transform-origin: center; animation: breathe 6s ease-in-out infinite; }}
-  @keyframes breathe {{ 0%, 100% {{ transform: scale(1); opacity: 0.85; }} 50% {{ transform: scale(1.1); opacity: 1; }} }}
-  .now {{ animation: now 2.6s ease-in-out infinite; }}
-  @keyframes now {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.35; }} }}
-  @media (prefers-reduced-motion: reduce) {{ .tw, .grow, .fade, .dot, .breathe, .now {{ animation: none; }} }}
-</style>
-<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="16" fill="url(#g)" stroke="#2a3b63"/>
-{stars}
-{twinkles}
-"""
+    return panel.background(w, h, seed, ALT, defs=(CORONA,), rules=(
+        *panel.GROW, *panel.FADE,
+        ".dot { transform-box: fill-box; transform-origin: center; animation: pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both; }",
+        "@keyframes pop { from { transform: scale(0); opacity: 0; } }",
+        ".breathe { transform-box: fill-box; transform-origin: center; animation: breathe 6s ease-in-out infinite; }",
+        "@keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.1); opacity: 1; } }",
+        ".now { animation: now 2.6s ease-in-out infinite; }",
+        "@keyframes now { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }",
+    ), animated=("grow", "fade", "dot", "breathe", "now"))
 
 
 def field(cx, cy, r_in, r_step, label_size, month_size):
@@ -202,7 +181,7 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
     return parts
 
 
-def panel(x, y, big, size, row_gap, width):
+def sidebar(x, y, big, size, row_gap, width):
     """The total, each section's count with a bar, the busiest week and the latest commit."""
     parts = [f'<text x="{x}" y="{y + big * 0.8:.1f}" font-size="{big}" font-weight="700" fill="{BLUE}">{TOTAL:,}</text>',
              f'<text x="{x}" y="{y + big * 0.8 + size * 1.5:.1f}" font-size="{size}" fill="{TEXT}">commits since my first, in {FIRST_DAY:%B %Y}</text>']
@@ -229,10 +208,10 @@ def panel(x, y, big, size, row_gap, width):
     return parts
 
 
-def render(w, h, seed, field_args, panel_args):
+def render(w, h, seed, field_args, sidebar_args):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">']
     parts += field(*field_args)
-    parts += panel(*panel_args)
+    parts += sidebar(*sidebar_args)
     parts.append("</g>\n</svg>\n")
     return "\n".join(parts)
 
@@ -283,8 +262,8 @@ def update_readme(readme):
 
 
 def files():
-    # Desktop: rings on the left, the panel on the right.
-    # Phones: the rings on top, the panel under them, both larger for a screen about 350px wide.
+    # Desktop: rings on the left, the sidebar on the right.
+    # Phones: the rings on top, the sidebar under them, both larger for a screen about 350px wide.
     return {
         "activity.svg": render(1200, 640, 11, (330, 326, 112, 30, 17, 16), (690, 110, 52, 19, 40, 470)),
         "activity-compact.svg": render(680, 1240, 12, (340, 360, 108, 33, 21, 20), (44, 724, 60, 25, 46, 592)),

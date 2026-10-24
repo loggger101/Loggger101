@@ -22,10 +22,11 @@ import datetime as dt
 import html
 import json
 import math
-import random
 import re
 import sys
 from pathlib import Path
+
+import panel
 
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 BLUE, TEXT, DIM, GOLD = "#5ba3dc", "#dbe3f5", "#7d8fb3", "#e8c27a"
@@ -82,38 +83,23 @@ ALT = (f"Asteroids passing Earth within {MAX_LD} lunar distances, {span()} (NASA
           if ROWS else "none this week."))
 
 
+# Earth, the glow round it, and the asteroids' sunlit rock.
+GRADIENTS = (
+    '<radialGradient id="earth" cx="0.35" cy="0.35" r="0.7"><stop offset="0" stop-color="#9fd4ff"/>'
+    '<stop offset="0.5" stop-color="#3d7fc4"/><stop offset="1" stop-color="#173a6b"/></radialGradient>',
+    '<radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0.55" stop-color="#5ba3dc" stop-opacity="0.35"/>'
+    '<stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>',
+    '<radialGradient id="rock" cx="0.35" cy="0.35" r="0.65"><stop offset="0" stop-color="#fff4d8"/>'
+    '<stop offset="0.45" stop-color="#e8c27a"/><stop offset="1" stop-color="#7a5a26"/></radialGradient>',
+)
+
+
 def background(w, h, seed):
-    rng = random.Random(seed)
-    stars = "".join(
-        f'<circle cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
-        for _ in range(int(w * h / 4500))
-    )
-    # Drawn after the still stars, so those stay where they were.
-    twinkles = "".join(
-        f'<circle class="tw" cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([1.1, 1.3])}" '
-        f'fill="#dbe7ff" style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
-        for _ in range(int(w * h / 60000))
-    )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{html.escape(ALT)}">
-<defs>
-<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
-<radialGradient id="earth" cx="0.35" cy="0.35" r="0.7"><stop offset="0" stop-color="#9fd4ff"/><stop offset="0.5" stop-color="#3d7fc4"/><stop offset="1" stop-color="#173a6b"/></radialGradient>
-<radialGradient id="halo" cx="0.5" cy="0.5" r="0.5"><stop offset="0.55" stop-color="#5ba3dc" stop-opacity="0.35"/><stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>
-<radialGradient id="rock" cx="0.35" cy="0.35" r="0.65"><stop offset="0" stop-color="#fff4d8"/><stop offset="0.45" stop-color="#e8c27a"/><stop offset="1" stop-color="#7a5a26"/></radialGradient>
-</defs>
-<style>
-  .tw {{ animation: tw 4s ease-in-out infinite; }}
-  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
-  .fly {{ animation: fly 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }}
-  @keyframes fly {{ from {{ transform: translateX(var(--from)); opacity: 0; }} 20% {{ opacity: 1; }} }}
-  .fade {{ animation: fade 0.8s ease-out both; }}
-  @keyframes fade {{ from {{ opacity: 0; }} }}
-  @media (prefers-reduced-motion: reduce) {{ .tw, .fly, .fade {{ animation: none; }} }}
-</style>
-<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="16" fill="url(#g)" stroke="#2a3b63"/>
-{stars}
-{twinkles}
-"""
+    return panel.background(w, h, seed, ALT, defs=GRADIENTS, rules=(
+        ".fly { animation: fly 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }",
+        "@keyframes fly { from { transform: translateX(var(--from)); opacity: 0; } 20% { opacity: 1; } }",
+        *panel.FADE,
+    ), animated=("fly", "fade"))
 
 
 def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
