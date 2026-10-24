@@ -1,6 +1,8 @@
-# Keeps the research-sources and agent-skills tiles, and each repo's lines of code, in step
-# with their repos. The private repos' line counts are refreshed by running loc.py locally.
-# Commits only when a count has changed, and only if tools/check.py passes on the result
+# Keeps the research-sources and agent-skills tiles, each repo's lines of code, and the
+# activity and languages panels in step with their repos. The private repos' counts are
+# refreshed by running loc.py and refresh_activity.py locally. The activity panel's year
+# ends at the run's week, so a run commits every week; it commits only if tools/check.py
+# passes on the result
 # (a push made with the workflow's token doesn't trigger check.yml, so it runs here).
 # A separate job checks every README link, so a dead link fails the run without holding
 # back the counts.
@@ -30,6 +32,9 @@ jobs:
       - run: python tools/refresh_counts.py
       - run: python tools/tiles.py docs/stats
       - run: python tools/loc.py --public-only
+      - run: python tools/refresh_activity.py --public-only
+      - run: python tools/activity.py docs
+      - run: python tools/languages.py docs
       - run: python tools/check.py
       - name: Commit if anything changed
         run: |

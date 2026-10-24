@@ -130,6 +130,22 @@ Both repos are private, but the sites are public.
   </tr>
 </table>
 
+### <picture><img src="docs/icons/activity.svg" width="24" height="24" align="top" alt=""></picture> The last 12 months
+
+My commits to the repos above, week by week. Each ring is one section of this page, the outermost the first; the year runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
+
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="My commits over the 52 weeks to 24 Oct 2026, drawn as one orbit per section of this page: 3,153 in all, Space economics 609, Planetary science 119, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,854. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: Mars Global Mosaic, 23 Oct 2026."></picture>
+</p>
+
+### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
+
+The lines of code under each repo's name, added up by language.
+
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="107,081 lines of code in 10 languages: Python 87,162 (81.4%), Perl 6,747 (6.3%), JavaScript 5,326 (5.0%), HTML 4,092 (3.8%), CSS 2,375 (2.2%), Shell 644 (0.6%), Batchfile, PowerShell, VBScript and Dockerfile 735 (0.7%)."></picture>
+</p>
+
 ### <picture><img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""></picture> Get in touch
 
 <p align="center">The contact form on my site goes straight to my email, or you can message me on LinkedIn.</p>

@@ -61,6 +61,14 @@ eq("no shebang", lang("LICENSE"), None)
 eq("Dockerfile", lang("Dockerfile"), "hash")
 eq(".command", lang("launch.command"), "hash")
 eq("markdown", lang("README.md"), None)
+# Language names, for the languages panel.
+name = lambda path: m.language_name(path, lang(path))
+eq("name: sh shebang", name("hooks/post-merge"), "Shell")
+eq("name: python shebang", name("bin/tool"), "Python")
+eq("name: env -S node", name("run"), "JavaScript")
+eq("name: notebook", m.language_name("nb/a.ipynb", "notebook"), "Jupyter Notebook")
+eq("name: TypeScript shares JavaScript's syntax", m.language_name("src/a.ts", "c"), "TypeScript")
+eq("name: Dockerfile.dev", m.language_name("Dockerfile.dev", "hash"), "Dockerfile")
 # .gitattributes.
 rules = [("*.ipynb", ["linguist-documentation"]), ("master.py", ["linguist-generated=true"]),
          ("docs/*", ["linguist-vendored"]), ("docs/keep.py", ["-linguist-vendored"]), ("x.py", ["linguist-generated=false"])]

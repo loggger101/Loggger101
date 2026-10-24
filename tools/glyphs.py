@@ -40,6 +40,13 @@ ICONS = {
     # A heart with a pulse across it.
     "heart": f'<path d="M9 15.6C4.2 12.4 1.6 9.6 1.6 6.4a3.7 3.7 0 0 1 7.4-.9 3.7 3.7 0 0 1 7.4.9c0 3.2-2.6 6-7.4 9.2z" {LINE}/>'
              f'<path d="M3.6 8.9h2.6l1.3-2.1 2 4.3 1.3-2.2h3.6" {LINE}/>',
+    # The activity panel in small: two orbits that stop short of twelve o'clock, round a star.
+    # (Each arc runs clockwise from the top for 300 degrees.)
+    "rings": f'<path d="M9 1.4A7.6 7.6 0 1 1 2.42 5.2M9 4.4A4.6 4.6 0 1 1 5.02 6.7" {LINE}/>'
+             f'<circle cx="9" cy="9" r="1.5" fill="{BLUE}"/><circle cx="15.58" cy="12.8" r="1.5" fill="{BLUE}"/>'
+             f'<circle cx="7.43" cy="13.32" r="1.2" fill="{BLUE}"/>',
+    # Angle brackets round a slash.
+    "code": f'<path d="M5.5 4.5 1.5 9l4 4.5M12.5 4.5l4 4.5-4 4.5M10.6 2.8 7.4 15.2" {LINE}/>',
     # A box with an arrow leaving it.
     "external": f'<path d="M7.5 3.5h-4v11h11v-4" {LINE}/><path d="M10.5 2.5h5v5M15.5 2.5 8.5 9.5" {LINE}/>',
 }

@@ -7,7 +7,9 @@ every push (.github/workflows/check.yml).
    installed (CI again); it says so when it does.
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
-   stored counts, with refresh_counts.py's and loc.py's own code, changes nothing.
+   stored counts, with refresh_counts.py's, loc.py's, activity.py's and languages.py's own
+   code (the last two write the panels' alt text), changes nothing. And each
+   repo's lines of code by language (the languages panel) add up to its lines of code.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
    badges carry the logos badge_logos.py draws.
 5. Every SVG in docs/ is valid XML, every <img> in the README has alt text, and the
@@ -39,6 +41,8 @@ GENERATORS = {
     "links.py": "links",
     "badge_logos.py": "logos",
     "icons.py": "icons",
+    "activity.py": ".",
+    "languages.py": ".",
 }
 # Generators that need something only the Windows machines have. Where it's missing (CI),
 # the check says it skipped them and doesn't look at their files.
@@ -112,14 +116,21 @@ def check_references(readme):
 def check_counts(readme):
     counts = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
     for name, update in (("refresh_counts", lambda m: m.update_readme(readme, counts)),
-                         ("loc", lambda m: m.update_readme(readme, counts["loc"], counts["lines"]))):
+                         ("loc", lambda m: m.update_readme(readme, counts["loc"], counts["lines"])),
+                         ("activity", lambda m: m.update_readme(readme)),
+                         ("languages", lambda m: m.update_readme(readme))):
         try:
             rewritten = update(load(name))
         except SystemExit as e:
             problems.append(f"{name}.py can't find its place in the README: {e}")
             continue
         if rewritten != readme:
-            problems.append(f"README numbers differ from tools/counts.json (rerun {name}.py)")
+            rerun = {"activity": "refresh_activity", "languages": "loc"}.get(name, name)
+            problems.append(f"README numbers differ from tools/counts.json (rerun {rerun}.py)")
+    for repo, n in counts["loc"].items():
+        by_language = sum(counts.get("languages", {}).get(repo, {}).values())
+        if by_language != n:
+            problems.append(f"{repo}: {n:,} lines of code but {by_language:,} by language in counts.json (rerun loc.py)")
 
 
 def check_typing_and_badges(readme, badge_urls):
