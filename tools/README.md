@@ -51,7 +51,7 @@ Before committing, run
 ```bash
 python tools/check.py           # add --links to also check every link in the README (online)
 python tools/test_loc.py        # loc.py's counting rules
-python tools/test_tools.py      # the economicspace and JPL readers, commit subjects, anchors, the panel frame
+python tools/test_tools.py      # the economicspace and JPL readers, flyby alt text, commit subjects, anchors, the panel frame
 ```
 
 `check.py` reruns the generators and fails if anything in `docs/` differs from their output,

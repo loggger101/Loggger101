@@ -249,6 +249,7 @@ FACTS = [
     ("87.1% on fine class", "drone-target-id", "87.08%"),
     ("91.3% on valid/invalid", "drone-target-id", "91.31%"),
     ("fifteen real launch complexes", "Satellite-Space-Flight", "fifteen real launch complexes"),
+    ("1,584 Starlink satellites in one shell", "Satellite-Space-Flight", "1,584-satellite Walker shell"),
     ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
     ("28-job model campaign", "quietqueue", "28-job"),
 ]

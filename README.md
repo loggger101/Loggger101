@@ -83,7 +83,7 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
   </tr>
 </table>
 
-Four of the paper's figures (each links to the full size):
+Four figures from the asteroid-belt-gradient paper (each links to the full size):
 
 <p align="center">
   <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig1_c_fraction_vs_a.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-fraction-compact.webp"><img src="docs/figures/belt-fraction.webp" width="48.5%" alt="Carbonaceous fraction against semimajor axis in three samples, the Kirkwood gaps dotted"></picture></a>
@@ -192,7 +192,7 @@ The lines of code under each repo's name, added up by language.
 The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. The sizes are estimates from each body's brightness, as almost none has been measured.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 24–30 Oct 2026 (NASA/JPL close-approach data): 9 in all. 2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 11.6 km/s; 2026 UE, 5.2 lunar distances on Sun 25 Oct, 19–42 m, 15.9 km/s; 2026 SQ31, 6.0 lunar distances on Sun 25 Oct, 47–105 m, 7.8 km/s; 2026 TB8, 7.1 lunar distances on Sun 25 Oct, 45–100 m, 7.8 km/s; 2026 UB1, 9.5 lunar distances on Wed 28 Oct, 31–69 m, 18.7 km/s; 2018 GS1, 11.0 lunar distances on Wed 28 Oct, 81–180 m, 9.3 km/s; 2026 UD, 11.6 lunar distances on Fri 30 Oct, 20–44 m, 7.7 km/s; 2026 TT3, 12.8 lunar distances on Sat 24 Oct, 35–79 m, 12.8 km/s."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 24–30 Oct 2026 (NASA/JPL close-approach data): 9 in all. 2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 11.6 km/s; 2026 UE, 5.2 lunar distances on Sun 25 Oct, 19–42 m, 15.9 km/s; 2026 SQ31, 6.0 lunar distances on Sun 25 Oct, 47–105 m, 7.8 km/s; 2026 TB8, 7.1 lunar distances on Sun 25 Oct, 45–100 m, 7.8 km/s; 2026 UB1, 9.5 lunar distances on Wed 28 Oct, 31–69 m, 18.7 km/s; 2018 GS1, 11.0 lunar distances on Wed 28 Oct, 81–180 m, 9.3 km/s; 2026 UD, 11.6 lunar distances on Fri 30 Oct, 20–44 m, 7.7 km/s; 2026 TT3, 12.8 lunar distances on Sat 24 Oct, 35–79 m, 12.8 km/s; and 1 more farther out."></picture>
 </p>
 
 ### <picture><img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""></picture> Get in touch

@@ -1,6 +1,6 @@
 """Tests for the parts of the tools that read other people's formats or write the README's
 text: the economicspace and JPL readers, the commit-subject cleaner, the heading-anchor
-rule, the flyby sizes and the shared panel frame. One small sample per rule, with what it
+rule, the flyby sizes and alt text, and the shared panel frame. One small sample per rule, with what it
 should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
     python tools/test_tools.py
@@ -108,6 +108,14 @@ eq("size from H", (round(lo), round(hi)), (20, 45))
 eq("size text", fb.size_text({"h": 25.616, "diameter_km": None}), "20–45 m")
 eq("measured diameter", fb.size_text({"h": 18.0, "diameter_km": 1.2}), "1.2 km")
 eq("no H", fb.size_text({"h": None, "diameter_km": None}), "size unknown")
+
+# The flyby chart's alt text says what the chart does, including the rows it leaves off.
+ROW = {"des": "2026 TB94", "time": "2026-Oct-27 01:10", "dist_au": 0.0130929688951845, "v_kms": 11.6119243205877,
+       "h": 25.616, "diameter_km": None}
+eq("alt names a row", "2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 11.6 km/s." in fb.alt_text([ROW]), True)
+eq("alt counts the rows left off", fb.alt_text([ROW] * (fb.MAX_ROWS + 2)).endswith("; and 2 more farther out."), True)
+eq("alt leaves nothing off", "farther out" in fb.alt_text([ROW] * fb.MAX_ROWS), False)
+eq("alt for a quiet week", fb.alt_text([]).endswith("none this week."), True)
 
 # Commit subjects for the latest-commits list (activity.py).
 ac = load("activity")

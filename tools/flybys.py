@@ -64,7 +64,7 @@ def size_text(row):
 
 
 def when(row):
-    """'Mon 27 Oct' from JPL's '2026-Oct-27 01:10' (TDB, within a minute of UTC)."""
+    """'Tue 27 Oct' from JPL's '2026-Oct-27 01:10' (TDB, within a minute of UTC)."""
     t = dt.datetime.strptime(row["time"], "%Y-%b-%d %H:%M")
     return f"{t:%a} {t.day} {t:%b}"
 
@@ -77,10 +77,19 @@ def span():
 
 COUNT = len(FLYBYS["rows"])
 CLOSEST = FLYBYS["rows"][0] if FLYBYS["rows"] else None
-ALT = (f"Asteroids passing Earth within {MAX_LD} lunar distances, {span()} (NASA/JPL close-approach data): "
-       + (f"{COUNT} in all. " + "; ".join(f"{r['des']}, {ld(r):.1f} lunar distances on {when(r)}, {size_text(r)}, "
-                                          f"{r['v_kms']:.1f} km/s" for r in ROWS) + "."
-          if ROWS else "none this week."))
+def alt_text(rows):
+    """The chart in words: the count, each row it draws and how many it leaves off, as it does."""
+    head = f"Asteroids passing Earth within {MAX_LD} lunar distances, {span()} (NASA/JPL close-approach data): "
+    if not rows:
+        return head + "none this week."
+    shown = rows[:MAX_ROWS]
+    listed = "; ".join(f"{r['des']}, {ld(r):.1f} lunar distances on {when(r)}, {size_text(r)}, "
+                       f"{r['v_kms']:.1f} km/s" for r in shown)
+    more = f"; and {len(rows) - len(shown)} more farther out" if len(rows) > len(shown) else ""
+    return head + f"{len(rows)} in all. {listed}{more}."
+
+
+ALT = alt_text(FLYBYS["rows"])
 
 
 # Earth, the glow round it, and the asteroids' sunlit rock.
@@ -149,9 +158,9 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
                  else f"{ld(r):.1f} LD · {size_text(r)}")
         parts.append(f'<text class="fade" x="{at(MAX_LD) + size * 1.4:.1f}" y="{y + size * 0.35:.1f}" font-size="{size * 0.85:.1f}" '
                      f'fill="{TEXT}" style="{delay}">{html.escape(facts)}</text>')
-    if len(FLYBYS["rows"]) > MAX_ROWS:
+    if COUNT > len(ROWS):
         parts.append(f'<text x="{at(MAX_LD) + size * 1.4:.1f}" y="{bottom + 6 + size * 1.1:.1f}" font-size="{size * 0.75:.1f}" '
-                     f'fill="{DIM}">and {len(FLYBYS["rows"]) - MAX_ROWS} more farther out</text>')
+                     f'fill="{DIM}">and {COUNT - len(ROWS)} more farther out</text>')
     parts.append("</g>\n</svg>\n")
     return "\n".join(parts)
 
