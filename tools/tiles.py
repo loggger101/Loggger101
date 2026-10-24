@@ -35,10 +35,22 @@ def frame(i, label):
         f'<circle cx="{rng.uniform(8, W - 8):.1f}" cy="{rng.uniform(8, H - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
         for _ in range(14)
     )
+    # Three stars twinkle, as in the banner; drawn after the still ones, so those stay put.
+    twinkles = "".join(
+        f'<circle class="tw" cx="{rng.uniform(8, W - 8):.1f}" cy="{rng.uniform(8, H - 8):.1f}" r="1.2" fill="#dbe7ff" '
+        f'style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
+        for _ in range(3)
+    )
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{label}">
 <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient></defs>
+<style>
+  .tw {{ animation: tw 4s ease-in-out infinite; }}
+  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
+  @media (prefers-reduced-motion: reduce) {{ .tw {{ animation: none; }} }}
+</style>
 <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10" fill="url(#g)" stroke="#2a3b63"/>
 {stars}
+{twinkles}
 """
 
 
