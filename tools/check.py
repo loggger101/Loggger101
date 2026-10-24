@@ -7,8 +7,8 @@ every push (.github/workflows/check.yml).
    installed (CI again); it says so when it does.
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
-   stored counts, with refresh_counts.py's, loc.py's, activity.py's and languages.py's own
-   code (the last two write the panels' alt text), changes nothing. And each
+   stored counts, with refresh_counts.py's, loc.py's, activity.py's, languages.py's and
+   breakeven.py's own code (the last three write the panels' alt text), changes nothing. And each
    repo's lines of code by language (the languages panel) add up to its lines of code.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
    badges carry the logos badge_logos.py draws.
@@ -43,6 +43,7 @@ GENERATORS = {
     "icons.py": "icons",
     "activity.py": ".",
     "languages.py": ".",
+    "breakeven.py": ".",
 }
 # Generators that need something only the Windows machines have. Where it's missing (CI),
 # the check says it skipped them and doesn't look at their files.
@@ -118,14 +119,15 @@ def check_counts(readme):
     for name, update in (("refresh_counts", lambda m: m.update_readme(readme, counts)),
                          ("loc", lambda m: m.update_readme(readme, counts["loc"], counts["lines"])),
                          ("activity", lambda m: m.update_readme(readme)),
-                         ("languages", lambda m: m.update_readme(readme))):
+                         ("languages", lambda m: m.update_readme(readme)),
+                         ("breakeven", lambda m: m.update_readme(readme))):
         try:
             rewritten = update(load(name))
         except SystemExit as e:
             problems.append(f"{name}.py can't find its place in the README: {e}")
             continue
         if rewritten != readme:
-            rerun = {"activity": "refresh_activity", "languages": "loc"}.get(name, name)
+            rerun = {"activity": "refresh_activity", "languages": "loc", "breakeven": "refresh_counts"}.get(name, name)
             problems.append(f"README numbers differ from tools/counts.json (rerun {rerun}.py)")
     for repo, n in counts["loc"].items():
         by_language = sum(counts.get("languages", {}).get(repo, {}).values())

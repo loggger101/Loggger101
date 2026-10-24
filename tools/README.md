@@ -14,6 +14,7 @@ python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
 python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
 python tools/languages.py docs        # lines of code by language, plus the -compact version phones get
+python tools/breakeven.py docs        # economicspace's cost per dollar earned for each destination, plus -compact
 python tools/links.py docs/links      # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/footer.py docs           # the strip that closes the page, plus the -compact version phones get
 python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
@@ -65,6 +66,11 @@ The sources and skills numbers are in `counts.json`, which `refresh_counts.py` r
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes
 them. A weekly workflow (`.github/workflows/refresh-counts.yml`) runs it and `tiles.py`, along
 with `loc.py`, `refresh_activity.py` and the two panels, and commits whatever changed.
+
+`breakeven.py` draws the destinations table in economicspace's README (its latest
+full-catalog run for each place the pipeline delivers to), which `refresh_counts.py` reads
+into `counts.json`, keeping the winning asteroid but not its vehicle. If that table changes
+shape, `refresh_counts.py` stops with an error instead of publishing a half-read chart.
 
 `activity.py` and `languages.py` draw only from `counts.json`, so `check.py` can rerun them
 offline. Each also has an `update_readme()` that writes its panel's numbers into the

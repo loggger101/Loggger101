@@ -1,5 +1,5 @@
-# Keeps the research-sources and agent-skills tiles, each repo's lines of code, and the
-# activity and languages panels in step with their repos. The private repos' counts are
+# Keeps the research-sources and agent-skills tiles, each repo's lines of code, the
+# break-even chart and the activity and languages panels in step with their repos. The private repos' counts are
 # refreshed by running loc.py and refresh_activity.py locally. The activity panel runs to
 # the week of the run, so a run commits every week; it commits only if tools/check.py
 # passes on the result
@@ -31,6 +31,7 @@ jobs:
           python-version: "3.14"
       - run: python tools/refresh_counts.py
       - run: python tools/tiles.py docs/stats
+      - run: python tools/breakeven.py docs
       - run: python tools/loc.py --public-only
       - run: python tools/refresh_activity.py --public-only
       - run: python tools/activity.py docs

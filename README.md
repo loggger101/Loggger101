@@ -16,7 +16,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 <p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
-  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="602 research sources (General_Research)"></picture></a>
+  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="605 research sources (General_Research)"></picture></a>
   <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
@@ -57,6 +57,12 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>An audit of 17 repos I'd starred, read for code and data the pipeline could use. Its probe scripts check economicspace's delta-v estimates against JPL's NHATS and against optimized Lambert transfers, and found two errors that partly cancel: the plane change is overcharged, and the transfer geometry undercharged by more.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/NumPy-1f3354?style=flat-square&logo=numpy&logoColor=white" alt="NumPy"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture></td>
   </tr>
 </table>
+
+**Where it stands.** One row for each place the pipeline can deliver to, from its latest full-catalog runs: what the best mission costs for each dollar its cargo earns (filled dot) and what the median asteroid's does (open dot). Left of the dashed line, a mission pays for itself; none does yet.
+
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/breakeven-compact.svg"><img src="docs/breakeven.svg" width="100%" alt="Where the asteroid-mining pipeline stands: no destination breaks even yet. Cost per dollar earned, best mission and median asteroid, from economicspace's latest full-catalog runs: Mars surface 1.09× (2015 DS (X)), median 2.02×; Lunar surface 2.94× (2005 QP87 (X)), median 8.25×; Mars orbit 4.59× (350751 (B)), median 13.9×; Cislunar 4.84× (2018 DT (M)), median 20.9×; GEO 6.86× (2016 GS2 (D)), median 93.0×; LEO 17.0× (2005 QP87 (X)), median 60.5×; Earth surface 6,154× (2018 DT (M)), median 24,301×."></picture>
+</p>
 
 ### <picture><img src="docs/icons/planetary.svg" width="24" height="24" align="top" alt=""></picture> Planetary science
 
