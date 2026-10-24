@@ -118,6 +118,45 @@ def card(img, title, caption, seed, compact):
     return out
 
 
+# The AsteroidCatalog release asteroid-belt-gradient pins for its paper, already on disk
+# there (the catalog's own clone holds no build).
+CATALOG = GH / "asteroid-belt-gradient/data/asteroid_catalog_data-2026-09-29c.parquet"
+# Mean-motion resonances with Jupiter that clear the Kirkwood gaps, at their semimajor axes (au).
+GAPS = {"3:1": 2.502, "5:2": 2.825, "7:3": 2.958, "2:1": 3.279}
+A_RANGE, SIN_I_RANGE = (2.1, 3.35), (0.0, 0.33)
+
+
+def catalog_map():
+    """Every main-belt body in the catalog with proper elements, as a density map of proper
+    semimajor axis (across) against the sine of proper inclination (up), on a log scale:
+    the Kirkwood gaps are the dark columns and the collisional families the bright knots.
+    Returns the image and how many bodies it holds."""
+    import pyarrow.parquet as pq
+    t = pq.read_table(CATALOG, columns=["proper_semi_major_axis_au", "proper_inclination_deg"])
+    a = t.column(0).to_numpy(zero_copy_only=False).astype(float)
+    sin_i = np.sin(np.radians(t.column(1).to_numpy(zero_copy_only=False).astype(float)))
+    keep = (np.isfinite(a) & np.isfinite(sin_i) & (a >= A_RANGE[0]) & (a <= A_RANGE[1])
+            & (sin_i >= SIN_I_RANGE[0]) & (sin_i <= SIN_I_RANGE[1]))
+    counts, _, _ = np.histogram2d(sin_i[keep], a[keep], bins=(IH // 2, IW // 2), range=(SIN_I_RANGE, A_RANGE))
+    d = np.log1p(counts[::-1]) / np.log1p(counts.max())            # inclination up the image
+    # Navy for empty, through the profile's blue, to white for the densest.
+    stops = np.array([NAVY, (91, 163, 220), (240, 248, 255)], dtype=float)
+    lo = np.clip(d * 2, 0, 1)[..., None]
+    hi = np.clip(d * 2 - 1, 0, 1)[..., None]
+    rgb = np.where(d[..., None] < 0.5, stops[0] * (1 - lo) + stops[1] * lo, stops[1] * (1 - hi) + stops[2] * hi)
+    img = Image.fromarray(rgb.round().astype(np.uint8)).resize((IW, IH), Image.LANCZOS)
+    draw = ImageDraw.Draw(img)
+    font = ImageFont.truetype(str(FONTS / "segoeuib.ttf"), 13 * S)
+    small = ImageFont.truetype(str(FONTS / "segoeui.ttf"), 12 * S)
+    for label, at in GAPS.items():
+        x = (at - A_RANGE[0]) / (A_RANGE[1] - A_RANGE[0]) * IW
+        draw.line((x, 0, x, 7 * S), fill=(232, 194, 122), width=S)
+        draw.text((x, 9 * S), label, font=font, fill=(232, 194, 122), anchor="mt")
+    draw.text((IW - 8 * S, IH - 8 * S), "proper semimajor axis, 2.1–3.35 au →", font=small, fill=(219, 227, 245), anchor="rd")
+    draw.text((8 * S, IH - 8 * S), "↑ sin(proper inclination)", font=small, fill=(219, 227, 245), anchor="ld")
+    return img, int(keep.sum())
+
+
 # name: (image, repo name, caption). The caption is also the README's alt text; where an
 # animated card shows more (MOTION), the alt text says so.
 CARDS = {
@@ -129,7 +168,13 @@ CARDS = {
              "Mars Global Mosaic", "SVM landform classes across Tharsis and Valles Marineris"),
     "drone": (lambda: cover(Image.open(GH / "website/assets/projects/drone/overlay_demo_poster.jpg")),
               "drone-target-id", "Per-target valid/invalid scores on aerial footage"),
+    "catalog": (lambda: catalog_map()[0],
+                "AsteroidCatalog", "952,026 main-belt proper orbits: the Kirkwood gaps and families"),
+    "star": (lambda: fit(dark(Image.open(GH / "website/assets/projects/star/confusion_matrix_letters_test.webp"))),
+             "star-spectral-classifier", "Spectral letters on held-out stars: true against predicted"),
 }
+
+
 def clip(video, start, seconds, fps):
     """The video's frames from start for seconds, fps a second, as images."""
     with tempfile.TemporaryDirectory() as tmp:
