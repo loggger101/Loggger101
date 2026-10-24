@@ -237,13 +237,48 @@ def render(w, h, seed, field_args, panel_args):
     return "\n".join(parts)
 
 
+N_LATEST = 6       # commits in the README's list of latest ones
+PER_REPO = 2       # at most this many of them from one repo
+
+
+def subject(text, limit=100):
+    """A commit's subject line for the list: without the bookkeeping in brackets at its end
+    (a pull request's number, a knowledge-base section), cut at a word near limit, and
+    escaped so Markdown and HTML show it as typed."""
+    text = re.sub(r"\s*\((?:#\d+|KB\b[^)]*)\)", "", text).strip()
+    if len(text) > limit:
+        text = text[:limit].rsplit(" ", 1)[0].rstrip(",;:") + "…"
+    text = html.escape(text, quote=False)
+    return re.sub(r"([\\`*_\[\]|])", r"\\\1", text)
+
+
+def latest_list():
+    """The README's list of my latest commits to public repos, newest first."""
+    commits = [(date, repo, sha, text) for repo, r in ACTIVITY["repos"].items() for sha, date, text in r.get("recent", [])]
+    commits.sort(key=lambda c: (c[0], c[1]), reverse=True)
+    shown, per = [], {}
+    for date, repo, sha, text in commits:
+        if per.get(repo, 0) < PER_REPO and len(shown) < N_LATEST:
+            per[repo] = per.get(repo, 0) + 1
+            day_ = dt.date.fromisoformat(date)
+            shown.append(f"- {day_.day} {day_:%b} · [{README_NAMES.get(repo, repo)}]"
+                         f"(https://github.com/loggger101/{repo}/commit/{sha}): {subject(text)}")
+    return "\n".join(shown)
+
+
 def update_readme(readme):
     """The README with this panel's alt text written in, so a screen reader hears the numbers
-    the image shows. refresh_activity.py calls it after refreshing the counts; check.py checks it."""
+    the image shows, and the list of latest commits under it. refresh_activity.py calls it
+    after refreshing the counts; check.py checks it."""
     pattern = r'(src="docs/activity\.svg" width="100%" alt=")[^"]*(")'
     readme, n = re.subn(pattern, lambda m: m[1] + html.escape(ALT, quote=False).replace('"', '&quot;') + m[2], readme)
     if n != 1:
         sys.exit(f"README image docs/activity.svg matched {n} times, expected 1")
+    # The list sits between two markers, on lines of its own; it can be empty.
+    readme, n = re.subn(r"(<!-- latest commits -->\n)(?:.*?\n)?(<!-- /latest commits -->)",
+                        lambda m: m[1] + latest_list() + "\n" + m[2], readme, flags=re.S)
+    if n != 1:
+        sys.exit(f"README's latest-commits markers matched {n} times, expected 1")
     return readme
 
 

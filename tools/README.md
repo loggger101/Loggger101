@@ -32,9 +32,11 @@ if an OneDrive conflict copy is present. CI runs it on every push (`check.yml`),
 weekly workflow runs it before committing and checks the links in a separate job.
 
 The banner, footer, tiles, repo diagram and both panels move, with CSS animations in each
-SVG: stars twinkle everywhere; points of light run along the diagram's data arrows and its
-citation dashes creep; the activity panel's dots come in round the orbit in time order;
-and the bars grow in. Each SVG stops it all under `prefers-reduced-motion`, and every
+SVG: stars twinkle everywhere; the tiles' numbers roll up like an odometer; points of light
+run along the diagram's data arrows and its citation dashes creep; the activity panel's
+dots come in round the orbit in time order; and the bars grow in. The odometer places each
+character itself, using Segoe UI Bold's widths (`ADVANCE` in `tiles.py`), since CI has no
+fonts to measure with. Each SVG stops it all under `prefers-reduced-motion`, and every
 animation's resting state is the finished picture, so a still render (reduced motion, a
 thumbnail) shows everything. Anything that shows only while moving, like the banner's
 shooting star or the diagram's points of light, is hidden when still.
@@ -55,8 +57,10 @@ drone cards also come animated (`-motion.webp`, listed in `MOTION`):
 
 The README shows them to everyone but those who ask for reduced motion, who get the still
 card through a `<picture>` source. A full run takes about twelve minutes, nearly all of it
-WebP compressing the animations; name cards after the output folder to make only those. The catalog and belt
-numbers on the tiles are set in `tiles.py`; check them against the source repos before changing.
+WebP compressing the animations; name cards after the output folder to make only those.
+
+The catalog and belt numbers on the tiles are set in `tiles.py`; check them against the
+source repos before changing.
 The sources and skills numbers are in `counts.json`, which `refresh_counts.py` rewrites from
 General_Research's `sources.csv` and Hermes_Skills' README, along with the README text that quotes
 them. A weekly workflow (`.github/workflows/refresh-counts.yml`) runs it and `tiles.py`, along
@@ -65,7 +69,12 @@ with `loc.py`, `refresh_activity.py` and the two panels, and commits whatever ch
 `activity.py` and `languages.py` draw only from `counts.json`, so `check.py` can rerun them
 offline. Each also has an `update_readme()` that writes its panel's numbers into the
 README's alt text, which `refresh_activity.py` and `loc.py` call after a refresh and
-`check.py` checks, so a screen reader hears what the image shows. `refresh_activity.py` counts the commits whose author name or email holds
+`check.py` checks, so a screen reader hears what the image shows. `activity.py`'s also
+writes the list of my latest commits under the panel, between the `latest commits`
+markers: the newest six across the public repos, two at most from any one, merges left
+out. Private repos' commit messages are never fetched into `counts.json`.
+
+`refresh_activity.py` counts the commits whose author name or email holds
 `loggger101`, which leaves out the bots (the website's deploy workflow, General_Research's
 cron), from a commit-only clone of each repo. The panel's rings follow `SECTIONS` in
 `activity.py`; a repo added to the README goes there too, or `activity.py` stops with an

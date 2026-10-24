@@ -138,6 +138,17 @@ Every commit I've made to the repos above, from the first to this week. Each rin
   <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 24 Oct 2026, drawn as one orbit per section of this page: 3,153 in all, Space economics 609, Planetary science 119, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,854. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: Mars Global Mosaic, 23 Oct 2026."></picture>
 </p>
 
+My latest commits:
+
+<!-- latest commits -->
+- 23 Oct · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/cdac6d75d9f4f2c7d8f7766468186a8d484d9019): The label proposals built on the drive: 1,086 rows, the laptop's result exactly
+- 23 Oct · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/e11642d6741d03d4b351e48535689d411ade6eda): The final started: AASTeX paper and final deck, and the drive merged with §68
+- 22 Oct · [General_Research](https://github.com/loggger101/General_Research/commit/f846ef86da9911b955c29117d23acb1a65e7b8d9): Round 240: owner rejects 8 sources; new "Sources to replace" list with 15 flags
+- 22 Oct · [General_Research](https://github.com/loggger101/General_Research/commit/5418e8879a66ad91b9d3eda61258a634b000619d): Round 239: source audit; owner rejects 25 sources that back no cell or that upstream stopped citing
+- 21 Oct · [starred-repos](https://github.com/loggger101/starred-repos/commit/223bfef746d4e9c5fdf37552f9b0268d61be9991): README: economicspace's orbital.py keeps only elements\_to\_state; the solvers are here alone
+- 21 Oct · [spacecost](https://github.com/loggger101/spacecost/commit/643a7832ddcfd99eecc202ebfa2c36b7e8b175e6): Cut 0.12.6: seven wording and citation RCs (data contract 1.23.6)
+<!-- /latest commits -->
+
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
 
 The lines of code under each repo's name, added up by language.
