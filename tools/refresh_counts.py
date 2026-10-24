@@ -1,12 +1,16 @@
-"""Refresh the counts that keep growing: research sources and agent skills.
+"""Refresh the counts that keep growing: research sources, agent skills, the catalog's
+size, and where the mining pipeline stands.
 
 Reads them from the source repos on GitHub, writes tools/counts.json, and rewrites the
-README sentences and alt text that quote them. Run tiles.py afterwards to redraw the
-tiles. The weekly workflow (.github/workflows/refresh-counts.yml) does both.
+README sentences and alt text that quote them. Run tiles.py and pipeline.py afterwards to
+redraw the tiles and the repo diagram. The weekly workflow
+(.github/workflows/refresh-counts.yml) does all of it.
 
 - sources: rows in General_Research's sources.csv (the registry; rejected sources are
   kept out of it, in INDEX.md).
 - skills, skill_categories: the opening line of Hermes_Skills' README.
+- catalog_rows: the row count in the manifest of AsteroidCatalog's latest release, shown
+  everywhere as millions to two places ("1.58M", "about 1.58 million").
 - economics: the destinations table in economicspace's README, the latest full-catalog
   run for each place the pipeline delivers to (best cost per dollar of revenue, the
   winning asteroid, the median body's). breakeven.py draws it; this also writes that
@@ -25,6 +29,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = "https://raw.githubusercontent.com/loggger101"
+MANIFEST = "https://github.com/loggger101/AsteroidCatalog/releases/latest/download/manifest.json"
 
 
 def fetch(path):
@@ -40,8 +45,17 @@ def live_counts():
         sys.exit("Hermes_Skills README no longer states its skill and category counts")
     if sources < 100:
         sys.exit(f"sources.csv has only {sources} rows; refusing to publish that")
-    return {"sources": sources, "skills": int(m[1]), "skill_categories": int(m[2]),
+    with urllib.request.urlopen(MANIFEST, timeout=30) as r:
+        rows = int(json.loads(r.read().decode("utf-8"))["rows"])
+    if rows < 1_000_000:
+        sys.exit(f"AsteroidCatalog's latest manifest says {rows} rows; refusing to publish that")
+    return {"sources": sources, "skills": int(m[1]), "skill_categories": int(m[2]), "catalog_rows": rows,
             "economics": destinations(fetch("economicspace/main/README.md"))}
+
+
+def millions(rows):
+    """1575889 -> "1.58": how the profile writes the catalog's size, everywhere."""
+    return f"{rows / 1e6:.2f}"
 
 
 def destinations(readme):
@@ -76,6 +90,12 @@ README_PATTERNS = [
      lambda c: f'alt="{c["skills"]:,} agent skills (Hermes_Skills)"'),
     (r"My library of \d[\d,]* agent skills in \d+ categories",
      lambda c: f"My library of {c['skills']:,} agent skills in {c['skill_categories']} categories"),
+    (r'alt="[\d.]+M asteroids cataloged \(AsteroidCatalog\)"',
+     lambda c: f'alt="{millions(c["catalog_rows"])}M asteroids cataloged (AsteroidCatalog)"'),
+    (r"I built a catalog of about [\d.]+ million of them",
+     lambda c: f"I built a catalog of about {millions(c['catalog_rows'])} million of them"),
+    (r"About [\d.]+ million asteroids from JPL SBDB",
+     lambda c: f"About {millions(c['catalog_rows'])} million asteroids from JPL SBDB"),
 ]
 
 

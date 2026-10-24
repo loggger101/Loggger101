@@ -12,11 +12,15 @@ direction the data goes, the citations' dashes creep toward what cites them, and
 stars twinkle. With reduced motion it stands still, and the points of light, which only
 show while they move, are gone.
 """
+import json
 import sys
 from pathlib import Path
 
 import panel
+from refresh_counts import millions
 
+# The catalog's size, which refresh_counts.py keeps current.
+CATALOG_ROWS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["catalog_rows"]
 OUT = Path(sys.argv[1])
 OUT.mkdir(parents=True, exist_ok=True)
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -24,7 +28,7 @@ FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 # key: (title, line 1, line 2, kind). "repo" cards are repositories, "out" cards are what they produce.
 NODES = {
     "gr": ("General_Research", "the sources the", "other repos cite", "repo"),
-    "ac": ("AsteroidCatalog", "1.57M asteroids,", "frozen releases", "repo"),
+    "ac": ("AsteroidCatalog", f"{millions(CATALOG_ROWS)}M asteroids,", "frozen releases", "repo"),
     "sc": ("spacecost", "cited cost and mass", "tables, pip package", "repo"),
     "abg": ("asteroid-belt-gradient", "S/C gradient across", "161,659 asteroids", "repo"),
     "es": ("economicspace", "prices minerals, costs", "transport, sums profit", "repo"),

@@ -5,7 +5,9 @@ should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
     python tools/test_tools.py
 """
+import datetime as dt
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
@@ -73,6 +75,19 @@ stops("column dropped", rc.destinations, TABLE.replace("| destination | cost / r
 stops("winner without a class", rc.destinations, TABLE.replace("2015 DS (X), Falcon", "2015 DS, Falcon"))
 stops("too few rows", rc.destinations, "\n".join(l for l in TABLE.splitlines() if "x |" not in l or "mars_surface" in l))
 
+# The catalog's size, written the same way everywhere (refresh_counts.py).
+eq("millions rounds", rc.millions(1575889), "1.58")
+eq("millions keeps two places", rc.millions(1568878), "1.57")
+PROSE = ('<img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"> '
+         "I built a catalog of about 1.57 million of them. About 1.57 million asteroids from JPL SBDB, "
+         'alt="602 research sources (General_Research)" alt="253 agent skills (Hermes_Skills)" '
+         "My library of 253 agent skills in 23 categories")
+out = rc.update_readme(PROSE, {"sources": 605, "skills": 253, "skill_categories": 23, "catalog_rows": 1575889})
+eq("catalog size rewritten in three places", out.count("1.58"), 3)
+eq("nothing left at the old size", "1.57" in out, False)
+stops("a sentence gone missing", rc.update_readme, PROSE.replace("I built a catalog", "I made a catalog"),
+      {"sources": 605, "skills": 253, "skill_categories": 23, "catalog_rows": 1575889})
+
 # JPL's close-approach answers (refresh_flybys.py).
 rf = load("refresh_flybys")
 ANSWER = {"count": "1", "fields": ["des", "orbit_id", "jd", "cd", "dist", "dist_min", "dist_max", "v_rel", "v_inf",
@@ -107,6 +122,17 @@ ck = load("check")
 eq("icon heading", ck.anchor('<picture><img src="docs/icons/x.svg" alt=""></picture> Space economics'), "-space-economics")
 eq("hyphen kept", ck.anchor('<picture><img src="x" alt=""></picture> Rare-disease work'), "-rare-disease-work")
 eq("plain heading", ck.anchor("Image generators"), "image-generators")
+
+# Freshness (check.py --fresh): a missed week is flagged, a normal Monday isn't.
+data = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
+oldest = min(dt.date.fromisoformat(data["flybys"]["from"]), dt.date.fromisoformat(data["activity"]["as_of"]))
+ck.problems.clear()
+ck.check_fresh(today=oldest + dt.timedelta(days=7))
+eq("a week on: fresh", ck.problems, [])
+ck.problems.clear()
+ck.check_fresh(today=oldest + dt.timedelta(days=15))
+eq("two weeks on: both flagged", len(ck.problems), 2)
+ck.problems.clear()
 
 # The shared frame (panel.py): every animated class is stopped under reduced motion.
 pn = load("panel")

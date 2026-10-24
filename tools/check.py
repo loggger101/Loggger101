@@ -19,6 +19,9 @@ every push (.github/workflows/check.yml).
 7. Every link to a place in the README (href="#...") names a heading's anchor, so renaming
    a section can't leave the section links pointing nowhere.
 8. With --links (online; the weekly workflow): every link and badge in the README answers.
+9. With --fresh (the weekly workflow): the week-by-week data was refreshed within FRESH_DAYS.
+   The flyby step may fail without stopping the others, so this is what notices if it
+   keeps failing; a week the whole refresh missed shows here too.
 
 Prints each problem and exits 1 if there are any.
 """
@@ -226,6 +229,22 @@ def check_conflict_copies():
         problems.append(f"OneDrive conflict copy: {f}")
 
 
+# The weekly refresh runs every 7 days; a day's grace for a late run.
+FRESH_DAYS = 8
+
+
+def check_fresh(today=None):
+    """The flyby chart and the activity data are no older than FRESH_DAYS."""
+    import datetime as dt
+    today = today or dt.datetime.now(dt.timezone.utc).date()
+    counts = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
+    for what, day, step in (("the flyby chart", counts["flybys"]["from"], "refresh_flybys.py"),
+                            ("the activity data", counts["activity"]["as_of"], "refresh_activity.py")):
+        age = (today - dt.date.fromisoformat(day)).days
+        if age > FRESH_DAYS:
+            problems.append(f"{what} was last refreshed on {day}, {age} days ago: is {step} failing in the weekly workflow?")
+
+
 # LinkedIn answers every script with 999; a 999 from it says nothing about the link.
 LINK_STATUS_OK = {"www.linkedin.com": {999}}
 
@@ -262,6 +281,8 @@ def main():
     check_anchors(readme)
     if "--links" in sys.argv[1:]:
         check_links(readme)
+    if "--fresh" in sys.argv[1:]:
+        check_fresh()
     for p in problems:
         print(f"- {p}")
     if problems:
