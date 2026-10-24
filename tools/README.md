@@ -13,6 +13,7 @@ python tools/gallery.py docs/gallery  # project cards (three animated), plus the
 python tools/typing_line.py docs/typing.svg
 python tools/pipeline.py docs         # the repo diagram, plus the -compact version phones get
 python tools/activity.py docs         # every commit so far as orbits, plus the -compact version phones get
+python tools/sparks.py docs/sparks     # the commits-per-week line under each repo's name
 python tools/languages.py docs        # lines of code by language, plus the -compact version phones get
 python tools/breakeven.py docs        # economicspace's cost per dollar earned for each destination, plus -compact
 python tools/refresh_flybys.py         # NASA/JPL's close approaches to Earth for the week ahead
