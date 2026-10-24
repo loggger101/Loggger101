@@ -163,6 +163,14 @@ The lines of code under each repo's name, added up by language.
   <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="107,081 lines of code in 10 languages: Python 87,162 (81.4%), Perl 6,747 (6.3%), JavaScript 5,326 (5.0%), HTML 4,092 (3.8%), CSS 2,375 (2.2%), Shell 644 (0.6%), Batchfile, PowerShell, VBScript and Dockerfile 735 (0.7%)."></picture>
 </p>
 
+### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
+
+The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. The sizes are estimates from each body's brightness, as almost none has been measured.
+
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 24–30 Oct 2026 (NASA/JPL close-approach data): 9 in all. 2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 11.6 km/s; 2026 UE, 5.2 lunar distances on Sun 25 Oct, 19–42 m, 15.9 km/s; 2026 SQ31, 6.0 lunar distances on Sun 25 Oct, 47–105 m, 7.8 km/s; 2026 TB8, 7.1 lunar distances on Sun 25 Oct, 45–100 m, 7.8 km/s; 2026 UB1, 9.5 lunar distances on Wed 28 Oct, 31–69 m, 18.7 km/s; 2018 GS1, 11.0 lunar distances on Wed 28 Oct, 81–180 m, 9.3 km/s; 2026 UD, 11.6 lunar distances on Fri 30 Oct, 20–44 m, 7.7 km/s; 2026 TT3, 12.8 lunar distances on Sat 24 Oct, 35–79 m, 12.8 km/s."></picture>
+</p>
+
 ### <picture><img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""></picture> Get in touch
 
 <p align="center">The contact form on my site goes straight to my email, or you can message me on LinkedIn.</p>
