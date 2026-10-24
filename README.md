@@ -14,6 +14,10 @@ I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Plan
 Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a company that matches patients with rare brain diseases to research, and VP of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org), a rare-disease nonprofit. I run the websites and patient databases for both.
 
 <p align="center">
+  <a href="#-space-economics">Space economics</a> · <a href="#-planetary-science">Planetary science</a> · <a href="#-deep-learning">Deep learning</a> · <a href="#-simulation">Simulation</a> · <a href="#-rare-disease-work">Rare-disease work</a> · <a href="#-elsewhere">Elsewhere</a> · <a href="#-every-commit-so-far">Commits</a> · <a href="#-languages">Languages</a> · <a href="#-passing-earth-this-week">Flybys</a> · <a href="#-get-in-touch">Contact</a>
+</p>
+
+<p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
   <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="605 research sources (General_Research)"></picture></a>

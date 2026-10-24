@@ -16,7 +16,9 @@ every push (.github/workflows/check.yml).
 5. Every SVG in docs/ is valid XML, every <img> in the README has alt text, and the
    README's HTML tags are balanced.
 6. No OneDrive conflict copies (*-DESKTOP-*) are in the repo.
-7. With --links (online; the weekly workflow): every link and badge in the README answers.
+7. Every link to a place in the README (href="#...") names a heading's anchor, so renaming
+   a section can't leave the section links pointing nowhere.
+8. With --links (online; the weekly workflow): every link and badge in the README answers.
 
 Prints each problem and exits 1 if there are any.
 """
@@ -201,6 +203,21 @@ def check_markup(readme):
         problems.append(f"README line {line}: <{tag}> is never closed")
 
 
+def anchor(heading):
+    """The anchor GitHub gives a heading: its text without markup, lower case, punctuation
+    other than hyphens dropped, spaces as hyphens. The icon in front of the section names
+    leaves a space, hence their leading hyphen ("#-space-economics")."""
+    text = re.sub(r"<[^>]+>", "", heading).lower()
+    return re.sub(r"[^\w\- ]", "", text).replace(" ", "-")
+
+
+def check_anchors(readme):
+    anchors = {anchor(m[1]) for m in re.finditer(r"(?m)^#+ (.*)$", readme)}
+    for target in sorted(set(re.findall(r'href="#([^"]+)"', readme))):
+        if target not in anchors:
+            problems.append(f"README links to #{target}, which no heading has; headings give {sorted(anchors)}")
+
+
 def check_conflict_copies():
     tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, capture_output=True, text=True).stdout.split("\n")
     on_disk = [p.relative_to(ROOT).as_posix() for p in ROOT.rglob("*-DESKTOP-*") if ".git" not in p.parts]
@@ -241,6 +258,7 @@ def main():
     check_typing_and_badges(readme, badge_urls)
     check_markup(readme)
     check_conflict_copies()
+    check_anchors(readme)
     if "--links" in sys.argv[1:]:
         check_links(readme)
     for p in problems:
