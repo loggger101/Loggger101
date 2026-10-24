@@ -2,8 +2,9 @@
 every push (.github/workflows/check.yml).
 
 1. Every generated image in docs/ is what its generator makes today, so nothing was edited
-   by hand or left behind after a generator changed. gallery.py is skipped: it reads
-   the project clones, which CI doesn't have. So is links.py where Segoe UI isn't
+   by hand or left behind after a generator changed. gallery.py is skipped (its cards in
+   docs/gallery and figures in docs/figures): it reads the project clones, which CI
+   doesn't have. So is links.py where Segoe UI isn't
    installed (CI again); it says so when it does.
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
@@ -111,7 +112,7 @@ def check_generated():
         rel = f.relative_to(DOCS).as_posix()
         if any(rel.startswith(t + "/") for t in skipped):
             continue
-        if rel not in made and rel not in NOT_GENERATED and not rel.startswith("gallery/"):
+        if rel not in made and rel not in NOT_GENERATED and not rel.startswith(("gallery/", "figures/")):
             problems.append(f"docs/{rel} has no generator; add it to GENERATORS or NOT_GENERATED")
     return badge_urls
 

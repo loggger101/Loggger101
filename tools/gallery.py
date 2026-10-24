@@ -243,10 +243,45 @@ def save(frames, path, compact, fps=None):
     print(path.name, path.stat().st_size)
 
 
-# python tools/gallery.py OUT [NAME ...]: every card, or only the ones named.
-ONLY = set(sys.argv[2:]) or set(CARDS)
-if ONLY - set(CARDS):
-    sys.exit(f"unknown card {', '.join(sorted(ONLY - set(CARDS)))}; choose from {', '.join(CARDS)}")
+SIM = GH / "Satellite Space Flight/docs/images"
+BELT = GH / "asteroid-belt-gradient/figures"
+# The figure grids inside the Simulation and Planetary science sections, drawn as cards
+# into docs/figures beside docs/gallery. Same shape as CARDS, but the title names the
+# figure, not the repo. The simulator's scenes are the ones its own make_screenshots.py
+# draws (their docstrings are the captions); the paper's figures are darkened like the
+# belt card, and their captions shorten the paper's own.
+FIGURES = {
+    "sim-hohmann": (lambda: cover(Image.open(SIM / "hohmann.png")),
+                    "Hohmann transfer", "Half-way up a transfer to GEO"),
+    "sim-starlink": (lambda: cover(Image.open(SIM / "starlink.png")),
+                     "Starlink shell", "1,584 satellites in one shell"),
+    "sim-molniya": (lambda: cover(Image.open(SIM / "molniya_ecef_map.png")),
+                    "Molniya and Tundra", "Ground tracks in the Earth-fixed frame"),
+    "sim-launch": (lambda: cover(Image.open(SIM / "launch_ascent.png")),
+                   "Launch", "Following a Falcon 9 through its second-stage burn"),
+    "belt-fraction": (lambda: fit(dark(Image.open(BELT / "fig1_c_fraction_vs_a.png"))),
+                      "Carbonaceous fraction", "Across the belt in three samples; Kirkwood gaps dotted"),
+    "belt-crossover": (lambda: fit(dark(Image.open(BELT / "fig7_crossover_fits.png"))),
+                       "The S/C crossover", "Logistic fits to four samples, each with its interval"),
+    "belt-size-distance": (lambda: fit(dark(Image.open(BELT / "fig6_size_distance_map.png"))),
+                           "Size and distance", "C/(S+C) in 0.1 au cells, four ranges of diameter"),
+    "belt-proper": (lambda: fit(dark(Image.open(BELT / "fig8_proper_elements.png"))),
+                    "Proper elements", "S- and C-like background bodies over the families"),
+}
+
+
+# python tools/gallery.py OUT [NAME ...]: every card and figure, or only the ones named.
+ONLY = set(sys.argv[2:]) or set(CARDS) | set(FIGURES)
+if ONLY - set(CARDS) - set(FIGURES):
+    sys.exit(f"unknown card {', '.join(sorted(ONLY - set(CARDS) - set(FIGURES)))}; "
+             f"choose from {', '.join([*CARDS, *FIGURES])}")
+FIG_OUT = OUT.parent / "figures"
+FIG_OUT.mkdir(parents=True, exist_ok=True)
+for i, (name, (make, title, caption)) in enumerate(FIGURES.items()):
+    if name in ONLY:
+        img = make()
+        for compact, suffix in ((False, ""), (True, "-compact")):
+            save([card(img, title, caption, 300 + i, compact)], FIG_OUT / f"{name}{suffix}.webp", compact)
 for i, (name, (make, title, caption)) in enumerate(CARDS.items()):
     if name not in ONLY:
         continue

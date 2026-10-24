@@ -10,6 +10,7 @@ Mondays) fetches it again and redraws them.
 | banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
 | stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest (`refresh_counts.py`); the belt number is set in `tiles.py` | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
+| figure grids in Simulation and Planetary science | `gallery.py` (`FIGURES`) | the scenes the simulator's own `make_screenshots.py` draws, and the paper's figures | by hand |
 | repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
 | line counts under each repo, the languages panel | `loc.py`, `languages.py` | each repo's default branch | weekly; the two private repos by hand |
 | sparklines, the activity panel, the latest commits | `refresh_activity.py`, `sparks.py`, `activity.py` | each repo's commit history | weekly; the two private repos by hand |
@@ -36,7 +37,7 @@ python tools/activity.py docs          # every commit so far as orbits, plus -co
 python tools/sparks.py docs/sparks     # the commits-per-week line under each repo's name
 python tools/languages.py docs         # lines of code by language, plus -compact
 python tools/flybys.py docs            # the week's close approaches, plus -compact
-python tools/gallery.py docs/gallery   # project cards (three animated), plus -compact; name cards (mars drone) to make only those
+python tools/gallery.py docs/gallery   # project cards (three animated) and, into docs/figures, the figure grids; name some (mars sim-launch) to make only those
 python tools/banner.py docs/banner.svg
 python tools/typing_line.py docs/typing.svg
 python tools/footer.py docs            # the strip that closes the page, plus -compact
