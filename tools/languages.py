@@ -12,12 +12,12 @@ uses larger text, for phones; the README swaps it in with <picture>.
 """
 import html
 import json
-import random
 import re
 import sys
 from pathlib import Path
 
 from loc import README_NAMES
+import panel
 
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 BLUE, TEXT, DIM = "#5ba3dc", "#dbe3f5", "#7d8fb3"
@@ -67,32 +67,7 @@ ALT = (f"{TOTAL:,} lines of code in {len(ranked)} languages: "
 
 
 def background(w, h, seed):
-    rng = random.Random(seed)
-    stars = "".join(
-        f'<circle cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
-        for _ in range(int(w * h / 4500))
-    )
-    # Drawn after the still stars, so those stay where they were.
-    twinkles = "".join(
-        f'<circle class="tw" cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([1.1, 1.3])}" '
-        f'fill="#dbe7ff" style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
-        for _ in range(int(w * h / 60000))
-    )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{html.escape(ALT)}">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient></defs>
-<style>
-  .tw {{ animation: tw 4s ease-in-out infinite; }}
-  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
-  .grow {{ transform-box: fill-box; transform-origin: left center; animation: grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }}
-  @keyframes grow {{ from {{ transform: scaleX(0); }} }}
-  .fade {{ animation: fade 0.8s ease-out both; }}
-  @keyframes fade {{ from {{ opacity: 0; }} }}
-  @media (prefers-reduced-motion: reduce) {{ .tw, .grow, .fade {{ animation: none; }} }}
-</style>
-<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="16" fill="url(#g)" stroke="#2a3b63"/>
-{stars}
-{twinkles}
-"""
+    return panel.background(w, h, seed, ALT, rules=(*panel.GROW, *panel.FADE), animated=("grow", "fade"))
 
 
 def render(w, seed, pad, big, size, row_gap, name_w, bar_w, num_w, with_repos):
