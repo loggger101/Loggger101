@@ -6,6 +6,11 @@ README swaps it in with <picture>, as it does for the stat tiles.
 
 Solid arrows carry data (a pinned release or an installed package); dashed arrows are
 citations. Check an edge against the two repos' READMEs before adding or moving it.
+
+It moves the way the banner does: points of light run along the data arrows in the
+direction the data goes, the citations' dashes creep toward what cites them, and a few
+stars twinkle. With reduced motion it stands still, and the points of light, which only
+show while they move, are gone.
 """
 import random
 import sys
@@ -56,14 +61,30 @@ def background(w, h, seed):
         f'<circle cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
         for _ in range(int(w * h / 4500))
     )
+    # Drawn after the still stars, so those stay where they were.
+    twinkles = "".join(
+        f'<circle class="tw" cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([1.1, 1.3])}" '
+        f'fill="#dbe7ff" style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
+        for _ in range(int(w * h / 60000))
+    )
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{ALT}">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#5ba3dc"/></marker>
 <marker id="arrow-dim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7d8fb3"/></marker>
 </defs>
+<style>
+  .tw {{ animation: tw 4s ease-in-out infinite; }}
+  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
+  .flow {{ opacity: 0; animation: flow {FLOW_SECONDS}s linear infinite; }}
+  @keyframes flow {{ from {{ stroke-dashoffset: {FLOW_GAP}; opacity: 0.9; }} to {{ stroke-dashoffset: 0; opacity: 0.9; }} }}
+  .cite {{ animation: cite 1.2s linear infinite; }}
+  @keyframes cite {{ from {{ stroke-dashoffset: 10; }} to {{ stroke-dashoffset: 0; }} }}
+  @media (prefers-reduced-motion: reduce) {{ .tw, .flow, .cite {{ animation: none; }} }}
+</style>
 <rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="16" fill="url(#g)" stroke="#2a3b63"/>
 {stars}
+{twinkles}
 """
 
 
@@ -83,6 +104,23 @@ def card(key, x, y, w, h, title_size, line_size):
 <text x="{x + 16}" y="{top + 2 * gap + 4:.1f}" font-size="{line_size}" fill="#b9c6e4">{l2}</text>"""
 
 
+FLOW_GAP = 48          # px between the points of light on a data arrow
+FLOW_SECONDS = 1.4     # time for each to travel FLOW_GAP
+
+
+def arrow(d, dashed):
+    """The path d as a citation (dashed, its dashes creeping forward) or as a data arrow
+    with points of light running along it. A dash offset falling to 0 moves the pattern
+    toward the end of the path. Each point of light is a wide faint dot under a small bright
+    one; the group's dash offset, which both inherit, moves them together."""
+    if dashed:
+        return f'<path class="cite" d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
+    dots = f'fill="none" stroke-linecap="round" stroke-dasharray="0.01 {FLOW_GAP - 0.01}"'
+    return (f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
+            f'<g class="flow"><path d="{d}" {dots} stroke="#5ba3dc" stroke-opacity="0.45" stroke-width="13"/>'
+            f'<path d="{d}" {dots} stroke="#ffffff" stroke-width="6"/></g>')
+
+
 def edge(a, b, dashed, horizontal):
     """Arrow from box a to box b; boxes are (x, y, w, h). Curves when they are not in line."""
     ax, ay, aw, ah = a
@@ -95,9 +133,7 @@ def edge(a, b, dashed, horizontal):
         x1, y1, x2, y2 = ax + aw / 2, ay + ah, bx + bw / 2, by - 3
         mid = (y1 + y2) / 2
         d = f"M{x1:.1f} {y1:.1f} C{x1:.1f} {mid:.1f} {x2:.1f} {mid:.1f} {x2:.1f} {y2:.1f}"
-    if dashed:
-        return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
-    return f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
+    return arrow(d, dashed)
 
 
 def detour(boxes, horizontal):
@@ -120,7 +156,7 @@ def detour(boxes, horizontal):
         x2 = ex + ew * 0.3
         d = (f"M{gap:.1f} {gy + gh:.1f} V{lane - r:.1f} "
              f"C{gap:.1f} {lane + r:.1f} {x2:.1f} {lane - r:.1f} {x2:.1f} {ey - 3:.1f}")
-    return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
+    return arrow(d, True)
 
 
 def from_below(a, e, dashed, horizontal, frac, lane=None):
@@ -141,9 +177,7 @@ def from_below(a, e, dashed, horizontal, frac, lane=None):
         x1, turn = (ax + aw, lane - r) if ax < lane else (ax, lane + r)
         d = (f"M{x1:.1f} {y1:.1f} H{turn:.1f} Q{lane:.1f} {y1:.1f} {lane:.1f} {y1 - r:.1f} "
              f"V{y2 + r:.1f} Q{lane:.1f} {y2:.1f} {lane + r:.1f} {y2:.1f} H{ex - 3:.1f}")
-    if dashed:
-        return f'<path d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
-    return f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
+    return arrow(d, dashed)
 
 
 def route(a, b, dashed, boxes, horizontal, below):

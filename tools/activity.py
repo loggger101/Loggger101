@@ -11,6 +11,10 @@ busiest week and the latest commit.
 The numbers are refresh_activity.py's, from tools/counts.json, and the orbit ends at the
 week it last ran, so this draws the same thing until the counts change.
 
+It moves the way the banner does. When it loads, the dots come in round the orbit in the
+order the weeks happened and the bars grow; after that the star breathes, "now" glows and
+a few stars twinkle. With reduced motion it is drawn finished and still.
+
 `activity.svg` puts the panel beside the rings, for desktop widths; `activity-compact.svg`
 puts it underneath with larger text, for phones, and the README swaps it in with <picture>.
 """
@@ -44,6 +48,7 @@ if sorted(listed) != sorted(ACTIVITY["repos"]):
 
 GAP = 62            # degrees left empty at the top left for the ring names
 MAX_DOTS = 60       # dots a ring holds at most; the inner ring can't fit more apart
+SWEEP = 2.4         # seconds the dots take to come in round the orbit
 AS_OF = dt.date.fromisoformat(ACTIVITY["as_of"])
 FIRST_DAY = min(dt.date.fromisoformat(r["first"]) for r in ACTIVITY["repos"].values())
 FIRST_MONDAY = FIRST_DAY - dt.timedelta(days=FIRST_DAY.weekday())
@@ -111,13 +116,35 @@ def background(w, h, seed):
         f'<circle cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
         for _ in range(int(w * h / 4500))
     )
+    # Drawn after the still stars, so those stay where they were.
+    twinkles = "".join(
+        f'<circle class="tw" cx="{rng.uniform(8, w - 8):.1f}" cy="{rng.uniform(8, h - 8):.1f}" r="{rng.choice([1.1, 1.3])}" '
+        f'fill="#dbe7ff" style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
+        for _ in range(int(w * h / 60000))
+    )
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="{html.escape(ALT)}">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <radialGradient id="corona" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/><stop offset="0.1" stop-color="#e6f2ff" stop-opacity="0.7"/><stop offset="0.35" stop-color="#9ccaf2" stop-opacity="0.35"/><stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>
 </defs>
+<style>
+  .tw {{ animation: tw 4s ease-in-out infinite; }}
+  @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
+  .grow {{ transform-box: fill-box; transform-origin: left center; animation: grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }}
+  @keyframes grow {{ from {{ transform: scaleX(0); }} }}
+  .fade {{ animation: fade 0.8s ease-out both; }}
+  @keyframes fade {{ from {{ opacity: 0; }} }}
+  .dot {{ transform-box: fill-box; transform-origin: center; animation: pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) both; }}
+  @keyframes pop {{ from {{ transform: scale(0); opacity: 0; }} }}
+  .breathe {{ transform-box: fill-box; transform-origin: center; animation: breathe 6s ease-in-out infinite; }}
+  @keyframes breathe {{ 0%, 100% {{ transform: scale(1); opacity: 0.85; }} 50% {{ transform: scale(1.1); opacity: 1; }} }}
+  .now {{ animation: now 2.6s ease-in-out infinite; }}
+  @keyframes now {{ 0%, 100% {{ opacity: 1; }} 50% {{ opacity: 0.35; }} }}
+  @media (prefers-reduced-motion: reduce) {{ .tw, .grow, .fade, .dot, .breathe, .now {{ animation: none; }} }}
+</style>
 <rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="16" fill="url(#g)" stroke="#2a3b63"/>
 {stars}
+{twinkles}
 """
 
 
@@ -126,7 +153,7 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
     rings = list(DOTS.items())[::-1]         # innermost first: the README's last section
     r_out = r_in + r_step * (len(rings) - 1)
     dot_max = r_step * 0.42
-    parts = [f'<circle cx="{cx}" cy="{cy}" r="{r_in * 0.55:.1f}" fill="url(#corona)"/>',
+    parts = [f'<circle class="breathe" cx="{cx}" cy="{cy}" r="{r_in * 0.55:.1f}" fill="url(#corona)"/>',
              f'<circle cx="{cx}" cy="{cy}" r="{r_in * 0.06:.1f}" fill="#ffffff"/>']
     for k, (section, counts) in enumerate(rings):
         r = r_in + k * r_step
@@ -138,7 +165,10 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
                 mid = (i * PER_DOT + min((i + 1) * PER_DOT, N_WEEKS)) / 2
                 x, y = point(cx, cy, r, angle(mid / N_WEEKS))
                 size = 1.8 + (dot_max - 1.8) * math.sqrt(n / PEAK)
-                parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{size:.1f}" fill="{BLUE}" fill-opacity="0.8"/>')
+                # In order of time, the inner rings a moment ahead, over SWEEP seconds.
+                delay = 0.3 + SWEEP * mid / N_WEEKS + 0.04 * k
+                parts.append(f'<circle class="dot" cx="{x:.1f}" cy="{y:.1f}" r="{size:.1f}" fill="{BLUE}" fill-opacity="0.8" '
+                             f'style="animation-delay:{delay:.2f}s"/>')
         # The ring's name, right-aligned just left of where its orbit begins.
         parts.append(f'<text x="{cx - 10}" y="{cy - r + label_size * 0.35:.1f}" text-anchor="end" '
                      f'font-size="{label_size}" fill="{TEXT}">{section}</text>')
@@ -164,11 +194,11 @@ def field(cx, cy, r_in, r_step, label_size, month_size):
                          f'{m.year if m.month == 1 else f"{m:%b}"}</text>')
     # Where the orbit ends: this week.
     e0, e1 = point(cx, cy, r_in - r_step * 0.6, angle(1)), point(cx, cy, r_out + r_step * 0.6, angle(1))
-    parts.append(f'<line x1="{e0[0]:.1f}" y1="{e0[1]:.1f}" x2="{e1[0]:.1f}" y2="{e1[1]:.1f}" stroke="{GOLD}" '
+    parts.append(f'<line class="now" x1="{e0[0]:.1f}" y1="{e0[1]:.1f}" x2="{e1[0]:.1f}" y2="{e1[1]:.1f}" stroke="{GOLD}" '
                  f'stroke-width="1.5" stroke-dasharray="2 4" stroke-linecap="round"/>')
     nx, ny = point(cx, cy, r_out + 22 + month_size * 0.9, angle(1))
     parts.append(f'<text x="{nx:.1f}" y="{ny + month_size * 0.35:.1f}" text-anchor="middle" '
-                 f'font-size="{month_size}" font-weight="700" fill="{GOLD}">now</text>')
+                 f'font-size="{month_size}" font-weight="700" fill="{GOLD}" class="now">now</text>')
     return parts
 
 
@@ -186,8 +216,8 @@ def panel(x, y, big, size, row_gap, width):
         parts.append(f'<text x="{x}" y="{ry:.1f}" font-size="{size}" fill="#b9c6e4">{section}</text>')
         parts.append(f'<rect x="{bar_x:.1f}" y="{ry - size * 0.62:.1f}" width="{bar_w:.1f}" height="{size * 0.6:.1f}" rx="{size * 0.3:.1f}" fill="#13213f"/>')
         if n:
-            parts.append(f'<rect x="{bar_x:.1f}" y="{ry - size * 0.62:.1f}" width="{max(bar_w * n / most, size * 0.6):.1f}" '
-                         f'height="{size * 0.6:.1f}" rx="{size * 0.3:.1f}" fill="{BLUE}"/>')
+            parts.append(f'<rect class="grow" x="{bar_x:.1f}" y="{ry - size * 0.62:.1f}" width="{max(bar_w * n / most, size * 0.6):.1f}" '
+                         f'height="{size * 0.6:.1f}" rx="{size * 0.3:.1f}" fill="{BLUE}" style="animation-delay:{0.3 + 0.12 * k:.2f}s"/>')
         parts.append(f'<text x="{x + width:.1f}" y="{ry:.1f}" text-anchor="end" font-size="{size}" fill="{TEXT}">{n:,}</text>')
     ry = top + len(COUNTS) * row_gap + row_gap * 0.4
     parts.append(f'<line x1="{x}" y1="{ry - size * 1.2:.1f}" x2="{x + width}" y2="{ry - size * 1.2:.1f}" stroke="#2a3b63"/>')

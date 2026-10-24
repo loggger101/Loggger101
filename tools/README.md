@@ -31,6 +31,14 @@ It reruns the generators and fails if anything in `docs/` differs from their out
 if an OneDrive conflict copy is present. CI runs it on every push (`check.yml`), and the
 weekly workflow runs it before committing and checks the links in a separate job.
 
+The banner, footer, tiles, repo diagram and both panels move, with CSS animations in each
+SVG: stars twinkle everywhere; points of light run along the diagram's data arrows and its
+citation dashes creep; the activity panel's dots come in round the orbit in time order;
+and the bars grow in. Each SVG stops it all under `prefers-reduced-motion`, and every
+animation's resting state is the finished picture, so a still render (reduced motion, a
+thumbnail) shows everything. Anything that shows only while moving, like the banner's
+shooting star or the diagram's points of light, is hidden when still.
+
 `links.py` and `icons.py` draw their glyphs from `glyphs.py`.
 
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
