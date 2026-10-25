@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 539" width="1200" height="539" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 24–30 Oct 2026 (NASA/JPL close-approach data): 9 in all. 2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–45 m, 11.6 km/s; 2026 UE, 5.2 lunar distances on Sun 25 Oct, 19–42 m, 15.9 km/s; 2026 SQ31, 6.0 lunar distances on Sun 25 Oct, 47–105 m, 7.8 km/s; 2026 TB8, 7.1 lunar distances on Sun 25 Oct, 45–100 m, 7.8 km/s; 2026 UB1, 9.5 lunar distances on Wed 28 Oct, 31–69 m, 18.7 km/s; 2018 GS1, 11.0 lunar distances on Wed 28 Oct, 81–180 m, 9.3 km/s; 2026 UD, 11.6 lunar distances on Fri 30 Oct, 20–44 m, 7.7 km/s; 2026 TT3, 12.8 lunar distances on Sat 24 Oct, 35–79 m, 12.8 km/s; and 1 more farther out.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 539" width="1200" height="539" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 25–31 Oct 2026 (NASA/JPL close-approach data): 9 in all. 2025 UK9, 0.8 lunar distances on Sat 31 Oct, 3–6 m, 7.8 km/s; 2026 TB94, 5.1 lunar distances on Tue 27 Oct, 20–44 m, 11.6 km/s; 2026 UE, 5.2 lunar distances on Sun 25 Oct, 18–41 m, 15.9 km/s; 2026 SQ31, 6.0 lunar distances on Sun 25 Oct, 47–105 m, 7.8 km/s; 2026 TB8, 7.1 lunar distances on Sun 25 Oct, 45–100 m, 7.8 km/s; 2026 UB1, 9.5 lunar distances on Wed 28 Oct, 30–67 m, 18.7 km/s; 2018 GS1, 11.0 lunar distances on Wed 28 Oct, 81–180 m, 9.3 km/s; 2026 UD, 11.6 lunar distances on Fri 30 Oct, 20–44 m, 7.7 km/s; and 1 more farther out.">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <radialGradient id="earth" cx="0.35" cy="0.35" r="0.7"><stop offset="0" stop-color="#9fd4ff"/><stop offset="0.5" stop-color="#3d7fc4"/><stop offset="1" stop-color="#173a6b"/></radialGradient>
@@ -20,8 +20,8 @@
 
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="40" y="81.6" font-size="52" font-weight="700" fill="#5ba3dc">9</text>
-<text x="83.6" y="81.6" font-size="19" fill="#dbe3f5">asteroids pass within 20 lunar distances, 24–30 Oct 2026</text>
-<text x="40" y="112.0" font-size="15.2" fill="#7d8fb3">Closest: 2026 TB94, 5.1 lunar distances on Tue 27 Oct. NASA/JPL close-approach data.</text>
+<text x="83.6" y="81.6" font-size="19" fill="#dbe3f5">asteroids pass within 20 lunar distances, 25–31 Oct 2026</text>
+<text x="40" y="112.0" font-size="15.2" fill="#7d8fb3">Closest: 2025 UK9, 0.8 lunar distances on Sat 31 Oct. NASA/JPL close-approach data.</text>
 <circle cx="190.0" cy="313.4" r="28.5" fill="url(#halo)"/>
 <circle cx="190.0" cy="313.4" r="16.1" fill="url(#earth)"/>
 <line x1="218.0" y1="153.8" x2="218.0" y2="469.2" stroke="#7d8fb3" stroke-width="1.2" stroke-dasharray="3 4"/>
@@ -36,38 +36,38 @@
 <text x="610.0" y="496.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">15</text>
 <line x1="750.0" y1="469.2" x2="750.0" y2="475.2" stroke="#7d8fb3" stroke-width="1.2"/>
 <text x="750.0" y="496.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">20 LD</text>
-<text x="40" y="187.1" font-size="19" fill="#b9c6e4">2026 TB94</text>
+<text x="40" y="187.1" font-size="19" fill="#b9c6e4">2025 UK9</text>
 <line x1="212.8" y1="180.4" x2="750.0" y2="180.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="332.7" cy="180.4" r="6.7" fill="url(#rock)" style="--from:455.3px;animation-delay:0.20s"/>
-<text class="fade" x="776.6" y="187.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.20s">5.1 LD · 20–45 m · 11.6 km/s · Tue 27 Oct</text>
-<text x="40" y="225.1" font-size="19" fill="#b9c6e4">2026 UE</text>
+<circle class="fly" cx="212.9" cy="180.4" r="5.1" fill="url(#rock)" style="--from:575.1px;animation-delay:0.20s"/>
+<text class="fade" x="776.6" y="187.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.20s">0.8 LD · 3–6 m · 7.8 km/s · Sat 31 Oct</text>
+<text x="40" y="225.1" font-size="19" fill="#b9c6e4">2026 TB94</text>
 <line x1="212.8" y1="218.4" x2="750.0" y2="218.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="336.4" cy="218.4" r="6.6" fill="url(#rock)" style="--from:451.6px;animation-delay:0.32s"/>
-<text class="fade" x="776.6" y="225.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.32s">5.2 LD · 19–42 m · 15.9 km/s · Sun 25 Oct</text>
-<text x="40" y="263.0" font-size="19" fill="#b9c6e4">2026 SQ31</text>
+<circle class="fly" cx="332.3" cy="218.4" r="6.7" fill="url(#rock)" style="--from:455.7px;animation-delay:0.32s"/>
+<text class="fade" x="776.6" y="225.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.32s">5.1 LD · 20–44 m · 11.6 km/s · Tue 27 Oct</text>
+<text x="40" y="263.0" font-size="19" fill="#b9c6e4">2026 UE</text>
 <line x1="212.8" y1="256.4" x2="750.0" y2="256.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="359.2" cy="256.4" r="8.1" fill="url(#rock)" style="--from:428.8px;animation-delay:0.44s"/>
-<text class="fade" x="776.6" y="263.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.44s">6.0 LD · 47–105 m · 7.8 km/s · Sun 25 Oct</text>
-<text x="40" y="301.0" font-size="19" fill="#b9c6e4">2026 TB8</text>
+<circle class="fly" cx="336.4" cy="256.4" r="6.6" fill="url(#rock)" style="--from:451.6px;animation-delay:0.44s"/>
+<text class="fade" x="776.6" y="263.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.44s">5.2 LD · 18–41 m · 15.9 km/s · Sun 25 Oct</text>
+<text x="40" y="301.0" font-size="19" fill="#b9c6e4">2026 SQ31</text>
 <line x1="212.8" y1="294.4" x2="750.0" y2="294.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="387.8" cy="294.4" r="8.0" fill="url(#rock)" style="--from:400.2px;animation-delay:0.56s"/>
-<text class="fade" x="776.6" y="301.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.56s">7.1 LD · 45–100 m · 7.8 km/s · Sun 25 Oct</text>
-<text x="40" y="339.0" font-size="19" fill="#b9c6e4">2026 UB1</text>
+<circle class="fly" cx="359.2" cy="294.4" r="8.1" fill="url(#rock)" style="--from:428.8px;animation-delay:0.56s"/>
+<text class="fade" x="776.6" y="301.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.56s">6.0 LD · 47–105 m · 7.8 km/s · Sun 25 Oct</text>
+<text x="40" y="339.0" font-size="19" fill="#b9c6e4">2026 TB8</text>
 <line x1="212.8" y1="332.4" x2="750.0" y2="332.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="457.1" cy="332.4" r="7.3" fill="url(#rock)" style="--from:330.9px;animation-delay:0.68s"/>
-<text class="fade" x="776.6" y="339.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.68s">9.5 LD · 31–69 m · 18.7 km/s · Wed 28 Oct</text>
-<text x="40" y="377.0" font-size="19" fill="#b9c6e4">2018 GS1</text>
+<circle class="fly" cx="387.8" cy="332.4" r="8.0" fill="url(#rock)" style="--from:400.2px;animation-delay:0.68s"/>
+<text class="fade" x="776.6" y="339.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.68s">7.1 LD · 45–100 m · 7.8 km/s · Sun 25 Oct</text>
+<text x="40" y="377.0" font-size="19" fill="#b9c6e4">2026 UB1</text>
 <line x1="212.8" y1="370.4" x2="750.0" y2="370.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="498.9" cy="370.4" r="9.3" fill="url(#rock)" style="--from:289.1px;animation-delay:0.80s"/>
-<text class="fade" x="776.6" y="377.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.80s">11.0 LD · 81–180 m · 9.3 km/s · Wed 28 Oct</text>
-<text x="40" y="415.0" font-size="19" fill="#b9c6e4">2026 UD</text>
+<circle class="fly" cx="457.0" cy="370.4" r="7.3" fill="url(#rock)" style="--from:331.0px;animation-delay:0.80s"/>
+<text class="fade" x="776.6" y="377.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.80s">9.5 LD · 30–67 m · 18.7 km/s · Wed 28 Oct</text>
+<text x="40" y="415.0" font-size="19" fill="#b9c6e4">2018 GS1</text>
 <line x1="212.8" y1="408.4" x2="750.0" y2="408.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="515.4" cy="408.4" r="6.7" fill="url(#rock)" style="--from:272.6px;animation-delay:0.92s"/>
-<text class="fade" x="776.6" y="415.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.92s">11.6 LD · 20–44 m · 7.7 km/s · Fri 30 Oct</text>
-<text x="40" y="453.0" font-size="19" fill="#b9c6e4">2026 TT3</text>
+<circle class="fly" cx="498.9" cy="408.4" r="9.3" fill="url(#rock)" style="--from:289.1px;animation-delay:0.92s"/>
+<text class="fade" x="776.6" y="415.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.92s">11.0 LD · 81–180 m · 9.3 km/s · Wed 28 Oct</text>
+<text x="40" y="453.0" font-size="19" fill="#b9c6e4">2026 UD</text>
 <line x1="212.8" y1="446.4" x2="750.0" y2="446.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="547.0" cy="446.4" r="7.6" fill="url(#rock)" style="--from:241.0px;animation-delay:1.04s"/>
-<text class="fade" x="776.6" y="453.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:1.04s">12.8 LD · 35–79 m · 12.8 km/s · Sat 24 Oct</text>
+<circle class="fly" cx="515.4" cy="446.4" r="6.7" fill="url(#rock)" style="--from:272.6px;animation-delay:1.04s"/>
+<text class="fade" x="776.6" y="453.0" font-size="16.1" fill="#dbe3f5" style="animation-delay:1.04s">11.6 LD · 20–44 m · 7.7 km/s · Fri 30 Oct</text>
 <text x="776.6" y="496.1" font-size="14.2" fill="#7d8fb3">and 1 more farther out</text>
 </g>
 </svg>

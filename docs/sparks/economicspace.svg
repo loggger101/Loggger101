@@ -7,7 +7,7 @@
   @media (prefers-reduced-motion: reduce) { .draw, .fade { animation: none; } }
 </style>
 <line x1="5" y1="43" x2="235" y2="43" stroke="#2a3b63" stroke-width="1.5"/>
-<polygon class="fade" points="5.0,43 5.0,5.0 25.9,18.7 46.8,19.9 67.7,14.7 88.6,15.2 109.5,18.7 130.5,5.0 151.4,25.1 172.3,30.3 193.2,21.1 214.1,25.8 235.0,20.5 235.0,43" fill="#5ba3dc" fill-opacity="0.3"/>
-<polyline class="draw" points="5.0,5.0 25.9,18.7 46.8,19.9 67.7,14.7 88.6,15.2 109.5,18.7 130.5,5.0 151.4,25.1 172.3,30.3 193.2,21.1 214.1,25.8 235.0,20.5" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<circle class="fade" cx="235.0" cy="20.5" r="4.5" fill="#e8c27a"/>
+<polygon class="fade" points="5.0,43 5.0,5.0 25.9,18.7 46.8,19.9 67.7,14.7 88.6,15.2 109.5,18.7 130.5,5.0 151.4,25.1 172.3,30.3 193.2,21.1 214.1,25.8 235.0,19.3 235.0,43" fill="#5ba3dc" fill-opacity="0.3"/>
+<polyline class="draw" points="5.0,5.0 25.9,18.7 46.8,19.9 67.7,14.7 88.6,15.2 109.5,18.7 130.5,5.0 151.4,25.1 172.3,30.3 193.2,21.1 214.1,25.8 235.0,19.3" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle class="fade" cx="235.0" cy="19.3" r="4.5" fill="#e8c27a"/>
 </svg>

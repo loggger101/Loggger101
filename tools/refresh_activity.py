@@ -11,8 +11,8 @@ Writes "activity" in tools/counts.json: the date it ran, and for each repo the d
 first and last commits, my commits in every week between, by the week's Monday, and, for
 a public repo, my last RECENT commits other than merges (hash, date, subject line) for the
 README's list of latest commits. A private repo's commit messages are never kept. Then
-writes the activity panel's alt text and that list into the README; run activity.py
-afterwards to redraw the panel. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
+writes the activity panel's alt text and that list, and each sparkline's alt text, into the
+README; run activity.py and sparks.py afterwards to redraw them. The private repos (aspirecures, SistersHopeFoundation) need your own GitHub
 login to clone; with --public-only, which the weekly workflow uses, they keep what is
 stored.
 
@@ -80,10 +80,11 @@ def main():
         print(f"{sum(repos[name]['weeks'].values()):>6,} commits, last {repos[name]['last']}  {name}")
     data["activity"] = {"as_of": today.isoformat(), "repos": repos}
     COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import activity     # reads the counts just written
+    import activity     # these two read the counts just written
+    import sparks
     readme_path = ROOT / "README.md"
-    readme_path.write_text(activity.update_readme(readme_path.read_text(encoding="utf-8")),
-                           encoding="utf-8", newline="\n")
+    readme = activity.update_readme(readme_path.read_text(encoding="utf-8"))
+    readme_path.write_text(sparks.update_readme(readme), encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

@@ -9,8 +9,8 @@ every push (.github/workflows/check.yml).
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
    stored counts, with refresh_counts.py's, loc.py's, activity.py's, languages.py's,
-   breakeven.py's and flybys.py's own code (the last four write the panels' alt text),
-   changes nothing. And each
+   breakeven.py's, flybys.py's and sparks.py's own code (the last five write the images'
+   alt text), changes nothing. And each
    repo's lines of code by language (the languages panel) add up to its lines of code.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
    badges carry the logos badge_logos.py draws.
@@ -135,7 +135,8 @@ def check_counts(readme):
                          ("activity", lambda m: m.update_readme(readme)),
                          ("languages", lambda m: m.update_readme(readme)),
                          ("breakeven", lambda m: m.update_readme(readme)),
-                         ("flybys", lambda m: m.update_readme(readme))):
+                         ("flybys", lambda m: m.update_readme(readme)),
+                         ("sparks", lambda m: m.update_readme(readme))):
         try:
             rewritten = update(load(name))
         except SystemExit as e:
@@ -143,7 +144,7 @@ def check_counts(readme):
             continue
         if rewritten != readme:
             rerun = {"activity": "refresh_activity", "languages": "loc", "breakeven": "refresh_counts",
-                     "flybys": "refresh_flybys"}.get(name, name)
+                     "flybys": "refresh_flybys", "sparks": "refresh_activity"}.get(name, name)
             problems.append(f"README numbers differ from tools/counts.json (rerun {rerun}.py)")
     for repo, n in counts["loc"].items():
         by_language = sum(counts.get("languages", {}).get(repo, {}).values())

@@ -4,7 +4,8 @@ refresh_activity.py last ran.
 
 Each runs over its own repo's life, not one shared axis: most of the repos are a few weeks
 old, and on an axis as long as the oldest one's they were a squiggle at the right edge.
-The README's alt text says when each line starts. Heights are each repo's own too, scaled
+The README's alt text, which update_readme() writes, says when each line starts, how many
+commits it holds and its busiest week. Heights are each repo's own too, scaled
 to its busiest week, so a quiet repo's shape still shows. The last commit is a gold dot.
 When the page loads the line draws itself left to right; with reduced motion it is drawn
 finished.
@@ -17,8 +18,11 @@ the README shows them, so they stay sharp on high-DPI screens.
 import datetime as dt
 import json
 import math
+import re
 import sys
 from pathlib import Path
+
+from loc import README_NAMES
 
 BLUE, GOLD, TRACK = "#5ba3dc", "#e8c27a", "#2a3b63"
 W, H, PAD = 240, 48, 5          # drawn size; the README shows it at half (width="120")
@@ -62,6 +66,25 @@ def spark(repo):
 <circle class="fade" cx="{lx:.1f}" cy="{ly:.1f}" r="4.5" fill="{GOLD}"/>
 </svg>
 """
+
+
+def alt(name, r):
+    """A sparkline in words: whose, from when, and what it adds up to."""
+    first = dt.date.fromisoformat(r["first"])
+    return (f"My commits to {name} each week since {first:%B %Y}: {sum(r['weeks'].values()):,} in all, "
+            f"{max(r['weeks'].values()):,} in the busiest week")
+
+
+def update_readme(readme):
+    """The README with each sparkline's alt text written in. refresh_activity.py calls it after
+    refreshing the counts; check.py checks it. Stops if a repo's sparkline isn't in the README
+    exactly once."""
+    for repo, r in ACTIVITY["repos"].items():
+        pattern = rf'(src="docs/sparks/{re.escape(repo)}\.svg" width="120" alt=")[^"]*(")'
+        readme, n = re.subn(pattern, lambda m: m[1] + alt(README_NAMES.get(repo, repo), r) + m[2], readme)
+        if n != 1:
+            sys.exit(f"README image docs/sparks/{repo}.svg matched {n} times, expected 1")
+    return readme
 
 
 def main():
