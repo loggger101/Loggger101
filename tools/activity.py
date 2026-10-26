@@ -35,7 +35,7 @@ BLUE, TEXT, DIM, GOLD = "#5ba3dc", "#dbe3f5", "#7d8fb3", "#e8c27a"
 ACTIVITY = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["activity"]
 # The README's sections, in its order, and the repos in each.
 SECTIONS = {
-    "Space economics": ["economicspace", "AsteroidCatalog", "spacecost", "General_Research", "starred-repos"],
+    "Space economics": ["economicspace", "AsteroidCatalog", "spacevalue", "spacecost", "General_Research", "starred-repos"],
     "Planetary science": ["asteroid-belt-gradient", "Mars_Terrestrial_GlobalMosaic_GIS-Data"],
     "Deep learning": ["star-spectral-classifier", "drone-target-id"],
     "Simulation": ["Satellite-Space-Flight"],

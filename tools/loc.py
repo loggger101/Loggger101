@@ -57,6 +57,7 @@ COUNTS = ROOT / "tools" / "counts.json"
 REPOS = {
     "economicspace": ("https://github.com/loggger101/economicspace", False, []),
     "AsteroidCatalog": ("https://github.com/loggger101/AsteroidCatalog", False, []),
+    "spacevalue": ("https://github.com/loggger101/spacevalue", False, []),
     "spacecost": ("https://github.com/loggger101/spacecost", False, []),
     "General_Research": ("https://github.com/loggger101/General_Research", False, ["*/full_texts/*"]),
     "starred-repos": ("https://github.com/loggger101/starred-repos", False, []),

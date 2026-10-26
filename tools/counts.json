@@ -5,6 +5,7 @@
   "loc": {
     "economicspace": 22960,
     "AsteroidCatalog": 5727,
+    "spacevalue": 2197,
     "spacecost": 9292,
     "General_Research": 2531,
     "starred-repos": 705,
@@ -23,6 +24,7 @@
   "lines": {
     "economicspace": 94332,
     "AsteroidCatalog": 13709,
+    "spacevalue": 5193,
     "spacecost": 18519,
     "General_Research": 48719,
     "starred-repos": 2619,
@@ -49,6 +51,10 @@
     },
     "AsteroidCatalog": {
       "Python": 5708,
+      "Shell": 19
+    },
+    "spacevalue": {
+      "Python": 2178,
       "Shell": 19
     },
     "spacecost": {
@@ -179,6 +185,40 @@
             "7be33f98545380cc3b703e84ddcdd8763b3ea65d",
             "2026-10-25",
             "Tests: the manifest's release_tag and the shipped PHASE_GROUP (no release) (#24)"
+          ]
+        ]
+      },
+      "spacevalue": {
+        "first": "2026-08-05",
+        "last": "2026-10-26",
+        "weeks": {
+          "2026-08-03": 18,
+          "2026-08-17": 4,
+          "2026-08-24": 4,
+          "2026-08-31": 7,
+          "2026-09-14": 1,
+          "2026-09-21": 4,
+          "2026-09-28": 3,
+          "2026-10-05": 10,
+          "2026-10-12": 3,
+          "2026-10-19": 4,
+          "2026-10-26": 6
+        },
+        "recent": [
+          [
+            "5ee2c14d5e07035c9b5031c20c060457808432f1",
+            "2026-10-26",
+            "README names the columns a row holds; pyproject says which Pythons CI runs (#3)"
+          ],
+          [
+            "40b10a8a2b7637ecef0150bbf3fd411fd58c640b",
+            "2026-10-26",
+            "CLAUDE.md takes the pricing rules economicspace kept; README's used-in-space price says PLUS (#2)"
+          ],
+          [
+            "2a581f4b5c96cafb7de5143dcccdce2b013be829",
+            "2026-10-26",
+            "README: plainer sentences where a colon or a stock phrase did the work (#1)"
           ]
         ]
       },

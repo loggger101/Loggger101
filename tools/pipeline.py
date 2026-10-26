@@ -30,8 +30,9 @@ NODES = {
     "gr": ("General_Research", "the sources the", "other repos cite", "repo"),
     "ac": ("AsteroidCatalog", f"{millions(CATALOG_ROWS)}M asteroids,", "frozen releases", "repo"),
     "sc": ("spacecost", "cited cost and mass", "tables, pip package", "repo"),
+    "sv": ("spacevalue", "mineral prices at", "eight destinations", "repo"),
     "abg": ("asteroid-belt-gradient", "S/C gradient across", "161,659 asteroids", "repo"),
-    "es": ("economicspace", "prices minerals, costs", "transport, sums profit", "repo"),
+    "es": ("economicspace", "rocket equation, cost", "cascade, sums profit", "repo"),
     "paper": ("Paper", "AASTeX, rebuilt from", "two public inputs", "out"),
     "targets": ("Mining targets", "ranked by net", "mission profit", "out"),
     "ql": ("quietlaunch", "windowless dashboard", "launcher, pip package", "repo"),
@@ -42,9 +43,12 @@ NODES = {
 EDGES = [
     ("gr", "ac", True),
     ("gr", "sc", True),
-    ("gr", "es", True),    # routed around spacecost, see detour()
+    ("gr", "sv", True),
+    ("gr", "es", True),
     ("ac", "abg", False),
     ("ac", "es", False),
+    ("sc", "sv", False),   # spacevalue installs the pinned package for its launch prices
+    ("sv", "es", False),   # economicspace pins a spacevalue release as its Stage 2
     ("sc", "es", False),
     ("abg", "paper", False),
     ("es", "targets", False),
@@ -54,8 +58,9 @@ EDGES = [
 ]
 ALT = (
     "How the repos connect: General_Research holds the sources that AsteroidCatalog, "
-    "spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
-    "paper, and economicspace, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, "
+    "spacecost, spacevalue and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
+    "paper, and economicspace. spacevalue installs spacecost and prices minerals at each destination, and its releases "
+    "feed economicspace too, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, "
     "and ranks mining targets by profit."
 )
 
@@ -124,27 +129,16 @@ def edge(a, b, dashed, horizontal):
     return arrow(d, dashed)
 
 
-def detour(boxes, horizontal):
-    """The General_Research -> economicspace path. A direct curve would cross spacecost,
-    which sits between them in both layouts, so it goes round: on desktop along a lane
-    under the bottom row and up into economicspace from below; on phones down the gap
-    between the two columns and across into economicspace's top."""
-    gx, gy, gw, gh = boxes["gr"]
-    ex, ey, ew, eh = boxes["es"]
-    sx, sy, sw, sh = boxes["sc"]
-    r = 12
-    if horizontal:
-        x1, y1, x2, lane = gx + gw / 2, gy + gh, ex + ew / 2, sy + sh + 20
-        d = (f"M{x1:.1f} {y1:.1f} V{lane - r:.1f} Q{x1:.1f} {lane:.1f} {x1 + r:.1f} {lane:.1f} "
-             f"H{x2 - r:.1f} Q{x2:.1f} {lane:.1f} {x2:.1f} {lane - r:.1f} V{ey + eh + 3:.1f}")
-    else:
-        ax, _, aw, _ = boxes["ac"]
-        gap = (ax + aw + sx) / 2
-        lane = (sy + sh + ey) / 2
-        x2 = ex + ew * 0.3
-        d = (f"M{gap:.1f} {gy + gh:.1f} V{lane - r:.1f} "
-             f"C{gap:.1f} {lane + r:.1f} {x2:.1f} {lane - r:.1f} {x2:.1f} {ey - 3:.1f}")
-    return arrow(d, True)
+def elbow(points, dashed, r=8):
+    """An arrow along straight runs through points, with each corner rounded."""
+    d = f"M{points[0][0]:.1f} {points[0][1]:.1f}"
+    for (x0, y0), (x1, y1), (x2, y2) in zip(points, points[1:], points[2:]):
+        # Stop r short of the corner, then curve round it to r past it.
+        ux, uy = (x1 > x0) - (x1 < x0), (y1 > y0) - (y1 < y0)
+        vx, vy = (x2 > x1) - (x2 < x1), (y2 > y1) - (y2 < y1)
+        d += f" L{x1 - ux * r:.1f} {y1 - uy * r:.1f} Q{x1:.1f} {y1:.1f} {x1 + vx * r:.1f} {y1 + vy * r:.1f}"
+    d += f" L{points[-1][0]:.1f} {points[-1][1]:.1f}"
+    return arrow(d, dashed)
 
 
 def from_below(a, e, dashed, horizontal, frac, lane=None):
@@ -154,23 +148,17 @@ def from_below(a, e, dashed, horizontal, frac, lane=None):
     columns at x=lane and turns into economicspace's left side, frac of the way down."""
     ax, ay, aw, ah = a
     ex, ey, ew, eh = e
-    r = 8
     y1 = ay + ah / 2
     if horizontal:
         x2 = ex + ew * frac
-        x1, turn = (ax + aw, x2 - r) if ax < ex else (ax, x2 + r)
-        d = f"M{x1:.1f} {y1:.1f} H{turn:.1f} Q{x2:.1f} {y1:.1f} {x2:.1f} {y1 - r:.1f} V{ey + eh + 3:.1f}"
-    else:
-        y2 = ey + eh * frac
-        x1, turn = (ax + aw, lane - r) if ax < lane else (ax, lane + r)
-        d = (f"M{x1:.1f} {y1:.1f} H{turn:.1f} Q{lane:.1f} {y1:.1f} {lane:.1f} {y1 - r:.1f} "
-             f"V{y2 + r:.1f} Q{lane:.1f} {y2:.1f} {lane + r:.1f} {y2:.1f} H{ex - 3:.1f}")
-    return arrow(d, dashed)
+        return elbow([(ax + aw if ax < ex else ax, y1), (x2, y1), (x2, ey + eh + 3)], dashed)
+    y2 = ey + eh * frac
+    return elbow([(ax + aw if ax < lane else ax, y1), (lane, y1), (lane, y2), (ex - 3, y2)], dashed)
 
 
-def route(a, b, dashed, boxes, horizontal, below):
-    if (a, b) == ("gr", "es"):
-        return detour(boxes, horizontal)
+def route(a, b, dashed, boxes, horizontal, below, lanes):
+    if (a, b) in lanes:
+        return elbow(lanes[a, b](boxes), dashed)
     if a in below:
         return from_below(boxes[a], boxes[b], dashed, horizontal, *below[a])
     return edge(boxes[a], boxes[b], dashed, horizontal)
@@ -185,56 +173,92 @@ def legend(x, y, size):
 </g>"""
 
 
-def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, below):
+def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, below, lanes):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">']
-    parts += [route(a, b, dashed, boxes, horizontal, below) for a, b, dashed in EDGES]
+    parts += [route(a, b, dashed, boxes, horizontal, below, lanes) for a, b, dashed in EDGES]
     parts += [card(k, *boxes[k], title_size, line_size) for k in NODES]
     parts.append(legend(*legend_at, line_size - 1))
     parts.append("</g>\n</svg>\n")
     return "\n".join(parts)
 
 
-# Desktop: four columns, left to right, and a third and fourth row whose repos feed
-# economicspace from below.
+# Edges a plain curve can't take, as the corners of a path of straight runs, given the boxes.
+def at(box, fx, fy):
+    x, y, w, h = box
+    return x + w * fx, y + h * fy
+
+
+# Desktop: four columns, left to right. The top row runs from the sources to the paper, the
+# second from spacecost to the mining targets, and the cards in the rows under it feed
+# economicspace from below. Citations from General_Research run along a lane between the top
+# two rows, and the data AsteroidCatalog sends economicspace along a lane above that.
 CW = {1: 250, 2: 220, 3: 270, 4: 226}
 CX = {1: 24, 2: 336, 3: 618, 4: 950}
-TOP, BOT, R3, R4, CH = 34, 180, 326, 472, 104
+TOP, MID, R3, R4, CH = 34, 200, 346, 492, 104
 wide = {
-    "gr": (CX[1], (TOP + BOT) / 2, CW[1], CH),
+    "gr": (CX[1], TOP, CW[1], CH),
+    "sc": (CX[1], MID, CW[1], CH),
     "ac": (CX[2], TOP, CW[2], CH),
-    "sc": (CX[2], BOT, CW[2], CH),
+    "sv": (CX[2], MID, CW[2], CH),
     "abg": (CX[3], TOP, CW[3], CH),
-    "es": (CX[3], BOT, CW[3], CH),
+    "es": (CX[3], MID, CW[3], CH),
     "paper": (CX[4], TOP, CW[4], CH),
-    "targets": (CX[4], BOT, CW[4], CH),
+    "targets": (CX[4], MID, CW[4], CH),
     "ql": (CX[2], R3, CW[2], CH),
     "sr": (CX[4], R3, CW[4], CH),
     "qq": (CX[2], R4, CW[2], CH),
 }
-# Phones: six rows, top to bottom, two cards a row; General_Research and quietqueue sit on
-# their own. The columns stand far enough apart for three arrows to climb the gap between them.
+CITE_LANE, DATA_LANE, LOW_LANE = TOP + CH + 44, TOP + CH + 22, MID + CH + 21
+wide_lanes = {
+    ("gr", "sc"): lambda b: [at(b["gr"], 0.5, 1), (at(b["sc"], 0.5, 0)[0], b["sc"][1] - 3)],
+    ("gr", "sv"): lambda b: [at(b["gr"], 0.8, 1), (at(b["gr"], 0.8, 1)[0], CITE_LANE),
+                             (at(b["sv"], 0.3, 0)[0], CITE_LANE), (at(b["sv"], 0.3, 0)[0], MID - 3)],
+    ("gr", "es"): lambda b: [at(b["gr"], 0.8, 1), (at(b["gr"], 0.8, 1)[0], CITE_LANE),
+                             (at(b["es"], 0.25, 0)[0], CITE_LANE), (at(b["es"], 0.25, 0)[0], MID - 3)],
+    # Down the gutter between AsteroidCatalog and the paper's repo, then over the citations.
+    ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), ((CX[2] + CW[2] + CX[3]) / 2, at(b["ac"], 1, 0.75)[1]),
+                             ((CX[2] + CW[2] + CX[3]) / 2, DATA_LANE), (at(b["es"], 0.6, 0)[0], DATA_LANE),
+                             (at(b["es"], 0.6, 0)[0], MID - 3)],
+    # Under spacevalue, and up into economicspace left of where the cards below come in.
+    ("sc", "es"): lambda b: [at(b["sc"], 0.5, 1), (at(b["sc"], 0.5, 1)[0], LOW_LANE),
+                             (at(b["es"], 0.2, 1)[0], LOW_LANE), (at(b["es"], 0.2, 1)[0], MID + CH + 3)],
+}
+# Phones: six rows, top to bottom, two cards a row, General_Research alone on top. The
+# citations come down the middle of the gap between the columns, AsteroidCatalog's data left
+# of them and the cards below economicspace climb to it on their right; spacecost's data for
+# economicspace runs down the right edge, past spacevalue.
 PW, PH, ROW = 300, 118, 168
-PWIDTH, left, right = 680, 12, 368
+PWIDTH, left, right = 724, 12, 392
 tall = {
     "gr": ((PWIDTH - PW) / 2, 20, PW, PH),
     "ac": (left, 20 + ROW, PW, PH),
     "sc": (right, 20 + ROW, PW, PH),
     "abg": (left, 20 + 2 * ROW, PW, PH),
-    "es": (right, 20 + 2 * ROW, PW, PH),
+    "sv": (right, 20 + 2 * ROW, PW, PH),
     "paper": (left, 20 + 3 * ROW, PW, PH),
-    "targets": (right, 20 + 3 * ROW, PW, PH),
+    "es": (right, 20 + 3 * ROW, PW, PH),
     "ql": (left, 20 + 4 * ROW, PW, PH),
-    "sr": (right, 20 + 4 * ROW, PW, PH),
+    "targets": (right, 20 + 4 * ROW, PW, PH),
     "qq": (left, 20 + 5 * ROW, PW, PH),
+    "sr": (right, 20 + 5 * ROW, PW, PH),
+}
+GAP_X = (left + PW + right) / 2
+tall_lanes = {
+    ("gr", "sv"): lambda b: [(GAP_X, 20 + PH), (GAP_X, at(b["sv"], 0, 0.3)[1]), (right - 3, at(b["sv"], 0, 0.3)[1])],
+    ("gr", "es"): lambda b: [(GAP_X, 20 + PH), (GAP_X, at(b["es"], 0, 0.2)[1]), (right - 3, at(b["es"], 0, 0.2)[1])],
+    ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), (left + PW + 14, at(b["ac"], 1, 0.75)[1]),
+                             (left + PW + 14, at(b["es"], 0, 0.45)[1]), (right - 3, at(b["es"], 0, 0.45)[1])],
+    ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (right + PW + 16, at(b["sc"], 1, 0.75)[1]),
+                             (right + PW + 16, at(b["es"], 1, 0.5)[1]), (right + PW + 3, at(b["es"], 1, 0.5)[1])],
 }
 
 files = {
     "pipeline.svg": render(1200, R4 + CH + 52, wide, True, 22, 17, (CX[1], R4 + CH + 36), 7,
-                           {"ql": (0.7,), "qq": (0.8,), "sr": (0.9,)}),
+                           {"ql": (0.7,), "qq": (0.8,), "sr": (0.9,)}, wide_lanes),
     "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 21,
                                    (left + 4, 20 + 5 * ROW + PH + 42), 8,
-                                   {"ql": (0.35, left + PW + 12), "qq": (0.55, left + PW + 28),
-                                    "sr": (0.75, left + PW + 44)}),
+                                   {"ql": (0.6, right - 32), "qq": (0.75, right - 22),
+                                    "sr": (0.9, right - 12)}, tall_lanes),
 }
 for name, svg in files.items():
     (OUT / name).write_text(svg, encoding="utf-8", newline="\n")

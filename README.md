@@ -35,10 +35,10 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 
 ### <picture><img src="docs/icons/economics.svg" width="24" height="24" align="top" alt=""></picture> Space economics
 
-The first four repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit, and the fifth checks the pipeline against other people's code. The catalog also feeds my paper.
+The first five repos work together to estimate whether an uncrewed asteroid mining mission would turn a profit, and the sixth checks the pipeline against other people's code. The catalog also feeds my paper.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, and ranks mining targets by profit."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/pipeline-compact.svg"><img src="docs/pipeline.svg" width="100%" alt="How the repos connect: General_Research holds the sources that AsteroidCatalog, spacecost, spacevalue and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the paper, and economicspace. spacevalue installs spacecost and prices minerals at each destination, and its releases feed economicspace too, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, and ranks mining targets by profit."></picture>
 </p>
 
 <table>
@@ -51,12 +51,16 @@ The first four repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>The pipeline's catalog stage, moved into its own repo. About 1.58 million asteroids from JPL SBDB, SsODNet, NEOWISE and MP3C, cross-matched, with the source of every value recorded and a cited composition estimate for each taxonomy class. Releases are frozen so other projects can pin one.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/Parquet-1f3354?style=flat-square&logo=apacheparquet&logoColor=white" alt="Parquet"></picture> <a href="https://github.com/loggger101/AsteroidCatalog/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/AsteroidCatalog?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a> <a href="https://www.loganmedwardsastrophy.com/asteroid-catalog.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/spacevalue">spacevalue</a></b><br/><sub>Stage 2: mineral prices</sub><br/><sub>2,197 lines of code</sub><br/><sub>5,193 total lines</sub><br/><picture><img src="docs/sparks/spacevalue.svg" width="120" alt="My commits to spacevalue each week since August 2026: 64 in all, 18 in the busiest week"></picture></td>
+    <td valign="top"><p>The pipeline's pricing stage as an installable Python package: what a kilogram of each mineral and element is worth at eight places you could deliver it, from Earth's surface to Mars. Away from Earth a material is worth the better of being used there, which saves launching it, or being flown home and sold. Prices come from recorded quotes, so a build can be repeated, and each dated release carries all eight tables as CSVs.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <a href="https://github.com/loggger101/spacevalue/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/spacevalue?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
+  </tr>
+  <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/spacecost">spacecost</a></b><br/><sub>Stage 3: mission costs</sub><br/><sub>9,292 lines of code</sub><br/><sub>18,519 total lines</sub><br/><picture><img src="docs/sparks/spacecost.svg" width="120" alt="My commits to spacecost each week since September 2026: 87 in all, 19 in the busiest week"></picture></td>
     <td valign="top"><p>The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <a href="https://github.com/loggger101/spacecost/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,531 lines of code</sub><br/><sub>48,719 total lines</sub><br/><picture><img src="docs/sparks/General_Research.svg" width="120" alt="My commits to General_Research each week since September 2026: 197 in all, 53 in the busiest week"></picture></td>
-    <td valign="top"><p>The sources behind the three repos above, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
+    <td valign="top"><p>The sources behind the four repos above, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/starred-repos">starred-repos</a></b><br/><sub>pipeline audit</sub><br/><sub>705 lines of code</sub><br/><sub>2,619 total lines</sub><br/><picture><img src="docs/sparks/starred-repos.svg" width="120" alt="My commits to starred-repos each week since September 2026: 12 in all, 5 in the busiest week"></picture></td>
@@ -169,18 +173,18 @@ Both repos are private, but the sites are public.
 Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,218 in all, Space economics 635, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,887. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,282 in all, Space economics 699, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,887. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
 </p>
 
 My latest commits:
 
 <!-- latest commits -->
 - 26 Oct · [starred-repos](https://github.com/loggger101/starred-repos/commit/da072350523ba82381962c25ae601977480a3f15): Add CI for what needs no economicspace checkout, and note the 2026-10-26 re-run
+- 26 Oct · [spacevalue](https://github.com/loggger101/spacevalue/commit/5ee2c14d5e07035c9b5031c20c060457808432f1): README names the columns a row holds; pyproject says which Pythons CI runs
+- 26 Oct · [spacevalue](https://github.com/loggger101/spacevalue/commit/40b10a8a2b7637ecef0150bbf3fd411fd58c640b): CLAUDE.md takes the pricing rules economicspace kept; README's used-in-space price says PLUS
 - 26 Oct · [spacecost](https://github.com/loggger101/spacecost/commit/5ea3f2403f822aa8db9f8f54a717b030384b410d): README: plainer sentences where a colon or a stock phrase did the work
 - 26 Oct · [spacecost](https://github.com/loggger101/spacecost/commit/fd0c2b15d53cb5dac9ebd32091fcc742e0070684): Consumer contract: name spacevalue, not economicspace's old Stage 2 module, as the delivery-chain…
 - 26 Oct · [samebytes](https://github.com/loggger101/samebytes/commit/d0e15650fef2b1f9bb379211a86932e0104c605b): parity: Stage 2's CSV writer is spacevalue's build now
-- 26 Oct · [samebytes](https://github.com/loggger101/samebytes/commit/6596f3450942f54ebc5b71d9e9288cc8c555246c): samebytes 0.2.0: README and CHANGELOG
-- 26 Oct · [quietqueue](https://github.com/loggger101/quietqueue/commit/1621345d51d13db95c13367dfa40fa9fc3de34cb): CI actions at v7 (Node.js 24), packaging links, and an Unreleased changelog
 <!-- /latest commits -->
 
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
@@ -188,7 +192,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="106,629 lines of code in 10 languages: Python 86,569 (81.2%), Perl 6,747 (6.3%), JavaScript 5,326 (5.0%), HTML 4,092 (3.8%), CSS 2,375 (2.2%), Shell 734 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 786 (0.7%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="108,826 lines of code in 10 languages: Python 88,747 (81.5%), Perl 6,747 (6.2%), JavaScript 5,326 (4.9%), HTML 4,092 (3.8%), CSS 2,375 (2.2%), Shell 753 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 786 (0.7%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
