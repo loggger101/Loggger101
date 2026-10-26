@@ -238,16 +238,17 @@ wide_lanes = {
     ("sr", "es"): lambda b: [at(b["sr"], 0.12, 0), (at(b["sr"], 0.12, 0)[0], SR_LANE),
                              (at(b["es"], 0.88, 1)[0], SR_LANE), (at(b["es"], 0.88, 1)[0], MID + CH + 3)],
 }
-# Phones: seven rows, top to bottom, two cards a row, General_Research alone on top and
-# samebytes alone at the bottom. The
-# citations come down the middle of the gap between the columns, AsteroidCatalog's data left
-# of them and the cards below economicspace climb to it on their right; spacecost's data for
-# economicspace runs down the right edge, past spacevalue, and samebytes's climbs just
-# inside it to economicspace's lower right.
+# Phones: six rows, top to bottom, two cards a row, starred-repos beside General_Research.
+# The citations leave General_Research's right side and come down the middle of the gap
+# between the columns, AsteroidCatalog's data left of them, and quietlaunch and quietqueue
+# climb a lane right of them to economicspace's lower left. On the right edge spacecost's
+# data runs down past spacevalue, the audit's citation down the outside of it, and
+# samebytes's climbs from under the mining targets, each in its own stretch.
 PW, PH, ROW = 300, 118, 168
 PWIDTH, left, right = 736, 12, 392
 tall = {
-    "gr": ((PWIDTH - PW) / 2, 20, PW, PH),
+    "gr": (left, 20, PW, PH),
+    "sr": (right, 20, PW, PH),
     "ac": (left, 20 + ROW, PW, PH),
     "sc": (right, 20 + ROW, PW, PH),
     "abg": (left, 20 + 2 * ROW, PW, PH),
@@ -257,28 +258,38 @@ tall = {
     "ql": (left, 20 + 4 * ROW, PW, PH),
     "targets": (right, 20 + 4 * ROW, PW, PH),
     "qq": (left, 20 + 5 * ROW, PW, PH),
-    "sr": (right, 20 + 5 * ROW, PW, PH),
-    "sb": (right, 20 + 6 * ROW, PW, PH),
+    "sb": (right, 20 + 5 * ROW, PW, PH),
 }
 GAP_X = (left + PW + right) / 2
+EDGE_IN, EDGE_OUT = right + PW + 15, right + PW + 28
+
+
+def cite_from_gr(b, key, fy):
+    """Out of General_Research's right side, down the gap, into key's left side fy down."""
+    y = at(b[key], 0, fy)[1]
+    return [at(b["gr"], 1, 0.5), (GAP_X, at(b["gr"], 1, 0.5)[1]), (GAP_X, y), (right - 3, y)]
+
+
 tall_lanes = {
-    ("gr", "sv"): lambda b: [(GAP_X, 20 + PH), (GAP_X, at(b["sv"], 0, 0.3)[1]), (right - 3, at(b["sv"], 0, 0.3)[1])],
-    ("gr", "es"): lambda b: [(GAP_X, 20 + PH), (GAP_X, at(b["es"], 0, 0.2)[1]), (right - 3, at(b["es"], 0, 0.2)[1])],
+    ("gr", "sc"): lambda b: cite_from_gr(b, "sc", 0.5),
+    ("gr", "sv"): lambda b: cite_from_gr(b, "sv", 0.3),
+    ("gr", "es"): lambda b: cite_from_gr(b, "es", 0.2),
     ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), (left + PW + 14, at(b["ac"], 1, 0.75)[1]),
                              (left + PW + 14, at(b["es"], 0, 0.45)[1]), (right - 3, at(b["es"], 0, 0.45)[1])],
-    ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (right + PW + 28, at(b["sc"], 1, 0.75)[1]),
-                             (right + PW + 28, at(b["es"], 1, 0.4)[1]), (right + PW + 3, at(b["es"], 1, 0.4)[1])],
-    ("sb", "es"): lambda b: [at(b["sb"], 1, 0.5), (right + PW + 15, at(b["sb"], 1, 0.5)[1]),
-                             (right + PW + 15, at(b["es"], 1, 0.75)[1]), (right + PW + 3, at(b["es"], 1, 0.75)[1])],
+    ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (EDGE_IN, at(b["sc"], 1, 0.75)[1]),
+                             (EDGE_IN, at(b["es"], 1, 0.3)[1]), (right + PW + 3, at(b["es"], 1, 0.3)[1])],
+    ("sr", "es"): lambda b: [at(b["sr"], 1, 0.5), (EDGE_OUT, at(b["sr"], 1, 0.5)[1]),
+                             (EDGE_OUT, at(b["es"], 1, 0.6)[1]), (right + PW + 3, at(b["es"], 1, 0.6)[1])],
+    ("sb", "es"): lambda b: [at(b["sb"], 1, 0.5), (EDGE_IN, at(b["sb"], 1, 0.5)[1]),
+                             (EDGE_IN, at(b["es"], 1, 0.85)[1]), (right + PW + 3, at(b["es"], 1, 0.85)[1])],
 }
 
 files = {
     "pipeline.svg": render(1200, R3 + CH + 56, wide, True, 22, 17, (CX[1], R3 + CH + 40), 7,
                            {}, wide_lanes),
-    "pipeline-compact.svg": render(PWIDTH, 20 + 6 * ROW + PH + 64, tall, False, 25, 21,
-                                   (left + 4, 20 + 6 * ROW + PH + 42), 8,
-                                   {"ql": (0.6, right - 32), "qq": (0.75, right - 22),
-                                    "sr": (0.9, right - 12)}, tall_lanes),
+    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 21,
+                                   (left + 4, 20 + 5 * ROW + PH + 42), 8,
+                                   {"ql": (0.72, right - 26), "qq": (0.72, right - 26)}, tall_lanes),
 }
 for name, svg in files.items():
     (OUT / name).write_text(svg, encoding="utf-8", newline="\n")
