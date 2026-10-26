@@ -42,7 +42,7 @@
 <text class="fade" x="776.6" y="187.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.20s">0.8 LD · 3–6 m · 7.8 km/s · Sat 31 Oct</text>
 <text x="40" y="225.1" font-size="19" fill="#b9c6e4">2026 TB94</text>
 <line x1="212.8" y1="218.4" x2="750.0" y2="218.4" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="332.3" cy="218.4" r="6.7" fill="url(#rock)" style="--from:455.7px;animation-delay:0.32s"/>
+<circle class="fly" cx="332.4" cy="218.4" r="6.7" fill="url(#rock)" style="--from:455.6px;animation-delay:0.32s"/>
 <text class="fade" x="776.6" y="225.1" font-size="16.1" fill="#dbe3f5" style="animation-delay:0.32s">5.1 LD · 20–44 m · 11.6 km/s · Tue 27 Oct</text>
 <text x="40" y="263.0" font-size="19" fill="#b9c6e4">2026 UB1</text>
 <line x1="212.8" y1="256.4" x2="750.0" y2="256.4" stroke="#2a3b63" stroke-width="1"/>

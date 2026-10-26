@@ -1,16 +1,16 @@
 {
-  "sources": 611,
+  "sources": 618,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
     "economicspace": 22960,
     "AsteroidCatalog": 5727,
-    "spacevalue": 2197,
+    "spacevalue": 2998,
     "spacecost": 9292,
     "General_Research": 2531,
     "starred-repos": 705,
     "asteroid-belt-gradient": 2862,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 18865,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 18923,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 12796,
@@ -22,14 +22,14 @@
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 94332,
+    "economicspace": 94323,
     "AsteroidCatalog": 13709,
-    "spacevalue": 5193,
-    "spacecost": 18519,
-    "General_Research": 48719,
+    "spacevalue": 7080,
+    "spacecost": 18520,
+    "General_Research": 48812,
     "starred-repos": 2619,
     "asteroid-belt-gradient": 6529,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 113646,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 115702,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22010,
@@ -54,7 +54,7 @@
       "Shell": 19
     },
     "spacevalue": {
-      "Python": 2178,
+      "Python": 2979,
       "Shell": 19
     },
     "spacecost": {
@@ -72,9 +72,9 @@
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
       "Python": 18583,
-      "PowerShell": 133,
-      "Batchfile": 89,
-      "HTML": 60
+      "PowerShell": 137,
+      "HTML": 114,
+      "Batchfile": 89
     },
     "star-spectral-classifier": {
       "Python": 2946
@@ -140,9 +140,14 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 26,
-          "2026-10-26": 5
+          "2026-10-26": 6
         },
         "recent": [
+          [
+            "0bd4be6d2ee673a580da79f9bad7513f4836d756",
+            "2026-10-26",
+            "CLAUDE.md: spacevalue's pricing rules point there; a stale ui_meta example (no stamp) (#181)"
+          ],
           [
             "0d08128007cab63216417fb157540d9fd58cdc96",
             "2026-10-26",
@@ -152,11 +157,6 @@
             "5530fb9f4c03c7b115dce1cc632b41d110cf91b7",
             "2026-10-26",
             "Stage 2's pricing moves to spacevalue, and no stage fetches a live price (master v1.59.0, mineral_value v1.17.0) (#179)"
-          ],
-          [
-            "e7e10574e013ff66ff5221f4d218a6b256f8d642",
-            "2026-10-26",
-            "verify.py: check 6 reads with samebytes.read_exact and baseline records cell_hash; the last two copies go (no stamp) (#178)"
           ]
         ]
       },
@@ -202,9 +202,14 @@
           "2026-10-05": 10,
           "2026-10-12": 3,
           "2026-10-19": 4,
-          "2026-10-26": 6
+          "2026-10-26": 7
         },
         "recent": [
+          [
+            "d12f626b7caad66f892eeffd9156e20f7e41df8f",
+            "2026-10-26",
+            "spacevalue.cargo: economicspace's cargo valuation moves here verbatim (0.2.0) (#4)"
+          ],
           [
             "5ee2c14d5e07035c9b5031c20c060457808432f1",
             "2026-10-26",
@@ -214,11 +219,6 @@
             "40b10a8a2b7637ecef0150bbf3fd411fd58c640b",
             "2026-10-26",
             "CLAUDE.md takes the pricing rules economicspace kept; README's used-in-space price says PLUS (#2)"
-          ],
-          [
-            "2a581f4b5c96cafb7de5143dcccdce2b013be829",
-            "2026-10-26",
-            "README: plainer sentences where a colon or a stock phrase did the work (#1)"
           ]
         ]
       },
@@ -233,9 +233,14 @@
           "2026-10-05": 17,
           "2026-10-12": 8,
           "2026-10-19": 19,
-          "2026-10-26": 4
+          "2026-10-26": 5
         },
         "recent": [
+          [
+            "2bd5e2099dbde187dfdca178bdea7f9c5b7343a1",
+            "2026-10-26",
+            "Package docstring: spacevalue, not economicspace's Stage 2, reads the delivery chains (#37)"
+          ],
           [
             "5ea3f2403f822aa8db9f8f54a717b030384b410d",
             "2026-10-26",
@@ -245,11 +250,6 @@
             "fd0c2b15d53cb5dac9ebd32091fcc742e0070684",
             "2026-10-26",
             "Consumer contract: name spacevalue, not economicspace's old Stage 2 module, as the delivery-chain reader (#35)"
-          ],
-          [
-            "edfd5bec956bab66faa96a8a9e14c1555c6b30b6",
-            "2026-10-26",
-            "Recorded quote snapshots, so a market-priced build can be repeated (v0.14.0) (#34)"
           ]
         ]
       },
@@ -339,13 +339,19 @@
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-10-25",
+        "last": "2026-10-26",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
-          "2026-10-19": 33
+          "2026-10-19": 33,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "e3c8055718f4d4a46c76817559d631f19d673c4a",
+            "2026-10-26",
+            "The v2 rehearsal done: the U-Net chain end to end; times for the real run (KB \u00a769.4)"
+          ],
           [
             "e04f3f48a9c2998f713b102119695c052a841f31",
             "2026-10-25",
@@ -355,11 +361,6 @@
             "d87ee32d55d25af90178ba873f2f6fa2a7155b51",
             "2026-10-24",
             "Rehearsal timings: seven classes cost ~3x the four-class SVM (KB \u00a769.4)"
-          ],
-          [
-            "c0d00cdd90e6f947e413ddf4ed97c321f28916cd",
-            "2026-10-24",
-            "The v2 runs rehearsed before the review (--labels v2p); D19 answered (KB \u00a769.4)"
           ]
         ]
       },
@@ -637,7 +638,7 @@
       },
       "Hermes_Skills": {
         "first": "2026-08-23",
-        "last": "2026-10-25",
+        "last": "2026-10-26",
         "weeks": {
           "2026-08-17": 6,
           "2026-08-24": 62,
@@ -648,7 +649,8 @@
           "2026-09-28": 22,
           "2026-10-05": 195,
           "2026-10-12": 1,
-          "2026-10-19": 1
+          "2026-10-19": 1,
+          "2026-10-26": 1
         },
         "recent": [
           [
@@ -730,9 +732,9 @@
       {
         "des": "2026 TB94",
         "time": "2026-Oct-27 01:11",
-        "dist_au": 0.0130600395207834,
-        "v_kms": 11.5820856607785,
-        "h": 25.634,
+        "dist_au": 0.0130671686032448,
+        "v_kms": 11.5883114100175,
+        "h": 25.66,
         "diameter_km": null
       },
       {
