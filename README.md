@@ -20,7 +20,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
 <p align="center">
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.58M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
-  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="618 research sources (General_Research)"></picture></a>
+  <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="626 research sources (General_Research)"></picture></a>
   <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="253 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
@@ -43,7 +43,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>22,960 lines of code</sub><br/><sub>94,323 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 310 in all, 54 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>22,599 lines of code</sub><br/><sub>93,352 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 312 in all, 54 in the busiest week"></picture></td>
     <td valign="top"><p>The main pipeline. It installs a pinned catalog release from AsteroidCatalog and pinned prices from spacevalue, costs the transport with spacecost, then runs the rocket equation and a cost cascade to rank targets by profit.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <picture><img src="https://img.shields.io/badge/Docker-1f3354?style=flat-square&logo=docker&logoColor=white" alt="Docker"></picture></td>
   </tr>
   <tr>
@@ -59,7 +59,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>The pipeline's mission-cost stage as an installable Python package: reference tables for mission cost and mass, with a citation on every row.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <a href="https://github.com/loggger101/spacecost/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/spacecost?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a> <a href="https://www.loganmedwardsastrophy.com/spacecost.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,531 lines of code</sub><br/><sub>48,812 total lines</sub><br/><picture><img src="docs/sparks/General_Research.svg" width="120" alt="My commits to General_Research each week since September 2026: 197 in all, 53 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/General_Research">General_Research</a></b><br/><sub>the sources</sub><br/><sub>2,531 lines of code</sub><br/><sub>48,881 total lines</sub><br/><picture><img src="docs/sparks/General_Research.svg" width="120" alt="My commits to General_Research each week since September 2026: 197 in all, 53 in the busiest week"></picture></td>
     <td valign="top"><p>The sources behind the four repos above, ranked into tiers by authority, with the numbers I use pulled into a CSV for each source.</p><a href="https://www.loganmedwardsastrophy.com/general-research.html"><img src="https://img.shields.io/badge/Project_page-5ba3dc?style=flat-square&logo=googlechrome&logoColor=white" alt="Project page"></a></td>
   </tr>
   <tr>
@@ -173,7 +173,7 @@ Both repos are private, but the sites are public.
 Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,287 in all, Space economics 702, Planetary science 126, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,888. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,289 in all, Space economics 704, Planetary science 126, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,888. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
 </p>
 
 My latest commits:
@@ -192,7 +192,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="109,685 lines of code in 10 languages: Python 89,548 (81.6%), Perl 6,747 (6.2%), JavaScript 5,326 (4.9%), HTML 4,146 (3.8%), CSS 2,375 (2.2%), Shell 753 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 790 (0.7%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="109,324 lines of code in 10 languages: Python 89,187 (81.6%), Perl 6,747 (6.2%), JavaScript 5,326 (4.9%), HTML 4,146 (3.8%), CSS 2,375 (2.2%), Shell 753 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 790 (0.7%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week

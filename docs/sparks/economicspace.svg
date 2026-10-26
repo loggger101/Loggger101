@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" width="240" height="48" aria-hidden="true">
 <style>
-  .draw { stroke-dasharray: 250; animation: draw 1.6s ease-out both; }
-  @keyframes draw { from { stroke-dashoffset: 250; } to { stroke-dashoffset: 0; } }
+  .draw { stroke-dasharray: 249; animation: draw 1.6s ease-out both; }
+  @keyframes draw { from { stroke-dashoffset: 249; } to { stroke-dashoffset: 0; } }
   .fade { animation: fade 0.6s ease-out 1.2s both; }
   @keyframes fade { from { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .draw, .fade { animation: none; } }
 </style>
 <line x1="7" y1="41" x2="233" y2="41" stroke="#2a3b63" stroke-width="1.5"/>
-<polygon class="fade" points="7.0,41 7.0,7.0 25.8,19.3 44.7,20.3 63.5,15.7 82.3,16.1 101.2,19.3 120.0,7.0 138.8,25.0 157.7,29.7 176.5,21.4 195.3,25.7 214.2,17.4 233.0,29.7 233.0,41" fill="#5ba3dc" fill-opacity="0.3"/>
-<polyline class="draw" points="7.0,7.0 25.8,19.3 44.7,20.3 63.5,15.7 82.3,16.1 101.2,19.3 120.0,7.0 138.8,25.0 157.7,29.7 176.5,21.4 195.3,25.7 214.2,17.4 233.0,29.7" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<circle class="fade" cx="233.0" cy="29.7" r="5" fill="#e8c27a" stroke="#5ba3dc" stroke-width="2"/>
+<polygon class="fade" points="7.0,41 7.0,7.0 25.8,19.3 44.7,20.3 63.5,15.7 82.3,16.1 101.2,19.3 120.0,7.0 138.8,25.0 157.7,29.7 176.5,21.4 195.3,25.7 214.2,17.4 233.0,27.9 233.0,41" fill="#5ba3dc" fill-opacity="0.3"/>
+<polyline class="draw" points="7.0,7.0 25.8,19.3 44.7,20.3 63.5,15.7 82.3,16.1 101.2,19.3 120.0,7.0 138.8,25.0 157.7,29.7 176.5,21.4 195.3,25.7 214.2,17.4 233.0,27.9" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle class="fade" cx="233.0" cy="27.9" r="5" fill="#e8c27a" stroke="#5ba3dc" stroke-width="2"/>
 </svg>

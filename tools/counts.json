@@ -1,9 +1,9 @@
 {
-  "sources": 618,
+  "sources": 626,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 22960,
+    "economicspace": 22599,
     "AsteroidCatalog": 5727,
     "spacevalue": 2998,
     "spacecost": 9292,
@@ -22,11 +22,11 @@
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 94323,
+    "economicspace": 93352,
     "AsteroidCatalog": 13709,
     "spacevalue": 7080,
     "spacecost": 18520,
-    "General_Research": 48812,
+    "General_Research": 48881,
     "starred-repos": 2619,
     "asteroid-belt-gradient": 6529,
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": 115702,
@@ -42,7 +42,7 @@
   },
   "languages": {
     "economicspace": {
-      "Python": 22439,
+      "Python": 22078,
       "Batchfile": 228,
       "Shell": 224,
       "VBScript": 39,
@@ -140,23 +140,23 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 26,
-          "2026-10-26": 6
+          "2026-10-26": 8
         },
         "recent": [
+          [
+            "320c3b144a9e4158ff5a8a6501d66a426461549e",
+            "2026-10-26",
+            "verification_sheet: field_docs walks every CONFIG_SOURCES pair, so --check runs again (no stamp) (#182)"
+          ],
+          [
+            "326ff2720f3cfb401e39dc26b910f61e859190f0",
+            "2026-10-26",
+            "Stage 4's cargo valuation moves to spacevalue.cargo (master v1.60.0, calc v1.33.0) (#183)"
+          ],
           [
             "0bd4be6d2ee673a580da79f9bad7513f4836d756",
             "2026-10-26",
             "CLAUDE.md: spacevalue's pricing rules point there; a stale ui_meta example (no stamp) (#181)"
-          ],
-          [
-            "0d08128007cab63216417fb157540d9fd58cdc96",
-            "2026-10-26",
-            "Plainer sentences in the v1.59.0 prose (no stamp) (#180)"
-          ],
-          [
-            "5530fb9f4c03c7b115dce1cc632b41d110cf91b7",
-            "2026-10-26",
-            "Stage 2's pricing moves to spacevalue, and no stage fetches a live price (master v1.59.0, mineral_value v1.17.0) (#179)"
           ]
         ]
       },
