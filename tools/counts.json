@@ -1,11 +1,11 @@
 {
-  "sources": 609,
+  "sources": 611,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 24832,
-    "AsteroidCatalog": 5704,
-    "spacecost": 8725,
+    "economicspace": 22960,
+    "AsteroidCatalog": 5727,
+    "spacecost": 9292,
     "General_Research": 2531,
     "starred-repos": 705,
     "asteroid-belt-gradient": 2862,
@@ -14,42 +14,44 @@
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 12796,
     "website": 7615,
-    "quietlaunch": 1077,
-    "quietqueue": 646,
+    "quietlaunch": 1109,
+    "quietqueue": 665,
     "aspirecures": 10712,
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 97671,
-    "AsteroidCatalog": 13602,
-    "spacecost": 17478,
-    "General_Research": 48683,
-    "starred-repos": 2528,
+    "economicspace": 94332,
+    "AsteroidCatalog": 13709,
+    "spacecost": 18519,
+    "General_Research": 48719,
+    "starred-repos": 2619,
     "asteroid-belt-gradient": 6529,
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": 113646,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22010,
     "website": 10124,
-    "quietlaunch": 2202,
-    "quietqueue": 1589,
+    "quietlaunch": 2338,
+    "quietqueue": 1702,
     "aspirecures": 20801,
     "SistersHopeFoundation": 11270
   },
   "languages": {
     "economicspace": {
-      "Python": 24307,
-      "Batchfile": 231,
-      "Shell": 227,
+      "Python": 22439,
+      "Batchfile": 228,
+      "Shell": 224,
       "VBScript": 39,
-      "Dockerfile": 17,
+      "Dockerfile": 19,
       "PowerShell": 11
     },
     "AsteroidCatalog": {
-      "Python": 5704
+      "Python": 5708,
+      "Shell": 19
     },
     "spacecost": {
-      "Python": 8725
+      "Python": 9273,
+      "Shell": 19
     },
     "General_Research": {
       "Python": 2531
@@ -85,11 +87,13 @@
       "PowerShell": 192
     },
     "quietlaunch": {
-      "Python": 1077
+      "Python": 1090,
+      "Shell": 19
     },
     "quietqueue": {
       "Python": 599,
-      "PowerShell": 47
+      "PowerShell": 47,
+      "Shell": 19
     },
     "aspirecures": {
       "Perl": 6747,
@@ -106,11 +110,11 @@
     }
   },
   "activity": {
-    "as_of": "2026-10-25",
+    "as_of": "2026-10-26",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
-        "last": "2026-10-25",
+        "last": "2026-10-26",
         "weeks": {
           "2026-08-03": 54,
           "2026-08-10": 22,
@@ -123,23 +127,24 @@
           "2026-09-28": 6,
           "2026-10-05": 18,
           "2026-10-12": 11,
-          "2026-10-19": 21
+          "2026-10-19": 26,
+          "2026-10-26": 5
         },
         "recent": [
           [
-            "07b751ac16b2be6c94479cf830aa8fa36b52a6e3",
-            "2026-10-25",
-            "Hold the stage modules' shared preamble once, in modules/_runtime.py (no stamp) (#170)"
+            "0d08128007cab63216417fb157540d9fd58cdc96",
+            "2026-10-26",
+            "Plainer sentences in the v1.59.0 prose (no stamp) (#180)"
           ],
           [
-            "e3e28dc35815cc705e7828363849316a95c91fd5",
-            "2026-10-25",
-            "Retire the generated master.py: modules/ is a package, master.py a shim (master v1.57.0) (#169)"
+            "5530fb9f4c03c7b115dce1cc632b41d110cf91b7",
+            "2026-10-26",
+            "Stage 2's pricing moves to spacevalue, and no stage fetches a live price (master v1.59.0, mineral_value v1.17.0) (#179)"
           ],
           [
-            "bf66e35365e04a42183f381e2f7420c2cff65a10",
-            "2026-10-21",
-            "Repin the catalog to data-2026-10-21b, data contract 1.10.0 (master v1.56.0) (#168)"
+            "e7e10574e013ff66ff5221f4d218a6b256f8d642",
+            "2026-10-26",
+            "verify.py: check 6 reads with samebytes.read_exact and baseline records cell_hash; the last two copies go (no stamp) (#178)"
           ]
         ]
       },
@@ -151,29 +156,29 @@
           "2026-09-28": 5,
           "2026-10-05": 1,
           "2026-10-12": 1,
-          "2026-10-19": 5
+          "2026-10-19": 7
         },
         "recent": [
+          [
+            "61768e0b4517d56b59abd28983f2bbfc216518b4",
+            "2026-10-25",
+            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#26)"
+          ],
+          [
+            "383a43312b9aa787fb20c283b24fe3620a2b459a",
+            "2026-10-25",
+            "Tests: every PGM enrichment row is a positive multiplier (no release) (#25)"
+          ],
           [
             "7be33f98545380cc3b703e84ddcdd8763b3ea65d",
             "2026-10-25",
             "Tests: the manifest's release_tag and the shipped PHASE_GROUP (no release) (#24)"
-          ],
-          [
-            "58396172187e10335bd5291bb73aac41efbbc2ab",
-            "2026-10-21",
-            "Docs: data-2026-10-21b is the current release (data contract 1.10.0) (#23)"
-          ],
-          [
-            "6915077953281309d0677f3a685bc4d8d5a6d5e4",
-            "2026-10-21",
-            "Tagish Lake carbon for the primitive types; Vesta and Bennu shape volumes (data contract 1.10.0) (#22)"
           ]
         ]
       },
       "spacecost": {
         "first": "2026-09-07",
-        "last": "2026-10-21",
+        "last": "2026-10-26",
         "weeks": {
           "2026-09-07": 6,
           "2026-09-14": 6,
@@ -181,23 +186,24 @@
           "2026-09-28": 9,
           "2026-10-05": 17,
           "2026-10-12": 8,
-          "2026-10-19": 13
+          "2026-10-19": 19,
+          "2026-10-26": 4
         },
         "recent": [
           [
-            "643a7832ddcfd99eecc202ebfa2c36b7e8b175e6",
-            "2026-10-21",
-            "Cut 0.12.6: seven wording and citation RCs (data contract 1.23.6)"
+            "5ea3f2403f822aa8db9f8f54a717b030384b410d",
+            "2026-10-26",
+            "README: plainer sentences where a colon or a stock phrase did the work (#36)"
           ],
           [
-            "9d10401dd12bfc0987eb07f735cc70b48ceea5db",
-            "2026-10-21",
-            "Cut 0.12.5: six storage and power RCs, two resting on NASA test data (data contract 1.23.5)"
+            "fd0c2b15d53cb5dac9ebd32091fcc742e0070684",
+            "2026-10-26",
+            "Consumer contract: name spacevalue, not economicspace's old Stage 2 module, as the delivery-chain reader (#35)"
           ],
           [
-            "a899b77d512cf9183e34776f576f8f97a9033352",
-            "2026-10-21",
-            "0.12.4: the Centaur history is NASA SP-2004-4230, and its figures are not dated 1959"
+            "edfd5bec956bab66faa96a8a9e14c1555c6b30b6",
+            "2026-10-26",
+            "Recorded quote snapshots, so a market-priced build can be repeated (v0.14.0) (#34)"
           ]
         ]
       },
@@ -232,15 +238,21 @@
       },
       "starred-repos": {
         "first": "2026-09-03",
-        "last": "2026-10-21",
+        "last": "2026-10-26",
         "weeks": {
           "2026-08-31": 2,
           "2026-09-14": 1,
           "2026-09-21": 1,
           "2026-10-12": 2,
-          "2026-10-19": 5
+          "2026-10-19": 5,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "da072350523ba82381962c25ae601977480a3f15",
+            "2026-10-26",
+            "Add CI for what needs no economicspace checkout, and note the 2026-10-26 re-run (#3)"
+          ],
           [
             "223bfef746d4e9c5fdf37552f9b0268d61be9991",
             "2026-10-21",
@@ -250,11 +262,6 @@
             "6133e4ad497ef7667e5da7476f5324b699e30ec0",
             "2026-10-20",
             "Set the repo up to stand alone, and write the notes in plain prose (#1)"
-          ],
-          [
-            "c1d554cea7410d3107936ca09daa0208dff1aad2",
-            "2026-10-20",
-            "Keep text files LF on every checkout, as economicspace did"
           ]
         ]
       },
@@ -456,57 +463,59 @@
       },
       "quietlaunch": {
         "first": "2026-08-23",
-        "last": "2026-10-20",
+        "last": "2026-10-26",
         "weeks": {
           "2026-08-17": 2,
           "2026-08-24": 1,
           "2026-08-31": 3,
           "2026-10-12": 1,
-          "2026-10-19": 8
+          "2026-10-19": 9,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "69880798168927fc7df2ba5efb8bed85c37f2edc",
+            "2026-10-26",
+            "Add --version, Node 24 CI actions, fuller package metadata, an Unreleased changelog (#4)"
+          ],
+          [
+            "da3d032bb201ce166630f7c7939549df87d3906b",
+            "2026-10-25",
+            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#3)"
+          ],
           [
             "a90543421eab5c54ad043eeacf41c2209367680d",
             "2026-10-20",
             "Docs say what happens instead of how much it matters (#2)"
-          ],
-          [
-            "90838e6a6789cfd6df4f08d7fd2463d497f62aae",
-            "2026-10-20",
-            "README names each option's flag; three docstrings say what the code does (#1)"
-          ],
-          [
-            "453dc4a0dd1dbc6eb3257e9c0ea3a9a03936e99a",
-            "2026-10-20",
-            "Fake server listens without a reverse-DNS lookup, and says why it did not"
           ]
         ]
       },
       "quietqueue": {
         "first": "2026-08-24",
-        "last": "2026-10-20",
+        "last": "2026-10-26",
         "weeks": {
           "2026-08-24": 1,
           "2026-08-31": 3,
           "2026-09-07": 4,
           "2026-10-12": 3,
-          "2026-10-19": 8
+          "2026-10-19": 9,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "1621345d51d13db95c13367dfa40fa9fc3de34cb",
+            "2026-10-26",
+            "CI actions at v7 (Node.js 24), packaging links, and an Unreleased changelog (#5)"
+          ],
+          [
+            "8ee32443c241c117a16280166ce0323bf6929782",
+            "2026-10-25",
+            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#4)"
+          ],
           [
             "67ac65e9c4b5067f268067ef252e466af120f2a9",
             "2026-10-20",
             "Runner docstring: --only south, as the README's example (#3)"
-          ],
-          [
-            "3544d0a8c4128fd09eb9dd5a714178656ded0e5b",
-            "2026-10-20",
-            "README and supervisor docstring: plain statements for the traps' headings (#2)"
-          ],
-          [
-            "5628b4d5430ee1e7a4bc5a159d94f1643a23fce7",
-            "2026-10-20",
-            "Runner example names no campaign; CLAUDE.md names the consumer's pin files (#1)"
           ]
         ]
       },
@@ -551,7 +560,7 @@
       },
       "Hermes_Skills": {
         "first": "2026-08-23",
-        "last": "2026-10-13",
+        "last": "2026-10-25",
         "weeks": {
           "2026-08-17": 6,
           "2026-08-24": 62,
@@ -561,7 +570,8 @@
           "2026-09-21": 3,
           "2026-09-28": 22,
           "2026-10-05": 195,
-          "2026-10-12": 1
+          "2026-10-12": 1,
+          "2026-10-19": 1
         },
         "recent": [
           [
@@ -628,8 +638,8 @@
     }
   ],
   "flybys": {
-    "from": "2026-10-25",
-    "to": "2026-11-01",
+    "from": "2026-10-26",
+    "to": "2026-11-02",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
       {
@@ -646,30 +656,6 @@
         "dist_au": 0.0130600395207834,
         "v_kms": 11.5820856607785,
         "h": 25.634,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 UE",
-        "time": "2026-Oct-25 05:51",
-        "dist_au": 0.0134378649678357,
-        "v_kms": 15.9263893623522,
-        "h": 25.823,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 SQ31",
-        "time": "2026-Oct-25 13:22",
-        "dist_au": 0.0155230936841996,
-        "v_kms": 7.81011883789887,
-        "h": 23.764,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 TB8",
-        "time": "2026-Oct-25 09:27",
-        "dist_au": 0.0181485462832875,
-        "v_kms": 7.80654680294671,
-        "h": 23.876,
         "diameter_km": null
       },
       {
