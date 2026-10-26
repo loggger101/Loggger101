@@ -38,7 +38,7 @@ python tools/sparks.py docs/sparks     # the commits-per-week line under each re
 python tools/languages.py docs         # lines of code by language, plus -compact
 python tools/flybys.py docs            # the week's close approaches, plus -compact
 python tools/gallery.py docs/gallery   # project cards (three animated) and, into docs/figures, the figure grids; name some (mars sim-launch) to make only those
-python tools/banner.py docs/banner.svg
+python tools/banner.py docs            # the banner, plus -compact
 python tools/typing_line.py docs/typing.svg
 python tools/footer.py docs            # the strip that closes the page, plus -compact
 python tools/links.py docs/links       # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)

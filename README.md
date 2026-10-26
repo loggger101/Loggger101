@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.loganmedwardsastrophy.com/"><img src="docs/banner.svg" width="100%" alt="Logan M Edwards, Astronomy and Astrophysics, Planetary Science"></a>
+  <a href="https://www.loganmedwardsastrophy.com/"><picture><source media="(max-width: 600px)" srcset="docs/banner-compact.svg"><img src="docs/banner.svg" width="100%" alt="Logan M Edwards, Astronomy and Astrophysics, Planetary Science"></picture></a>
   <br/>
   <picture><img src="docs/typing.svg" width="482" alt="Asteroid catalogs and mining economics. Asteroid belt origins and Mars mapping. Deep learning on survey imagery. Orbit simulation in pure Python."></picture>
   <br/>

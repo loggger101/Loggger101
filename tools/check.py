@@ -45,7 +45,7 @@ DOCS = ROOT / "docs"
 
 # generator: the path under docs/ it is given (a file or a directory)
 GENERATORS = {
-    "banner.py": "banner.svg",
+    "banner.py": ".",
     "typing_line.py": "typing.svg",
     "footer.py": ".",
     "tiles.py": "stats",
