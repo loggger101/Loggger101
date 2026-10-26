@@ -115,8 +115,8 @@ for i, (name, (num, label, short, repo)) in enumerate(TILES.items()):
 """
     full = frame(i, f"{num} {label}, {repo}", body) + body
     body = f"""<g font-family="{FONT}" text-anchor="middle">
-{odometer(num, W / 2, 70, 62, centred=True)}
-<text x="{W / 2}" y="106" font-size="30" fill="#dbe3f5">{short}</text>
+{odometer(num, W / 2, 66, 62, centred=True)}
+<text x="{W / 2}" y="107" font-size="34" fill="#dbe3f5">{short}</text>
 </g>
 </svg>
 """
