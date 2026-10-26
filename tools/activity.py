@@ -198,13 +198,15 @@ def sidebar(x, y, big, size, row_gap, width):
             parts.append(f'<rect class="grow" x="{bar_x:.1f}" y="{ry - size * 0.62:.1f}" width="{max(bar_w * n / most, size * 0.6):.1f}" '
                          f'height="{size * 0.6:.1f}" rx="{size * 0.3:.1f}" fill="{BLUE}" style="animation-delay:{0.3 + 0.12 * k:.2f}s"/>')
         parts.append(f'<text x="{x + width:.1f}" y="{ry:.1f}" text-anchor="end" font-size="{size}" fill="{TEXT}">{n:,}</text>')
-    ry = top + len(COUNTS) * row_gap + row_gap * 0.4
-    parts.append(f'<line x1="{x}" y1="{ry - size * 1.2:.1f}" x2="{x + width}" y2="{ry - size * 1.2:.1f}" stroke="#2a3b63"/>')
-    for label, value in (("Busiest week", f"{WEEK_TOTALS[BUSIEST]:,} commits, the week of {day(WEEKS[BUSIEST])}"),
-                         ("Latest", f"{README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}")):
-        parts.append(f'<text x="{x}" y="{ry:.1f}" font-size="{size}"><tspan fill="{DIM}">{label}</tspan>'
-                     f'<tspan x="{x + size * 6.5:.1f}" fill="{TEXT}">{value}</tspan></text>')
-        ry += row_gap
+    ry = top + len(COUNTS) * row_gap - row_gap * 0.3
+    parts.append(f'<line x1="{x}" y1="{ry:.1f}" x2="{x + width}" y2="{ry:.1f}" stroke="#2a3b63"/>')
+    # Each label small above its value, so a long value has the sidebar's whole width.
+    for label, value in (("BUSIEST WEEK", f"{WEEK_TOTALS[BUSIEST]:,} commits, the week of {day(WEEKS[BUSIEST])}"),
+                         ("LATEST", f"{README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}")):
+        ry += size * 1.6
+        parts.append(f'<text x="{x}" y="{ry:.1f}" font-size="{size * 0.68:.1f}" font-weight="700" letter-spacing="1.5" fill="{DIM}">{label}</text>')
+        parts.append(f'<text x="{x}" y="{ry + size * 1.3:.1f}" font-size="{size}" fill="{TEXT}">{value}</text>')
+        ry += size * 1.5
     return parts
 
 
@@ -213,7 +215,7 @@ def render(w, h, seed, field_args, sidebar_args):
     parts += field(*field_args)
     parts += sidebar(*sidebar_args)
     parts.append("</g>\n</svg>\n")
-    return "\n".join(parts)
+    return panel.keep_clear("\n".join(parts))
 
 
 N_LATEST = 6       # commits in the README's list of latest ones
@@ -263,7 +265,7 @@ def files():
     # Phones: the rings on top, the sidebar under them, both larger for a screen about 350px wide.
     return {
         "activity.svg": render(1200, 640, 11, (330, 326, 112, 30, 17, 16), (690, 110, 52, 19, 40, 470)),
-        "activity-compact.svg": render(680, 1240, 12, (340, 360, 108, 33, 21, 20), (44, 724, 60, 25, 46, 592)),
+        "activity-compact.svg": render(680, 1310, 12, (340, 360, 108, 33, 21, 20), (44, 724, 60, 25, 46, 592)),
     }
 
 

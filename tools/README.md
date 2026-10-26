@@ -67,7 +67,9 @@ result, that job turns red until the profile catches up.
 
 The wide panels (activity, languages, break-even, flybys, repo diagram) open with
 `panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which
-stops every class a panel names as animated. Change the frame there.
+stops every class a panel names as animated. Change the frame there. `panel.keep_clear`
+then takes out the stars that would land on a panel's text or marks; the tiles place theirs
+in the space their text leaves.
 
 The banner, footer, tiles, repo diagram and the panels move, with CSS animations in each
 SVG: stars twinkle everywhere; the tiles' numbers roll up like an odometer; points of light

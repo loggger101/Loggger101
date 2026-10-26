@@ -192,5 +192,18 @@ eq("reduced motion stops all", "{ .tw, .fade, .spin { animation: none; } }" in s
 eq("alt escaped", 'aria-label="a &quot;quoted&quot; alt"' in svg, True)
 eq("one-line defs without extras", "<defs><linearGradient" in svg, True)
 eq("same seed, same stars", pn.background(400, 300, 1, "x") == pn.background(400, 300, 1, "x"), True)
+# No star on a word or a mark; the rest stay put. A word in a clipped group counts only as its clip.
+svg = ('<circle cx="30.0" cy="20.0" r="1.0" fill="#fff" opacity="0.5"/>'
+       '<circle class="tw" cx="300.0" cy="200.0" r="1.2" fill="#dbe7ff"/>'
+       '<circle cx="200.0" cy="20.0" r="0.6" fill="#fff" opacity="0.5"/>'
+       '<circle cx="380.0" cy="100.0" r="0.6" fill="#fff" opacity="0.5"/>'
+       '<g font-size="20"><text x="20" y="25">a word</text></g>'
+       '<line x1="250" y1="200" x2="350" y2="200"/>'
+       '<g clip-path="url(#w)"><text x="190" y="-20" font-size="40">9</text></g>'
+       '<circle cx="380" cy="104" r="1"/>')
+kept = pn.keep_clear(svg)
+eq("stars on a word and a line go", ('cx="30.0"' in kept, 'cx="300.0"' in kept), (False, False))
+eq("a star clear of all stays", 'cx="200.0"' in kept, True)
+eq("a star by a dot goes", 'cx="380.0"' in kept, False)
 
 sys.exit(f"{fails} failed" if fails else 0)

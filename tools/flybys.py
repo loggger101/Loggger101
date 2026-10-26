@@ -161,7 +161,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
         parts.append(f'<text x="{at(MAX_LD) + size * 1.4:.1f}" y="{bottom + 6 + size * 1.1:.1f}" font-size="{size * 0.75:.1f}" '
                      f'fill="{DIM}">and {COUNT - len(ROWS)} more farther out</text>')
     parts.append("</g>\n</svg>\n")
-    return "\n".join(parts)
+    return panel.keep_clear("\n".join(parts))
 
 
 def update_readme(readme):

@@ -7,6 +7,10 @@ twinkling ones drawn after them (so adding twinkles never moved a still star), t
 the panel's own <defs> and <style>. Every animation in the profile stops under
 prefers-reduced-motion; `animated` names the classes a panel adds, and the rule that
 stops them is written here, beside the twinkle's, so no panel can forget it.
+
+Each panel's finished SVG goes through `keep_clear`, which takes out the stars that would
+sit in its text or on its lines, bars and dots, where a star reads as a stray mark or a
+data point. The tiles and the banner use it too.
 """
 import html
 import random
@@ -53,6 +57,70 @@ def background(w, h, seed, alt, defs=(), rules=(), animated=()):
 {stars}
 {twinkles}
 """
+
+
+# A background star, still or twinkling, as background() and the tiles, banner and footer
+# write one. Anything else round (a data dot, the Earth) is a mark.
+STAR = re.compile(r'<circle (?:class="tw" )?cx="([\d.]+)" cy="([\d.]+)" r="[\d.]+" fill="#(?:fff|dbe7ff)"[^>]*/>')
+TAG = re.compile(r'<(/?)(g|text|line|rect|circle)\b([^>]*?)/?>')
+# Average advance of a character, in ems: a little over Segoe UI's and Helvetica's, so a
+# box errs wide.
+EM = {"400": 0.58, "700": 0.62}
+
+
+def attrs(text):
+    return dict(re.findall(r'([\w-]+)="([^"]*)"', text))
+
+
+def marks(svg):
+    """The boxes (x0, y0, x1, y1) of what an svg draws over its stars: each line of text, as
+    wide as its characters at its font size (inherited from its <g> when it has none), each
+    line, each rect but the frame, and each circle that is not a star. Text in a clipped
+    group is left out: it shows only through its clip, whose rect counts instead (the tiles'
+    odometer keeps its unseen digits above the number)."""
+    boxes, groups = [], [{}]
+    for m in TAG.finditer(svg):
+        close, tag, a = m[1], m[2], attrs(m[3])
+        if tag == "g":
+            if close:
+                groups.pop()
+            elif not m[0].endswith("/>"):
+                groups.append({**groups[-1], **a})
+        elif tag == "text" and not close and "clip-path" not in groups[-1]:
+            a = {**groups[-1], **a}
+            body = re.sub(r"<[^>]+>", "", svg[m.end():svg.index("</text>", m.end())])
+            size = float(a.get("font-size", 16))
+            width = len(html.unescape(body)) * size * EM.get(a.get("font-weight", "400"), EM["400"])
+            x, y = float(a.get("x", 0)), float(a.get("y", 0))
+            x -= {"middle": width / 2, "end": width}.get(a.get("text-anchor", "start"), 0)
+            boxes.append((x, y - size * 0.8, x + width, y + size * 0.25))
+        elif tag == "line":
+            x1, y1, x2, y2 = (float(a.get(k, 0)) for k in ("x1", "y1", "x2", "y2"))
+            boxes.append((min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)))
+        elif tag == "rect" and "x" in a and a.get("fill") != "url(#g)":
+            x, y = float(a["x"]), float(a.get("y", 0))
+            boxes.append((x, y, x + float(a["width"]), y + float(a["height"])))
+        elif tag == "circle" and not STAR.match(m[0]) and "cx" in a:
+            cx, cy, r = float(a["cx"]), float(a["cy"]), float(a.get("r", 0))
+            boxes.append((cx - r, cy - r, cx + r, cy + r))
+    return boxes
+
+
+def clear_boxes(svg, pad=10):
+    """The boxes of svg's marks (see marks), each grown by pad: where no star should be."""
+    return [(x0 - pad, y0 - pad, x1 + pad, y1 + pad) for x0, y0, x1, y1 in marks(svg)]
+
+
+def is_clear(boxes, x, y):
+    return not any(x0 <= x <= x1 and y0 <= y <= y1 for x0, y0, x1, y1 in boxes)
+
+
+def keep_clear(svg, pad=10):
+    """svg without the stars that would sit on its marks or within pad of one, so no star
+    lands in a word or on a chart's line where it could pass for a point. The rest stay
+    where they were."""
+    boxes = clear_boxes(svg, pad)
+    return STAR.sub(lambda m: m[0] if is_clear(boxes, float(m[1]), float(m[2])) else "", svg)
 
 
 def write_alt(readme, image, alt):

@@ -93,7 +93,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, bar_w, num_w, with_repos):
             parts.append(f'<text x="{num_x + size * 4.6:.1f}" y="{y:.1f}" font-size="{size * 0.9:.1f}" fill="#b9c6e4">{where(repos, langs)}</text>')
         parts.append('</g>')
     parts.append("</g>\n</svg>\n")
-    return "\n".join(parts)
+    return panel.keep_clear("\n".join(parts))
 
 
 def update_readme(readme):

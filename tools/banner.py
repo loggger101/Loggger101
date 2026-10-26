@@ -2,6 +2,7 @@
 import random
 import sys
 
+import panel
 import star
 
 W, H = 1200, 300
@@ -81,13 +82,14 @@ a(f'<g transform="translate({METEOR_START[0]} {METEOR_START[1]})"><g class="mete
 # The star and its orbit, at the banner's own layout (star.CX, star.CY)
 out.extend(star.system())
 
-# Text
+a("</g>")
+
+# Text, outside the clip so keep_clear sees it
 a('<text class="t" x="360" y="138" font-size="62" font-weight="700" fill="#ffffff">Logan M Edwards</text>')
 a('<text class="t" x="362" y="186" font-size="26" fill="#aab6d3">Astronomy &amp; Astrophysics  •  Planetary Science</text>')
 a('<text class="t" x="362" y="228" font-size="20" fill="#93a0c4">Florida Tech  •  loganmedwardsastrophy.com</text>')
-a("</g>")
 a("</svg>")
 
 with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
-    f.write("\n".join(out) + "\n")
+    f.write(panel.keep_clear("\n".join(out) + "\n"))
 print("ok")

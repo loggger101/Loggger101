@@ -53,7 +53,7 @@ EDGES = [
     ("sc", "es", False),
     ("abg", "paper", False),
     ("es", "targets", False),
-    ("ql", "es", False),   # economicspace's launcher installs the pinned package; see from_below()
+    ("ql", "es", False),   # economicspace's launcher installs the pinned package
     ("sr", "es", True),    # economicspace cites the audit's orbit-quality measurement
     ("qq", "es", False),   # economicspace's campaign installs the pinned package
     ("sb", "es", False),   # economicspace's verify scripts install the pinned package
@@ -143,18 +143,14 @@ def elbow(points, dashed, r=8):
     return arrow(d, dashed)
 
 
-def from_below(a, e, dashed, horizontal, frac, lane=None):
-    """An arrow into economicspace (e) from a card in a row below it. On desktop it runs
-    along the card's row and turns up into economicspace's bottom, frac of the way across;
-    on phones, where targets sits under economicspace, it climbs the gap between the
-    columns at x=lane and turns into economicspace's left side, frac of the way down."""
+def from_below(a, e, dashed, frac, lane):
+    """An arrow into economicspace (e) from a card in a row below it, on phones, where
+    targets sits under economicspace: it climbs the gap between the columns at x=lane and
+    turns into economicspace's left side, frac of the way down. (On desktop the cards below
+    come in along lanes of their own.)"""
     ax, ay, aw, ah = a
     ex, ey, ew, eh = e
-    y1 = ay + ah / 2
-    if horizontal:
-        x2 = ex + ew * frac
-        return elbow([(ax + aw if ax < ex else ax, y1), (x2, y1), (x2, ey + eh + 3)], dashed)
-    y2 = ey + eh * frac
+    y1, y2 = ay + ah / 2, ey + eh * frac
     return elbow([(ax + aw if ax < lane else ax, y1), (lane, y1), (lane, y2), (ex - 3, y2)], dashed)
 
 
@@ -162,7 +158,7 @@ def route(a, b, dashed, boxes, horizontal, below, lanes):
     if (a, b) in lanes:
         return elbow(lanes[a, b](boxes), dashed)
     if a in below:
-        return from_below(boxes[a], boxes[b], dashed, horizontal, *below[a])
+        return from_below(boxes[a], boxes[b], dashed, *below[a])
     return edge(boxes[a], boxes[b], dashed, horizontal)
 
 
@@ -181,7 +177,7 @@ def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, belo
     parts += [card(k, *boxes[k], title_size, line_size) for k in NODES]
     parts.append(legend(*legend_at, line_size - 1))
     parts.append("</g>\n</svg>\n")
-    return "\n".join(parts)
+    return panel.keep_clear("\n".join(parts))
 
 
 # Edges a plain curve can't take, as the corners of a path of straight runs, given the boxes.
@@ -191,12 +187,12 @@ def at(box, fx, fy):
 
 
 # Desktop: four columns, left to right. The top row runs from the sources to the paper, the
-# second from spacecost to the mining targets, and the cards in the rows under it feed
+# second from spacecost to the mining targets, and the cards in the third row feed
 # economicspace from below. Citations from General_Research run along a lane between the top
 # two rows, and the data AsteroidCatalog sends economicspace along a lane above that.
 CW = {1: 250, 2: 220, 3: 270, 4: 226}
 CX = {1: 24, 2: 336, 3: 618, 4: 950}
-TOP, MID, R3, R4, CH = 34, 200, 346, 492, 104
+TOP, MID, CH = 34, 200, 104
 wide = {
     "gr": (CX[1], TOP, CW[1], CH),
     "sc": (CX[1], MID, CW[1], CH),
@@ -206,13 +202,19 @@ wide = {
     "es": (CX[3], MID, CW[3], CH),
     "paper": (CX[4], TOP, CW[4], CH),
     "targets": (CX[4], MID, CW[4], CH),
-    "ql": (CX[2], R3, CW[2], CH),
-    "sr": (CX[4], R3, CW[4], CH),
-    "qq": (CX[2], R4, CW[2], CH),
-    "sb": (CX[1], R3, CW[1], CH),
 }
 CITE_LANE, DATA_LANE = TOP + CH + 44, TOP + CH + 22
-SC_LANE, SB_LANE = MID + CH + 14, MID + CH + 28
+# Under economicspace, the lanes into its bottom: the further right an arrow comes in, the
+# lower its lane, so none crosses another's climb. The third row sits under the lowest.
+SC_LANE, SB_LANE, QL_LANE = MID + CH + 14, MID + CH + 28, MID + CH + 42
+R3 = QL_LANE + 16
+wide.update({
+    "sb": (CX[1], R3, CW[1], CH),
+    "ql": (CX[2], R3, CW[2], CH),
+    "qq": (CX[3], R3, CW[3], CH),
+    "sr": (CX[4], R3, CW[4], CH),
+})
+SR_LANE = R3 - 14
 wide_lanes = {
     ("gr", "sc"): lambda b: [at(b["gr"], 0.5, 1), (at(b["sc"], 0.5, 0)[0], b["sc"][1] - 3)],
     ("gr", "sv"): lambda b: [at(b["gr"], 0.8, 1), (at(b["gr"], 0.8, 1)[0], CITE_LANE),
@@ -223,12 +225,18 @@ wide_lanes = {
     ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), ((CX[2] + CW[2] + CX[3]) / 2, at(b["ac"], 1, 0.75)[1]),
                              ((CX[2] + CW[2] + CX[3]) / 2, DATA_LANE), (at(b["es"], 0.6, 0)[0], DATA_LANE),
                              (at(b["es"], 0.6, 0)[0], MID - 3)],
-    # Under spacevalue, and up into economicspace left of where the cards below come in;
-    # samebytes's lane runs just under spacecost's and comes in to the right of it.
+    # Under spacevalue, and up into economicspace from below.
     ("sc", "es"): lambda b: [at(b["sc"], 0.5, 1), (at(b["sc"], 0.5, 1)[0], SC_LANE),
-                             (at(b["es"], 0.2, 1)[0], SC_LANE), (at(b["es"], 0.2, 1)[0], MID + CH + 3)],
+                             (at(b["es"], 0.15, 1)[0], SC_LANE), (at(b["es"], 0.15, 1)[0], MID + CH + 3)],
     ("sb", "es"): lambda b: [at(b["sb"], 0.8, 0), (at(b["sb"], 0.8, 0)[0], SB_LANE),
-                             (at(b["es"], 0.3, 1)[0], SB_LANE), (at(b["es"], 0.3, 1)[0], MID + CH + 3)],
+                             (at(b["es"], 0.27, 1)[0], SB_LANE), (at(b["es"], 0.27, 1)[0], MID + CH + 3)],
+    ("ql", "es"): lambda b: [at(b["ql"], 0.6, 0), (at(b["ql"], 0.6, 0)[0], QL_LANE),
+                             (at(b["es"], 0.4, 1)[0], QL_LANE), (at(b["es"], 0.4, 1)[0], MID + CH + 3)],
+    # quietqueue sits right under economicspace.
+    ("qq", "es"): lambda b: [at(b["qq"], 0.6, 0), (at(b["es"], 0.6, 1)[0], MID + CH + 3)],
+    # Up out of the audit and over to economicspace's lower right, under the mining targets.
+    ("sr", "es"): lambda b: [at(b["sr"], 0.12, 0), (at(b["sr"], 0.12, 0)[0], SR_LANE),
+                             (at(b["es"], 0.88, 1)[0], SR_LANE), (at(b["es"], 0.88, 1)[0], MID + CH + 3)],
 }
 # Phones: seven rows, top to bottom, two cards a row, General_Research alone on top and
 # samebytes alone at the bottom. The
@@ -265,8 +273,8 @@ tall_lanes = {
 }
 
 files = {
-    "pipeline.svg": render(1200, R4 + CH + 52, wide, True, 22, 17, (CX[1], R4 + CH + 36), 7,
-                           {"ql": (0.7,), "qq": (0.8,), "sr": (0.9,)}, wide_lanes),
+    "pipeline.svg": render(1200, R3 + CH + 56, wide, True, 22, 17, (CX[1], R3 + CH + 40), 7,
+                           {}, wide_lanes),
     "pipeline-compact.svg": render(PWIDTH, 20 + 6 * ROW + PH + 64, tall, False, 25, 21,
                                    (left + 4, 20 + 6 * ROW + PH + 42), 8,
                                    {"ql": (0.6, right - 32), "qq": (0.75, right - 22),

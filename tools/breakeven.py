@@ -157,7 +157,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
                  f'fill="{GREEN}" fill-opacity="0.25" stroke="{GREEN}" stroke-opacity="0.5"/>')
     parts.append(f'<text x="{pad + size * 18.6:.1f}" y="{ly:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">pays for itself</text>')
     parts.append("</g>\n</svg>\n")
-    return "\n".join(parts)
+    return panel.keep_clear("\n".join(parts))
 
 
 def update_readme(readme):

@@ -17,6 +17,7 @@ import random
 import sys
 from pathlib import Path
 
+import panel
 from refresh_counts import millions
 
 OUT = Path(sys.argv[1])
@@ -40,15 +41,24 @@ TILES = {
 }
 
 
-def frame(i, label):
+def frame(i, label, body):
+    """The tile's opening, its stars kept off what body draws: each star is drawn until it
+    lands clear, so a tile that is mostly number has as many as one that isn't."""
     rng = random.Random(100 + i)
+    boxes = panel.clear_boxes(body)
+
+    def spot():
+        while True:
+            x, y = rng.uniform(8, W - 8), rng.uniform(8, H - 8)
+            if panel.is_clear(boxes, x, y):
+                return f'cx="{x:.1f}" cy="{y:.1f}"'
     stars = "".join(
-        f'<circle cx="{rng.uniform(8, W - 8):.1f}" cy="{rng.uniform(8, H - 8):.1f}" r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
+        f'<circle {spot()} r="{rng.choice([0.6, 0.8, 1.0])}" fill="#fff" opacity="{rng.uniform(0.2, 0.6):.2f}"/>'
         for _ in range(14)
     )
     # Three stars twinkle, as in the banner; drawn after the still ones, so those stay put.
     twinkles = "".join(
-        f'<circle class="tw" cx="{rng.uniform(8, W - 8):.1f}" cy="{rng.uniform(8, H - 8):.1f}" r="1.2" fill="#dbe7ff" '
+        f'<circle class="tw" {spot()} r="1.2" fill="#dbe7ff" '
         f'style="animation-delay:-{rng.uniform(0, 4):.2f}s;animation-duration:{rng.uniform(3, 6):.2f}s"/>'
         for _ in range(3)
     )
@@ -97,18 +107,20 @@ def odometer(num, x, y, size, centred=False):
 
 
 for i, (name, (num, label, short, repo)) in enumerate(TILES.items()):
-    full = frame(i, f"{num} {label}, {repo}") + f"""<g font-family="{FONT}">
+    body = f"""<g font-family="{FONT}">
 {odometer(num, 20, 62, 44)}
 <text x="20" y="96" font-size="20" fill="#dbe3f5">{label}</text>
 </g>
 </svg>
 """
-    compact = frame(i, f"{num} {short}") + f"""<g font-family="{FONT}" text-anchor="middle">
+    full = frame(i, f"{num} {label}, {repo}", body) + body
+    body = f"""<g font-family="{FONT}" text-anchor="middle">
 {odometer(num, W / 2, 70, 62, centred=True)}
 <text x="{W / 2}" y="106" font-size="30" fill="#dbe3f5">{short}</text>
 </g>
 </svg>
 """
+    compact = frame(i, f"{num} {short}", body) + body
     (OUT / f"{name}.svg").write_text(full, encoding="utf-8", newline="\n")
     (OUT / f"{name}-compact.svg").write_text(compact, encoding="utf-8", newline="\n")
     print(name)
