@@ -29,6 +29,7 @@ import panel
 
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 BLUE, TEXT, DIM, GOLD = "#5ba3dc", "#dbe3f5", "#7d8fb3", "#e8c27a"
+SMALL = panel.SMALL
 
 FLYBYS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["flybys"]
 LD_AU = 384400 / 149597870.7          # one lunar distance, in au
@@ -126,17 +127,17 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">',
              f'<text x="{pad}" y="{head:.1f}" font-size="{big}" font-weight="700" fill="{BLUE}">{COUNT}</text>',
              f'<text x="{pad + big * 0.62 * len(str(COUNT)) + size * 0.6:.1f}" y="{head:.1f}" font-size="{size}" fill="{TEXT}">{line1}</text>',
-             f'<text x="{pad}" y="{head + size * 1.6:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">{html.escape(line2)}</text>']
+             f'<text x="{pad}" y="{head + size * 1.6:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{html.escape(line2)}</text>']
     # Earth, and the Moon's distance.
     mid = (top + bottom - row_gap * 0.6) / 2
     parts.append(f'<circle cx="{x0:.1f}" cy="{mid:.1f}" r="{size * 1.5:.1f}" fill="url(#halo)"/>')
     parts.append(f'<circle cx="{x0:.1f}" cy="{mid:.1f}" r="{size * 0.85:.1f}" fill="url(#earth)"/>')
     parts.append(f'<line x1="{at(1):.1f}" y1="{top - row_gap * 0.7:.1f}" x2="{at(1):.1f}" y2="{bottom:.1f}" '
                  f'stroke="{DIM}" stroke-width="1.2" stroke-dasharray="3 4"/>')
-    parts.append(f'<text x="{at(1) + 5:.1f}" y="{top - row_gap * 0.7 + size * 0.2:.1f}" font-size="{size * 0.75:.1f}" fill="{DIM}">the Moon</text>')
+    parts.append(f'<text x="{at(1) + 5:.1f}" y="{top - row_gap * 0.7 + size * 0.2:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">the Moon</text>')
     for v in (0, 5, 10, 15, 20):
         parts.append(f'<line x1="{at(v):.1f}" y1="{bottom:.1f}" x2="{at(v):.1f}" y2="{bottom + 6:.1f}" stroke="{DIM}" stroke-width="1.2"/>')
-        parts.append(f'<text x="{at(v):.1f}" y="{bottom + 6 + size * 1.1:.1f}" text-anchor="middle" font-size="{size * 0.8:.1f}" '
+        parts.append(f'<text x="{at(v):.1f}" y="{bottom + 6 + size * 1.1:.1f}" text-anchor="middle" font-size="{size * SMALL:.1f}" '
                      f'fill="{DIM}">{v}{" LD" if v == MAX_LD else ""}</text>')
     if not ROWS:
         parts.append(f'<text x="{at(MAX_LD / 2):.1f}" y="{mid + size * 0.35:.1f}" text-anchor="middle" font-size="{size}" '
@@ -158,7 +159,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
         parts.append(f'<text class="fade" x="{at(MAX_LD) + size * 1.4:.1f}" y="{y + size * 0.35:.1f}" font-size="{size * 0.85:.1f}" '
                      f'fill="{TEXT}" style="{delay}">{html.escape(facts)}</text>')
     if COUNT > len(ROWS):
-        parts.append(f'<text x="{at(MAX_LD) + size * 1.4:.1f}" y="{bottom + 6 + size * 1.1:.1f}" font-size="{size * 0.75:.1f}" '
+        parts.append(f'<text x="{at(MAX_LD) + size * 1.4:.1f}" y="{bottom + 6 + size * 1.1:.1f}" font-size="{size * SMALL:.1f}" '
                      f'fill="{DIM}">and {COUNT - len(ROWS)} more farther out</text>')
     parts.append("</g>\n</svg>\n")
     return panel.keep_clear("\n".join(parts))

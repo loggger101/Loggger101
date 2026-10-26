@@ -201,11 +201,11 @@ def sidebar(x, y, big, size, row_gap, width):
     ry = top + len(COUNTS) * row_gap - row_gap * 0.3
     parts.append(f'<line x1="{x}" y1="{ry:.1f}" x2="{x + width}" y2="{ry:.1f}" stroke="#2a3b63"/>')
     # Each label small above its value, so a long value has the sidebar's whole width.
-    for label, value in (("BUSIEST WEEK", f"{WEEK_TOTALS[BUSIEST]:,} commits, the week of {day(WEEKS[BUSIEST])}"),
-                         ("LATEST", f"{README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}")):
+    for label, value in (("Busiest week", f"{WEEK_TOTALS[BUSIEST]:,} commits, the week of {day(WEEKS[BUSIEST])}"),
+                         ("Latest", f"{README_NAMES.get(LATEST, LATEST)}, {day(LATEST_DAY)}")):
         ry += size * 1.6
-        parts.append(f'<text x="{x}" y="{ry:.1f}" font-size="{size * 0.68:.1f}" font-weight="700" letter-spacing="1.5" fill="{DIM}">{label}</text>')
-        parts.append(f'<text x="{x}" y="{ry + size * 1.3:.1f}" font-size="{size}" fill="{TEXT}">{value}</text>')
+        parts.append(f'<text x="{x}" y="{ry:.1f}" font-size="{size * panel.SMALL:.1f}" fill="{DIM}">{label}</text>')
+        parts.append(f'<text x="{x}" y="{ry + size * 1.25:.1f}" font-size="{size}" fill="{TEXT}">{value}</text>')
         ry += size * 1.5
     return parts
 
@@ -265,7 +265,7 @@ def files():
     # Phones: the rings on top, the sidebar under them, both larger for a screen about 350px wide.
     return {
         "activity.svg": render(1200, 640, 11, (330, 326, 112, 30, 17, 16), (690, 110, 52, 19, 40, 470)),
-        "activity-compact.svg": render(680, 1310, 12, (340, 360, 108, 33, 21, 20), (44, 724, 60, 25, 46, 592)),
+        "activity-compact.svg": render(680, 1320, 12, (340, 360, 108, 33, 23, 22), (44, 724, 60, 25, 46, 592)),
     }
 
 

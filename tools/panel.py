@@ -21,6 +21,10 @@ GRADIENT = ('<linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0"
             '<stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>')
 TWINKLE = (".tw { animation: tw 4s ease-in-out infinite; }",
            "@keyframes tw { 0%, 100% { opacity: 0.15; } 50% { opacity: 1; } }")
+# The smallest text a panel draws, as a share of its body size: the README shows the wide
+# panels at about 830px of their 1200, and the compact ones at about 340px of their 680, so
+# a smaller share falls under 10px on the page.
+SMALL = 0.88
 # Rules more than one panel uses: bars that grow from their left end, and a fade-in.
 GROW = (".grow { transform-box: fill-box; transform-origin: left center; animation: grow 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }",
         "@keyframes grow { from { transform: scaleX(0); } }")

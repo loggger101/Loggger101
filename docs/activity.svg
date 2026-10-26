@@ -177,9 +177,9 @@
 <rect class="grow" x="864.8" y="412.3" width="234.4" height="11.4" rx="5.7" fill="#5ba3dc" style="animation-delay:0.90s"/>
 <text x="1160.0" y="424.1" text-anchor="end" font-size="19" fill="#dbe3f5">1,888</text>
 <line x1="690" y1="452.1" x2="1160" y2="452.1" stroke="#2a3b63"/>
-<text x="690" y="482.5" font-size="12.9" font-weight="700" letter-spacing="1.5" fill="#7d8fb3">BUSIEST WEEK</text>
-<text x="690" y="507.2" font-size="19" fill="#dbe3f5">356 commits, the week of 5 Oct 2026</text>
-<text x="690" y="541.4" font-size="12.9" font-weight="700" letter-spacing="1.5" fill="#7d8fb3">LATEST</text>
-<text x="690" y="566.1" font-size="19" fill="#dbe3f5">starred-repos, 26 Oct 2026</text>
+<text x="690" y="482.5" font-size="16.7" fill="#7d8fb3">Busiest week</text>
+<text x="690" y="506.2" font-size="19" fill="#dbe3f5">356 commits, the week of 5 Oct 2026</text>
+<text x="690" y="541.4" font-size="16.7" fill="#7d8fb3">Latest</text>
+<text x="690" y="565.1" font-size="19" fill="#dbe3f5">starred-repos, 26 Oct 2026</text>
 </g>
 </svg>

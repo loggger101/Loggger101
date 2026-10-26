@@ -21,21 +21,21 @@
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="40" y="81.6" font-size="52" font-weight="700" fill="#5ba3dc">6</text>
 <text x="83.6" y="81.6" font-size="19" fill="#dbe3f5">asteroids pass within 20 lunar distances, 26 Oct – 1 Nov 2026</text>
-<text x="40" y="112.0" font-size="15.2" fill="#7d8fb3">Closest: 2025 UK9, 0.8 lunar distances on Sat 31 Oct. NASA/JPL close-approach data.</text>
+<text x="40" y="112.0" font-size="16.7" fill="#7d8fb3">Closest: 2025 UK9, 0.8 lunar distances on Sat 31 Oct. NASA/JPL close-approach data.</text>
 <circle cx="190.0" cy="275.4" r="28.5" fill="url(#halo)"/>
 <circle cx="190.0" cy="275.4" r="16.1" fill="url(#earth)"/>
 <line x1="218.0" y1="153.8" x2="218.0" y2="393.2" stroke="#7d8fb3" stroke-width="1.2" stroke-dasharray="3 4"/>
-<text x="223.0" y="157.6" font-size="14.2" fill="#7d8fb3">the Moon</text>
+<text x="223.0" y="157.6" font-size="16.7" fill="#7d8fb3">the Moon</text>
 <line x1="190.0" y1="393.2" x2="190.0" y2="399.2" stroke="#7d8fb3" stroke-width="1.2"/>
-<text x="190.0" y="420.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">0</text>
+<text x="190.0" y="420.1" text-anchor="middle" font-size="16.7" fill="#7d8fb3">0</text>
 <line x1="330.0" y1="393.2" x2="330.0" y2="399.2" stroke="#7d8fb3" stroke-width="1.2"/>
-<text x="330.0" y="420.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">5</text>
+<text x="330.0" y="420.1" text-anchor="middle" font-size="16.7" fill="#7d8fb3">5</text>
 <line x1="470.0" y1="393.2" x2="470.0" y2="399.2" stroke="#7d8fb3" stroke-width="1.2"/>
-<text x="470.0" y="420.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">10</text>
+<text x="470.0" y="420.1" text-anchor="middle" font-size="16.7" fill="#7d8fb3">10</text>
 <line x1="610.0" y1="393.2" x2="610.0" y2="399.2" stroke="#7d8fb3" stroke-width="1.2"/>
-<text x="610.0" y="420.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">15</text>
+<text x="610.0" y="420.1" text-anchor="middle" font-size="16.7" fill="#7d8fb3">15</text>
 <line x1="750.0" y1="393.2" x2="750.0" y2="399.2" stroke="#7d8fb3" stroke-width="1.2"/>
-<text x="750.0" y="420.1" text-anchor="middle" font-size="15.2" fill="#7d8fb3">20 LD</text>
+<text x="750.0" y="420.1" text-anchor="middle" font-size="16.7" fill="#7d8fb3">20 LD</text>
 <text x="40" y="187.1" font-size="19" fill="#b9c6e4">2025 UK9</text>
 <line x1="212.8" y1="180.4" x2="750.0" y2="180.4" stroke="#2a3b63" stroke-width="1"/>
 <circle class="fly" cx="212.9" cy="180.4" r="5.1" fill="url(#rock)" style="--from:575.1px;animation-delay:0.20s"/>

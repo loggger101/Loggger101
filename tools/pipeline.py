@@ -287,7 +287,7 @@ tall_lanes = {
 files = {
     "pipeline.svg": render(1200, R3 + CH + 56, wide, True, 22, 17, (CX[1], R3 + CH + 40), 7,
                            {}, wide_lanes),
-    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 21,
+    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 22,
                                    (left + 4, 20 + 5 * ROW + PH + 42), 8,
                                    {"ql": (0.72, right - 26), "qq": (0.72, right - 26)}, tall_lanes),
 }

@@ -27,6 +27,7 @@ import panel
 
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 BLUE, TEXT, DIM, GOLD, GREEN = "#5ba3dc", "#dbe3f5", "#7d8fb3", "#e8c27a", "#5fbf8f"
+SMALL = panel.SMALL
 
 ROWS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["economics"]
 NAMES = {"mars_surface": "Mars surface", "lunar_surface": "Lunar surface", "mars_orbit": "Mars orbit",
@@ -114,7 +115,7 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
              f'<text x="{pad}" y="{head + size * 1.5:.1f}" font-size="{size}" fill="{TEXT}">'
              + (f'cost per dollar earned, at best: {html.escape(BEST["winner"])} to {html.escape(place(BEST["dest"]))}'
                 if with_winners else "cost per dollar earned, at best") + '</text>',
-             f'<text x="{pad}" y="{head + size * 2.6:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">'
+             f'<text x="{pad}" y="{head + size * 2.6:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">'
              + html.escape(f"{VERDICT} One row for each, from economicspace's latest full-catalog runs."
                            if with_winners else short_verdict(ROWS), quote=False) + '</text>']
     bottom = top + (len(ROWS) - 1) * row_gap + row_gap * 0.6
@@ -123,13 +124,13 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
                  f'height="{bottom - top + row_gap * 0.7:.1f}" fill="{GREEN}" fill-opacity="0.10"/>')
     parts.append(f'<line x1="{at(1):.1f}" y1="{top - row_gap * 0.7:.1f}" x2="{at(1):.1f}" y2="{bottom:.1f}" '
                  f'stroke="{GOLD}" stroke-width="1.5" stroke-dasharray="3 4"/>')
-    parts.append(f'<text x="{at(1) + 6:.1f}" y="{top - row_gap * 0.7 + size * 0.2:.1f}" font-size="{size * 0.75:.1f}" '
+    parts.append(f'<text x="{at(1) + 6:.1f}" y="{top - row_gap * 0.7 + size * 0.2:.1f}" font-size="{size * SMALL:.1f}" '
                  f'fill="{GOLD}">break-even</text>')
     # The decades along the bottom; on phones the big ones are written short to fit.
     for v in (1, 10, 100, 1000, 10000):
         label = f"{v:,}×" if with_winners or v < 1000 else f"{v // 1000}k×"
         parts.append(f'<line x1="{at(v):.1f}" y1="{bottom:.1f}" x2="{at(v):.1f}" y2="{bottom + 6:.1f}" stroke="{DIM}" stroke-width="1.2"/>')
-        parts.append(f'<text x="{at(v):.1f}" y="{bottom + 6 + size * 1.1:.1f}" text-anchor="middle" font-size="{size * 0.8:.1f}" '
+        parts.append(f'<text x="{at(v):.1f}" y="{bottom + 6 + size * 1.1:.1f}" text-anchor="middle" font-size="{size * SMALL:.1f}" '
                      f'fill="{GOLD if v == 1 else DIM}">{label}</text>')
     for k, r in enumerate(ROWS):
         y = top + k * row_gap
@@ -150,12 +151,12 @@ def render(w, seed, pad, big, size, row_gap, name_w, track_w, with_winners):
     # What the two dots are.
     ly = bottom + 6 + size * 2.7
     parts.append(f'<circle cx="{pad + size * 0.4:.1f}" cy="{ly - size * 0.3:.1f}" r="{size * 0.36:.1f}" fill="{BLUE}"/>')
-    parts.append(f'<text x="{pad + size * 1.2:.1f}" y="{ly:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">best mission</text>')
-    parts.append(f'<circle cx="{pad + size * 8.4:.1f}" cy="{ly - size * 0.3:.1f}" r="{size * 0.3:.1f}" fill="#0f1e3d" stroke="{DIM}" stroke-width="2"/>')
-    parts.append(f'<text x="{pad + size * 9.2:.1f}" y="{ly:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">median asteroid</text>')
-    parts.append(f'<rect x="{pad + size * 17.4:.1f}" y="{ly - size * 0.75:.1f}" width="{size * 0.9:.1f}" height="{size * 0.9:.1f}" '
+    parts.append(f'<text x="{pad + size * 1.2:.1f}" y="{ly:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">best mission</text>')
+    parts.append(f'<circle cx="{pad + size * 8.9:.1f}" cy="{ly - size * 0.3:.1f}" r="{size * 0.3:.1f}" fill="#0f1e3d" stroke="{DIM}" stroke-width="2"/>')
+    parts.append(f'<text x="{pad + size * 9.7:.1f}" y="{ly:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">median asteroid</text>')
+    parts.append(f'<rect x="{pad + size * 18.2:.1f}" y="{ly - size * 0.75:.1f}" width="{size * 0.9:.1f}" height="{size * 0.9:.1f}" '
                  f'fill="{GREEN}" fill-opacity="0.25" stroke="{GREEN}" stroke-opacity="0.5"/>')
-    parts.append(f'<text x="{pad + size * 18.6:.1f}" y="{ly:.1f}" font-size="{size * 0.8:.1f}" fill="{DIM}">pays for itself</text>')
+    parts.append(f'<text x="{pad + size * 19.4:.1f}" y="{ly:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">pays for itself</text>')
     parts.append("</g>\n</svg>\n")
     return panel.keep_clear("\n".join(parts))
 
