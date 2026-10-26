@@ -40,7 +40,7 @@ SECTIONS = {
     "Deep learning": ["star-spectral-classifier", "drone-target-id"],
     "Simulation": ["Satellite-Space-Flight"],
     "Rare-disease work": ["aspirecures", "SistersHopeFoundation"],
-    "Elsewhere": ["website", "quietlaunch", "quietqueue", "Hermes_Skills"],
+    "Elsewhere": ["website", "quietlaunch", "quietqueue", "samebytes", "Hermes_Skills"],
 }
 listed = [r for repos in SECTIONS.values() for r in repos]
 if sorted(listed) != sorted(ACTIVITY["repos"]):

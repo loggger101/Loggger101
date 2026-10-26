@@ -155,6 +155,10 @@ Both repos are private, but the sites are public.
     <td valign="top"><p>Runs a queue of long jobs unattended on Windows and keeps it alive through a closed shell, a stray Ctrl+C, a reboot or a second copy started at logon. Each job is one subprocess, a ledger records what's finished so a restart picks up where it stopped, and the whole process tree can be paused and resumed without losing the job in flight. I split it out of economicspace's campaign runner, which ran a 28-job model campaign over several days.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <a href="https://github.com/loggger101/quietqueue/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/quietqueue?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
   </tr>
   <tr>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/samebytes">samebytes</a></b><br/><sub>bit-identity checks</sub><br/><sub>1,116 lines of code</sub><br/><sub>2,686 total lines</sub><br/><picture><img src="docs/sparks/samebytes.svg" width="120" alt="My commits to samebytes each week since August 2026: 28 in all, 7 in the busiest week"></picture></td>
+    <td valign="top"><p>Checks that two sets of bytes really are the same, in three places where they quietly aren't: a synced folder (OneDrive, Google Drive) serving stale files while <code>git status</code> stays clean, a second machine that can't reproduce floating-point results bit for bit, and two pandas runs that a careless comparison calls different. It also records what produced a run when it happens, and ships a git hook that repairs git's stat cache in a synced folder. I split it out of economicspace, whose releases are argued from bit-identical output; it needs only the standard library, and CI runs it on Windows, Linux and macOS.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/pandas-1f3354?style=flat-square&logo=pandas&logoColor=white" alt="pandas"></picture> <picture><img src="https://img.shields.io/badge/git-1f3354?style=flat-square&logo=git&logoColor=white" alt="git"></picture> <a href="https://github.com/loggger101/samebytes/tags"><img src="https://img.shields.io/github/v/tag/loggger101/samebytes?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
+  </tr>
+  <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Hermes_Skills">Hermes_Skills</a></b><br/><sub>agent skills</sub><br/><picture><img src="docs/sparks/Hermes_Skills.svg" width="120" alt="My commits to Hermes_Skills each week since August 2026: 409 in all, 195 in the busiest week"></picture></td>
     <td valign="top"><p>My library of 253 agent skills in 23 categories, built for my Hermes agent setup.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/Markdown-1f3354?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"></picture></td>
   </tr>
@@ -165,7 +169,7 @@ Both repos are private, but the sites are public.
 Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,190 in all, Space economics 635, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,859. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,218 in all, Space economics 635, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,887. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026."></picture>
 </p>
 
 My latest commits:
@@ -174,9 +178,9 @@ My latest commits:
 - 26 Oct · [starred-repos](https://github.com/loggger101/starred-repos/commit/da072350523ba82381962c25ae601977480a3f15): Add CI for what needs no economicspace checkout, and note the 2026-10-26 re-run
 - 26 Oct · [spacecost](https://github.com/loggger101/spacecost/commit/5ea3f2403f822aa8db9f8f54a717b030384b410d): README: plainer sentences where a colon or a stock phrase did the work
 - 26 Oct · [spacecost](https://github.com/loggger101/spacecost/commit/fd0c2b15d53cb5dac9ebd32091fcc742e0070684): Consumer contract: name spacevalue, not economicspace's old Stage 2 module, as the delivery-chain…
+- 26 Oct · [samebytes](https://github.com/loggger101/samebytes/commit/d0e15650fef2b1f9bb379211a86932e0104c605b): parity: Stage 2's CSV writer is spacevalue's build now
+- 26 Oct · [samebytes](https://github.com/loggger101/samebytes/commit/6596f3450942f54ebc5b71d9e9288cc8c555246c): samebytes 0.2.0: README and CHANGELOG
 - 26 Oct · [quietqueue](https://github.com/loggger101/quietqueue/commit/1621345d51d13db95c13367dfa40fa9fc3de34cb): CI actions at v7 (Node.js 24), packaging links, and an Unreleased changelog
-- 26 Oct · [quietlaunch](https://github.com/loggger101/quietlaunch/commit/69880798168927fc7df2ba5efb8bed85c37f2edc): Add --version, Node 24 CI actions, fuller package metadata, an Unreleased changelog
-- 26 Oct · [economicspace](https://github.com/loggger101/economicspace/commit/0d08128007cab63216417fb157540d9fd58cdc96): Plainer sentences in the v1.59.0 prose (no stamp)
 <!-- /latest commits -->
 
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
@@ -184,7 +188,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="105,513 lines of code in 10 languages: Python 85,472 (81.0%), Perl 6,747 (6.4%), JavaScript 5,326 (5.0%), HTML 4,092 (3.9%), CSS 2,375 (2.3%), Shell 715 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 786 (0.7%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="106,629 lines of code in 10 languages: Python 86,569 (81.2%), Perl 6,747 (6.3%), JavaScript 5,326 (5.0%), HTML 4,092 (3.8%), CSS 2,375 (2.2%), Shell 734 (0.7%), PowerShell, Batchfile, VBScript and Dockerfile 786 (0.7%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week

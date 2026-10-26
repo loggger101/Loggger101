@@ -16,6 +16,7 @@
     "website": 7615,
     "quietlaunch": 1109,
     "quietqueue": 665,
+    "samebytes": 1116,
     "aspirecures": 10712,
     "SistersHopeFoundation": 5219
   },
@@ -33,6 +34,7 @@
     "website": 10124,
     "quietlaunch": 2338,
     "quietqueue": 1702,
+    "samebytes": 2686,
     "aspirecures": 20801,
     "SistersHopeFoundation": 11270
   },
@@ -93,6 +95,10 @@
     "quietqueue": {
       "Python": 599,
       "PowerShell": 47,
+      "Shell": 19
+    },
+    "samebytes": {
+      "Python": 1097,
       "Shell": 19
     },
     "aspirecures": {
@@ -516,6 +522,37 @@
             "67ac65e9c4b5067f268067ef252e466af120f2a9",
             "2026-10-20",
             "Runner docstring: --only south, as the README's example (#3)"
+          ]
+        ]
+      },
+      "samebytes": {
+        "first": "2026-08-05",
+        "last": "2026-10-26",
+        "weeks": {
+          "2026-08-03": 1,
+          "2026-08-24": 2,
+          "2026-08-31": 5,
+          "2026-09-07": 2,
+          "2026-09-14": 2,
+          "2026-10-12": 2,
+          "2026-10-19": 7,
+          "2026-10-26": 7
+        },
+        "recent": [
+          [
+            "d0e15650fef2b1f9bb379211a86932e0104c605b",
+            "2026-10-26",
+            "parity: Stage 2's CSV writer is spacevalue's build now (#3)"
+          ],
+          [
+            "6596f3450942f54ebc5b71d9e9288cc8c555246c",
+            "2026-10-26",
+            "samebytes 0.2.0: README and CHANGELOG"
+          ],
+          [
+            "65083825ebb3ef72ed8271ac84eeaa6d378befa3",
+            "2026-10-26",
+            "parity --lock FILE: each installed distribution against its exact pin; unreadable lines fail, never skip"
           ]
         ]
       },

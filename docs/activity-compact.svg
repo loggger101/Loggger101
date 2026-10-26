@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1240" width="680" height="1240" role="img" aria-label="Every commit I&#x27;ve made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,190 in all, Space economics 635, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,859. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1240" width="680" height="1240" role="img" aria-label="Every commit I&#x27;ve made to these repos, from the first on 23 Nov 2025 to 26 Oct 2026, drawn as one orbit per section of this page: 3,218 in all, Space economics 635, Planetary science 125, Deep learning 15, Simulation 65, Rare-disease work 491, Elsewhere 1,887. Busiest week: 346 commits, the week of 5 Oct 2026. Latest: starred-repos, 26 Oct 2026.">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <radialGradient id="corona" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/><stop offset="0.1" stop-color="#e6f2ff" stop-opacity="0.7"/><stop offset="0.35" stop-color="#9ccaf2" stop-opacity="0.35"/><stop offset="1" stop-color="#5ba3dc" stop-opacity="0"/></radialGradient>
@@ -62,16 +62,16 @@
 <circle class="dot" cx="265.7" cy="438.3" r="6.2" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.10s"/>
 <circle class="dot" cx="257.9" cy="430.2" r="6.2" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.15s"/>
 <circle class="dot" cx="251.1" cy="421.3" r="6.7" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.20s"/>
-<circle class="dot" cx="245.2" cy="411.7" r="9.7" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.24s"/>
-<circle class="dot" cx="240.3" cy="401.6" r="8.0" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.29s"/>
-<circle class="dot" cx="236.6" cy="391.0" r="9.7" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.34s"/>
-<circle class="dot" cx="233.9" cy="380.1" r="9.3" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.39s"/>
+<circle class="dot" cx="245.2" cy="411.7" r="9.8" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.24s"/>
+<circle class="dot" cx="240.3" cy="401.6" r="8.3" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.29s"/>
+<circle class="dot" cx="236.6" cy="391.0" r="9.8" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.34s"/>
+<circle class="dot" cx="233.9" cy="380.1" r="9.4" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.39s"/>
 <circle class="dot" cx="232.4" cy="369.0" r="6.3" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.44s"/>
 <circle class="dot" cx="232.0" cy="357.8" r="7.9" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.48s"/>
 <circle class="dot" cx="232.8" cy="346.6" r="13.9" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.53s"/>
-<circle class="dot" cx="234.8" cy="335.5" r="4.0" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.58s"/>
-<circle class="dot" cx="237.9" cy="324.7" r="5.4" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.63s"/>
-<circle class="dot" cx="242.1" cy="314.3" r="3.0" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.68s"/>
+<circle class="dot" cx="234.8" cy="335.5" r="4.3" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.58s"/>
+<circle class="dot" cx="237.9" cy="324.7" r="6.0" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.63s"/>
+<circle class="dot" cx="242.1" cy="314.3" r="4.3" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:2.68s"/>
 <text x="330" y="259.4" text-anchor="end" font-size="21" fill="#dbe3f5">Elsewhere</text>
 <path d="M340.0 219.0 A141 141 0 1 1 215.5 293.8" fill="none" stroke="#8fb6e8" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 5"/>
 <circle class="dot" cx="350.3" cy="500.6" r="3.6" fill="#5ba3dc" fill-opacity="0.8" style="animation-delay:1.76s"/>
@@ -149,15 +149,15 @@
 <text x="27.0" y="362.9" text-anchor="middle" font-size="20" fill="#7d8fb3">Oct</text>
 <line class="now" x1="262.1" y1="318.6" x2="81.5" y2="222.5" stroke="#e8c27a" stroke-width="1.5" stroke-dasharray="2 4" stroke-linecap="round"/>
 <text x="63.6" y="220.1" text-anchor="middle" font-size="20" font-weight="700" fill="#e8c27a" class="now">now</text>
-<text x="44" y="772.0" font-size="60" font-weight="700" fill="#5ba3dc">3,190</text>
+<text x="44" y="772.0" font-size="60" font-weight="700" fill="#5ba3dc">3,218</text>
 <text x="44" y="809.5" font-size="25" fill="#dbe3f5">commits since my first, in November 2025</text>
 <text x="44" y="860.1" font-size="25" fill="#b9c6e4">Space economics</text>
 <rect x="274.0" y="844.6" width="282.0" height="15.0" rx="7.5" fill="#13213f"/>
-<rect class="grow" x="274.0" y="844.6" width="96.3" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.30s"/>
+<rect class="grow" x="274.0" y="844.6" width="94.9" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.30s"/>
 <text x="636.0" y="860.1" text-anchor="end" font-size="25" fill="#dbe3f5">635</text>
 <text x="44" y="906.1" font-size="25" fill="#b9c6e4">Planetary science</text>
 <rect x="274.0" y="890.6" width="282.0" height="15.0" rx="7.5" fill="#13213f"/>
-<rect class="grow" x="274.0" y="890.6" width="19.0" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.42s"/>
+<rect class="grow" x="274.0" y="890.6" width="18.7" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.42s"/>
 <text x="636.0" y="906.1" text-anchor="end" font-size="25" fill="#dbe3f5">125</text>
 <text x="44" y="952.1" font-size="25" fill="#b9c6e4">Deep learning</text>
 <rect x="274.0" y="936.6" width="282.0" height="15.0" rx="7.5" fill="#13213f"/>
@@ -169,12 +169,12 @@
 <text x="636.0" y="998.1" text-anchor="end" font-size="25" fill="#dbe3f5">65</text>
 <text x="44" y="1044.1" font-size="25" fill="#b9c6e4">Rare-disease work</text>
 <rect x="274.0" y="1028.6" width="282.0" height="15.0" rx="7.5" fill="#13213f"/>
-<rect class="grow" x="274.0" y="1028.6" width="74.5" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.78s"/>
+<rect class="grow" x="274.0" y="1028.6" width="73.4" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.78s"/>
 <text x="636.0" y="1044.1" text-anchor="end" font-size="25" fill="#dbe3f5">491</text>
 <text x="44" y="1090.1" font-size="25" fill="#b9c6e4">Elsewhere</text>
 <rect x="274.0" y="1074.6" width="282.0" height="15.0" rx="7.5" fill="#13213f"/>
 <rect class="grow" x="274.0" y="1074.6" width="282.0" height="15.0" rx="7.5" fill="#5ba3dc" style="animation-delay:0.90s"/>
-<text x="636.0" y="1090.1" text-anchor="end" font-size="25" fill="#dbe3f5">1,859</text>
+<text x="636.0" y="1090.1" text-anchor="end" font-size="25" fill="#dbe3f5">1,887</text>
 <line x1="44" y1="1124.5" x2="636" y2="1124.5" stroke="#2a3b63"/>
 <text x="44" y="1154.5" font-size="25"><tspan fill="#7d8fb3">Busiest week</tspan><tspan x="206.5" fill="#dbe3f5">346 commits, the week of 5 Oct 2026</tspan></text>
 <text x="44" y="1200.5" font-size="25"><tspan fill="#7d8fb3">Latest</tspan><tspan x="206.5" fill="#dbe3f5">starred-repos, 26 Oct 2026</tspan></text>
