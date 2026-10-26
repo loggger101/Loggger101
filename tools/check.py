@@ -253,6 +253,9 @@ FACTS = [
     ("1,584 Starlink satellites in one shell", "Satellite-Space-Flight", "1,584-satellite Walker shell"),
     ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
     ("28-job model campaign", "quietqueue", "28-job"),
+    ("at eight places you could deliver it", "spacevalue", "of eight places you could deliver it"),
+    ("each dated release carries all eight tables as CSVs", "spacevalue", "carries all eight as CSVs"),
+    ("CI runs it on Windows, Linux and macOS", "samebytes", "CI runs Windows, Linux and macOS"),
 ]
 
 

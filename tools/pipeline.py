@@ -38,6 +38,7 @@ NODES = {
     "ql": ("quietlaunch", "windowless dashboard", "launcher, pip package", "repo"),
     "sr": ("starred-repos", "the pipeline audited", "against 17 repos", "repo"),
     "qq": ("quietqueue", "the campaign's job", "runner, pip package", "repo"),
+    "sb": ("samebytes", "bit-identity checks", "for releases, pip package", "repo"),
 }
 # (from, to, dashed)
 EDGES = [
@@ -55,12 +56,13 @@ EDGES = [
     ("ql", "es", False),   # economicspace's launcher installs the pinned package; see from_below()
     ("sr", "es", True),    # economicspace cites the audit's orbit-quality measurement
     ("qq", "es", False),   # economicspace's campaign installs the pinned package
+    ("sb", "es", False),   # economicspace's verify scripts install the pinned package
 ]
 ALT = (
     "How the repos connect: General_Research holds the sources that AsteroidCatalog, "
     "spacecost, spacevalue and economicspace cite. AsteroidCatalog releases feed asteroid-belt-gradient, which builds the "
     "paper, and economicspace. spacevalue installs spacecost and prices minerals at each destination, and its releases "
-    "feed economicspace too, which also installs spacecost, quietlaunch and quietqueue, cites the starred-repos audit, "
+    "feed economicspace too, which also installs spacecost, quietlaunch, quietqueue and samebytes, cites the starred-repos audit, "
     "and ranks mining targets by profit."
 )
 
@@ -207,8 +209,10 @@ wide = {
     "ql": (CX[2], R3, CW[2], CH),
     "sr": (CX[4], R3, CW[4], CH),
     "qq": (CX[2], R4, CW[2], CH),
+    "sb": (CX[1], R3, CW[1], CH),
 }
-CITE_LANE, DATA_LANE, LOW_LANE = TOP + CH + 44, TOP + CH + 22, MID + CH + 21
+CITE_LANE, DATA_LANE = TOP + CH + 44, TOP + CH + 22
+SC_LANE, SB_LANE = MID + CH + 14, MID + CH + 28
 wide_lanes = {
     ("gr", "sc"): lambda b: [at(b["gr"], 0.5, 1), (at(b["sc"], 0.5, 0)[0], b["sc"][1] - 3)],
     ("gr", "sv"): lambda b: [at(b["gr"], 0.8, 1), (at(b["gr"], 0.8, 1)[0], CITE_LANE),
@@ -219,16 +223,21 @@ wide_lanes = {
     ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), ((CX[2] + CW[2] + CX[3]) / 2, at(b["ac"], 1, 0.75)[1]),
                              ((CX[2] + CW[2] + CX[3]) / 2, DATA_LANE), (at(b["es"], 0.6, 0)[0], DATA_LANE),
                              (at(b["es"], 0.6, 0)[0], MID - 3)],
-    # Under spacevalue, and up into economicspace left of where the cards below come in.
-    ("sc", "es"): lambda b: [at(b["sc"], 0.5, 1), (at(b["sc"], 0.5, 1)[0], LOW_LANE),
-                             (at(b["es"], 0.2, 1)[0], LOW_LANE), (at(b["es"], 0.2, 1)[0], MID + CH + 3)],
+    # Under spacevalue, and up into economicspace left of where the cards below come in;
+    # samebytes's lane runs just under spacecost's and comes in to the right of it.
+    ("sc", "es"): lambda b: [at(b["sc"], 0.5, 1), (at(b["sc"], 0.5, 1)[0], SC_LANE),
+                             (at(b["es"], 0.2, 1)[0], SC_LANE), (at(b["es"], 0.2, 1)[0], MID + CH + 3)],
+    ("sb", "es"): lambda b: [at(b["sb"], 0.8, 0), (at(b["sb"], 0.8, 0)[0], SB_LANE),
+                             (at(b["es"], 0.3, 1)[0], SB_LANE), (at(b["es"], 0.3, 1)[0], MID + CH + 3)],
 }
-# Phones: six rows, top to bottom, two cards a row, General_Research alone on top. The
+# Phones: seven rows, top to bottom, two cards a row, General_Research alone on top and
+# samebytes alone at the bottom. The
 # citations come down the middle of the gap between the columns, AsteroidCatalog's data left
 # of them and the cards below economicspace climb to it on their right; spacecost's data for
-# economicspace runs down the right edge, past spacevalue.
+# economicspace runs down the right edge, past spacevalue, and samebytes's climbs just
+# inside it to economicspace's lower right.
 PW, PH, ROW = 300, 118, 168
-PWIDTH, left, right = 724, 12, 392
+PWIDTH, left, right = 736, 12, 392
 tall = {
     "gr": ((PWIDTH - PW) / 2, 20, PW, PH),
     "ac": (left, 20 + ROW, PW, PH),
@@ -241,6 +250,7 @@ tall = {
     "targets": (right, 20 + 4 * ROW, PW, PH),
     "qq": (left, 20 + 5 * ROW, PW, PH),
     "sr": (right, 20 + 5 * ROW, PW, PH),
+    "sb": (right, 20 + 6 * ROW, PW, PH),
 }
 GAP_X = (left + PW + right) / 2
 tall_lanes = {
@@ -248,15 +258,17 @@ tall_lanes = {
     ("gr", "es"): lambda b: [(GAP_X, 20 + PH), (GAP_X, at(b["es"], 0, 0.2)[1]), (right - 3, at(b["es"], 0, 0.2)[1])],
     ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), (left + PW + 14, at(b["ac"], 1, 0.75)[1]),
                              (left + PW + 14, at(b["es"], 0, 0.45)[1]), (right - 3, at(b["es"], 0, 0.45)[1])],
-    ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (right + PW + 16, at(b["sc"], 1, 0.75)[1]),
-                             (right + PW + 16, at(b["es"], 1, 0.5)[1]), (right + PW + 3, at(b["es"], 1, 0.5)[1])],
+    ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (right + PW + 28, at(b["sc"], 1, 0.75)[1]),
+                             (right + PW + 28, at(b["es"], 1, 0.4)[1]), (right + PW + 3, at(b["es"], 1, 0.4)[1])],
+    ("sb", "es"): lambda b: [at(b["sb"], 1, 0.5), (right + PW + 15, at(b["sb"], 1, 0.5)[1]),
+                             (right + PW + 15, at(b["es"], 1, 0.75)[1]), (right + PW + 3, at(b["es"], 1, 0.75)[1])],
 }
 
 files = {
     "pipeline.svg": render(1200, R4 + CH + 52, wide, True, 22, 17, (CX[1], R4 + CH + 36), 7,
                            {"ql": (0.7,), "qq": (0.8,), "sr": (0.9,)}, wide_lanes),
-    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 21,
-                                   (left + 4, 20 + 5 * ROW + PH + 42), 8,
+    "pipeline-compact.svg": render(PWIDTH, 20 + 6 * ROW + PH + 64, tall, False, 25, 21,
+                                   (left + 4, 20 + 6 * ROW + PH + 42), 8,
                                    {"ql": (0.6, right - 32), "qq": (0.75, right - 22),
                                     "sr": (0.9, right - 12)}, tall_lanes),
 }
