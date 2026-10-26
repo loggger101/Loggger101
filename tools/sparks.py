@@ -6,9 +6,9 @@ Each runs over its own repo's life, not one shared axis: most of the repos are a
 old, and on an axis as long as the oldest one's they were a squiggle at the right edge.
 The README's alt text, which update_readme() writes, says when each line starts, how many
 commits it holds and its busiest week. Heights are each repo's own too, scaled
-to its busiest week, so a quiet repo's shape still shows. The last commit is a gold dot.
-When the page loads the line draws itself left to right; with reduced motion it is drawn
-finished.
+to its busiest week, so a quiet repo's shape still shows. The last commit is a gold dot,
+edged in the line's blue so it shows on a white page. When the page loads the line draws
+itself left to right; with reduced motion it is drawn finished.
 
 The numbers are refresh_activity.py's, from tools/counts.json. Drawn at twice the size
 the README shows them, so they stay sharp on high-DPI screens.
@@ -25,7 +25,7 @@ from pathlib import Path
 from loc import README_NAMES
 
 BLUE, GOLD, TRACK = "#5ba3dc", "#e8c27a", "#2a3b63"
-W, H, PAD = 240, 48, 5          # drawn size; the README shows it at half (width="120")
+W, H, PAD = 240, 48, 7          # drawn size; the README shows it at half (width="120")
 
 ACTIVITY = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["activity"]
 AS_OF = dt.date.fromisoformat(ACTIVITY["as_of"])
@@ -63,7 +63,7 @@ def spark(repo):
 <line x1="{PAD}" y1="{H - PAD}" x2="{W - PAD}" y2="{H - PAD}" stroke="{TRACK}" stroke-width="1.5"/>
 <polygon class="fade" points="{area}" fill="{BLUE}" fill-opacity="0.3"/>
 <polyline class="draw" points="{line}" fill="none" stroke="{BLUE}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<circle class="fade" cx="{lx:.1f}" cy="{ly:.1f}" r="4.5" fill="{GOLD}"/>
+<circle class="fade" cx="{lx:.1f}" cy="{ly:.1f}" r="5" fill="{GOLD}" stroke="{BLUE}" stroke-width="2"/>
 </svg>
 """
 
