@@ -1,48 +1,48 @@
 {
-  "sources": 626,
+  "sources": 652,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 22599,
-    "AsteroidCatalog": 5727,
-    "spacevalue": 2998,
-    "spacecost": 9292,
+    "economicspace": 22377,
+    "AsteroidCatalog": 5707,
+    "spacevalue": 2968,
+    "spacecost": 9214,
     "General_Research": 2531,
     "starred-repos": 705,
     "asteroid-belt-gradient": 2862,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 18923,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 19021,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 12796,
     "website": 7615,
-    "quietlaunch": 1109,
-    "quietqueue": 665,
-    "samebytes": 1116,
-    "aspirecures": 10712,
+    "quietlaunch": 1084,
+    "quietqueue": 649,
+    "samebytes": 1796,
+    "aspirecures": 10683,
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 93352,
-    "AsteroidCatalog": 13709,
-    "spacevalue": 7080,
-    "spacecost": 18520,
-    "General_Research": 48881,
+    "economicspace": 93164,
+    "AsteroidCatalog": 13694,
+    "spacevalue": 7055,
+    "spacecost": 18447,
+    "General_Research": 49133,
     "starred-repos": 2619,
     "asteroid-belt-gradient": 6529,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 115702,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 126728,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22010,
     "website": 10124,
-    "quietlaunch": 2338,
-    "quietqueue": 1702,
-    "samebytes": 2686,
-    "aspirecures": 20801,
+    "quietlaunch": 2324,
+    "quietqueue": 1696,
+    "samebytes": 3910,
+    "aspirecures": 20805,
     "SistersHopeFoundation": 11270
   },
   "languages": {
     "economicspace": {
-      "Python": 22078,
+      "Python": 21856,
       "Batchfile": 228,
       "Shell": 224,
       "VBScript": 39,
@@ -50,15 +50,15 @@
       "PowerShell": 11
     },
     "AsteroidCatalog": {
-      "Python": 5708,
+      "Python": 5688,
       "Shell": 19
     },
     "spacevalue": {
-      "Python": 2979,
+      "Python": 2949,
       "Shell": 19
     },
     "spacecost": {
-      "Python": 9273,
+      "Python": 9195,
       "Shell": 19
     },
     "General_Research": {
@@ -71,7 +71,7 @@
       "Python": 2862
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 18583,
+      "Python": 18681,
       "PowerShell": 137,
       "HTML": 114,
       "Batchfile": 89
@@ -95,22 +95,22 @@
       "PowerShell": 192
     },
     "quietlaunch": {
-      "Python": 1090,
+      "Python": 1065,
       "Shell": 19
     },
     "quietqueue": {
-      "Python": 599,
+      "Python": 583,
       "PowerShell": 47,
       "Shell": 19
     },
     "samebytes": {
-      "Python": 1097,
+      "Python": 1777,
       "Shell": 19
     },
     "aspirecures": {
-      "Perl": 6747,
+      "Perl": 6705,
       "JavaScript": 3488,
-      "Shell": 372,
+      "Shell": 385,
       "CSS": 105
     },
     "SistersHopeFoundation": {
@@ -122,7 +122,7 @@
     }
   },
   "activity": {
-    "as_of": "2026-10-26",
+    "as_of": "2026-10-27",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
@@ -140,37 +140,43 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 26,
-          "2026-10-26": 8
+          "2026-10-26": 11
         },
         "recent": [
           [
-            "320c3b144a9e4158ff5a8a6501d66a426461549e",
+            "76f3cf37d2306f06c5f8b785d893f051fb3c9d6d",
             "2026-10-26",
-            "verification_sheet: field_docs walks every CONFIG_SOURCES pair, so --check runs again (no stamp) (#182)"
+            "README: a missing file is a finding inside the samebytes checks, not on a counter (no stamp) (#186)"
           ],
           [
-            "326ff2720f3cfb401e39dc26b910f61e859190f0",
+            "164dfc56f5d1956c3a70c73ced0faf97b8ae5844",
             "2026-10-26",
-            "Stage 4's cargo valuation moves to spacevalue.cargo (master v1.60.0, calc v1.33.0) (#183)"
+            "verify_docs checks 10 and 12 call samebytes v0.4.0's docs.transfer and docs.pairs (no stamp) (#185)"
           ],
           [
-            "0bd4be6d2ee673a580da79f9bad7513f4836d756",
+            "cfa794538e86fc069e6aa5f432b41ff0feda0a10",
             "2026-10-26",
-            "CLAUDE.md: spacevalue's pricing rules point there; a stale ui_meta example (no stamp) (#181)"
+            "verify_docs checks 4, 5, 6 and 11 call samebytes v0.3.0's docs and source (no stamp) (#184)"
           ]
         ]
       },
       "AsteroidCatalog": {
         "first": "2026-09-22",
-        "last": "2026-10-25",
+        "last": "2026-10-26",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 5,
           "2026-10-05": 1,
           "2026-10-12": 1,
-          "2026-10-19": 7
+          "2026-10-19": 7,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "4fdae9768c4c117fa0a38d3d5ac253131a36e7d1",
+            "2026-10-26",
+            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#27)"
+          ],
           [
             "61768e0b4517d56b59abd28983f2bbfc216518b4",
             "2026-10-25",
@@ -180,11 +186,6 @@
             "383a43312b9aa787fb20c283b24fe3620a2b459a",
             "2026-10-25",
             "Tests: every PGM enrichment row is a positive multiplier (no release) (#25)"
-          ],
-          [
-            "7be33f98545380cc3b703e84ddcdd8763b3ea65d",
-            "2026-10-25",
-            "Tests: the manifest's release_tag and the shipped PHASE_GROUP (no release) (#24)"
           ]
         ]
       },
@@ -202,9 +203,14 @@
           "2026-10-05": 10,
           "2026-10-12": 3,
           "2026-10-19": 4,
-          "2026-10-26": 7
+          "2026-10-26": 8
         },
         "recent": [
+          [
+            "ff1888ba6f397127914c078c01e4dad47935ed81",
+            "2026-10-26",
+            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#5)"
+          ],
           [
             "d12f626b7caad66f892eeffd9156e20f7e41df8f",
             "2026-10-26",
@@ -214,11 +220,6 @@
             "5ee2c14d5e07035c9b5031c20c060457808432f1",
             "2026-10-26",
             "README names the columns a row holds; pyproject says which Pythons CI runs (#3)"
-          ],
-          [
-            "40b10a8a2b7637ecef0150bbf3fd411fd58c640b",
-            "2026-10-26",
-            "CLAUDE.md takes the pricing rules economicspace kept; README's used-in-space price says PLUS (#2)"
           ]
         ]
       },
@@ -233,9 +234,14 @@
           "2026-10-05": 17,
           "2026-10-12": 8,
           "2026-10-19": 19,
-          "2026-10-26": 5
+          "2026-10-26": 6
         },
         "recent": [
+          [
+            "c633a572b0ff449289c2e58f0ee3fd08315d652d",
+            "2026-10-26",
+            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#38)"
+          ],
           [
             "2bd5e2099dbde187dfdca178bdea7f9c5b7343a1",
             "2026-10-26",
@@ -245,11 +251,6 @@
             "5ea3f2403f822aa8db9f8f54a717b030384b410d",
             "2026-10-26",
             "README: plainer sentences where a colon or a stock phrase did the work (#36)"
-          ],
-          [
-            "fd0c2b15d53cb5dac9ebd32091fcc742e0070684",
-            "2026-10-26",
-            "Consumer contract: name spacevalue, not economicspace's old Stage 2 module, as the delivery-chain reader (#35)"
           ]
         ]
       },
@@ -339,28 +340,28 @@
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 33,
-          "2026-10-26": 1
+          "2026-10-26": 7
         },
         "recent": [
           [
-            "e3c8055718f4d4a46c76817559d631f19d673c4a",
+            "e04563e32ac1a14e2febf52365b6ee6b79984612",
+            "2026-10-27",
+            "Label review (2b): the author's rows, and apron and fluvial rows by rule (KB \u00a769.8)"
+          ],
+          [
+            "a5a3f5f839a371eeb9ff41e09023c7f73f6073e7",
             "2026-10-26",
-            "The v2 rehearsal done: the U-Net chain end to end; times for the real run (KB \u00a769.4)"
+            "First review session: Ius channels and depressions accepted into the landform layers (KB \u00a769.7)"
           ],
           [
-            "e04f3f48a9c2998f713b102119695c052a841f31",
-            "2026-10-25",
-            "The SVM rehearsal end to end on v2p; D18 keeps the four-class map (KB \u00a769.4)"
-          ],
-          [
-            "d87ee32d55d25af90178ba873f2f6fa2a7155b51",
-            "2026-10-24",
-            "Rehearsal timings: seven classes cost ~3x the four-class SVM (KB \u00a769.4)"
+            "c5a36d6b4051b847b5f5ec67f52733f345c7c68a",
+            "2026-10-26",
+            "Interim: the text edited for plain wording, the slides reordered (KB \u00a769.6)"
           ]
         ]
       },
@@ -517,9 +518,14 @@
           "2026-08-31": 3,
           "2026-10-12": 1,
           "2026-10-19": 9,
-          "2026-10-26": 1
+          "2026-10-26": 2
         },
         "recent": [
+          [
+            "bf0b489966f3a7be6242e10cc9de4462a2b1225c",
+            "2026-10-26",
+            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#5)"
+          ],
           [
             "69880798168927fc7df2ba5efb8bed85c37f2edc",
             "2026-10-26",
@@ -529,11 +535,6 @@
             "da3d032bb201ce166630f7c7939549df87d3906b",
             "2026-10-25",
             "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#3)"
-          ],
-          [
-            "a90543421eab5c54ad043eeacf41c2209367680d",
-            "2026-10-20",
-            "Docs say what happens instead of how much it matters (#2)"
           ]
         ]
       },
@@ -546,9 +547,14 @@
           "2026-09-07": 4,
           "2026-10-12": 3,
           "2026-10-19": 9,
-          "2026-10-26": 1
+          "2026-10-26": 2
         },
         "recent": [
+          [
+            "a84b1c70933fae9fc0dde5a17a23582de97ef583",
+            "2026-10-26",
+            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#6)"
+          ],
           [
             "1621345d51d13db95c13367dfa40fa9fc3de34cb",
             "2026-10-26",
@@ -558,11 +564,6 @@
             "8ee32443c241c117a16280166ce0323bf6929782",
             "2026-10-25",
             "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#4)"
-          ],
-          [
-            "67ac65e9c4b5067f268067ef252e466af120f2a9",
-            "2026-10-20",
-            "Runner docstring: --only south, as the README's example (#3)"
           ]
         ]
       },
@@ -577,29 +578,29 @@
           "2026-09-14": 2,
           "2026-10-12": 2,
           "2026-10-19": 7,
-          "2026-10-26": 7
+          "2026-10-26": 13
         },
         "recent": [
           [
-            "d0e15650fef2b1f9bb379211a86932e0104c605b",
+            "1347bf1136928ddaef26ea6b4d232c7405ba03f9",
             "2026-10-26",
-            "parity: Stage 2's CSV writer is spacevalue's build now (#3)"
+            "README: the docs module's summary names pairs and transfer"
           ],
           [
-            "6596f3450942f54ebc5b71d9e9288cc8c555246c",
+            "edc80f47b8745da10abce0ecd4cdf84a9478f6ba",
             "2026-10-26",
-            "samebytes 0.2.0: README and CHANGELOG"
+            "samebytes 0.4.0: docs.pairs and docs.transfer, economicspace's checks 12 and 10"
           ],
           [
-            "65083825ebb3ef72ed8271ac84eeaa6d378befa3",
+            "7d251ff55b21a8c79bc6b5811ab17ebd0eca6e41",
             "2026-10-26",
-            "parity --lock FILE: each installed distribution against its exact pin; unreadable lines fail, never skip"
+            "samebytes 0.3.0: docs and source, the house rules every consumer re-wrote"
           ]
         ]
       },
       "aspirecures": {
         "first": "2026-06-14",
-        "last": "2026-10-13",
+        "last": "2026-10-26",
         "weeks": {
           "2026-06-08": 5,
           "2026-06-15": 44,
@@ -619,7 +620,8 @@
           "2026-09-21": 1,
           "2026-09-28": 24,
           "2026-10-05": 7,
-          "2026-10-12": 24
+          "2026-10-12": 24,
+          "2026-10-26": 2
         }
       },
       "SistersHopeFoundation": {
@@ -717,8 +719,8 @@
     }
   ],
   "flybys": {
-    "from": "2026-10-26",
-    "to": "2026-11-02",
+    "from": "2026-10-27",
+    "to": "2026-11-03",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
       {
@@ -767,6 +769,14 @@
         "dist_au": 0.0377631614723659,
         "v_kms": 9.57427818453305,
         "h": 27.17,
+        "diameter_km": null
+      },
+      {
+        "des": "524522",
+        "time": "2026-Nov-02 19:10",
+        "dist_au": 0.040231031131569,
+        "v_kms": 8.71731356967276,
+        "h": 20.54,
         "diameter_km": null
       }
     ]
