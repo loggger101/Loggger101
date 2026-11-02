@@ -1,48 +1,48 @@
 {
-  "sources": 652,
+  "sources": 695,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 22377,
-    "AsteroidCatalog": 5707,
-    "spacevalue": 2968,
-    "spacecost": 9214,
-    "General_Research": 2531,
-    "starred-repos": 705,
-    "asteroid-belt-gradient": 2862,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 19021,
+    "economicspace": 22487,
+    "AsteroidCatalog": 5869,
+    "spacevalue": 2980,
+    "spacecost": 9192,
+    "General_Research": 2542,
+    "starred-repos": 3061,
+    "asteroid-belt-gradient": 2867,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 25119,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
-    "Satellite-Space-Flight": 12796,
+    "Satellite-Space-Flight": 13324,
     "website": 7615,
-    "quietlaunch": 1084,
-    "quietqueue": 649,
-    "samebytes": 1796,
+    "quietlaunch": 1094,
+    "quietqueue": 653,
+    "samebytes": 2057,
     "aspirecures": 10683,
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 93164,
-    "AsteroidCatalog": 13694,
-    "spacevalue": 7055,
-    "spacecost": 18447,
-    "General_Research": 49133,
-    "starred-repos": 2619,
-    "asteroid-belt-gradient": 6529,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 126728,
+    "economicspace": 93515,
+    "AsteroidCatalog": 13996,
+    "spacevalue": 7089,
+    "spacecost": 18441,
+    "General_Research": 51412,
+    "starred-repos": 9333,
+    "asteroid-belt-gradient": 6539,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 864833,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
-    "Satellite-Space-Flight": 22010,
+    "Satellite-Space-Flight": 22635,
     "website": 10124,
-    "quietlaunch": 2324,
-    "quietqueue": 1696,
-    "samebytes": 3910,
+    "quietlaunch": 2359,
+    "quietqueue": 1714,
+    "samebytes": 4453,
     "aspirecures": 20805,
     "SistersHopeFoundation": 11270
   },
   "languages": {
     "economicspace": {
-      "Python": 21856,
+      "Python": 21966,
       "Batchfile": 228,
       "Shell": 224,
       "VBScript": 39,
@@ -50,30 +50,30 @@
       "PowerShell": 11
     },
     "AsteroidCatalog": {
-      "Python": 5688,
+      "Python": 5850,
       "Shell": 19
     },
     "spacevalue": {
-      "Python": 2949,
+      "Python": 2961,
       "Shell": 19
     },
     "spacecost": {
-      "Python": 9195,
+      "Python": 9173,
       "Shell": 19
     },
     "General_Research": {
-      "Python": 2531
+      "Python": 2542
     },
     "starred-repos": {
-      "Python": 705
+      "Python": 3061
     },
     "asteroid-belt-gradient": {
-      "Python": 2862
+      "Python": 2867
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 18681,
-      "PowerShell": 137,
-      "HTML": 114,
+      "Python": 24584,
+      "PowerShell": 278,
+      "HTML": 168,
       "Batchfile": 89
     },
     "star-spectral-classifier": {
@@ -83,7 +83,7 @@
       "Python": 1509
     },
     "Satellite-Space-Flight": {
-      "Python": 12745,
+      "Python": 13273,
       "Batchfile": 28,
       "Shell": 23
     },
@@ -95,16 +95,16 @@
       "PowerShell": 192
     },
     "quietlaunch": {
-      "Python": 1065,
+      "Python": 1075,
       "Shell": 19
     },
     "quietqueue": {
-      "Python": 583,
+      "Python": 587,
       "PowerShell": 47,
       "Shell": 19
     },
     "samebytes": {
-      "Python": 1777,
+      "Python": 2038,
       "Shell": 19
     },
     "aspirecures": {
@@ -122,11 +122,11 @@
     }
   },
   "activity": {
-    "as_of": "2026-10-27",
+    "as_of": "2026-11-02",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
-        "last": "2026-10-26",
+        "last": "2026-10-29",
         "weeks": {
           "2026-08-03": 54,
           "2026-08-10": 22,
@@ -140,58 +140,58 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 26,
-          "2026-10-26": 11
+          "2026-10-26": 19
         },
         "recent": [
           [
-            "76f3cf37d2306f06c5f8b785d893f051fb3c9d6d",
-            "2026-10-26",
-            "README: a missing file is a finding inside the samebytes checks, not on a counter (no stamp) (#186)"
+            "cbaa428e422a19c14f06403bfccea04fc20ab99c",
+            "2026-10-29",
+            "MODEL.md: F6, F10 and F19 on the delta-v limitation, F12 on water, the uncalibrated low-thrust penalty (no stamp)"
           ],
           [
-            "164dfc56f5d1956c3a70c73ced0faf97b8ae5844",
-            "2026-10-26",
-            "verify_docs checks 10 and 12 call samebytes v0.4.0's docs.transfer and docs.pairs (no stamp) (#185)"
+            "a33c580d2675c41e9691e52f2f8f14bcdd4e835b",
+            "2026-10-29",
+            "master v1.61.0 / calc v1.34.0: an opt-in spin limit, composition as a range, three limitations in MODEL.md"
           ],
           [
-            "cfa794538e86fc069e6aa5f432b41ff0feda0a10",
-            "2026-10-26",
-            "verify_docs checks 4, 5, 6 and 11 call samebytes v0.3.0's docs and source (no stamp) (#184)"
+            "f9a7382f3b8422f336c422b8ed18dba886d655cf",
+            "2026-10-27",
+            "CLAUDE.md: a field's help is the block plus its trailing comment, by samebytes' field_docs (no stamp)"
           ]
         ]
       },
       "AsteroidCatalog": {
         "first": "2026-09-22",
-        "last": "2026-10-26",
+        "last": "2026-10-29",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 5,
           "2026-10-05": 1,
           "2026-10-12": 1,
           "2026-10-19": 7,
-          "2026-10-26": 1
+          "2026-10-26": 7
         },
         "recent": [
           [
-            "4fdae9768c4c117fa0a38d3d5ac253131a36e7d1",
-            "2026-10-26",
-            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#27)"
+            "2c84a5a69089215a8ec825d811e14114c883b1a5",
+            "2026-10-29",
+            "CI: run the Python 3.9 Linux job on ubuntu-24.04 (no release)"
           ],
           [
-            "61768e0b4517d56b59abd28983f2bbfc216518b4",
-            "2026-10-25",
-            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#26)"
+            "ef4a878c619dbb7b1c9938a97ded451de6e3d2e0",
+            "2026-10-29",
+            "Tools: sbdb_fields.py reports what SBDB offers that the build never asks for (no release)"
           ],
           [
-            "383a43312b9aa787fb20c283b24fe3620a2b459a",
-            "2026-10-25",
-            "Tests: every PGM enrichment row is a positive multiplier (no release) (#25)"
+            "bae8dddedab266ecb12edcedc4e9ec99726c7526",
+            "2026-10-27",
+            "Tests: samebytes v0.5.0; config help and every git pin at one ref (no release)"
           ]
         ]
       },
       "spacevalue": {
         "first": "2026-08-05",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-08-03": 18,
           "2026-08-17": 4,
@@ -203,9 +203,14 @@
           "2026-10-05": 10,
           "2026-10-12": 3,
           "2026-10-19": 4,
-          "2026-10-26": 8
+          "2026-10-26": 10
         },
         "recent": [
+          [
+            "90e8456b74bac844f41c8c3aa6e0f7c3c8d401f0",
+            "2026-10-27",
+            "Tests: samebytes v0.5.0; config help and every git pin at one ref"
+          ],
           [
             "ff1888ba6f397127914c078c01e4dad47935ed81",
             "2026-10-26",
@@ -215,17 +220,12 @@
             "d12f626b7caad66f892eeffd9156e20f7e41df8f",
             "2026-10-26",
             "spacevalue.cargo: economicspace's cargo valuation moves here verbatim (0.2.0) (#4)"
-          ],
-          [
-            "5ee2c14d5e07035c9b5031c20c060457808432f1",
-            "2026-10-26",
-            "README names the columns a row holds; pyproject says which Pythons CI runs (#3)"
           ]
         ]
       },
       "spacecost": {
         "first": "2026-09-07",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-09-07": 6,
           "2026-09-14": 6,
@@ -234,9 +234,14 @@
           "2026-10-05": 17,
           "2026-10-12": 8,
           "2026-10-19": 19,
-          "2026-10-26": 6
+          "2026-10-26": 8
         },
         "recent": [
+          [
+            "60266319335c1e3bd851ebb857a73ab3cb63eda6",
+            "2026-10-27",
+            "Tests: samebytes v0.5.0; config help by its source.missing_help, every git pin at one ref"
+          ],
           [
             "c633a572b0ff449289c2e58f0ee3fd08315d652d",
             "2026-10-26",
@@ -246,81 +251,83 @@
             "2bd5e2099dbde187dfdca178bdea7f9c5b7343a1",
             "2026-10-26",
             "Package docstring: spacevalue, not economicspace's Stage 2, reads the delivery chains (#37)"
-          ],
-          [
-            "5ea3f2403f822aa8db9f8f54a717b030384b410d",
-            "2026-10-26",
-            "README: plainer sentences where a colon or a stock phrase did the work (#36)"
           ]
         ]
       },
       "General_Research": {
         "first": "2026-09-17",
-        "last": "2026-10-22",
+        "last": "2026-11-01",
         "weeks": {
           "2026-09-14": 42,
           "2026-09-21": 53,
           "2026-09-28": 41,
           "2026-10-05": 23,
           "2026-10-12": 24,
-          "2026-10-19": 14
+          "2026-10-19": 14,
+          "2026-10-26": 2
         },
         "recent": [
+          [
+            "211eb6d68b8f05b4653b8f74785fbe5ce92e49cc",
+            "2026-11-01",
+            "Rounds 310-314: market, ISRU and stage audits"
+          ],
+          [
+            "cd035d74653c65f50838fd1a6d41d42ebd0deda7",
+            "2026-11-01",
+            "Rounds 308-309: spin cutoff and rig calendar cadence"
+          ],
           [
             "f846ef86da9911b955c29117d23acb1a65e7b8d9",
             "2026-10-22",
             "Round 240: owner rejects 8 sources; new \"Sources to replace\" list with 15 flags"
-          ],
-          [
-            "5418e8879a66ad91b9d3eda61258a634b000619d",
-            "2026-10-22",
-            "Round 239: source audit; owner rejects 25 sources that back no cell or that upstream stopped citing"
-          ],
-          [
-            "1096ca2af7a0361a250226e0894d2857a4e0791d",
-            "2026-10-22",
-            "Maintenance: split closed revision candidates into revision_candidates_closed.csv"
           ]
         ]
       },
       "starred-repos": {
         "first": "2026-09-03",
-        "last": "2026-10-26",
+        "last": "2026-10-29",
         "weeks": {
           "2026-08-31": 2,
           "2026-09-14": 1,
           "2026-09-21": 1,
           "2026-10-12": 2,
           "2026-10-19": 5,
-          "2026-10-26": 1
+          "2026-10-26": 7
         },
         "recent": [
           [
-            "da072350523ba82381962c25ae601977480a3f15",
-            "2026-10-26",
-            "Add CI for what needs no economicspace checkout, and note the 2026-10-26 re-run (#3)"
+            "8573cac9a80d2c39ba3d8bf30bc342de5c4a18dd",
+            "2026-10-29",
+            "README: where each finding now stands in the pipeline"
           ],
           [
-            "223bfef746d4e9c5fdf37552f9b0268d61be9991",
-            "2026-10-21",
-            "README: economicspace's orbital.py keeps only elements_to_state; the solvers are here alone (#2)"
+            "391257c6cac46995a9996acf2cfcb27198ef3b59",
+            "2026-10-29",
+            "Self-checking repo, recorded network inputs, and five more probes (F15-F19)"
           ],
           [
-            "6133e4ad497ef7667e5da7476f5324b699e30ec0",
-            "2026-10-20",
-            "Set the repo up to stand alone, and write the notes in plain prose (#1)"
+            "ee2c37f492afe72596d1481a584671ea9be845a0",
+            "2026-10-29",
+            "Four probes from the starred repos: taxonomy prior, perihelion, spin, covariance (F11-F14) (#5)"
           ]
         ]
       },
       "asteroid-belt-gradient": {
         "first": "2026-09-23",
-        "last": "2026-10-11",
+        "last": "2026-10-27",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 1,
-          "2026-10-05": 19
+          "2026-10-05": 19,
+          "2026-10-26": 1
         },
         "recent": [
+          [
+            "04d0693dae95e6dd8550529df1800439089399ab",
+            "2026-10-27",
+            "Paper: fix a printed \"mboxC-types\" and sharpen five statements (#24)"
+          ],
           [
             "9fbe7f5ec00f4a81e7da6b154fb04424458a8bb8",
             "2026-10-11",
@@ -330,38 +337,34 @@
             "09e4a95650912c38a5d097d7b92724125e643e5c",
             "2026-10-10",
             "Paper: cite the 2026 work on the belt's composition and implantation (#22)"
-          ],
-          [
-            "9c0999eb89e80b2ae8730937587f4b5f23f814f6",
-            "2026-10-10",
-            "Paper: say exactly what the data show in four sentences (#21)"
           ]
         ]
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-10-27",
+        "last": "2026-11-02",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 33,
-          "2026-10-26": 7
+          "2026-10-26": 52,
+          "2026-11-02": 1
         },
         "recent": [
           [
-            "e04563e32ac1a14e2febf52365b6ee6b79984612",
-            "2026-10-27",
-            "Label review (2b): the author's rows, and apron and fluvial rows by rule (KB \u00a769.8)"
+            "3bf7feb4b1833cf4afbf938633a40c5c5aee6ba1",
+            "2026-11-02",
+            "Laptop analyses A13, A2, A9, A3 (c), A1, A7; layouts 19 and 20 (KB 69.50)"
           ],
           [
-            "a5a3f5f839a371eeb9ff41e09023c7f73f6073e7",
-            "2026-10-26",
-            "First review session: Ius channels and depressions accepted into the landform layers (KB \u00a769.7)"
+            "e9a3b565d7757211d28aaee7ea3ebb73f6c8ca36",
+            "2026-11-01",
+            "v3 seven-class labels: v2 polygons cut and screened, new polygons from reference data (KB 69.49)"
           ],
           [
-            "c5a36d6b4051b847b5f5ec67f52733f345c7c68a",
-            "2026-10-26",
-            "Interim: the text edited for plain wording, the slides reordered (KB \u00a769.6)"
+            "628277c47490b7c8390a05e2d700dee2f458800b",
+            "2026-11-01",
+            "Record the D30 pages read from CI's PDF (KB 69.48)"
           ]
         ]
       },
@@ -419,12 +422,18 @@
       },
       "Satellite-Space-Flight": {
         "first": "2026-09-29",
-        "last": "2026-10-11",
+        "last": "2026-10-27",
         "weeks": {
           "2026-09-28": 59,
-          "2026-10-05": 6
+          "2026-10-05": 6,
+          "2026-10-26": 2
         },
         "recent": [
+          [
+            "a02c5eb26cc044651a760e6b863153621c1b8b32",
+            "2026-10-27",
+            "Start menu: set up a new simulation first, open a file second, examples last"
+          ],
           [
             "e39cc2c6d922664e984fea6ff18db8c732dd70b3",
             "2026-10-11",
@@ -434,11 +443,6 @@
             "5defe512a6af7be32693d554402f620e822c76ea",
             "2026-10-11",
             "CI on Python 3.14 and Windows, selfcheck step; document the no-silent-failure rules"
-          ],
-          [
-            "cb3196dfb3b431b60143e6383259a08653553e08",
-            "2026-10-11",
-            "Show bad input and unusable files in the UI; let everything else raise"
           ]
         ]
       },
@@ -511,65 +515,65 @@
       },
       "quietlaunch": {
         "first": "2026-08-23",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-08-17": 2,
           "2026-08-24": 1,
           "2026-08-31": 3,
           "2026-10-12": 1,
           "2026-10-19": 9,
-          "2026-10-26": 2
+          "2026-10-26": 6
         },
         "recent": [
+          [
+            "2c0a08302107b367746e9fc5811f5ffc0d52a789",
+            "2026-10-27",
+            "CLAUDE.md: CI's hooks pin is the test extra's tag, held to it by test_rules.py"
+          ],
+          [
+            "34409742172d7c57a0d566f647383fad59e307ee",
+            "2026-10-27",
+            "Tests: samebytes v0.5.0; config help and every git pin at one ref"
+          ],
           [
             "bf0b489966f3a7be6242e10cc9de4462a2b1225c",
             "2026-10-26",
             "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#5)"
-          ],
-          [
-            "69880798168927fc7df2ba5efb8bed85c37f2edc",
-            "2026-10-26",
-            "Add --version, Node 24 CI actions, fuller package metadata, an Unreleased changelog (#4)"
-          ],
-          [
-            "da3d032bb201ce166630f7c7939549df87d3906b",
-            "2026-10-25",
-            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#3)"
           ]
         ]
       },
       "quietqueue": {
         "first": "2026-08-24",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-08-24": 1,
           "2026-08-31": 3,
           "2026-09-07": 4,
           "2026-10-12": 3,
           "2026-10-19": 9,
-          "2026-10-26": 2
+          "2026-10-26": 6
         },
         "recent": [
+          [
+            "742d481eff53de32541bc53ef92ccc65a4b5c824",
+            "2026-10-27",
+            "CLAUDE.md: CI's hooks pin is the test extra's tag, held to it by test_rules.py"
+          ],
+          [
+            "403ad6351381ebd08ae70056bbcd9335b158b137",
+            "2026-10-27",
+            "Tests: samebytes v0.5.0; every git pin at one ref"
+          ],
           [
             "a84b1c70933fae9fc0dde5a17a23582de97ef583",
             "2026-10-26",
             "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#6)"
-          ],
-          [
-            "1621345d51d13db95c13367dfa40fa9fc3de34cb",
-            "2026-10-26",
-            "CI actions at v7 (Node.js 24), packaging links, and an Unreleased changelog (#5)"
-          ],
-          [
-            "8ee32443c241c117a16280166ce0323bf6929782",
-            "2026-10-25",
-            "Add samebytes' stat-cache hook, its LF pin, and a CI job that checks the copies (#4)"
           ]
         ]
       },
       "samebytes": {
         "first": "2026-08-05",
-        "last": "2026-10-26",
+        "last": "2026-10-27",
         "weeks": {
           "2026-08-03": 1,
           "2026-08-24": 2,
@@ -578,23 +582,23 @@
           "2026-09-14": 2,
           "2026-10-12": 2,
           "2026-10-19": 7,
-          "2026-10-26": 13
+          "2026-10-26": 17
         },
         "recent": [
+          [
+            "d81df0927049689c3c810df0c6f719138c1a4cd9",
+            "2026-10-27",
+            "CLAUDE.md: economicspace's check 7 and the five packages' tests print or assert on findings too"
+          ],
+          [
+            "e556a2a1ed494be0b5d291a72fab6de6f474be39",
+            "2026-10-27",
+            "samebytes 0.5.0: docs.pins and source.field_docs / missing_help"
+          ],
           [
             "1347bf1136928ddaef26ea6b4d232c7405ba03f9",
             "2026-10-26",
             "README: the docs module's summary names pairs and transfer"
-          ],
-          [
-            "edc80f47b8745da10abce0ecd4cdf84a9478f6ba",
-            "2026-10-26",
-            "samebytes 0.4.0: docs.pairs and docs.transfer, economicspace's checks 12 and 10"
-          ],
-          [
-            "7d251ff55b21a8c79bc6b5811ab17ebd0eca6e41",
-            "2026-10-26",
-            "samebytes 0.3.0: docs and source, the house rules every consumer re-wrote"
           ]
         ]
       },
@@ -719,64 +723,64 @@
     }
   ],
   "flybys": {
-    "from": "2026-10-27",
-    "to": "2026-11-03",
+    "from": "2026-11-02",
+    "to": "2026-11-09",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
       {
-        "des": "2025 UK9",
-        "time": "2026-Oct-31 02:35",
-        "dist_au": 0.0021032915876806,
-        "v_kms": 7.83419285217263,
-        "h": 29.83,
+        "des": "2026 VA",
+        "time": "2026-Nov-02 06:48",
+        "dist_au": 0.00828624324105641,
+        "v_kms": 9.00674762495434,
+        "h": 25.431,
         "diameter_km": null
       },
       {
-        "des": "2026 TB94",
-        "time": "2026-Oct-27 01:11",
-        "dist_au": 0.0130671686032448,
-        "v_kms": 11.5883114100175,
-        "h": 25.66,
+        "des": "2021 VC4",
+        "time": "2026-Nov-03 17:30",
+        "dist_au": 0.0153190362722433,
+        "v_kms": 11.1747381789748,
+        "h": 26.88,
         "diameter_km": null
       },
       {
-        "des": "2026 UB1",
-        "time": "2026-Oct-28 18:31",
-        "dist_au": 0.0245066636249718,
-        "v_kms": 18.7158717276531,
-        "h": 24.73,
-        "diameter_km": null
-      },
-      {
-        "des": "2018 GS1",
-        "time": "2026-Oct-28 16:15",
-        "dist_au": 0.0283485189189211,
-        "v_kms": 9.31939189106332,
-        "h": 22.59,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 UD",
-        "time": "2026-Oct-30 08:32",
-        "dist_au": 0.029863919412108,
-        "v_kms": 7.7407098093257,
-        "h": 25.666,
-        "diameter_km": null
-      },
-      {
-        "des": "2022 UV21",
-        "time": "2026-Oct-29 07:54",
-        "dist_au": 0.0377631614723659,
-        "v_kms": 9.57427818453305,
-        "h": 27.17,
+        "des": "2017 WJ2",
+        "time": "2026-Nov-05 01:14",
+        "dist_au": 0.0377394593905357,
+        "v_kms": 11.9612706992463,
+        "h": 22.4,
         "diameter_km": null
       },
       {
         "des": "524522",
         "time": "2026-Nov-02 19:10",
-        "dist_au": 0.040231031131569,
-        "v_kms": 8.71731356967276,
+        "dist_au": 0.0402310409087608,
+        "v_kms": 8.71731396049094,
         "h": 20.54,
+        "diameter_km": null
+      },
+      {
+        "des": "2001 KF54",
+        "time": "2026-Nov-06 03:38",
+        "dist_au": 0.0484212697109624,
+        "v_kms": 16.4248937921821,
+        "h": 19.79,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 UX",
+        "time": "2026-Nov-07 12:01",
+        "dist_au": 0.0502438220525366,
+        "v_kms": 9.73256795500153,
+        "h": 24.829,
+        "diameter_km": null
+      },
+      {
+        "des": "2016 VZ1",
+        "time": "2026-Nov-05 19:58",
+        "dist_au": 0.0511845157815688,
+        "v_kms": 13.4824050171346,
+        "h": 26.1,
         "diameter_km": null
       }
     ]
