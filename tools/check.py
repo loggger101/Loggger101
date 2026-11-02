@@ -241,8 +241,13 @@ def check_conflict_copies():
 FACTS = [
     ("An audit of 17 repos I'd starred", "starred-repos", "17 starred repositories"),
     ("against JPL's NHATS and against optimized Lambert transfers", "starred-repos", "NHATS"),
+    ("and then of 194 more", "starred-repos", "the 194 stars added"),
+    ("a guessed taxonomy is right about half the time", "starred-repos", "a guessed class is right about half the time"),
+    ("42 of the 69 near-Earth asteroids", "starred-repos", "42 of the 69 top-100 NEOs"),
     ("using 161,659 classified asteroids", "asteroid-belt-gradient", "161,659"),
     ("scoring 73.8% on areas", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "73.8%"),
+    ("from four classes to seven", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "four classes to seven"),
+    ("due 8 December", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "8 December 2026"),
     ("On 14k held-out cutouts", "star-spectral-classifier", "14,406"),
     ("gets the letter right 84.3% of the time", "star-spectral-classifier", "84.30%"),
     ("98.4% within its top two guesses", "star-spectral-classifier", "98.41%"),

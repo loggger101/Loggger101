@@ -49,7 +49,7 @@ python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints 
 Before committing, run
 
 ```bash
-python tools/check.py           # add --links to also check every link in the README (online)
+python tools/check.py           # add --links to also check every link in the README, --facts every figure quoted from another repo (both online)
 python tools/test_loc.py        # loc.py's counting rules
 python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, flyby alt text, commit subjects, anchors, the panel frame
 ```
@@ -58,7 +58,7 @@ python tools/test_tools.py      # the economicspace and JPL readers, the break-e
 if a `docs/` file is missing or unused, if the README's numbers or alt text disagree with
 `counts.json`, if a section link names no heading, or if an OneDrive conflict copy is
 present. CI runs all three on every push (`check.yml`), and the weekly workflow runs
-`check.py` before committing and, in a separate job, `check.py --links --fresh`: every link
+`check.py` before committing and, in a separate job, `check.py --links --fresh --facts`: every link
 answers, the flyby and activity data are no more than eight days old (so the flyby step,
 which is allowed to fail, can't fail week after week unnoticed), and every figure the
 profile quotes from another repo (`FACTS` in `check.py`: 84.3%, 161,659, "fifteen real
