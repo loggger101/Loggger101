@@ -1,6 +1,7 @@
 """Tests for the parts of the tools that read other people's formats or write the README's
 text: the economicspace and JPL readers, the commit-subject cleaner, the heading-anchor
-rule, the break-even verdict, the flyby sizes and alt text, and the shared panel frame. One small sample per rule, with what it
+rule, the break-even verdict, the flyby sizes and alt text, the freshness and dated-phrase checks, where the
+sparklines end, and the shared panel frame. One small sample per rule, with what it
 should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
     python tools/test_tools.py
@@ -151,11 +152,23 @@ eq("plain heading", ck.anchor("Image generators"), "image-generators")
 data = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
 oldest = min(dt.date.fromisoformat(data["flybys"]["from"]), dt.date.fromisoformat(data["activity"]["as_of"]))
 ck.problems.clear()
-ck.check_fresh(today=oldest + dt.timedelta(days=7))
+ck.check_fresh(today=oldest + dt.timedelta(days=7), readme="")
 eq("a week on: fresh", ck.problems, [])
 ck.problems.clear()
-ck.check_fresh(today=oldest + dt.timedelta(days=15))
+ck.check_fresh(today=oldest + dt.timedelta(days=15), readme="")
 eq("two weeks on: both flagged", len(ck.problems), 2)
+ck.problems.clear()
+# A dated phrase is fine through its last day and flagged the day after, unless it's gone.
+phrase, last = next(iter(ck.DATED.items()))
+last = dt.date.fromisoformat(last)
+ck.check_fresh(today=last, readme=f"the paper, {phrase}.")
+eq("dated phrase on its day", [p for p in ck.problems if phrase in p], [])
+ck.problems.clear()
+ck.check_fresh(today=last + dt.timedelta(days=1), readme=f"the paper, {phrase}.")
+eq("dated phrase the day after", len([p for p in ck.problems if phrase in p]), 1)
+ck.problems.clear()
+ck.check_fresh(today=last + dt.timedelta(days=1), readme="the paper, handed in.")
+eq("dated phrase rewritten", [p for p in ck.problems if "true only until" in p], [])
 ck.problems.clear()
 
 # Quoted figures (check.py FACTS): the README holds each phrase; a source that drops its
@@ -184,6 +197,28 @@ ck.problems.clear()
 ck.check_facts(fetch=unreachable)
 eq("an unreadable source, once per repo", len(ck.problems), len({r for _, r, _ in ck.FACTS}))
 ck.problems.clear()
+
+# Sparklines (sparks.py) end at the last full week: a Monday refresh leaves the week under
+# way out, and a commit made in it puts the gold dot at the line's end; a Sunday's keeps it.
+sp = load("sparks")
+
+
+def spark_points(as_of, weeks, first, last):
+    sp.AS_OF = dt.date.fromisoformat(as_of)
+    sp.FIRST = dt.date.fromisoformat(first)
+    sp.N_WEEKS = (sp.monday(sp.AS_OF) - sp.FIRST).days // 7 + 1
+    sp.LAST_FULL = sp.N_WEEKS - 1 if sp.AS_OF.weekday() == 6 else sp.N_WEEKS - 2
+    sp.ACTIVITY = {"repos": {"r": {"first": first, "last": last, "weeks": weeks}}}
+    svg = sp.spark("r")
+    line = svg.split('<polyline class="draw" points="')[1].split('"')[0].split()
+    dot = svg.split('<circle class="fade" cx="')[1].split('"')[0]
+    return len(line), line[-1].split(",")[0] == dot
+
+
+WEEKS = {"2026-10-19": 4, "2026-10-26": 6, "2026-11-02": 1}
+eq("Monday: the week under way left out", spark_points("2026-11-02", WEEKS, "2026-10-19", "2026-11-02"), (2, True))
+eq("Sunday: its week is full", spark_points("2026-11-08", WEEKS, "2026-10-19", "2026-11-02"), (3, True))
+eq("a repo begun this week keeps it", spark_points("2026-11-03", {"2026-11-02": 3}, "2026-11-02", "2026-11-03")[0], 1)
 
 # The shared frame (panel.py): every animated class is stopped under reduced motion.
 pn = load("panel")

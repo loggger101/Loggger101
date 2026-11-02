@@ -27,7 +27,8 @@ every push (.github/workflows/check.yml).
    old one.
 11. With --fresh (the weekly workflow): the week-by-week data was refreshed within FRESH_DAYS.
    The flyby step may fail without stopping the others, so this is what notices if it
-   keeps failing; a week the whole refresh missed shows here too.
+   keeps failing; a week the whole refresh missed shows here too. And no phrase in DATED
+   is still in the README after its last day, so "due 8 December" can't outlive December.
 
 Prints each problem and exits 1 if there are any.
 """
@@ -296,11 +297,22 @@ def check_facts(fetch=readme_of):
 # The weekly refresh runs every 7 days; a day's grace for a late run.
 FRESH_DAYS = 8
 
+# phrase in the README: the last day it's true. FACTS checks a phrase is still backed;
+# this checks it hasn't simply come and gone.
+DATED = {
+    "due 8 December": "2026-12-08",   # the Mars project's final; then say how it went
+}
 
-def check_fresh(today=None):
-    """The flyby chart and the activity data are no older than FRESH_DAYS."""
+
+def check_fresh(today=None, readme=None):
+    """The flyby chart and the activity data are no older than FRESH_DAYS, and no phrase in
+    DATED has outlived its day."""
     import datetime as dt
     today = today or dt.datetime.now(dt.timezone.utc).date()
+    readme = (ROOT / "README.md").read_text(encoding="utf-8") if readme is None else readme
+    for phrase, last in DATED.items():
+        if phrase in readme and today > dt.date.fromisoformat(last):
+            problems.append(f"the README still says {phrase!r}, true only until {last}; bring it up to date")
     counts = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
     for what, day, step in (("the flyby chart", counts["flybys"]["from"], "refresh_flybys.py"),
                             ("the activity data", counts["activity"]["as_of"], "refresh_activity.py")):

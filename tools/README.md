@@ -63,7 +63,8 @@ answers, the flyby and activity data are no more than eight days old (so the fly
 which is allowed to fail, can't fail week after week unnoticed), and every figure the
 profile quotes from another repo (`FACTS` in `check.py`: 84.3%, 161,659, "fifteen real
 launch complexes" and the rest) is still in that repo's README. When a project changes a
-result, that job turns red until the profile catches up.
+result, that job turns red until the profile catches up. So does a phrase that is true only
+until a date (`DATED` in `check.py`, such as the Mars final being "due 8 December"), the day after.
 
 The wide panels (activity, languages, break-even, flybys, repo diagram) open with
 `panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which
