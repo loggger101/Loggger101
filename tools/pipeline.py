@@ -36,7 +36,7 @@ NODES = {
     "paper": ("Paper", "AASTeX, rebuilt from", "two public inputs", "out"),
     "targets": ("Mining targets", "ranked by net", "mission profit", "out"),
     "ql": ("quietlaunch", "windowless dashboard", "launcher, pip package", "repo"),
-    "sr": ("starred-repos", "the pipeline audited", "against 17 repos", "repo"),
+    "sr": ("starred-repos", "the pipeline audited", "against 211 starred", "repo"),
     "qq": ("quietqueue", "the campaign's job", "runner, pip package", "repo"),
     "sb": ("samebytes", "bit-identity checks", "for releases, pip package", "repo"),
 }

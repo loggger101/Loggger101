@@ -79,7 +79,9 @@ character itself, using Segoe UI Bold's widths (`ADVANCE` in `tiles.py`), since 
 fonts to measure with. Each SVG stops it all under `prefers-reduced-motion`, and every
 animation's resting state is the finished picture, so a still render (reduced motion, a
 thumbnail) shows everything. Anything that shows only while moving, like the banner's
-shooting star or the diagram's points of light, is hidden when still.
+shooting star or the diagram's points of light, is hidden when still. The typing line
+is the exception: it types with SMIL, which CSS can't stop, so `typing_line.py` also writes
+`typing-still.svg`, which the README's `<picture>` gives to anyone who asks for reduced motion.
 
 `links.py` and `icons.py` draw their glyphs from `glyphs.py`.
 

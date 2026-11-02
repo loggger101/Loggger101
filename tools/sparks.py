@@ -1,13 +1,16 @@
 """Generate the activity sparklines under each repo's name in the README (docs/sparks/*.svg):
-my commits to that repo week by week, from its first commit to the week
-refresh_activity.py last ran.
+my commits to that repo week by week, from its first commit to the last full week
+before refresh_activity.py last ran. The weekly refresh runs early on a Monday, so the
+week under way holds a few hours at most, and drawn as a week it sent nearly every line
+diving to zero at the end. Its commits still count in the alt text's totals.
 
 Each runs over its own repo's life, not one shared axis: most of the repos are a few weeks
 old, and on an axis as long as the oldest one's they were a squiggle at the right edge.
 The README's alt text, which update_readme() writes, says when each line starts, how many
 commits it holds and its busiest week. Heights are each repo's own too, scaled
 to its busiest week, so a quiet repo's shape still shows. The last commit is a gold dot,
-edged in the line's blue so it shows on a white page. When the page loads the line draws
+edged in the line's blue so it shows on a white page; one made in the week under way
+puts it at the line's end. When the page loads the line draws
 itself left to right; with reduced motion it is drawn finished.
 
 The numbers are refresh_activity.py's, from tools/counts.json. Drawn at twice the size
@@ -32,6 +35,8 @@ AS_OF = dt.date.fromisoformat(ACTIVITY["as_of"])
 monday = lambda d: d - dt.timedelta(days=d.weekday())
 FIRST = monday(min(dt.date.fromisoformat(r["first"]) for r in ACTIVITY["repos"].values()))
 N_WEEKS = (monday(AS_OF) - FIRST).days // 7 + 1
+# The last full week: AS_OF's own if it was a Sunday, else the one before.
+LAST_FULL = N_WEEKS - 1 if AS_OF.weekday() == 6 else N_WEEKS - 2
 
 
 def spark(repo):
@@ -42,15 +47,16 @@ def spark(repo):
         if 0 <= i < N_WEEKS:
             counts[i] += n
     start = (monday(dt.date.fromisoformat(r["first"])) - FIRST).days // 7
-    peak = max(counts) or 1
-    x = lambda i: PAD + (W - 2 * PAD) * (i - start) / max(N_WEEKS - 1 - start, 1)
+    end = max(LAST_FULL, start)     # a repo begun this week keeps its one week
+    peak = max(counts[start:end + 1]) or 1
+    x = lambda i: PAD + (W - 2 * PAD) * (i - start) / max(end - start, 1)
     # Square-root heights, so a busy week doesn't flatten the rest to the floor.
     y = lambda n: H - PAD - (H - 2 * PAD) * math.sqrt(n / peak)
-    pts = [(x(i), y(counts[i])) for i in range(start, N_WEEKS)]
+    pts = [(x(i), y(counts[i])) for i in range(start, end + 1)]
     line = " ".join(f"{px:.1f},{py:.1f}" for px, py in pts)
     area = f"{pts[0][0]:.1f},{H - PAD} {line} {pts[-1][0]:.1f},{H - PAD}"
     length = sum(math.dist(a, b) for a, b in zip(pts, pts[1:])) or 1
-    last = (monday(dt.date.fromisoformat(r["last"])) - FIRST).days // 7
+    last = min((monday(dt.date.fromisoformat(r["last"])) - FIRST).days // 7, end)
     lx, ly = x(last), y(counts[last])
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" aria-hidden="true">
 <style>

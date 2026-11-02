@@ -7,8 +7,13 @@ fonts, so character width is estimated at 0.6 em and each line is centred from t
 The text sits on its own dark bar, styled like the link buttons below it, so it keeps
 its contrast in GitHub's light theme as well as the dark one. The bar is as wide as the
 longest line plus padding; the README's <img width> should match W.
+
+CSS can't stop SMIL, so it also writes typing-still.svg beside it: the same bar with
+STILL written out, which the README's <picture> gives to anyone who asks for reduced
+motion. A still render of the moving one would be an empty bar.
 """
 import sys
+from pathlib import Path
 
 LINES = [
     "Asteroid catalogs and mining economics",
@@ -16,6 +21,7 @@ LINES = [
     "Deep learning on survey imagery",
     "Orbit simulation in pure Python",
 ]
+STILL = "Asteroids, Mars, deep learning, orbits"   # no longer than the longest line
 SIZE = 18
 CHAR = 0.6 * SIZE          # estimated monospace advance
 H = 36
@@ -83,11 +89,25 @@ for i, (line, slot) in enumerate(zip(LINES, slots)):
     )
     start = end
 
+BAR = f'<rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="{H / 2 - 0.75}" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>'
 out.append("</defs>")
-out.append(f'<rect x="0.75" y="0.75" width="{W - 1.5}" height="{H - 1.5}" rx="{H / 2 - 0.75}" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>')
+out.append(BAR)
 out += body
 out.append("</svg>")
 
-with open(sys.argv[1], "w", encoding="utf-8", newline="\n") as f:
-    f.write("\n".join(out) + "\n")
+assert len(STILL) <= max(len(s) for s in LINES), "STILL is longer than the bar holds"
+x0 = (W - len(STILL) * CHAR) / 2
+still = [
+    out[0],
+    BAR,
+    f'<text x="{x0:.1f}" y="{H / 2 + SIZE * 0.35:.1f}" fill="{COLOR}" font-size="{SIZE}" '
+    f'font-family="Consolas, Menlo, \'DejaVu Sans Mono\', \'Courier New\', monospace" '
+    f'textLength="{len(STILL) * CHAR:.1f}" lengthAdjust="spacing" xml:space="preserve">{STILL}</text>',
+    "</svg>",
+]
+
+dest = Path(sys.argv[1])
+for path, lines in ((dest, out), (dest.with_name(dest.stem + "-still.svg"), still)):
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write("\n".join(lines) + "\n")
 print(f"ok, cycle {T:.1f}s")

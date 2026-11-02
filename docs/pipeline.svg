@@ -72,7 +72,7 @@
 <rect x="950" y="362" width="226" height="104" rx="10" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
 <text x="966" y="399.6" font-size="22" font-weight="700" fill="#5ba3dc">starred-repos</text>
 <text x="966" y="425.7" font-size="17" fill="#b9c6e4">the pipeline audited</text>
-<text x="966" y="447.8" font-size="17" fill="#b9c6e4">against 17 repos</text>
+<text x="966" y="447.8" font-size="17" fill="#b9c6e4">against 211 starred</text>
 <rect x="618" y="362" width="270" height="104" rx="10" fill="#13213f" stroke="#2f4a7a" stroke-width="1.5"/>
 <text x="634" y="399.6" font-size="22" font-weight="700" fill="#5ba3dc">quietqueue</text>
 <text x="634" y="425.7" font-size="17" fill="#b9c6e4">the campaign's job</text>
