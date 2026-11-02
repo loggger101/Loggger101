@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 573" width="680" height="573" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 2–8 Nov 2026 (NASA/JPL close-approach data): 7 in all. 2026 VA, 3.2 lunar distances on Mon 2 Nov, 22–49 m, 9.0 km/s; 2021 VC4, 6.0 lunar distances on Tue 3 Nov, 11–25 m, 11.2 km/s; 2017 WJ2, 14.7 lunar distances on Thu 5 Nov, 88–197 m, 12.0 km/s; 524522, 15.7 lunar distances on Mon 2 Nov, 207–463 m, 8.7 km/s; 2001 KF54, 18.8 lunar distances on Fri 6 Nov, 293–655 m, 16.4 km/s; 2026 UX, 19.6 lunar distances on Sat 7 Nov, 29–64 m, 9.7 km/s; 2016 VZ1, 19.9 lunar distances on Thu 5 Nov, 16–36 m, 13.5 km/s.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 573" width="680" height="573" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 2–8 Nov 2026 (NASA/JPL close-approach data): 7 in all. 2026 VA, 3.2 lunar distances on Mon 2 Nov, 22–49 m, 9.0 km/s; 2021 VC4, 6.0 lunar distances on Tue 3 Nov, 11–25 m, 11.2 km/s; 2017 WJ2, 14.7 lunar distances on Thu 5 Nov, 88–197 m, 12.0 km/s; 524522, 15.7 lunar distances on Mon 2 Nov, 207–463 m, 8.7 km/s; 2001 KF54, 18.8 lunar distances on Fri 6 Nov, 293–655 m, 16.4 km/s; 2026 UX, 19.6 lunar distances on Sat 7 Nov, 29–65 m, 9.7 km/s; 2016 VZ1, 19.9 lunar distances on Thu 5 Nov, 16–36 m, 13.5 km/s.">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <radialGradient id="earth" cx="0.35" cy="0.35" r="0.7"><stop offset="0" stop-color="#9fd4ff"/><stop offset="0.5" stop-color="#3d7fc4"/><stop offset="1" stop-color="#173a6b"/></radialGradient>
@@ -38,7 +38,7 @@
 <text x="430.0" y="526.4" text-anchor="middle" font-size="21.1" fill="#7d8fb3">20 LD</text>
 <text x="36" y="212.0" font-size="24" fill="#b9c6e4">2026 VA</text>
 <line x1="236.8" y1="203.6" x2="430.0" y2="203.6" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="243.8" cy="203.6" r="7.0" fill="url(#rock)" style="--from:234.2px;animation-delay:0.20s"/>
+<circle class="fly" cx="243.8" cy="203.6" r="7.1" fill="url(#rock)" style="--from:234.2px;animation-delay:0.20s"/>
 <text class="fade" x="463.6" y="212.0" font-size="20.4" fill="#dbe3f5" style="animation-delay:0.20s">3.2 LD · 22–49 m</text>
 <text x="36" y="256.0" font-size="24" fill="#b9c6e4">2021 VC4</text>
 <line x1="236.8" y1="247.6" x2="430.0" y2="247.6" stroke="#2a3b63" stroke-width="1"/>
@@ -58,8 +58,8 @@
 <text class="fade" x="463.6" y="388.0" font-size="20.4" fill="#dbe3f5" style="animation-delay:0.68s">18.8 LD · 293–655 m</text>
 <text x="36" y="432.0" font-size="24" fill="#b9c6e4">2026 UX</text>
 <line x1="236.8" y1="423.6" x2="430.0" y2="423.6" stroke="#2a3b63" stroke-width="1"/>
-<circle class="fly" cx="425.0" cy="423.6" r="7.3" fill="url(#rock)" style="--from:53.0px;animation-delay:0.80s"/>
-<text class="fade" x="463.6" y="432.0" font-size="20.4" fill="#dbe3f5" style="animation-delay:0.80s">19.6 LD · 29–64 m</text>
+<circle class="fly" cx="425.1" cy="423.6" r="7.3" fill="url(#rock)" style="--from:52.9px;animation-delay:0.80s"/>
+<text class="fade" x="463.6" y="432.0" font-size="20.4" fill="#dbe3f5" style="animation-delay:0.80s">19.6 LD · 29–65 m</text>
 <text x="36" y="476.0" font-size="24" fill="#b9c6e4">2016 VZ1</text>
 <line x1="236.8" y1="467.6" x2="430.0" y2="467.6" stroke="#2a3b63" stroke-width="1"/>
 <circle class="fly" cx="429.1" cy="467.6" r="6.8" fill="url(#rock)" style="--from:48.9px;animation-delay:0.92s"/>

@@ -10,7 +10,7 @@
     "General_Research": 2542,
     "starred-repos": 3061,
     "asteroid-belt-gradient": 2867,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 25119,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 26484,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 13324,
@@ -29,7 +29,7 @@
     "General_Research": 51412,
     "starred-repos": 9333,
     "asteroid-belt-gradient": 6539,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 864833,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 882145,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22635,
@@ -71,7 +71,7 @@
       "Python": 2867
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 24584,
+      "Python": 25949,
       "PowerShell": 278,
       "HTML": 168,
       "Batchfile": 89
@@ -348,23 +348,23 @@
           "2026-10-12": 19,
           "2026-10-19": 33,
           "2026-10-26": 52,
-          "2026-11-02": 1
+          "2026-11-02": 7
         },
         "recent": [
           [
-            "3bf7feb4b1833cf4afbf938633a40c5c5aee6ba1",
+            "6c94a6be586dd7732eff82a5bf936dc5c706f082",
             "2026-11-02",
-            "Laptop analyses A13, A2, A9, A3 (c), A1, A7; layouts 19 and 20 (KB 69.50)"
+            "R2 probability sample: points, sheets and scorer; agent labels fail the gate (KB 69.53)"
           ],
           [
-            "e9a3b565d7757211d28aaee7ea3ebb73f6c8ca36",
-            "2026-11-01",
-            "v3 seven-class labels: v2 polygons cut and screened, new polygons from reference data (KB 69.49)"
+            "eea863149be4bcfa9696751e1e13b158d77f403b",
+            "2026-11-02",
+            "86 lava margins traced on CTX across all 126 plates; T5 rerun (KB 69.52)"
           ],
           [
-            "628277c47490b7c8390a05e2d700dee2f458800b",
-            "2026-11-01",
-            "Record the D30 pages read from CI's PDF (KB 69.48)"
+            "3b9c3249a62c7fe68d0c7674774a3d8287ec4ab0",
+            "2026-11-02",
+            "CTX in Pro; 20 lava margins traced; T5 on them; agent CTX review gated out (KB 69.52)"
           ]
         ]
       },
@@ -729,10 +729,10 @@
     "rows": [
       {
         "des": "2026 VA",
-        "time": "2026-Nov-02 06:48",
-        "dist_au": 0.00828624324105641,
-        "v_kms": 9.00674762495434,
-        "h": 25.431,
+        "time": "2026-Nov-02 06:47",
+        "dist_au": 0.00828894871695431,
+        "v_kms": 9.00787051824463,
+        "h": 25.409,
         "diameter_km": null
       },
       {
@@ -754,8 +754,8 @@
       {
         "des": "524522",
         "time": "2026-Nov-02 19:10",
-        "dist_au": 0.0402310409087608,
-        "v_kms": 8.71731396049094,
+        "dist_au": 0.0402310408431398,
+        "v_kms": 8.71731391398551,
         "h": 20.54,
         "diameter_km": null
       },
@@ -770,9 +770,9 @@
       {
         "des": "2026 UX",
         "time": "2026-Nov-07 12:01",
-        "dist_au": 0.0502438220525366,
-        "v_kms": 9.73256795500153,
-        "h": 24.829,
+        "dist_au": 0.0502649713980513,
+        "v_kms": 9.73656481076981,
+        "h": 24.791,
         "diameter_km": null
       },
       {
