@@ -267,6 +267,15 @@ FIGURES = {
                            "Size and distance", "C/(S+C) in 0.1 au cells, four ranges of diameter"),
     "belt-proper": (lambda: fit(dark(Image.open(BELT / "fig8_proper_elements.png"))),
                     "Proper elements", "S- and C-like background bodies over the families"),
+    # One map panel cut from each of the Mars project's layout sheets (all 1650 x 1275).
+    "mars-topography": (lambda: cover(Image.open(MARS / "Global60/layouts/08_global60_mosaic.png"), (860, 654, 1582, 893)),
+                        "Topography", "HRSC/MOLA elevation, one of the four inputs at ±60°"),
+    "mars-athabasca": (lambda: cover(Image.open(MARS / "Global60/layouts/15_athabasca_type_area.png"), (72, 250, 514, 622)),
+                       "Athabasca Valles", "Flood lava once read as a water-cut channel, outlined"),
+    "mars-retinanet": (lambda: cover(Image.open(MARS / "Global60/layouts/16_x5_detections.png"), (84, 650, 650, 1100)),
+                       "RetinaNet detections", "A detector's boxes on ground it never trained on"),
+    "mars-unet": (lambda: cover(Image.open(MARS / "Global60/layouts/17b_unet_v2_provinces.png"), (84, 650, 650, 1100)),
+                  "U-Net classes", "Seven landform classes on a held-out block"),
 }
 
 

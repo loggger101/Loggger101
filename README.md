@@ -96,6 +96,15 @@ Four figures from the asteroid-belt-gradient paper (each links to the full size)
   <a href="https://github.com/loggger101/asteroid-belt-gradient/blob/main/figures/fig8_proper_elements.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/belt-proper-compact.webp"><img src="docs/figures/belt-proper.webp" width="48.5%" alt="Proper semimajor axis and inclination of the S-like and C-like background bodies over the families"></picture></a>
 </p>
 
+Four maps from the Mars project (each links to its full sheet):
+
+<p align="center">
+  <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Project/Global60/layouts/08_global60_mosaic.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/mars-topography-compact.webp"><img src="docs/figures/mars-topography.webp" width="48.5%" alt="The HRSC/MOLA blended elevation model from Valles Marineris to Hellas, one of the Mars project's four inputs"></picture></a>
+  <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Project/Global60/layouts/15_athabasca_type_area.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/mars-athabasca-compact.webp"><img src="docs/figures/mars-athabasca.webp" width="48.5%" alt="Athabasca Valles in Viking colour, with the Late Amazonian volcanic unit of USGS map SIM 3292 outlined in orange"></picture></a>
+  <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Project/Global60/layouts/16_x5_detections.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/mars-retinanet-compact.webp"><img src="docs/figures/mars-retinanet.webp" width="48.5%" alt="RetinaNet's detections on a held-out block, 75–90°E, 30–15°S, over the hand-drawn labels it never trained on"></picture></a>
+  <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Project/Global60/layouts/17b_unet_v2_provinces.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/mars-unet-compact.webp"><img src="docs/figures/mars-unet.webp" width="48.5%" alt="The seven-class U-Net's map of a held-out block, 270–285°E, 15–30°N"></picture></a>
+</p>
+
 ### <picture><img src="docs/icons/learning.svg" width="24" height="24" align="top" alt=""></picture> Deep learning
 
 <table>
