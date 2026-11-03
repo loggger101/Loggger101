@@ -164,6 +164,13 @@ Both repos are private, but the sites are public.
   </tr>
 </table>
 
+A page from each site (each links to the live page):
+
+<p align="center">
+  <a href="https://www.aspirecures.com/csf1r-alsp"><picture><source media="(max-width: 600px)" srcset="docs/figures/rd-aspirecures-compact.webp"><img src="docs/figures/rd-aspirecures.webp" width="48.5%" alt="AspireCURES: the CSF1R-ALSP page, which explains the disease and then lists its latest publications and studies"></picture></a>
+  <a href="https://www.sistershopefoundation.org/symptoms-causes"><picture><source media="(max-width: 600px)" srcset="docs/figures/rd-sisters-compact.webp"><img src="docs/figures/rd-sisters.webp" width="48.5%" alt="Sisters Hope Foundation: the Understanding ALSP page, showing how the CSF1R mutation is inherited"></picture></a>
+</p>
+
 ### <picture><img src="docs/icons/elsewhere.svg" width="24" height="24" align="top" alt=""></picture> Elsewhere
 
 <!-- GitHub sizes each table to its content. Two of these descriptions are short, so the spacer image (1px tall, transparent) widens the table to match the others; on phones it shrinks to nothing. -->
@@ -189,6 +196,13 @@ Both repos are private, but the sites are public.
     <td valign="top"><p>My library of 253 agent skills in 23 categories, built for my Hermes agent setup.</p><picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <picture><img src="https://img.shields.io/badge/Markdown-1f3354?style=flat-square&logo=markdown&logoColor=white" alt="Markdown"></picture></td>
   </tr>
 </table>
+
+Two pages of the portfolio site (each links to the live page):
+
+<p align="center">
+  <a href="https://www.loganmedwardsastrophy.com/#projects"><picture><source media="(max-width: 600px)" srcset="docs/figures/el-website-compact.webp"><img src="docs/figures/el-website.webp" width="48.5%" alt="The portfolio site: the project cards on its homepage"></picture></a>
+  <a href="https://www.loganmedwardsastrophy.com/ortega-exposure.html"><picture><source media="(max-width: 600px)" srcset="docs/figures/el-ortega-compact.webp"><img src="docs/figures/el-ortega.webp" width="48.5%" alt="The portfolio site's exposure calculator for the Ortega telescope, worked out in the browser: seeing, lunar age, filter, target SNR and star magnitude in, a recommended exposure out"></picture></a>
+</p>
 
 ### <picture><img src="docs/icons/activity.svg" width="24" height="24" align="top" alt=""></picture> Every commit so far
 

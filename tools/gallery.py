@@ -266,7 +266,24 @@ def shrunk(path, box, width=1600, gamma=1.0):
     return img
 
 
-# The figure grids inside the Deep learning, Simulation and Planetary science sections, drawn as cards
+EDGE = Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+
+
+def page(url, box):
+    """A crop of a live page, captured with headless Edge. The window is taller than any
+    box taken from it, because the sites' cookie notices sit at the foot of the window."""
+    with tempfile.TemporaryDirectory() as tmp:
+        shot = Path(tmp) / "page.png"
+        subprocess.run([str(EDGE), "--headless=new", "--disable-gpu", "--hide-scrollbars", "--window-size=1440,2600",
+                        "--virtual-time-budget=8000", f"--screenshot={shot}", url],
+                       check=True, capture_output=True, timeout=180)
+        img = Image.open(shot)
+        img.load()
+    assert box[3] < img.height - 300, "the crop reaches the cookie notice"
+    return cover(img, box)
+
+
+# The figure grids inside the Deep learning, Simulation, Planetary science, Rare-disease and Elsewhere sections, drawn as cards
 # into docs/figures beside docs/gallery. Same shape as CARDS, but the title names the
 # figure, not the repo. The simulator's scenes are the ones its own make_screenshots.py
 # draws (their docstrings are the captions); the paper's figures are darkened like the
@@ -302,6 +319,16 @@ FIGURES = {
                        "RetinaNet detections", "A detector's boxes on ground it never trained on"),
     "mars-unet": (lambda: cover(Image.open(MARS / "Global60/layouts/17b_unet_v2_provinces.png"), (84, 650, 650, 1100)),
                   "U-Net classes", "Seven landform classes on a held-out block"),
+    # The rare-disease repos are private, so these come from the live sites, as do the
+    # portfolio site's: a page each that isn't people's photos, from a 1440px-wide window.
+    "rd-aspirecures": (lambda: page("https://www.aspirecures.com/csf1r-alsp", (0, 0, 1440, 810)),
+                       "AspireCURES", "The CSF1R-ALSP page: the disease, then its latest studies"),
+    "rd-sisters": (lambda: page("https://www.sistershopefoundation.org/symptoms-causes", (90, 860, 1350, 1569)),
+                   "Sisters Hope Foundation", "Understanding ALSP: how the CSF1R mutation is inherited"),
+    "el-website": (lambda: page("https://www.loganmedwardsastrophy.com/", (230, 660, 1210, 1211)),
+                   "Portfolio site", "The project cards on its homepage"),
+    "el-ortega": (lambda: page("https://www.loganmedwardsastrophy.com/ortega-exposure.html", (260, 925, 1180, 1442)),
+                  "Exposure calculator", "The Ortega telescope's exposure time, worked out in the browser"),
 }
 
 
