@@ -16,9 +16,10 @@ redraw the tiles and the repo diagram. The weekly workflow
   winning asteroid, the median body's). breakeven.py draws it; this also writes that
   chart's alt text and the sentence above it into the README, so run breakeven.py
   afterwards to redraw the chart.
-- belt: the S/C crossover fits in asteroid-belt-gradient's results/summary.json (where
-  C-types reach half, its bootstrap interval, the 10-90% width, the sample size) and the
-  snow line it compares them with. crossover.py draws them; this also writes that chart's
+- belt: from asteroid-belt-gradient's results/summary.json, how many asteroids with a
+  published taxonomy the paper analyzes (the tile, the repo diagram and the paper's row
+  quote it), and its S/C crossover fits (where C-types reach half, its bootstrap interval,
+  the 10-90% width, the sample size) with the snow line it compares them with. crossover.py draws them; this also writes that chart's
   alt text and the sentences above it, so run crossover.py afterwards to redraw it.
 
 Stops with an error, changing nothing, if a source can't be read or a README sentence
@@ -89,19 +90,22 @@ def destinations(readme):
 
 
 def crossovers(summary):
-    """The paper's S/C crossover fits, in its order: {snow_line_au, crossover: [{sample,
-    a50, lo, hi, width, n}]}, the raw count first."""
+    """The paper's sample and S/C crossover fits, in its order: {classified, snow_line_au,
+    crossover: [{sample, a50, lo, hi, width, n}]}, the raw count first."""
     try:
         data = json.loads(summary)
         fits = [{"sample": sample, "a50": f["a50"], "lo": f["a50_lo"], "hi": f["a50_hi"],
                  "width": f["width_10_90"], "n": int(f["n"])} for sample, f in data["crossover"].items()]
         snow = float(data["snow_line_au"])
+        classified = int(data["catalog"]["taxonomy_tier"])
     except (ValueError, KeyError, TypeError, AttributeError) as e:
         sys.exit(f"asteroid-belt-gradient's summary.json no longer has its crossover fits in the form expected: {e!r}")
     if len(fits) < 2 or fits[0]["sample"] != "raw" or not all(1.5 < f["lo"] <= f["a50"] <= f["hi"] < 4 and f["width"] > 0
                                                               for f in fits):
         sys.exit(f"asteroid-belt-gradient's crossover fits don't look right: {fits}")
-    return {"snow_line_au": snow, "crossover": fits}
+    if classified < 10_000:
+        sys.exit(f"asteroid-belt-gradient's summary.json says {classified} classified asteroids; refusing to publish that")
+    return {"classified": classified, "snow_line_au": snow, "crossover": fits}
 
 
 # Each README pattern must match exactly once.
@@ -118,6 +122,10 @@ README_PATTERNS = [
      lambda c: f"I built a catalog of about {millions(c['catalog_rows'])} million of them"),
     (r"About [\d.]+ million asteroids from JPL SBDB",
      lambda c: f"About {millions(c['catalog_rows'])} million asteroids from JPL SBDB"),
+    (r'alt="\d[\d,]* classified asteroids analyzed \(asteroid-belt-gradient\)"',
+     lambda c: f'alt="{c["belt"]["classified"]:,} classified asteroids analyzed (asteroid-belt-gradient)"'),
+    (r"using \d[\d,]* classified asteroids from AsteroidCatalog",
+     lambda c: f"using {c['belt']['classified']:,} classified asteroids from AsteroidCatalog"),
 ]
 
 

@@ -20,7 +20,8 @@ import panel
 from refresh_counts import millions
 
 # The catalog's size, which refresh_counts.py keeps current.
-CATALOG_ROWS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))["catalog_rows"]
+COUNTS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))
+CATALOG_ROWS = COUNTS["catalog_rows"]
 OUT = Path(sys.argv[1])
 OUT.mkdir(parents=True, exist_ok=True)
 FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
@@ -31,7 +32,7 @@ NODES = {
     "ac": ("AsteroidCatalog", f"{millions(CATALOG_ROWS)}M asteroids,", "frozen releases", "repo"),
     "sc": ("spacecost", "cited cost and mass", "tables, pip package", "repo"),
     "sv": ("spacevalue", "mineral prices at", "eight destinations", "repo"),
-    "abg": ("asteroid-belt-gradient", "S/C gradient across", "161,659 asteroids", "repo"),
+    "abg": ("asteroid-belt-gradient", "S/C gradient across", f"{COUNTS['belt']['classified']:,} asteroids", "repo"),
     "es": ("economicspace", "rocket equation, cost", "cascade, sums profit", "repo"),
     "paper": ("Paper", "AASTeX, rebuilt from", "two public inputs", "out"),
     "targets": ("Mining targets", "ranked by net", "mission profit", "out"),

@@ -8,7 +8,7 @@ Mondays) fetches it again and redraws them.
 | on the profile | drawn by | from | refreshed |
 |---|---|---|---|
 | banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
-| stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest (`refresh_counts.py`); the belt number is set in `tiles.py` | weekly |
+| stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest and asteroid-belt-gradient's `results/summary.json` (`refresh_counts.py`) | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
 | figure grids in Simulation and Planetary science | `gallery.py` (`FIGURES`) | the scenes the simulator's own `make_screenshots.py` draws, the paper's figures, and a map panel from four of the Mars project's layout sheets | by hand |
 | repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
@@ -104,8 +104,9 @@ The README shows them to everyone but those who ask for reduced motion, who get 
 card through a `<picture>` source. A full run takes about twelve minutes, nearly all of it
 WebP compressing the animations; name cards after the output folder to make only those.
 
-The belt number on its tile is set in `tiles.py`, fixed by the release the paper pins;
-check it against asteroid-belt-gradient before changing. The catalog's size comes from
+The belt number (the asteroids with a published taxonomy that the paper analyzes) comes from
+the paper repo's `results/summary.json`, so it changes only when the paper pins a new catalog
+release; the tile, the repo diagram and the paper's row all quote it. The catalog's size comes from
 its latest release's manifest, and the tile, the intro, the AsteroidCatalog row and the
 repo diagram all write it the same way (`millions()` in `refresh_counts.py`).
 The sources and skills numbers are in `counts.json`, which `refresh_counts.py` rewrites from

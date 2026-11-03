@@ -28,14 +28,14 @@ FONT = "'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif"
 ADVANCE = {**dict.fromkeys("0123456789", 0.575), ",": 0.271, ".": 0.271, "M": 0.957}
 ROLL = 1.8              # seconds a digit column spins
 
-# The belt number is fixed by the release the paper pins. The catalog's size, and the two
-# that grow, are in counts.json, which refresh_counts.py keeps current.
+# The numbers are in counts.json, which refresh_counts.py keeps current: the belt's from the
+# paper's results, the catalog's size from its latest release, and the two that grow.
 COUNTS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))
 
 # name: (number, label, short label for the compact tile, repo)
 TILES = {
     "catalog": (f"{millions(COUNTS['catalog_rows'])}M", "asteroids cataloged", "asteroids", "AsteroidCatalog"),
-    "belt": ("161,659", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
+    "belt": (f"{COUNTS['belt']['classified']:,}", "asteroids analyzed", "analyzed", "asteroid-belt-gradient"),
     "sources": (f"{COUNTS['sources']:,}", "research sources", "sources", "General_Research"),
     "skills": (f"{COUNTS['skills']:,}", "agent skills", "agent skills", "Hermes_Skills"),
 }

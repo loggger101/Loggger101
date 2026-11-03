@@ -82,12 +82,14 @@ eq("millions keeps two places", rc.millions(1568878), "1.57")
 PROSE = ('<img src="docs/stats/catalog.svg" width="23.5%" alt="1.57M asteroids cataloged (AsteroidCatalog)"> '
          "I built a catalog of about 1.57 million of them. About 1.57 million asteroids from JPL SBDB, "
          'alt="602 research sources (General_Research)" alt="253 agent skills (Hermes_Skills)" '
-         "My library of 253 agent skills in 23 categories")
-out = rc.update_readme(PROSE, {"sources": 605, "skills": 253, "skill_categories": 23, "catalog_rows": 1575889})
+         "My library of 253 agent skills in 23 categories "
+         'alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)" using 161,659 classified asteroids from AsteroidCatalog')
+COUNTS = {"sources": 605, "skills": 253, "skill_categories": 23, "catalog_rows": 1575889, "belt": {"classified": 162004}}
+out = rc.update_readme(PROSE, COUNTS)
 eq("catalog size rewritten in three places", out.count("1.58"), 3)
 eq("nothing left at the old size", "1.57" in out, False)
-stops("a sentence gone missing", rc.update_readme, PROSE.replace("I built a catalog", "I made a catalog"),
-      {"sources": 605, "skills": 253, "skill_categories": 23, "catalog_rows": 1575889})
+eq("belt sample rewritten in both places", (out.count("162,004"), "161,659" in out), (2, False))
+stops("a sentence gone missing", rc.update_readme, PROSE.replace("I built a catalog", "I made a catalog"), COUNTS)
 
 # JPL's close-approach answers (refresh_flybys.py).
 rf = load("refresh_flybys")
@@ -137,9 +139,9 @@ stops("README sentence gone", be.update_readme, profile.replace("Left of the das
 # The paper's crossover fits (refresh_counts.py) and what the chart says of them (crossover.py),
 # so a rerun that moves the turn past the snow line, or narrows it, can't leave the old words.
 FIT = lambda a50, width: {"a50": a50, "a50_lo": a50 - 0.02, "a50_hi": a50 + 0.02, "width_10_90": width, "n": 300.0}
-SUMMARY = json.dumps({"snow_line_au": 2.674, "crossover": {"raw": FIT(2.8407, 1.7168), "collapsed, D≥53 km": FIT(2.4724, 1.3763)}})
+SUMMARY = json.dumps({"catalog": {"taxonomy_tier": 161659}, "snow_line_au": 2.674, "crossover": {"raw": FIT(2.8407, 1.7168), "collapsed, D≥53 km": FIT(2.4724, 1.3763)}})
 eq("fits read", rc.crossovers(SUMMARY),
-   {"snow_line_au": 2.674, "crossover": [
+   {"classified": 161659, "snow_line_au": 2.674, "crossover": [
        {"sample": "raw", "a50": 2.8407, "lo": 2.8207, "hi": 2.8607, "width": 1.7168, "n": 300},
        {"sample": "collapsed, D≥53 km", "a50": 2.4724, "lo": 2.4524, "hi": 2.4924, "width": 1.3763, "n": 300}]})
 stops("fits gone", rc.crossovers, json.dumps({"snow_line_au": 2.674}))
