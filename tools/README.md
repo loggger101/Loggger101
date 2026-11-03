@@ -10,7 +10,7 @@ Mondays) fetches it again and redraws them.
 | banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
 | stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest and asteroid-belt-gradient's `results/summary.json` (`refresh_counts.py`) | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
-| figure grids in Deep learning, Simulation, Planetary science, Rare-disease work and Elsewhere | `gallery.py` (`FIGURES`) | the two classifiers' confusion matrices, the scenes the simulator's own `make_screenshots.py` draws, the paper's figures, a map panel from four of the Mars project's layout sheets, and pages of the two rare-disease sites (both repos are private) and the portfolio site, captured live with headless Edge | by hand |
+| figure grids in Deep learning, Simulation and Planetary science | `gallery.py` (`FIGURES`) | the two classifiers' confusion matrices, the scenes the simulator's own `make_screenshots.py` draws, the paper's figures, and a map panel from four of the Mars project's layout sheets | by hand |
 | repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
 | line counts under each repo, the languages panel | `loc.py`, `languages.py` | each repo's default branch | weekly; the two private repos by hand |
 | sparklines, the activity panel, the latest commits | `refresh_activity.py`, `sparks.py`, `activity.py` | each repo's commit history | weekly; the two private repos by hand |
