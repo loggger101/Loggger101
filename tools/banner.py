@@ -1,4 +1,5 @@
-"""Generate the animated profile banner: a star drawn as light, an orbiting body, and the name.
+"""Generate the animated profile banner: a star drawn as light, an orbiting body, the
+asteroid belt turning round them, and the name.
 
 `banner.svg` is the wide banner. `banner-compact.svg` is for phones, where the wide one
 shrinks to about 350px and its two smaller lines fall under 8px: the star is smaller, and
@@ -109,13 +110,13 @@ def render(w, glow_x, system, lines, meteor):
 
 FILES = {
     # The star and its orbit at the banner's own layout (star.CX, star.CY), the name beside it.
-    "banner.svg": render(1200, 0.3, star.system(), [
+    "banner.svg": render(1200, 0.3, star.system(with_belt=True), [
         (360, 138, 62, True, "#ffffff", "Logan M Edwards"),
         (362, 186, 26, False, "#aab6d3", "Astronomy &amp; Astrophysics  •  Planetary Science"),
         (362, 228, 20, False, "#93a0c4", "Florida Tech  •  loganmedwardsastrophy.com"),
     ], meteor=True),
     # Phones: the system at 0.6 scale on the left, and under the name each line its own.
-    "banner-compact.svg": render(680, 0.15, star.nested(108, 150, 0.6), [
+    "banner-compact.svg": render(680, 0.15, star.nested(108, 150, 0.6, with_belt=True), [
         (214, 104, 50, True, "#ffffff", "Logan M Edwards"),
         (216, 152, 28, False, "#aab6d3", "Astronomy &amp; Astrophysics"),
         (216, 188, 28, False, "#aab6d3", "Planetary Science"),

@@ -1,9 +1,11 @@
 """Generate the flyby chart (docs/flybys.svg, docs/flybys-compact.svg): the asteroids passing
 Earth in the week refresh_flybys.py last looked at, within 20 lunar distances.
 
-Earth sits at the left with the Moon's distance marked; each asteroid is a row, its dot at
-its nominal miss distance on a linear scale in lunar distances and sized by how wide it
-is likely to be. Beside each: the distance, the size and the speed. At most MAX_ROWS rows,
+The week is a dial round Earth. Time runs clockwise from twelve o'clock, one wedge a day;
+distance runs outward on a square-root scale, with rings at the Moon's distance (dashed,
+gold), 5, 10 and 20 lunar distances. Each asteroid sits at the moment and distance of its
+closest approach, sized by how wide it is likely to be and numbered as in the list beside
+the dial, which gives each one's distance, size, speed and day. At most MAX_ROWS of them,
 nearest first; the header counts them all and names the closest.
 
 Almost none of these bodies has a measured diameter, so the size comes from the absolute
@@ -12,11 +14,12 @@ A measured diameter, when JPL has one, is used instead.
 
 The numbers are refresh_flybys.py's, from tools/counts.json, so this draws the same thing
 until the counts change; the header prints the week, so a stale chart is plainly dated.
-When it loads, each asteroid flies in from the right along its row, the nearest first; with
-reduced motion it is drawn finished.
+When it loads, each asteroid drifts in to its place along its day's ray, the nearest first,
+and its number and line in the list fade in; with reduced motion it is drawn finished.
 
-`flybys.svg` is for desktop widths; `flybys-compact.svg` drops the dates and speeds and uses
-larger text, for phones; the README swaps it in with <picture>.
+`flybys.svg` is for desktop widths, the list beside the dial. `flybys-compact.svg` puts the
+list under the dial, drops the speeds and uses larger text, for phones; the README swaps it
+in with <picture>.
 """
 import datetime as dt
 import html
@@ -63,9 +66,14 @@ def size_text(row):
     return fmt(lo) if lo == hi else (f"{lo:.0f}–{fmt(hi)}" if hi < 1000 else f"{fmt(lo)}–{fmt(hi)}")
 
 
+def moment(row):
+    """JPL's '2026-Oct-27 01:10' (TDB, within a minute of UTC) as a datetime."""
+    return dt.datetime.strptime(row["time"], "%Y-%b-%d %H:%M")
+
+
 def when(row):
-    """'Tue 27 Oct' from JPL's '2026-Oct-27 01:10' (TDB, within a minute of UTC)."""
-    t = dt.datetime.strptime(row["time"], "%Y-%b-%d %H:%M")
+    """'Tue 27 Oct'."""
+    t = moment(row)
     return f"{t:%a} {t.day} {t:%b}"
 
 
@@ -105,63 +113,122 @@ GRADIENTS = (
 
 def background(w, h, seed):
     return panel.background(w, h, seed, ALT, defs=GRADIENTS, rules=(
-        ".fly { animation: fly 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }",
-        "@keyframes fly { from { transform: translateX(var(--from)); opacity: 0; } 20% { opacity: 1; } }",
+        ".fly { animation: fly 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }",
+        "@keyframes fly { from { transform: translate(var(--dx), var(--dy)); opacity: 0; } 25% { opacity: 1; } }",
         *panel.FADE,
     ), animated=("fly", "fade"))
 
 
-def render(w, seed, pad, big, size, row_gap, name_w, track_w, full):
-    head = pad + big * 0.8
-    top = head + size * 2.6 + row_gap * 1.3
-    n = max(len(ROWS), 1)
-    h = round(top + (n - 1) * row_gap + row_gap * 0.6 + size * 2.4 + pad * 0.6)
-    x0 = pad + name_w                                   # Earth's centre
-    at = lambda v: x0 + track_w * v / MAX_LD
-    bottom = top + (n - 1) * row_gap + row_gap * 0.6
-    unit = "lunar distances" if full else "LD"
-    closest = (f"Closest: {CLOSEST['des']}, {ld(CLOSEST):.1f} {unit} on {when(CLOSEST)}." if CLOSEST else "None this week.")
-    # On phones the week moves to the second line, to keep the first short.
-    line1 = f'{"asteroid passes" if COUNT == 1 else "asteroids pass"} within {MAX_LD} {unit}' + (f", {span()}" if full else "")
-    line2 = f"{closest} NASA/JPL close-approach data." if full else f"{span()}. {closest}"
-    parts = [background(w, h, seed), f'<g font-family="{FONT}">',
-             f'<text x="{pad}" y="{head:.1f}" font-size="{big}" font-weight="700" fill="{BLUE}">{COUNT}</text>',
-             f'<text x="{pad + big * 0.62 * len(str(COUNT)) + size * 0.6:.1f}" y="{head:.1f}" font-size="{size}" fill="{TEXT}">{line1}</text>',
-             f'<text x="{pad}" y="{head + size * 1.6:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{html.escape(line2)}</text>']
-    # Earth, and the Moon's distance.
-    mid = (top + bottom - row_gap * 0.6) / 2
-    parts.append(f'<circle cx="{x0:.1f}" cy="{mid:.1f}" r="{size * 1.5:.1f}" fill="url(#halo)"/>')
-    parts.append(f'<circle cx="{x0:.1f}" cy="{mid:.1f}" r="{size * 0.85:.1f}" fill="url(#earth)"/>')
-    parts.append(f'<line x1="{at(1):.1f}" y1="{top - row_gap * 0.7:.1f}" x2="{at(1):.1f}" y2="{bottom:.1f}" '
-                 f'stroke="{DIM}" stroke-width="1.2" stroke-dasharray="3 4"/>')
-    parts.append(f'<text x="{at(1) + 5:.1f}" y="{top - row_gap * 0.7 + size * 0.2:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">the Moon</text>')
-    for v in (0, 5, 10, 15, 20):
-        parts.append(f'<line x1="{at(v):.1f}" y1="{bottom:.1f}" x2="{at(v):.1f}" y2="{bottom + 6:.1f}" stroke="{DIM}" stroke-width="1.2"/>')
-        parts.append(f'<text x="{at(v):.1f}" y="{bottom + 6 + size * 1.1:.1f}" text-anchor="middle" font-size="{size * SMALL:.1f}" '
-                     f'fill="{DIM}">{v}{" LD" if v == MAX_LD else ""}</text>')
-    if not ROWS:
-        parts.append(f'<text x="{at(MAX_LD / 2):.1f}" y="{mid + size * 0.35:.1f}" text-anchor="middle" font-size="{size}" '
-                     f'fill="{DIM}">no asteroid comes this close this week</text>')
+def delay(k, after=0.0):
+    return f"animation-delay:{0.2 + after + 0.15 * k:.2f}s"
+
+
+def dial(cx, cy, r_max, size, full):
+    """The week round Earth, and each asteroid at its moment and distance."""
+    r_min = size * 1.5
+    start = dt.datetime.combine(FROM, dt.time())
+    days = (TO - FROM).days
+    rad = lambda v: r_min + (r_max - r_min) * math.sqrt(min(max(v, 0), MAX_LD) / MAX_LD)
+    turn = lambda t: -math.pi / 2 + 2 * math.pi * min(max((t - start).total_seconds() / (days * 86400), 0), 1)
+    pt = lambda a, r: (cx + r * math.cos(a), cy + r * math.sin(a))
+    parts = [f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{size * 1.6:.1f}" fill="url(#halo)"/>',
+             f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{size * 0.85:.1f}" fill="url(#earth)"/>']
+    # A spoke at each midnight, and the day's name in the middle of its wedge.
+    for k in range(days):
+        (x1, y1), (x2, y2) = (pt(turn(start + dt.timedelta(days=k)), r) for r in (r_min, r_max + 6))
+        parts.append(f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="#2a3b63" stroke-width="1"/>')
+        day = FROM + dt.timedelta(days=k)
+        lx, ly = pt(turn(start + dt.timedelta(days=k + 0.5)), r_max + size * 1.7)
+        parts.append(f'<text x="{lx:.1f}" y="{ly + size * 0.3:.1f}" text-anchor="middle" font-size="{size * SMALL:.1f}" '
+                     f'fill="{DIM}">{f"{day:%a} {day.day}" if full else f"{day:%a}"}</text>')
+    # The rings, the Moon's dashed in gold; the others labelled just clockwise of twelve.
+    for v in (1, 5, 10, MAX_LD):
+        style = f'stroke="{GOLD}" stroke-opacity="0.65" stroke-dasharray="3 4"' if v == 1 else 'stroke="#2a3b63"'
+        parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{rad(v):.1f}" fill="none" {style} stroke-width="1.2"/>')
+    for v in (5, 10, MAX_LD):
+        parts.append(f'<text x="{cx + 4:.1f}" y="{cy - rad(v) - 4:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{v} LD</text>')
+    parts.append(f'<text x="{cx + rad(1) + 4:.1f}" y="{cy + size * 0.3:.1f}" font-size="{size * SMALL:.1f}" fill="{GOLD}">Moon</text>')
     biggest = max((size_m(r)[1] for r in ROWS if size_m(r)), default=1)
     for k, r in enumerate(ROWS):
-        y = top + k * row_gap
-        x = at(min(ld(r), MAX_LD))
+        a = turn(moment(r))
+        x, y = pt(a, rad(ld(r)))
         s = size_m(r)
-        # Dot area follows the likely width (the middle of the range), from a speck to most of a row.
-        radius = size * (0.22 + 0.33 * math.sqrt(math.sqrt(s[0] * s[1]) / biggest)) if s else size * 0.22
-        delay = f"animation-delay:{0.2 + 0.12 * k:.2f}s"
-        parts.append(f'<text x="{pad}" y="{y + size * 0.35:.1f}" font-size="{size}" fill="#b9c6e4">{html.escape(r["des"])}</text>')
-        parts.append(f'<line x1="{x0 + size * 1.2:.1f}" y1="{y:.1f}" x2="{at(MAX_LD):.1f}" y2="{y:.1f}" stroke="#2a3b63" stroke-width="1"/>')
+        # Dot area follows the likely width (the middle of the range), from a speck to a marble.
+        radius = size * (0.25 + 0.4 * math.sqrt(math.sqrt(s[0] * s[1]) / biggest)) if s else size * 0.25
+        ox, oy = pt(a, r_max + size * 2)
         parts.append(f'<circle class="fly" cx="{x:.1f}" cy="{y:.1f}" r="{radius:.1f}" fill="url(#rock)" '
-                     f'style="--from:{at(MAX_LD) + size * 2 - x:.1f}px;{delay}"/>')
+                     f'style="--dx:{ox - x:.1f}px;--dy:{oy - y:.1f}px;{delay(k)}"/>')
+        # Its number beside it, clockwise of it (out of the day names' way), once it has arrived.
+        off = radius + size * 0.55
+        parts.append(f'<text class="fade" x="{x - math.sin(a) * off:.1f}" y="{y + math.cos(a) * off + size * 0.3:.1f}" '
+                     f'text-anchor="middle" font-size="{size * 0.8:.1f}" font-weight="700" fill="{TEXT}" '
+                     f'style="{delay(k, 1.0)}">{k + 1}</text>')
+    return parts
+
+
+KEY = "Clockwise: the week. Outward: distance. Dot: likely width."
+
+
+def header(x, y, size, full):
+    """The count, the week and the closest pass. Returns the parts and the y the list starts at."""
+    big = size * 2.75
+    unit = "lunar distances" if full else "LD"
+    closest = (f"Closest: {CLOSEST['des']}, {ld(CLOSEST):.1f} {unit} on {when(CLOSEST)}." if CLOSEST else "None this week.")
+    line1 = f'{"asteroid passes" if COUNT == 1 else "asteroids pass"} Earth within {MAX_LD} {unit}'
+    line2 = f"{span()}. {closest}"
+    # Phones get the key under the header, where the dial follows.
+    key = [] if full else [f'<text x="{x}" y="{y + big * 0.8 + size * 2.8:.1f}" font-size="{size * SMALL:.1f}" '
+                           f'fill="{DIM}">Clockwise: the week. Outward: distance.</text>']
+    base = y + big * 0.8
+    return [f'<text x="{x}" y="{base:.1f}" font-size="{big:.1f}" font-weight="700" fill="{BLUE}">{COUNT}</text>',
+            f'<text x="{x + big * 0.62 * len(str(COUNT)) + size * 0.6:.1f}" y="{base:.1f}" font-size="{size}" '
+            f'fill="{TEXT}">{line1}</text>',
+            f'<text x="{x}" y="{base + size * 1.6:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{html.escape(line2)}</text>',
+            *key], base + size * (1.6 if full else 2.8)
+
+
+def listing(x, top, size, row_gap, full):
+    """One line for each asteroid on the dial, numbered as there."""
+    if not ROWS:
+        return [f'<text x="{x}" y="{top:.1f}" font-size="{size}" fill="{DIM}">no asteroid comes this close this week</text>']
+    parts = []
+    for k, r in enumerate(ROWS):
+        y = top + k * row_gap
+        parts.append(f'<circle cx="{x + size * 0.55:.1f}" cy="{y - size * 0.33:.1f}" r="{size * 0.58:.1f}" fill="none" '
+                     f'stroke="{GOLD}" stroke-opacity="0.7" stroke-width="1.2"/>')
+        parts.append(f'<text x="{x + size * 0.55:.1f}" y="{y - size * 0.05:.1f}" text-anchor="middle" '
+                     f'font-size="{size * 0.75:.1f}" font-weight="700" fill="{TEXT}">{k + 1}</text>')
+        parts.append(f'<text x="{x + size * 1.6:.1f}" y="{y:.1f}" font-size="{size}" fill="#b9c6e4">{html.escape(r["des"])}</text>')
         facts = (f"{ld(r):.1f} LD · {size_text(r)} · {r['v_kms']:.1f} km/s · {when(r)}" if full
-                 else f"{ld(r):.1f} LD · {size_text(r)}")
-        parts.append(f'<text class="fade" x="{at(MAX_LD) + size * 1.4:.1f}" y="{y + size * 0.35:.1f}" font-size="{size * 0.85:.1f}" '
-                     f'fill="{TEXT}" style="{delay}">{html.escape(facts)}</text>')
-    if COUNT > len(ROWS):
-        parts.append(f'<text x="{at(MAX_LD) + size * 1.4:.1f}" y="{bottom + 6 + size * 1.1:.1f}" font-size="{size * SMALL:.1f}" '
-                     f'fill="{DIM}">and {COUNT - len(ROWS)} more farther out</text>')
-    parts.append("</g>\n</svg>\n")
+                 else f"{ld(r):.1f} LD · {size_text(r)} · {when(r).split()[0]}")
+        parts.append(f'<text class="fade" x="{x + size * 7.4:.1f}" y="{y:.1f}" font-size="{size * 0.9:.1f}" '
+                     f'fill="{TEXT}" style="{delay(k)}">{html.escape(facts)}</text>')
+    more = f"And {COUNT - len(ROWS)} more farther out. " if COUNT > len(ROWS) else ""
+    if more or full:
+        parts.append(f'<text x="{x}" y="{top + (len(ROWS) - 0.2) * row_gap:.1f}" font-size="{size * SMALL:.1f}" '
+                     f'fill="{DIM}">{more}{"From NASA/JPL close-approach data, every Monday." if full else ""}</text>')
+    if full:
+        parts.append(f'<text x="{x}" y="{top + (len(ROWS) + 0.7) * row_gap:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">'
+                     f'{KEY}</text>')
+    return parts
+
+
+def render(w, seed, pad, size, row_gap, r_max, full):
+    margin = size * 2.8                     # room for the day names round the dial
+    lines = max(len(ROWS), 1) + (2 if full else COUNT > len(ROWS))
+    if full:                                # the dial on the left, the header and list beside it
+        cx = cy = pad + margin + r_max
+        x = round(cx + r_max + margin + size)
+        head, base = header(x, pad + size * 0.3, size, full)
+        body = dial(cx, cy, r_max, size, full) + head + listing(x, base + row_gap * 1.3, size, row_gap, full)
+        h = round(max(cy + r_max + margin, base + row_gap * (lines + 0.9)) + pad * 0.6)
+    else:                                   # the header, the dial under it, the list under that
+        head, base = header(pad, pad * 0.6, size, full)
+        cx, cy = w / 2, base + margin + r_max + size
+        top = cy + r_max + margin + size
+        body = head + dial(cx, cy, r_max, size, full) + listing(pad, top, size, row_gap, full)
+        h = round(top + (lines - 0.4) * row_gap + pad * 0.8)
+    parts = [background(w, h, seed), f'<g font-family="{FONT}">', *body, "</g>\n</svg>\n"]
     return panel.keep_clear("\n".join(parts))
 
 
@@ -174,8 +241,8 @@ def update_readme(readme):
 
 def files():
     return {
-        "flybys.svg": render(1200, 41, 40, 52, 19, 38, 150, 560, True),
-        "flybys-compact.svg": render(680, 42, 36, 60, 24, 44, 172, 222, False),
+        "flybys.svg": render(1200, 41, 36, 19, 42, 200, True),
+        "flybys-compact.svg": render(680, 42, 36, 24, 46, 230, False),
     }
 
 

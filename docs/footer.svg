@@ -46,7 +46,11 @@
   @keyframes rays { 0%, 100% { transform: scale(0.94); opacity: 0.8; } 50% { transform: scale(1.04); opacity: 1; } }
   .rays2 { animation: rays2 4.5s ease-in-out infinite; transform-origin: 170px 150px; }
   @keyframes rays2 { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.9; } }
-  @media (prefers-reduced-motion: reduce) { .tw, .breathe, .rays, .rays2 { animation: none; } }
+  .lane { animation: lane var(--t) linear var(--d) infinite; transform-origin: 0 0; }
+  .lane ellipse { animation: unlane var(--t) linear var(--d) infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes lane { to { transform: rotate(360deg); } }
+  @keyframes unlane { to { transform: rotate(-360deg); } }
+  @media (prefers-reduced-motion: reduce) { .tw, .breathe, .rays, .rays2, .lane, .lane ellipse { animation: none; } }
 </style>
 <clipPath id="round"><rect width="1200" height="84" rx="16"/></clipPath>
 <g clip-path="url(#round)">

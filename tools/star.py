@@ -1,4 +1,5 @@
-"""The banner's star and its orbiting body, shared by banner.py and footer.py.
+"""The banner's star and its orbiting body, shared by banner.py and footer.py, and the
+asteroid belt the banner draws round them.
 
 The system is drawn in its own 340 x 300 coordinate box centred on (170, 150), the
 banner's layout. The animations scale about that fixed point (CSS transform-origin),
@@ -6,8 +7,20 @@ so a page that wants the system somewhere else, or smaller, places it with a nes
 <svg> viewport (see `nested`) rather than a transform, which would move the origin.
 """
 
+import math
+import random
+
 CX, CY = 170, 150
 BOX_W, BOX_H = 340, 300
+
+# The belt: three lanes outside the body's orbit (rx 125), with gaps between them, as the
+# Kirkwood gaps split the real one. Seen at the orbit's tilt, so flattened to its 42/125.
+# Inner lanes turn faster (Kepler's third law: period goes as radius^1.5), and the rocks go
+# from stony gold inside to carbonaceous blue-grey outside, as the S/C gradient does.
+TILT, FLAT = -18, 42 / 125
+LANES = ((138, 145, 34), (149, 156, 40), (160, 166, 46))     # (inner radius, outer radius, rocks)
+LANE_PERIOD = 90                                             # seconds per turn for the first lane
+S_TYPE, C_TYPE = (0xe8, 0xc2, 0x7a), (0x8f, 0xa8, 0xc8)
 
 DEFS = """  <radialGradient id="corona" cx="0.5" cy="0.5" r="0.5">
     <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
@@ -42,10 +55,14 @@ STYLE = f"""  .breathe {{ animation: breathe 6s ease-in-out infinite; transform-
   .rays {{ animation: rays 6s ease-in-out infinite; transform-origin: {CX}px {CY}px; }}
   @keyframes rays {{ 0%, 100% {{ transform: scale(0.94); opacity: 0.8; }} 50% {{ transform: scale(1.04); opacity: 1; }} }}
   .rays2 {{ animation: rays2 4.5s ease-in-out infinite; transform-origin: {CX}px {CY}px; }}
-  @keyframes rays2 {{ 0%, 100% {{ opacity: 0.55; }} 50% {{ opacity: 0.9; }} }}"""
+  @keyframes rays2 {{ 0%, 100% {{ opacity: 0.55; }} 50% {{ opacity: 0.9; }} }}
+  .lane {{ animation: lane var(--t) linear var(--d) infinite; transform-origin: 0 0; }}
+  .lane ellipse {{ animation: unlane var(--t) linear var(--d) infinite; transform-box: fill-box; transform-origin: center; }}
+  @keyframes lane {{ to {{ transform: rotate(360deg); }} }}
+  @keyframes unlane {{ to {{ transform: rotate(-360deg); }} }}"""
 
 # Class names the page's reduced-motion rule must stop.
-ANIMATED = (".breathe", ".rays", ".rays2")
+ANIMATED = (".breathe", ".rays", ".rays2", ".lane", ".lane ellipse")
 
 
 def spike(length, width, angle):
@@ -54,13 +71,40 @@ def spike(length, width, angle):
             f'fill="url(#spike)" transform="rotate({angle} {CX} {CY})"/>')
 
 
-def system():
-    """The orbit's far half, the star, then the near half, so the body passes in front."""
+def belt():
+    """The belt's lanes, each turning about the star. A lane is drawn as a circle of rocks in
+    a group squashed to the orbit's tilt, so one rotation turns it along its ellipse. Each
+    rock is drawn tall by the same factor and turns back as fast as its lane turns, so it
+    stays upright and the squash leaves it round. Rocks are ellipses, not circles, so
+    panel.keep_clear, which reads circles at their untransformed place, leaves them be."""
+    rng = random.Random(7)
+    parts = [f'<g transform="translate({CX} {CY}) rotate({TILT}) scale(1 {FLAT:.4f})">']
+    outer = LANES[-1][1]
+    for k, (r0, r1, n) in enumerate(LANES):
+        period = LANE_PERIOD * (((r0 + r1) / 2) / ((LANES[0][0] + LANES[0][1]) / 2)) ** 1.5
+        parts.append(f'<g class="lane" style="--t:{period:.1f}s;--d:-{rng.uniform(0, period):.1f}s">')
+        for _ in range(n):
+            a, r = rng.uniform(0, 2 * math.pi), rng.uniform(r0, r1)
+            # The share of C-types rises outward, with scatter, as in the belt.
+            c = min(max((r - LANES[0][0]) / (outer - LANES[0][0]) + rng.uniform(-0.35, 0.35), 0), 1)
+            colour = "#" + "".join(f"{round(s + (t - s) * c):02x}" for s, t in zip(S_TYPE, C_TYPE))
+            size = rng.choice((0.9, 1.1, 1.3, 1.6))
+            parts.append(f'<ellipse cx="{r * math.cos(a):.1f}" cy="{r * math.sin(a):.1f}" rx="{size}" ry="{size / FLAT:.2f}" '
+                         f'fill="{colour}" opacity="{rng.uniform(0.45, 0.9):.2f}"/>')
+        parts.append("</g>")
+    parts.append("</g>")
+    return parts
+
+
+def system(with_belt=False):
+    """The belt if asked for, the orbit's far half, the star, then the near half, so the
+    body passes in front."""
     cx, cy = CX, CY
     path = f"M {cx + 125} {cy} A 125 42 0 1 1 {cx - 125} {cy} A 125 42 0 1 1 {cx + 125} {cy}"
     main = "".join(spike(126, 3.2, ang) for ang in (0, 90))
     diag = "".join(spike(80, 2.2, ang) for ang in (45, 135))
     return [
+        *(belt() if with_belt else []),
         # Orbit around the star, tilted ellipse
         f'<g transform="rotate(-18 {cx} {cy})">',
         f'<ellipse cx="{cx}" cy="{cy}" rx="125" ry="42" fill="none" stroke="#8fb6e8" stroke-opacity="0.35" stroke-width="1.2" stroke-dasharray="3 5"/>',
@@ -82,9 +126,9 @@ def system():
     ]
 
 
-def nested(x_centre, y_centre, scale):
+def nested(x_centre, y_centre, scale, with_belt=False):
     """The system centred at (x_centre, y_centre) and scaled, in its own viewport."""
     w, h = BOX_W * scale, BOX_H * scale
     return ([f'<svg x="{x_centre - w / 2:g}" y="{y_centre - h / 2:g}" width="{w:g}" height="{h:g}" '
              f'viewBox="0 0 {BOX_W} {BOX_H}" overflow="visible">']
-            + system() + ["</svg>"])
+            + system(with_belt) + ["</svg>"])

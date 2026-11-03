@@ -212,7 +212,7 @@ The lines of code under each repo's name, added up by language.
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
 
-The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. The sizes are estimates from each body's brightness, as almost none has been measured.
+The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. On the dial, each one sits at the day and distance of its closest approach. The sizes are estimates from each body's brightness, as almost none has been measured.
 
 <p align="center">
   <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 3–9 Nov 2026 (NASA/JPL close-approach data): 6 in all. 2021 VC4, 6.0 lunar distances on Tue 3 Nov, 11–25 m, 11.2 km/s; 2017 WJ2, 14.7 lunar distances on Thu 5 Nov, 88–197 m, 12.0 km/s; 2025 UF5, 18.8 lunar distances on Mon 9 Nov, 8–17 m, 1.9 km/s; 2001 KF54, 18.8 lunar distances on Fri 6 Nov, 293–655 m, 16.4 km/s; 2026 UX, 19.6 lunar distances on Sat 7 Nov, 29–65 m, 9.7 km/s; 2016 VZ1, 19.9 lunar distances on Thu 5 Nov, 16–36 m, 13.5 km/s."></picture>

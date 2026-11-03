@@ -77,7 +77,8 @@ in the space their text leaves.
 The banner, footer, tiles, repo diagram and the panels move, with CSS animations in each
 SVG: stars twinkle everywhere; the tiles' numbers roll up like an odometer; points of light
 run along the diagram's data arrows and its citation dashes creep; the activity panel's
-dots come in round the orbit in time order; and the bars grow in. The odometer places each
+dots come in round the orbit in time order; the week's asteroids drift in to their places on
+the flyby dial; the banner's asteroid belt turns, its inner lanes faster; and the bars grow in. The odometer places each
 character itself, using Segoe UI Bold's widths (`ADVANCE` in `tiles.py`), since CI has no
 fonts to measure with. Each SVG stops it all under `prefers-reduced-motion`, and every
 animation's resting state is the finished picture, so a still render (reduced motion, a
@@ -89,7 +90,10 @@ is the exception: it types with SMIL, which CSS can't stop, so `typing_line.py` 
 `links.py` and `icons.py` draw their glyphs from `glyphs.py`.
 
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
-there and rerun both.
+there and rerun both. The banner also draws `star.belt()`: three lanes of rocks with gaps
+between them, gold S-types inside giving way to blue-grey C-types outside, each lane turning
+at its Kepler period. A lane is a circle in a group squashed to the orbit's tilt, so a plain
+rotation carries it along its ellipse, and each rock turns back as fast so it stays round.
 
 `gallery.py` reads each project's images from the local clones under
 the `GitHub` folder this repo sits in and needs Pillow and numpy. The satellite, Mars and
@@ -131,7 +135,9 @@ text and the README's "What it found" sentence follow a rerun of the paper. The 
 reading of it ("from beyond Jupiter") is in `FACTS`, checked against `paper/main.tex`.
 
 `flybys.py` draws the asteroids passing Earth within 20 lunar distances in the week after
-`refresh_flybys.py` last ran, from JPL's close-approach API. Sizes come from H at albedos
+`refresh_flybys.py` last ran, from JPL's close-approach API, on a dial round Earth: the week
+runs clockwise, distance outward on a square-root scale (so the Moon's ring clears Earth's
+glow), and a numbered list beside it gives each one's numbers. Sizes come from H at albedos
 0.25 to 0.05 unless JPL has a measured diameter. The API is the one outside source the
 weekly workflow can't vouch for, so that step may fail without stopping the others; the
 chart prints its week, so a stale one is plainly dated.
