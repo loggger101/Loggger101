@@ -10,7 +10,7 @@
     "General_Research": 2542,
     "starred-repos": 3061,
     "asteroid-belt-gradient": 2867,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 26484,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 27072,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 13324,
@@ -29,7 +29,7 @@
     "General_Research": 51412,
     "starred-repos": 9333,
     "asteroid-belt-gradient": 6539,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 882145,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1620994,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 22635,
@@ -71,7 +71,7 @@
       "Python": 2867
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 25949,
+      "Python": 26537,
       "PowerShell": 278,
       "HTML": 168,
       "Batchfile": 89
@@ -122,7 +122,7 @@
     }
   },
   "activity": {
-    "as_of": "2026-11-02",
+    "as_of": "2026-11-03",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
@@ -348,23 +348,23 @@
           "2026-10-12": 19,
           "2026-10-19": 33,
           "2026-10-26": 52,
-          "2026-11-02": 7
+          "2026-11-02": 12
         },
         "recent": [
           [
-            "6c94a6be586dd7732eff82a5bf936dc5c706f082",
+            "35b78939694a6adb7c4f9d842b31b1d054eff19a",
             "2026-11-02",
-            "R2 probability sample: points, sheets and scorer; agent labels fail the gate (KB 69.53)"
+            "D35: qualify the seven-class U-Net's balanced-accuracy lead"
           ],
           [
-            "eea863149be4bcfa9696751e1e13b158d77f403b",
+            "f370322651829ab98b2045c144061e70cd434e1d",
             "2026-11-02",
-            "86 lava margins traced on CTX across all 126 plates; T5 rerun (KB 69.52)"
+            "A16: v2 seven-class maps scored on the 1,652 v3 held-out polygons"
           ],
           [
-            "3b9c3249a62c7fe68d0c7674774a3d8287ec4ab0",
+            "5d9a440f10091bcb8c8a4a19afdac0a35605e4c3",
             "2026-11-02",
-            "CTX in Pro; 20 lava margins traced; T5 on them; agent CTX review gated out (KB 69.52)"
+            "D34: flat Tharsis fan deposits admitted as apron in the v3 labels"
           ]
         ]
       },
@@ -723,18 +723,10 @@
     }
   ],
   "flybys": {
-    "from": "2026-11-02",
-    "to": "2026-11-09",
+    "from": "2026-11-03",
+    "to": "2026-11-10",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
-      {
-        "des": "2026 VA",
-        "time": "2026-Nov-02 06:47",
-        "dist_au": 0.00828894871695431,
-        "v_kms": 9.00787051824463,
-        "h": 25.409,
-        "diameter_km": null
-      },
       {
         "des": "2021 VC4",
         "time": "2026-Nov-03 17:30",
@@ -752,11 +744,11 @@
         "diameter_km": null
       },
       {
-        "des": "524522",
-        "time": "2026-Nov-02 19:10",
-        "dist_au": 0.0402310408431398,
-        "v_kms": 8.71731391398551,
-        "h": 20.54,
+        "des": "2025 UF5",
+        "time": "2026-Nov-09 21:06",
+        "dist_au": 0.0483285203945581,
+        "v_kms": 1.94365998105654,
+        "h": 27.7,
         "diameter_km": null
       },
       {
