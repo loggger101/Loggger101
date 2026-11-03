@@ -1,6 +1,6 @@
 """Tests for the parts of the tools that read other people's formats or write the README's
 text: the economicspace and JPL readers, the commit-subject cleaner, the heading-anchor
-rule, the break-even verdict, the flyby sizes and alt text, the freshness and dated-phrase checks, where the
+rule, the break-even verdict, the paper's crossover fits and what the chart says of them, the flyby sizes and alt text, the freshness and dated-phrase checks, where the
 sparklines end, and the shared panel frame. One small sample per rule, with what it
 should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
@@ -133,6 +133,27 @@ eq("two pay, best first", (be.verdict(TWO), be.short_verdict(TWO)),
 profile = (TOOLS.parent / "README.md").read_text(encoding="utf-8")
 eq("README sentence follows", "pays for itself; none does yet." in be.update_readme(profile), True)
 stops("README sentence gone", be.update_readme, profile.replace("Left of the dashed line", "Left of the line"))
+
+# The paper's crossover fits (refresh_counts.py) and what the chart says of them (crossover.py),
+# so a rerun that moves the turn past the snow line, or narrows it, can't leave the old words.
+FIT = lambda a50, width: {"a50": a50, "a50_lo": a50 - 0.02, "a50_hi": a50 + 0.02, "width_10_90": width, "n": 300.0}
+SUMMARY = json.dumps({"snow_line_au": 2.674, "crossover": {"raw": FIT(2.8407, 1.7168), "collapsed, D≥53 km": FIT(2.4724, 1.3763)}})
+eq("fits read", rc.crossovers(SUMMARY),
+   {"snow_line_au": 2.674, "crossover": [
+       {"sample": "raw", "a50": 2.8407, "lo": 2.8207, "hi": 2.8607, "width": 1.7168, "n": 300},
+       {"sample": "collapsed, D≥53 km", "a50": 2.4724, "lo": 2.4524, "hi": 2.4924, "width": 1.3763, "n": 300}]})
+stops("fits gone", rc.crossovers, json.dumps({"snow_line_au": 2.674}))
+stops("raw not first", rc.crossovers, json.dumps({"snow_line_au": 2.674, "crossover": {"x": FIT(2.4, 1.4), "raw": FIT(2.8, 1.7)}}))
+stops("fit off the belt", rc.crossovers, json.dumps({"snow_line_au": 2.674, "crossover": {"raw": FIT(2.8, 1.7), "y": FIT(7.0, 1.4)}}))
+co = load("crossover")
+fits = lambda *pairs: [{"a50": a, "width": w} for a, w in pairs]
+eq("inside and wider", co.finding(fits((2.4603, 1.3937), (2.4068, 1.4859)), 2.674),
+   "Corrected, the turn sits at 2.41–2.46 au, inside the snow line at 2.67 au, and takes 1.4–1.5 au to go "
+   "from 10% to 90% C-types, wider than the belt itself.")
+eq("beyond and narrower", (co.where(fits((2.8, 0.5)), 2.674), co.wide(fits((2.8, 0.5)))), ("beyond", "narrower than the belt"))
+eq("across, one width", (co.where(fits((2.6, 1.2), (2.7, 1.2)), 2.674), co.span([1.21, 1.24], 1)), ("across", "1.2"))
+eq("README sentence follows", co.finding(co.CORRECTED, co.SNOW) in co.update_readme(profile), True)
+stops("README sentence gone", co.update_readme, profile.replace("Corrected, the turn sits", "Corrected, it sits"))
 
 # Commit subjects for the latest-commits list (activity.py).
 ac = load("activity")

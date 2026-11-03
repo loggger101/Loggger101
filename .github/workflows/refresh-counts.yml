@@ -1,5 +1,5 @@
 # Keeps the research-sources and agent-skills tiles, each repo's lines of code, the
-# break-even chart and the activity and languages panels in step with their repos, and the
+# break-even and crossover charts and the activity and languages panels in step with their repos, and the
 # flyby chart with NASA/JPL's close approaches for the week ahead. The private repos' counts are
 # refreshed by running loc.py and refresh_activity.py locally. The activity panel runs to
 # the week of the run, so a run commits every week; it commits only if tools/check.py
@@ -34,6 +34,7 @@ jobs:
       - run: python tools/tiles.py docs/stats
       - run: python tools/pipeline.py docs
       - run: python tools/breakeven.py docs
+      - run: python tools/crossover.py docs
       - run: python tools/loc.py --public-only
       - run: python tools/refresh_activity.py --public-only
       - run: python tools/sparks.py docs/sparks

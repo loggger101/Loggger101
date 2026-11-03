@@ -785,5 +785,42 @@
       }
     ]
   },
-  "catalog_rows": 1575889
+  "catalog_rows": 1575889,
+  "belt": {
+    "snow_line_au": 2.674,
+    "crossover": [
+      {
+        "sample": "raw",
+        "a50": 2.8407,
+        "lo": 2.8378,
+        "hi": 2.8431,
+        "width": 1.7168,
+        "n": 135381
+      },
+      {
+        "sample": "collapsed, IPW, D\u226510 km",
+        "a50": 2.4603,
+        "lo": 2.4338,
+        "hi": 2.4852,
+        "width": 1.3937,
+        "n": 2264
+      },
+      {
+        "sample": "collapsed, D\u226553 km",
+        "a50": 2.4724,
+        "lo": 2.3856,
+        "hi": 2.5298,
+        "width": 1.3763,
+        "n": 330
+      },
+      {
+        "sample": "background, D\u226553 km",
+        "a50": 2.4068,
+        "lo": 2.306,
+        "hi": 2.4876,
+        "width": 1.4859,
+        "n": 247
+      }
+    ]
+  }
 }

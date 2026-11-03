@@ -1,5 +1,5 @@
-"""The frame the profile's wide panels share: activity.py, breakeven.py, flybys.py,
-languages.py and pipeline.py all start their SVG with `background`, and all but the last
+"""The frame the profile's wide panels share: activity.py, breakeven.py, crossover.py,
+flybys.py, languages.py and pipeline.py all start their SVG with `background`, and all but the last
 write their alt text into the README with `write_alt`.
 
 It draws the tiles' navy gradient in a rounded border, a field of still stars, and a few

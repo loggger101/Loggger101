@@ -1,5 +1,5 @@
 """Refresh the counts that keep growing: research sources, agent skills, the catalog's
-size, and where the mining pipeline stands.
+size, where the mining pipeline stands, and what the belt paper found.
 
 Reads them from the source repos on GitHub, writes tools/counts.json, and rewrites the
 README sentences and alt text that quote them. Run tiles.py and pipeline.py afterwards to
@@ -16,6 +16,10 @@ redraw the tiles and the repo diagram. The weekly workflow
   winning asteroid, the median body's). breakeven.py draws it; this also writes that
   chart's alt text and the sentence above it into the README, so run breakeven.py
   afterwards to redraw the chart.
+- belt: the S/C crossover fits in asteroid-belt-gradient's results/summary.json (where
+  C-types reach half, its bootstrap interval, the 10-90% width, the sample size) and the
+  snow line it compares them with. crossover.py draws them; this also writes that chart's
+  alt text and the sentences above it, so run crossover.py afterwards to redraw it.
 
 Stops with an error, changing nothing, if a source can't be read or a README sentence
 it rewrites has gone missing, so a reworded README can't leave a stale number behind.
@@ -51,7 +55,8 @@ def live_counts():
     if rows < 1_000_000:
         sys.exit(f"AsteroidCatalog's latest manifest says {rows} rows; refusing to publish that")
     return {"sources": sources, "skills": int(m[1]), "skill_categories": int(m[2]), "catalog_rows": rows,
-            "economics": destinations(fetch("economicspace/main/README.md"))}
+            "economics": destinations(fetch("economicspace/main/README.md")),
+            "belt": crossovers(fetch("asteroid-belt-gradient/main/results/summary.json"))}
 
 
 def millions(rows):
@@ -81,6 +86,22 @@ def destinations(readme):
     if len(rows) < 5 or not all(r["best"] > 0 and r["median"] > 0 for r in rows):
         sys.exit(f"economicspace's destinations table doesn't look right: {rows}")
     return rows
+
+
+def crossovers(summary):
+    """The paper's S/C crossover fits, in its order: {snow_line_au, crossover: [{sample,
+    a50, lo, hi, width, n}]}, the raw count first."""
+    try:
+        data = json.loads(summary)
+        fits = [{"sample": sample, "a50": f["a50"], "lo": f["a50_lo"], "hi": f["a50_hi"],
+                 "width": f["width_10_90"], "n": int(f["n"])} for sample, f in data["crossover"].items()]
+        snow = float(data["snow_line_au"])
+    except (ValueError, KeyError, TypeError, AttributeError) as e:
+        sys.exit(f"asteroid-belt-gradient's summary.json no longer has its crossover fits in the form expected: {e!r}")
+    if len(fits) < 2 or fits[0]["sample"] != "raw" or not all(1.5 < f["lo"] <= f["a50"] <= f["hi"] < 4 and f["width"] > 0
+                                                              for f in fits):
+        sys.exit(f"asteroid-belt-gradient's crossover fits don't look right: {fits}")
+    return {"snow_line_au": snow, "crossover": fits}
 
 
 # Each README pattern must match exactly once.
@@ -118,11 +139,13 @@ def main():
     path = ROOT / "tools" / "counts.json"
     data = json.loads(path.read_text(encoding="utf-8")) | counts
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import breakeven    # reads the counts just written
-    readme_path.write_text(breakeven.update_readme(readme_path.read_text(encoding="utf-8")),
-                           encoding="utf-8", newline="\n")
-    print(" ".join(f"{k}={v}" for k, v in counts.items() if k != "economics"))
+    import breakeven, crossover    # read the counts just written
+    for chart in (breakeven, crossover):
+        readme_path.write_text(chart.update_readme(readme_path.read_text(encoding="utf-8")),
+                               encoding="utf-8", newline="\n")
+    print(" ".join(f"{k}={v}" for k, v in counts.items() if k not in ("economics", "belt")))
     print(" ".join(f"{r['dest']}={r['best']}" for r in counts["economics"]))
+    print(" ".join(f"{r['sample']}={r['a50']}" for r in counts["belt"]["crossover"]))
 
 
 if __name__ == "__main__":

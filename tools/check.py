@@ -9,8 +9,8 @@ every push (.github/workflows/check.yml).
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
    stored counts, with refresh_counts.py's, loc.py's, activity.py's, languages.py's,
-   breakeven.py's, flybys.py's and sparks.py's own code (the last five write the images'
-   alt text), changes nothing. And each
+   breakeven.py's, crossover.py's, flybys.py's and sparks.py's own code (the last six write
+   the images' alt text), changes nothing. And each
    repo's lines of code by language (the languages panel) add up to its lines of code.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
    badges carry the logos badge_logos.py draws.
@@ -57,6 +57,7 @@ GENERATORS = {
     "activity.py": ".",
     "languages.py": ".",
     "breakeven.py": ".",
+    "crossover.py": ".",
     "flybys.py": ".",
     "sparks.py": "sparks",
 }
@@ -136,6 +137,7 @@ def check_counts(readme):
                          ("activity", lambda m: m.update_readme(readme)),
                          ("languages", lambda m: m.update_readme(readme)),
                          ("breakeven", lambda m: m.update_readme(readme)),
+                         ("crossover", lambda m: m.update_readme(readme)),
                          ("flybys", lambda m: m.update_readme(readme)),
                          ("sparks", lambda m: m.update_readme(readme))):
         try:
@@ -145,6 +147,7 @@ def check_counts(readme):
             continue
         if rewritten != readme:
             rerun = {"activity": "refresh_activity", "languages": "loc", "breakeven": "refresh_counts",
+                     "crossover": "refresh_counts",
                      "flybys": "refresh_flybys", "sparks": "refresh_activity"}.get(name, name)
             problems.append(f"README numbers differ from tools/counts.json (rerun {rerun}.py)")
     for repo, n in counts["loc"].items():
@@ -239,6 +242,7 @@ def check_conflict_copies():
 
 # Figures the README quotes from other repos: (the README's words, the repo, what its own
 # README must still say). The source's wording is often more exact ("84.30%" for "84.3%").
+# A repo given with a path ("repo/paper/main.tex") is checked against that file instead.
 FACTS = [
     ("An audit of 17 repos I'd starred", "starred-repos", "17 starred repositories"),
     ("against JPL's NHATS and against optimized Lambert transfers", "starred-repos", "NHATS"),
@@ -246,6 +250,10 @@ FACTS = [
     ("a guessed taxonomy is right about half the time", "starred-repos", "a guessed class is right about half the time"),
     ("42 of the 69 near-Earth asteroids", "starred-repos", "42 of the 69 top-100 NEOs"),
     ("using 161,659 classified asteroids", "asteroid-belt-gradient", "161,659"),
+    ("carbonaceous asteroids carried in from beyond Jupiter", "asteroid-belt-gradient/paper/main.tex",
+     "implantation of carbonaceous bodies from beyond Jupiter"),
+    ("the paper favors C-types carried in from beyond Jupiter", "asteroid-belt-gradient/paper/main.tex",
+     "implantation of carbonaceous bodies from beyond Jupiter"),
     ("scoring 73.8% on areas", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "73.8%"),
     ("from four classes to seven", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "four classes to seven"),
     ("due 8 December", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "8 December 2026"),
@@ -274,7 +282,8 @@ def check_fact_phrases(readme):
 
 def readme_of(repo):
     import urllib.request
-    url = f"https://raw.githubusercontent.com/loggger101/{repo}/HEAD/README.md"
+    repo, _, path = repo.partition("/")
+    url = f"https://raw.githubusercontent.com/loggger101/{repo}/HEAD/{path or 'README.md'}"
     with urllib.request.urlopen(url, timeout=30) as r:
         return r.read().decode("utf-8")
 

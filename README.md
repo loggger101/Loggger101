@@ -9,7 +9,7 @@
   <a href="https://www.kaggle.com/loggger"><img src="docs/links/kaggle.svg" height="36" alt="Kaggle: loggger"></a>
 </p>
 
-I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Planetary Science. Most of the work here is about asteroids. I built a catalog of about 1.58 million of them and a pipeline that estimates whether mining one would make money, then used the catalog for a [paper](https://github.com/loggger101/asteroid-belt-gradient) on whether the belt's S/C composition gradient is left over from when the planets formed. I've also mapped landforms across Mars from orbital imagery, trained two image classifiers and written an orbit simulator.
+I'm an Astronomy & Astrophysics student at Florida Tech, double majoring in Planetary Science. Most of the work here is about asteroids. I built a catalog of about 1.58 million of them and a pipeline that estimates whether mining one would make money, then used the catalog for a [paper](https://github.com/loggger101/asteroid-belt-gradient) on whether the belt's S/C composition gradient shows where its asteroids formed. Corrected for two biases, the switch from S-types to C-types turns out too gradual for a snow line they formed behind, which points to carbonaceous asteroids carried in from beyond Jupiter. I've also mapped landforms across Mars from orbital imagery, trained two image classifiers and written an orbit simulator.
 
 Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a company that matches patients with rare brain diseases to research, and VP of Database Management at [Sisters Hope Foundation](https://www.sistershopefoundation.org), a rare-disease nonprofit. I run the websites and patient databases for both.
 
@@ -86,6 +86,12 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S to map lava flows, river channels and impact craters. A support vector machine classifies the landforms across that whole band, scoring 73.8% on areas it never trained on, and I've since trained RetinaNet and U-Net models to compare against it. I'm now widening the map from four classes to seven for the final paper, due 8 December.</p><picture><img src="https://img.shields.io/badge/ArcGIS_Pro-1f3354?style=flat-square&logo=arcgis&logoColor=white" alt="ArcGIS Pro"></picture> <picture><img src="https://img.shields.io/badge/Python-1f3354?style=flat-square&logo=python&logoColor=white" alt="Python"></picture> <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/latest"><img src="https://img.shields.io/github/v/release/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data?style=flat-square&label=release&labelColor=1f3354&color=5ba3dc" alt="Latest release"></a></td>
   </tr>
 </table>
+
+**What it found.** One row for each sample the paper fits, the raw count first. The dot is where C-types reach half of the asteroids, with its bootstrap range, and the bar runs from 10% to 90%. The raw count puts it at 2.84 au. Corrected, the turn sits at 2.41–2.47 au, inside the snow line at 2.67 au, and takes 1.4–1.5 au to go from 10% to 90% C-types, wider than the belt itself. A snow line the asteroids formed behind would leave a sharp step, so the paper favors C-types carried in from beyond Jupiter.
+
+<p align="center">
+  <picture><source media="(max-width: 600px)" srcset="docs/crossover-compact.svg"><img src="docs/crossover.svg" width="100%" alt="Where the asteroid belt turns from S-types to C-types, from asteroid-belt-gradient's results: the raw count puts the crossover at 2.84 au; corrected, 2.46 au (families collapsed, D ≥ 10 km, weighted for brightness bias), 2.47 au (families collapsed, D ≥ 53 km, complete in size), 2.41 au (background only, D ≥ 53 km, family members left out), each 1.4–1.5 au from 10% to 90% C-types, wider than the belt itself; the snow line is at 2.67 au and the main belt runs from 2.1 to 3.3 au."></picture>
+</p>
 
 Four figures from the asteroid-belt-gradient paper (each links to the full size):
 
