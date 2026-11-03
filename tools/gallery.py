@@ -245,12 +245,38 @@ def save(frames, path, compact, fps=None):
 
 SIM = GH / "Satellite Space Flight/docs/images"
 BELT = GH / "asteroid-belt-gradient/figures"
-# The figure grids inside the Simulation and Planetary science sections, drawn as cards
+STAR = GH / "star-spectral-classifier/results"
+DRONE = GH / "drone-target-id/results"
+
+
+def shrunk(path, box, width=1600, gamma=1.0):
+    """The box of a large figure, scaled to width before dark() works on it (the star
+    classifier's combined matrix is 6480px square). gamma below 1 deepens faint colour, so
+    a matrix whose off-peak cells are nearly white still shows its structure once dark;
+    the figure's commonest colour (an empty cell's pale blue) is taken as white first, so
+    empty cells stay empty."""
+    img = Image.open(path).convert("RGB").crop(box)
+    img = img.resize((width, round(img.height * width / img.width)), Image.LANCZOS)
+    if gamma != 1.0:
+        rgb = np.asarray(img)
+        colours, counts = np.unique(rgb.reshape(-1, 3), axis=0, return_counts=True)
+        paper = 1 - colours[counts.argmax()] / 255
+        ink = np.clip((1 - rgb / 255 - paper) / (1 - paper), 0, 1) ** gamma
+        img = Image.fromarray(((1 - ink) * 255).round().astype(np.uint8))
+    return img
+
+
+# The figure grids inside the Deep learning, Simulation and Planetary science sections, drawn as cards
 # into docs/figures beside docs/gallery. Same shape as CARDS, but the title names the
 # figure, not the repo. The simulator's scenes are the ones its own make_screenshots.py
 # draws (their docstrings are the captions); the paper's figures are darkened like the
 # belt card, and their captions shorten the paper's own.
 FIGURES = {
+    # The matrix and its labels, without the colour bar and the title's white margin.
+    "dl-star-matrix": (lambda: fit(dark(shrunk(STAR / "confusion_matrix_combined_test.png", (0, 640, 5240, 5900), gamma=0.35))),
+                       "Letter and subclass", "A0 to M9 on held-out stars: errors stay near the diagonal"),
+    "dl-drone-matrix": (lambda: fit(dark(Image.open(DRONE / "final_confusion_fine.png").crop((0, 34, 800, 600)))),
+                        "Eleven fine classes", "27,362 held-out targets, true against predicted"),
     "sim-hohmann": (lambda: cover(Image.open(SIM / "hohmann.png")),
                     "Hohmann transfer", "Half-way up a transfer to GEO"),
     "sim-starlink": (lambda: cover(Image.open(SIM / "starlink.png")),

@@ -124,6 +124,13 @@ Four maps from the Mars project (each links to its full sheet):
   </tr>
 </table>
 
+How each model's mistakes fall on held-out data (each links to the full size):
+
+<p align="center">
+  <a href="https://github.com/loggger101/star-spectral-classifier/blob/main/results/confusion_matrix_combined_test.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/dl-star-matrix-compact.webp"><img src="docs/figures/dl-star-matrix.webp" width="48.5%" alt="star-spectral-classifier: the letter-and-subclass confusion matrix, A0 to M9, with its errors in blocks along the diagonal"></picture></a>
+  <a href="https://github.com/loggger101/drone-target-id/blob/main/results/final_confusion_fine.png"><picture><source media="(max-width: 600px)" srcset="docs/figures/dl-drone-matrix-compact.webp"><img src="docs/figures/dl-drone-matrix.webp" width="48.5%" alt="drone-target-id: the eleven fine classes on 27,362 held-out targets, true against predicted"></picture></a>
+</p>
+
 ### <picture><img src="docs/icons/simulation.svg" width="24" height="24" align="top" alt=""></picture> Simulation
 
 <table>
