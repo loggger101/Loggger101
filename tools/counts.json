@@ -815,5 +815,277 @@
         "n": 247
       }
     ]
-  }
+  },
+  "research": [
+    {
+      "domain": "01_density_and_population",
+      "tiers": [
+        41,
+        3,
+        11,
+        1
+      ]
+    },
+    {
+      "domain": "02_composition_value",
+      "tiers": [
+        42,
+        5,
+        3,
+        1
+      ]
+    },
+    {
+      "domain": "03_dv_propulsion",
+      "tiers": [
+        16,
+        38,
+        0,
+        3
+      ]
+    },
+    {
+      "domain": "04_launch_economics",
+      "tiers": [
+        6,
+        18,
+        11,
+        117
+      ]
+    },
+    {
+      "domain": "05_inspace_operations",
+      "tiers": [
+        4,
+        15,
+        2,
+        1
+      ]
+    },
+    {
+      "domain": "06_commodity_market_pricing",
+      "tiers": [
+        0,
+        3,
+        5,
+        3
+      ]
+    },
+    {
+      "domain": "07_mission_program_costs",
+      "tiers": [
+        0,
+        5,
+        2,
+        0
+      ]
+    },
+    {
+      "domain": "08_nea_accessibility_oracles",
+      "tiers": [
+        1,
+        5,
+        2,
+        0
+      ]
+    },
+    {
+      "domain": "09_delivery_mass_fractions_edl_survival",
+      "tiers": [
+        0,
+        5,
+        1,
+        0
+      ]
+    },
+    {
+      "domain": "10_launch_vehicle_engine_hardware",
+      "tiers": [
+        3,
+        14,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "11_spacecraft_power_electric_propulsion",
+      "tiers": [
+        0,
+        13,
+        1,
+        1
+      ]
+    },
+    {
+      "domain": "12_destination_environments_physical_constants",
+      "tiers": [
+        12,
+        2,
+        8,
+        0
+      ]
+    },
+    {
+      "domain": "13_astrodynamics_methods_ephemerides_software",
+      "tiers": [
+        0,
+        1,
+        2,
+        7
+      ]
+    },
+    {
+      "domain": "14_propellant_consumable_prices",
+      "tiers": [
+        0,
+        8,
+        5,
+        7
+      ]
+    },
+    {
+      "domain": "15_inspace_demand_market_absorption",
+      "tiers": [
+        6,
+        17,
+        3,
+        3
+      ]
+    },
+    {
+      "domain": "16_reliability_learning_service_life",
+      "tiers": [
+        4,
+        18,
+        1,
+        2
+      ]
+    },
+    {
+      "domain": "17_cost_of_capital_contingency_insurance",
+      "tiers": [
+        2,
+        3,
+        6,
+        1
+      ]
+    },
+    {
+      "domain": "18_licensing_planetary_protection_space_law",
+      "tiers": [
+        1,
+        2,
+        8,
+        0
+      ]
+    },
+    {
+      "domain": "19_asteroid_excavation_beneficiation",
+      "tiers": [
+        12,
+        10,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "20_mission_operations_communications",
+      "tiers": [
+        1,
+        9,
+        0,
+        1
+      ]
+    },
+    {
+      "domain": "21_mass_cost_estimating_relationships",
+      "tiers": [
+        1,
+        13,
+        0,
+        2
+      ]
+    },
+    {
+      "domain": "22_prior_art_techno_economic_benchmarks",
+      "tiers": [
+        3,
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "23_cost_indices_dollar_years",
+      "tiers": [
+        0,
+        0,
+        7,
+        0
+      ]
+    },
+    {
+      "domain": "24_aerocapture_aerobraking",
+      "tiers": [
+        1,
+        14,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "25_net_smelter_return_refining_terms",
+      "tiers": [
+        2,
+        3,
+        6,
+        0
+      ]
+    },
+    {
+      "domain": "26_spacecraft_storage_energy_properties",
+      "tiers": [
+        0,
+        19,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "27_orbital_debris_collision_risk",
+      "tiers": [
+        2,
+        16,
+        1,
+        0
+      ]
+    },
+    {
+      "domain": "28_radiation_shielding_value_of_materials",
+      "tiers": [
+        0,
+        15,
+        0,
+        0
+      ]
+    },
+    {
+      "domain": "29_structural_metals_inspace_manufacturing",
+      "tiers": [
+        2,
+        4,
+        1,
+        0
+      ]
+    },
+    {
+      "domain": "30_volatiles_chemicals_catalysts_inspace_use",
+      "tiers": [
+        0,
+        13,
+        0,
+        0
+      ]
+    }
+  ]
 }

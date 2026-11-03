@@ -1,6 +1,6 @@
 """Tests for the parts of the tools that read other people's formats or write the README's
 text: the economicspace and JPL readers, the commit-subject cleaner, the heading-anchor
-rule, the break-even verdict, the paper's crossover fits and what the chart says of them, the flyby sizes and alt text, the freshness and dated-phrase checks, where the
+rule, the break-even verdict, the paper's crossover fits and what the chart says of them, the sources by domain and tier, the flyby sizes and alt text, the freshness and dated-phrase checks, where the
 sparklines end, and the shared panel frame. One small sample per rule, with what it
 should give. Offline; CI runs it on every push (.github/workflows/check.yml).
 
@@ -156,6 +156,25 @@ eq("beyond and narrower", (co.where(fits((2.8, 0.5)), 2.674), co.wide(fits((2.8,
 eq("across, one width", (co.where(fits((2.6, 1.2), (2.7, 1.2)), 2.674), co.span([1.21, 1.24], 1)), ("across", "1.2"))
 eq("README sentence follows", co.finding(co.CORRECTED, co.SNOW) in co.update_readme(profile), True)
 stops("README sentence gone", co.update_readme, profile.replace("Corrected, the turn sits", "Corrected, it sits"))
+
+# General_Research's sources by domain and tier (refresh_counts.py) and what the README
+# says of them (sources.py), so a registry that grows a domain or shifts its tiers can't
+# leave the old words.
+ROW = lambda d, t: {"id": "x", "domain_dir": d, "tier": t}
+REGISTRY = [ROW(f"{k:02}_d{k}", "T1") for k in range(1, 10)] + [ROW("04_launch_economics", t) for t in ("T4", "T4", "T2")]
+eq("sources by domain", rc.research(REGISTRY)[3], {"domain": "04_d4", "tiers": [1, 0, 0, 0]})
+eq("domain order kept", rc.research(REGISTRY)[-1], {"domain": "04_launch_economics", "tiers": [0, 1, 0, 2]})
+stops("unknown tier", rc.research, REGISTRY + [ROW("01_d1", "T5")])
+stops("no domain", rc.research, REGISTRY + [ROW("", "T1")])
+stops("too few domains", rc.research, REGISTRY[:3])
+so = load("sources")
+eq("folder name", so.label("31_inspace_refuelling_depots"), "In-space refuelling depots")
+eq("named domain", so.label("03_dv_propulsion"), "Δv and propulsion")
+eq("sentence", so.sentence(rc.research(REGISTRY)), "83% are T1 or T2. The biggest, launch economics with 3, is mostly grey sources (2).")
+eq("largely, capitals kept", so.biggest([{"domain": "08_nea_accessibility_oracles", "tiers": [2, 2, 1, 0]}]),
+   "The biggest, NEA accessibility with 5, is largely journal papers (2).")
+eq("README sentence follows", so.sentence(so.ROWS) in so.update_readme(profile), True)
+stops("README sentence gone", so.update_readme, profile.replace("**What it rests on.** The", "**What it rests on.** All"))
 
 # Commit subjects for the latest-commits list (activity.py).
 ac = load("activity")

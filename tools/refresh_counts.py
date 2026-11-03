@@ -8,6 +8,8 @@ redraw the tiles and the repo diagram. The weekly workflow
 
 - sources: rows in General_Research's sources.csv (the registry; rejected sources are
   kept out of it, in INDEX.md).
+- research: the same rows counted by domain and tier, for sources.py's chart; this also
+  writes that chart's alt text and the sentence above it, so run sources.py afterwards.
 - skills, skill_categories: the opening line of Hermes_Skills' README.
 - catalog_rows: the row count in the manifest of AsteroidCatalog's latest release, shown
   everywhere as millions to two places ("1.58M", "about 1.58 million").
@@ -44,7 +46,8 @@ def fetch(path):
 
 
 def live_counts():
-    sources = len(list(csv.DictReader(io.StringIO(fetch("General_Research/main/sources.csv")))))
+    registry = list(csv.DictReader(io.StringIO(fetch("General_Research/main/sources.csv"))))
+    sources = len(registry)
     m = re.search(r"\*\*(\d+) Hermes Agent skills\*\* across (\d+) categories",
                   fetch("Hermes_Skills/main/README.md"))
     if not m:
@@ -55,7 +58,7 @@ def live_counts():
         rows = int(json.loads(r.read().decode("utf-8"))["rows"])
     if rows < 1_000_000:
         sys.exit(f"AsteroidCatalog's latest manifest says {rows} rows; refusing to publish that")
-    return {"sources": sources, "skills": int(m[1]), "skill_categories": int(m[2]), "catalog_rows": rows,
+    return {"sources": sources, "research": research(registry), "skills": int(m[1]), "skill_categories": int(m[2]), "catalog_rows": rows,
             "economics": destinations(fetch("economicspace/main/README.md")),
             "belt": crossovers(fetch("asteroid-belt-gradient/main/results/summary.json"))}
 
@@ -87,6 +90,23 @@ def destinations(readme):
     if len(rows) < 5 or not all(r["best"] > 0 and r["median"] > 0 for r in rows):
         sys.exit(f"economicspace's destinations table doesn't look right: {rows}")
     return rows
+
+
+TIERS = ("T1", "T2", "T3", "T4")
+
+
+def research(registry):
+    """sources.csv's rows counted by domain, in the registry's order, each as its count in
+    each tier: [{domain, tiers: [T1, T2, T3, T4]}]."""
+    domains = {}
+    for row in registry:
+        domain, tier = (row.get("domain_dir") or "").strip(), (row.get("tier") or "").strip()
+        if not domain or tier not in TIERS:
+            sys.exit(f"sources.csv has a row this can't place by domain and tier: {row.get('id')!r} {domain!r} {tier!r}")
+        domains.setdefault(domain, [0] * len(TIERS))[TIERS.index(tier)] += 1
+    if len(domains) < 10:
+        sys.exit(f"sources.csv has only {len(domains)} domains; refusing to publish that")
+    return [{"domain": d, "tiers": n} for d, n in domains.items()]
 
 
 def crossovers(summary):
@@ -147,11 +167,11 @@ def main():
     path = ROOT / "tools" / "counts.json"
     data = json.loads(path.read_text(encoding="utf-8")) | counts
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import breakeven, crossover    # read the counts just written
-    for chart in (breakeven, crossover):
+    import breakeven, crossover, sources    # read the counts just written
+    for chart in (breakeven, crossover, sources):
         readme_path.write_text(chart.update_readme(readme_path.read_text(encoding="utf-8")),
                                encoding="utf-8", newline="\n")
-    print(" ".join(f"{k}={v}" for k, v in counts.items() if k not in ("economics", "belt")))
+    print(" ".join(f"{k}={v}" for k, v in counts.items() if k not in ("economics", "belt", "research")))
     print(" ".join(f"{r['dest']}={r['best']}" for r in counts["economics"]))
     print(" ".join(f"{r['sample']}={r['a50']}" for r in counts["belt"]["crossover"]))
 

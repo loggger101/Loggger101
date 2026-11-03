@@ -16,13 +16,14 @@ Mondays) fetches it again and redraws them.
 | sparklines, the activity panel, the latest commits | `refresh_activity.py`, `sparks.py`, `activity.py` | each repo's commit history | weekly; the two private repos by hand |
 | break-even chart | `refresh_counts.py`, `breakeven.py` | the destinations table in economicspace's README | weekly |
 | crossover chart in Planetary science | `refresh_counts.py`, `crossover.py` | asteroid-belt-gradient's `results/summary.json` | weekly |
+| sources chart in Space economics | `refresh_counts.py`, `sources.py` | General_Research's `sources.csv`: each source's domain and tier | weekly |
 | flyby chart | `refresh_flybys.py`, `flybys.py` | NASA/JPL's close-approach API | weekly |
 
 Run from the repo root. Fetch the data first (each writes `counts.json` and the README's
 alt text):
 
 ```bash
-python tools/refresh_counts.py         # research sources, agent skills, the catalog's size, economicspace's destinations, the paper's crossover fits
+python tools/refresh_counts.py         # research sources, agent skills, the catalog's size, economicspace's destinations, the paper's crossover fits, the sources by domain and tier
 python tools/loc.py                    # lines of code and total lines per repo, and by language (--public-only skips the private two)
 python tools/refresh_activity.py       # every commit of mine to each repo, by week, and the latest few (--public-only as above)
 python tools/refresh_flybys.py         # NASA/JPL's close approaches to Earth for the week ahead
@@ -35,6 +36,7 @@ python tools/tiles.py docs/stats       # stat tiles, plus the -compact versions 
 python tools/pipeline.py docs          # the repo diagram, plus -compact
 python tools/breakeven.py docs         # economicspace's cost per dollar earned for each destination, plus -compact
 python tools/crossover.py docs         # where the belt turns from S-types to C-types, raw and corrected, plus -compact
+python tools/sources.py docs           # General_Research's sources by domain, split by tier, plus -compact
 python tools/activity.py docs          # every commit so far as orbits, plus -compact
 python tools/sparks.py docs/sparks     # the commits-per-week line under each repo's name
 python tools/languages.py docs         # lines of code by language, plus -compact
@@ -53,7 +55,7 @@ Before committing, run
 ```bash
 python tools/check.py           # add --links to also check every link in the README, --facts every figure quoted from another repo (both online)
 python tools/test_loc.py        # loc.py's counting rules
-python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, flyby alt text, commit subjects, anchors, the panel frame
+python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, the sources by domain and tier, flyby alt text, commit subjects, anchors, the panel frame
 ```
 
 `check.py` reruns the generators and fails if anything in `docs/` differs from their output,
@@ -133,6 +135,15 @@ missing or out of range. Whether the corrected turn sits inside or beyond the sn
 whether it is wider than the belt, is read from the numbers, so the chart's subtitle, its alt
 text and the README's "What it found" sentence follow a rerun of the paper. The paper's own
 reading of it ("from beyond Jupiter") is in `FACTS`, checked against `paper/main.tex`.
+
+`sources.py` draws what the pipeline's numbers rest on: General_Research's registry, one
+bar for each domain, split into its four tiers of authority. T1 to T3 are steps of one blue,
+lighter for more authority, and T4 (grey sources) is hollow, so the tiers read apart without
+colour; the phone version shows the ten largest domains and counts the rest. `refresh_counts.py`
+counts `sources.csv` by domain and tier into `counts.json` (`"research"`), stopping on a row
+with no domain or an unknown tier. The README's sentences above it (the total, the share in
+T1 and T2, and what the largest domain leans on) are written from the same counts. A new
+domain gets a name from its folder; `NAMES` in `sources.py` shortens the long ones.
 
 `flybys.py` draws the asteroids passing Earth within 20 lunar distances in the week after
 `refresh_flybys.py` last ran, from JPL's close-approach API, on a dial round Earth: the week

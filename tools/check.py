@@ -9,7 +9,7 @@ every push (.github/workflows/check.yml).
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
    stored counts, with refresh_counts.py's, loc.py's, activity.py's, languages.py's,
-   breakeven.py's, crossover.py's, flybys.py's and sparks.py's own code (the last six write
+   breakeven.py's, crossover.py's, sources.py's, flybys.py's and sparks.py's own code (the last seven write
    the images' alt text), changes nothing. And each
    repo's lines of code by language (the languages panel) add up to its lines of code.
 4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
@@ -58,6 +58,7 @@ GENERATORS = {
     "languages.py": ".",
     "breakeven.py": ".",
     "crossover.py": ".",
+    "sources.py": ".",
     "flybys.py": ".",
     "sparks.py": "sparks",
 }
@@ -138,6 +139,7 @@ def check_counts(readme):
                          ("languages", lambda m: m.update_readme(readme)),
                          ("breakeven", lambda m: m.update_readme(readme)),
                          ("crossover", lambda m: m.update_readme(readme)),
+                         ("sources", lambda m: m.update_readme(readme)),
                          ("flybys", lambda m: m.update_readme(readme)),
                          ("sparks", lambda m: m.update_readme(readme))):
         try:
@@ -147,7 +149,7 @@ def check_counts(readme):
             continue
         if rewritten != readme:
             rerun = {"activity": "refresh_activity", "languages": "loc", "breakeven": "refresh_counts",
-                     "crossover": "refresh_counts",
+                     "crossover": "refresh_counts", "sources": "refresh_counts",
                      "flybys": "refresh_flybys", "sparks": "refresh_activity"}.get(name, name)
             problems.append(f"README numbers differ from tools/counts.json (rerun {rerun}.py)")
     for repo, n in counts["loc"].items():
