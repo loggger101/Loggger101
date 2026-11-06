@@ -4,22 +4,22 @@ every push (.github/workflows/check.yml).
 1. Every generated image in docs/ is what its generator makes today, so nothing was edited
    by hand or left behind after a generator changed. gallery.py is skipped (its cards in
    docs/gallery and figures in docs/figures): it reads the project clones, which CI
-   doesn't have. So is links.py where Segoe UI isn't
-   installed (CI again); it says so when it does.
+   doesn't have. So is badges.py (docs/badges), which asks shields.io. So is links.py where
+   Segoe UI isn't installed (CI again); it says so when it does.
 2. Every docs/ file the README uses exists, and every file in docs/ is used.
 3. The README's numbers are the ones in tools/counts.json: rewriting the README from the
    stored counts, with refresh_counts.py's, loc.py's, activity.py's, languages.py's,
    breakeven.py's, crossover.py's, sources.py's, flybys.py's and sparks.py's own code (the last seven write
    the images' alt text), changes nothing. And each
    repo's lines of code by language (the languages panel) add up to its lines of code.
-4. The typing line's <img width> matches the SVG's width, and the Astropy and pygame
-   badges carry the logos badge_logos.py draws.
+4. The typing line's <img width> matches the SVG's width, and the Astropy, pygame and
+   MATLAB badges carry the logos badge_logos.py draws.
 5. Every SVG in docs/ is valid XML, every <img> in the README has alt text, and the
    README's HTML tags are balanced.
 6. No OneDrive conflict copies (*-DESKTOP-*) are in the repo.
 7. Every link to a place in the README (href="#...") names a heading's anchor, so renaming
    a section can't leave the section links pointing nowhere.
-8. With --links (online; the weekly workflow): every link and badge in the README answers.
+8. With --links (online; the weekly workflow): every link in the README answers.
 9. Every figure the README quotes from another repo (FACTS) is still in the README as
    written, so the list can't go on checking a sentence that's gone.
 10. With --facts (online; the weekly workflow): each of those figures is still in its own
@@ -32,6 +32,7 @@ every push (.github/workflows/check.yml).
 
 Prints each problem and exits 1 if there are any.
 """
+import base64
 import importlib.util
 import json
 import re
@@ -67,8 +68,9 @@ GENERATORS = {
 NEEDS = {"links.py": Path(r"C:\Windows\Fonts\segoeuib.ttf")}   # measures labels in Segoe UI Bold
 # In docs/ but not made by a generator above.
 NOT_GENERATED = {"spacer.svg"}
-# In docs/ but not referenced by path: the logos reach the README inside badge URLs.
-UNREFERENCED_OK = {"logos/astropy.svg", "logos/pygame.svg", "logos/matlab.svg"}
+# In docs/ but not referenced by path: the logos reach the README inside their badges.
+LOGO_BADGES = ("astropy", "pygame", "matlab")
+UNREFERENCED_OK = {f"logos/{name}.svg" for name in LOGO_BADGES}
 
 problems = []
 
@@ -85,7 +87,7 @@ def load(name):
 
 
 def check_generated():
-    made, badge_urls, skipped = set(), [], []
+    made, skipped = set(), []
     with tempfile.TemporaryDirectory() as tmp:
         out = Path(tmp)
         for script, target in GENERATORS.items():
@@ -100,9 +102,6 @@ def check_generated():
                                capture_output=True, text=True, encoding="utf-8")
             if r.returncode:
                 problems.append(f"{script} failed:\n{r.stderr.strip()}")
-                continue
-            if script == "badge_logos.py":
-                badge_urls = r.stdout.split()
         for f in sorted(p for p in out.rglob("*") if p.is_file()):
             rel = f.relative_to(out).as_posix()
             made.add(rel)
@@ -115,9 +114,8 @@ def check_generated():
         rel = f.relative_to(DOCS).as_posix()
         if any(rel.startswith(t + "/") for t in skipped):
             continue
-        if rel not in made and rel not in NOT_GENERATED and not rel.startswith(("gallery/", "figures/")):
+        if rel not in made and rel not in NOT_GENERATED and not rel.startswith(("gallery/", "figures/", "badges/")):
             problems.append(f"docs/{rel} has no generator; add it to GENERATORS or NOT_GENERATED")
-    return badge_urls
 
 
 def check_references(readme):
@@ -158,14 +156,15 @@ def check_counts(readme):
             problems.append(f"{repo}: {n:,} lines of code but {by_language:,} by language in counts.json (rerun loc.py)")
 
 
-def check_typing_and_badges(readme, badge_urls):
+def check_typing_and_badges(readme):
     m = re.search(r'src="docs/typing\.svg" width="(\d+)"', readme)
     svg = re.search(r'<svg[^>]* width="(\d+)"', (DOCS / "typing.svg").read_text(encoding="utf-8"))
     if not m or not svg or m[1] != svg[1]:
         problems.append(f"typing line: README width {m and m[1]} but typing.svg is {svg and svg[1]}")
-    for url in badge_urls:
-        if url not in readme:
-            problems.append(f"README badge isn't badge_logos.py's current output: {url[:70]}...")
+    for name in LOGO_BADGES:
+        logo = (DOCS / "logos" / f"{name}.svg").read_text(encoding="utf-8").strip()
+        if base64.b64encode(logo.encode()).decode() not in (DOCS / "badges" / f"{name}.svg").read_text(encoding="utf-8"):
+            problems.append(f"docs/badges/{name}.svg doesn't carry docs/logos/{name}.svg; rerun badges.py")
 
 
 def check_markup(readme):
@@ -324,8 +323,8 @@ DATED = {
 
 
 def check_fresh(today=None, readme=None):
-    """The flyby chart and the activity data are no older than FRESH_DAYS, and no phrase in
-    DATED has outlived its day."""
+    """The flyby chart, the activity data and the badges are no older than FRESH_DAYS, and
+    no phrase in DATED has outlived its day."""
     import datetime as dt
     today = today or dt.datetime.now(dt.timezone.utc).date()
     readme = (ROOT / "README.md").read_text(encoding="utf-8") if readme is None else readme
@@ -334,7 +333,8 @@ def check_fresh(today=None, readme=None):
             problems.append(f"the README still says {phrase!r}, true only until {last}; bring it up to date")
     counts = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
     for what, day, step in (("the flyby chart", counts["flybys"]["from"], "refresh_flybys.py"),
-                            ("the activity data", counts["activity"]["as_of"], "refresh_activity.py")):
+                            ("the activity data", counts["activity"]["as_of"], "refresh_activity.py"),
+                            ("the badges", counts["badges"]["as_of"], "badges.py")):
         age = (today - dt.date.fromisoformat(day)).days
         if age > FRESH_DAYS:
             problems.append(f"{what} was last refreshed on {day}, {age} days ago: is {step} failing in the weekly workflow?")
@@ -345,7 +345,7 @@ LINK_STATUS_OK = {"www.linkedin.com": {999}}
 
 
 def check_links(readme):
-    """Every link and badge in the README answers. Online, so only with --links."""
+    """Every link in the README answers. Online, so only with --links."""
     import urllib.error
     import urllib.parse
     import urllib.request
@@ -367,10 +367,10 @@ def check_links(readme):
 
 def main():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    badge_urls = check_generated()
+    check_generated()
     check_references(readme)
     check_counts(readme)
-    check_typing_and_badges(readme, badge_urls)
+    check_typing_and_badges(readme)
     check_markup(readme)
     check_conflict_copies()
     check_anchors(readme)

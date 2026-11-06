@@ -184,6 +184,19 @@ eq("markdown escaped", ac.subject("keeps elements_to_state and [x] *y*"), r"keep
 eq("html escaped", ac.subject("a <b> & c"), "a &lt;b&gt; &amp; c")
 eq("cut at a word", ac.subject("word " * 30, limit=20), "word word word word…")
 
+# Badges (badges.py): shields' error badges, which it serves as a 200, are never committed.
+bd = load("badges")
+def badge(label):
+    return f'<svg xmlns="http://www.w3.org/2000/svg" aria-label="{label}"></svg>'
+eq("a version", bd.problem_with("release-x", badge("release: v0.14.0")), None)
+eq("a dated tag", bd.problem_with("release-x", badge("release: prices-2026-10-26")), None)
+eq("a plain badge", bd.problem_with("python", badge("Python")), None)
+eq("no release", bd.problem_with("release-x", badge("release: no releases or repo not found")) is None, False)
+eq("rate limited", bd.problem_with("release-x", badge("release: rate limited by upstream service")) is None, False)
+eq("one-word error", bd.problem_with("release-x", badge("release: inaccessible")) is None, False)
+eq("not SVG", bd.problem_with("python", "<html></html>") is None, False)
+eq("not XML", bd.problem_with("python", "Bad Gateway") is None, False)
+
 # Heading anchors (check.py), checked against the anchors GitHub gave the live profile.
 ck = load("check")
 eq("icon heading", ck.anchor('<picture><img src="docs/icons/x.svg" alt=""></picture> Space economics'), "-space-economics")
@@ -192,13 +205,13 @@ eq("plain heading", ck.anchor("Image generators"), "image-generators")
 
 # Freshness (check.py --fresh): a missed week is flagged, a normal Monday isn't.
 data = json.loads((TOOLS / "counts.json").read_text(encoding="utf-8"))
-oldest = min(dt.date.fromisoformat(data["flybys"]["from"]), dt.date.fromisoformat(data["activity"]["as_of"]))
+oldest = min(dt.date.fromisoformat(d) for d in (data["flybys"]["from"], data["activity"]["as_of"], data["badges"]["as_of"]))
 ck.problems.clear()
 ck.check_fresh(today=oldest + dt.timedelta(days=7), readme="")
 eq("a week on: fresh", ck.problems, [])
 ck.problems.clear()
 ck.check_fresh(today=oldest + dt.timedelta(days=15), readme="")
-eq("two weeks on: both flagged", len(ck.problems), 2)
+eq("two weeks on: all three flagged", len(ck.problems), 3)
 ck.problems.clear()
 # A dated phrase is fine through its last day and flagged the day after, unless it's gone.
 phrase, last = next(iter(ck.DATED.items()))

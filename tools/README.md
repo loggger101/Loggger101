@@ -18,6 +18,7 @@ Mondays) fetches it again and redraws them.
 | crossover chart in Planetary science | `refresh_counts.py`, `crossover.py` | asteroid-belt-gradient's `results/summary.json` | weekly |
 | sources chart in Space economics | `refresh_counts.py`, `sources.py` | General_Research's `sources.csv`: each source's domain and tier | weekly |
 | flyby chart | `refresh_flybys.py`, `flybys.py` | NASA/JPL's close-approach API | weekly |
+| badges under each project | `badges.py` | shields.io, which draws what `BADGES` lists; the README shows the copies in `docs/badges`, so a shields or proxy hiccup can't break an image on the profile | weekly |
 
 Run from the repo root. Fetch the data first (each writes `counts.json` and the README's
 alt text):
@@ -47,7 +48,8 @@ python tools/typing_line.py docs/typing.svg
 python tools/footer.py docs            # the strip that closes the page, plus -compact
 python tools/links.py docs/links       # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/icons.py docs/icons       # the icons beside the section headings
-python tools/badge_logos.py docs/logos # Astropy and pygame badge icons; prints the badge URLs to paste into the README
+python tools/badge_logos.py docs/logos # Astropy, pygame and MATLAB badge icons
+python tools/badges.py docs/badges     # the badges, fetched from shields.io (online), with each repo's latest release
 ```
 
 Before committing, run
@@ -55,7 +57,7 @@ Before committing, run
 ```bash
 python tools/check.py           # add --links to also check every link in the README, --facts every figure quoted from another repo (both online)
 python tools/test_loc.py        # loc.py's counting rules
-python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, the sources by domain and tier, flyby alt text, commit subjects, anchors, the panel frame
+python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, the sources by domain and tier, flyby alt text, shields' error badges, commit subjects, anchors, the panel frame
 ```
 
 `check.py` reruns the generators and fails if anything in `docs/` differs from their output,

@@ -1,13 +1,10 @@
-"""Draw the badge logos shields.io has no icon for (Astropy, pygame, MATLAB) and print their badge URLs.
+"""Draw the badge logos shields.io has no icon for (Astropy, pygame, MATLAB).
 
-Each logo is a white glyph on a 24x24 grid, written to docs/logos/<name>.svg for reference
-and embedded in its badge as a base64 data URI (shields' custom-logo form), because a
-badge can't load an image from this repo. After changing a glyph, rerun this and paste the
-printed URL over the badge's src in the README.
+Each logo is a white glyph on a 24x24 grid, written to docs/logos/<name>.svg. badges.py
+sends it to shields as a base64 data URI (shields' custom-logo form), because shields can't
+load an image from this repo. After changing a glyph, rerun this and then badges.py.
 """
-import base64
 import sys
-import urllib.parse
 from pathlib import Path
 
 OUT = Path(sys.argv[1])
@@ -38,6 +35,3 @@ M17.45 12.6a1.35 1.35 0 1 0 2.7 0a1.35 1.35 0 1 0-2.7 0Z"/>""",
 for name, body in LOGOS.items():
     svg = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{body}</svg>'
     (OUT / f"{name}.svg").write_text(svg + "\n", encoding="utf-8", newline="\n")
-    uri = "data:image/svg+xml;base64," + base64.b64encode(svg.encode()).decode()
-    label = {"astropy": "Astropy", "pygame": "pygame", "matlab": "MATLAB"}[name]
-    print(f"https://img.shields.io/badge/{label}-1f3354?style=flat-square&logo={urllib.parse.quote(uri, safe='')}")
