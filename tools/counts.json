@@ -1,19 +1,19 @@
 {
-  "sources": 695,
+  "sources": 742,
   "skills": 253,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 22487,
-    "AsteroidCatalog": 5869,
-    "spacevalue": 2980,
-    "spacecost": 9192,
-    "General_Research": 2542,
-    "starred-repos": 3061,
-    "asteroid-belt-gradient": 2867,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 27072,
+    "economicspace": 23188,
+    "AsteroidCatalog": 6214,
+    "spacevalue": 3470,
+    "spacecost": 9401,
+    "General_Research": 2555,
+    "starred-repos": 3864,
+    "asteroid-belt-gradient": 3148,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 28231,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
-    "Satellite-Space-Flight": 13324,
+    "Satellite-Space-Flight": 16396,
     "website": 7615,
     "quietlaunch": 1094,
     "quietqueue": 653,
@@ -22,17 +22,17 @@
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 93515,
-    "AsteroidCatalog": 13996,
-    "spacevalue": 7089,
-    "spacecost": 18441,
-    "General_Research": 51412,
-    "starred-repos": 9333,
-    "asteroid-belt-gradient": 6539,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1620994,
+    "economicspace": 95267,
+    "AsteroidCatalog": 14600,
+    "spacevalue": 7965,
+    "spacecost": 18783,
+    "General_Research": 75040,
+    "starred-repos": 11530,
+    "asteroid-belt-gradient": 6938,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1626417,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
-    "Satellite-Space-Flight": 22635,
+    "Satellite-Space-Flight": 26587,
     "website": 10124,
     "quietlaunch": 2359,
     "quietqueue": 1714,
@@ -42,7 +42,7 @@
   },
   "languages": {
     "economicspace": {
-      "Python": 21966,
+      "Python": 22667,
       "Batchfile": 228,
       "Shell": 224,
       "VBScript": 39,
@@ -50,30 +50,30 @@
       "PowerShell": 11
     },
     "AsteroidCatalog": {
-      "Python": 5850,
+      "Python": 6195,
       "Shell": 19
     },
     "spacevalue": {
-      "Python": 2961,
+      "Python": 3451,
       "Shell": 19
     },
     "spacecost": {
-      "Python": 9173,
+      "Python": 9382,
       "Shell": 19
     },
     "General_Research": {
-      "Python": 2542
+      "Python": 2555
     },
     "starred-repos": {
-      "Python": 3061
+      "Python": 3864
     },
     "asteroid-belt-gradient": {
-      "Python": 2867
+      "Python": 3148
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 26537,
+      "Python": 27642,
       "PowerShell": 278,
-      "HTML": 168,
+      "HTML": 222,
       "Batchfile": 89
     },
     "star-spectral-classifier": {
@@ -83,7 +83,8 @@
       "Python": 1509
     },
     "Satellite-Space-Flight": {
-      "Python": 13273,
+      "Python": 14547,
+      "MATLAB": 1798,
       "Batchfile": 28,
       "Shell": 23
     },
@@ -122,11 +123,11 @@
     }
   },
   "activity": {
-    "as_of": "2026-11-03",
+    "as_of": "2026-11-06",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
-        "last": "2026-10-29",
+        "last": "2026-11-05",
         "weeks": {
           "2026-08-03": 54,
           "2026-08-10": 22,
@@ -140,38 +141,45 @@
           "2026-10-05": 18,
           "2026-10-12": 11,
           "2026-10-19": 26,
-          "2026-10-26": 19
+          "2026-10-26": 19,
+          "2026-11-02": 20
         },
         "recent": [
           [
-            "cbaa428e422a19c14f06403bfccea04fc20ab99c",
-            "2026-10-29",
-            "MODEL.md: F6, F10 and F19 on the delta-v limitation, F12 on water, the uncalibrated low-thrust penalty (no stamp)"
+            "8a9a226f5fe857b6d60a50565ddfa78754302ea9",
+            "2026-11-05",
+            "Skip combos that provably cannot beat the incumbent (master v1.68.0, calc v1.41.0)"
           ],
           [
-            "a33c580d2675c41e9691e52f2f8f14bcdd4e835b",
-            "2026-10-29",
-            "master v1.61.0 / calc v1.34.0: an opt-in spin limit, composition as a range, three limitations in MODEL.md"
+            "6ff87e6bd8c82c796a71643f00db0a3465b81cca",
+            "2026-11-05",
+            "versions.md: twenty-nine stamps that are not performance-only (no stamp)"
           ],
           [
-            "f9a7382f3b8422f336c422b8ed18dba886d655cf",
-            "2026-10-27",
-            "CLAUDE.md: a field's help is the block plus its trailing comment, by samebytes' field_docs (no stamp)"
+            "d72d5a8e0421488bfd0775f4c75eec30b1706ba9",
+            "2026-11-05",
+            "Two opt-in flags finished, and all of them run together (master v1.67.0, calc v1.40.0)"
           ]
         ]
       },
       "AsteroidCatalog": {
         "first": "2026-09-22",
-        "last": "2026-10-29",
+        "last": "2026-11-04",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 5,
           "2026-10-05": 1,
           "2026-10-12": 1,
           "2026-10-19": 7,
-          "2026-10-26": 7
+          "2026-10-26": 7,
+          "2026-11-02": 2
         },
         "recent": [
+          [
+            "01c4638aed0da0d9376f07c46d60a3d361a22294",
+            "2026-11-04",
+            "Records stay whole: thirteen General_Research candidates (0.13.0, contract 1.11.0)"
+          ],
           [
             "2c84a5a69089215a8ec825d811e14114c883b1a5",
             "2026-10-29",
@@ -181,17 +189,12 @@
             "ef4a878c619dbb7b1c9938a97ded451de6e3d2e0",
             "2026-10-29",
             "Tools: sbdb_fields.py reports what SBDB offers that the build never asks for (no release)"
-          ],
-          [
-            "bae8dddedab266ecb12edcedc4e9ec99726c7526",
-            "2026-10-27",
-            "Tests: samebytes v0.5.0; config help and every git pin at one ref (no release)"
           ]
         ]
       },
       "spacevalue": {
         "first": "2026-08-05",
-        "last": "2026-10-27",
+        "last": "2026-11-05",
         "weeks": {
           "2026-08-03": 18,
           "2026-08-17": 4,
@@ -203,29 +206,30 @@
           "2026-10-05": 10,
           "2026-10-12": 3,
           "2026-10-19": 4,
-          "2026-10-26": 10
+          "2026-10-26": 10,
+          "2026-11-02": 7
         },
         "recent": [
           [
-            "90e8456b74bac844f41c8c3aa6e0f7c3c8d401f0",
-            "2026-10-27",
-            "Tests: samebytes v0.5.0; config help and every git pin at one ref"
+            "e3d87f7e72ec43d8db06e4807bad9429597e1bea",
+            "2026-11-05",
+            "sold_as_is: the as-is route as a table a mission search can try (0.5.0)"
           ],
           [
-            "ff1888ba6f397127914c078c01e4dad47935ed81",
-            "2026-10-26",
-            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#5)"
+            "29ec0696155984b4754f2f0e3e88ceedc498c0da",
+            "2026-11-05",
+            "One in-space demand class is one market (rc-261, contract 1.19.0)"
           ],
           [
-            "d12f626b7caad66f892eeffd9156e20f7e41df8f",
-            "2026-10-26",
-            "spacevalue.cargo: economicspace's cargo valuation moves here verbatim (0.2.0) (#4)"
+            "5f0b1e51fcc475c5c81be62be0c72efba074b283",
+            "2026-11-04",
+            "A body with no named fraction is all residual (rc-263)"
           ]
         ]
       },
       "spacecost": {
         "first": "2026-09-07",
-        "last": "2026-10-27",
+        "last": "2026-11-05",
         "weeks": {
           "2026-09-07": 6,
           "2026-09-14": 6,
@@ -234,29 +238,30 @@
           "2026-10-05": 17,
           "2026-10-12": 8,
           "2026-10-19": 19,
-          "2026-10-26": 8
+          "2026-10-26": 8,
+          "2026-11-02": 4
         },
         "recent": [
+          [
+            "257129440aaa5a9b12fb5e2bd5d4357cee81e916",
+            "2026-11-04",
+            "LOX re-anchored and one recovery per batch (0.16.0, contract 1.25.0)"
+          ],
+          [
+            "685fea8a2f431bb76e639b8d9d41e5bb54680d6a",
+            "2026-11-04",
+            "Citations, dollar years and clear values: 62 candidates (0.15.0, contract 1.24.0)"
+          ],
           [
             "60266319335c1e3bd851ebb857a73ab3cb63eda6",
             "2026-10-27",
             "Tests: samebytes v0.5.0; config help by its source.missing_help, every git pin at one ref"
-          ],
-          [
-            "c633a572b0ff449289c2e58f0ee3fd08315d652d",
-            "2026-10-26",
-            "Tests: the house rules run through samebytes v0.3.0 (docs, source) (#38)"
-          ],
-          [
-            "2bd5e2099dbde187dfdca178bdea7f9c5b7343a1",
-            "2026-10-26",
-            "Package docstring: spacevalue, not economicspace's Stage 2, reads the delivery chains (#37)"
           ]
         ]
       },
       "General_Research": {
         "first": "2026-09-17",
-        "last": "2026-11-01",
+        "last": "2026-11-05",
         "weeks": {
           "2026-09-14": 42,
           "2026-09-21": 53,
@@ -264,107 +269,110 @@
           "2026-10-05": 23,
           "2026-10-12": 24,
           "2026-10-19": 14,
-          "2026-10-26": 2
+          "2026-10-26": 3,
+          "2026-11-02": 12
         },
         "recent": [
           [
-            "211eb6d68b8f05b4653b8f74785fbe5ce92e49cc",
-            "2026-11-01",
-            "Rounds 310-314: market, ISRU and stage audits"
+            "1025fb0f3858bf13ff1509a8bfe71a4215c53225",
+            "2026-11-05",
+            "Round 360: spacevalue#9 and economicspace#197 merged, three rows re-stamped"
           ],
           [
-            "cd035d74653c65f50838fd1a6d41d42ebd0deda7",
-            "2026-11-01",
-            "Rounds 308-309: spin cutoff and rig calendar cadence"
+            "e1125c41b18e54cc6ab5c8e3ec8c33a46e49b0f7",
+            "2026-11-05",
+            "Round 359: flag replays and all flags together, no candidate closes"
           ],
           [
-            "f846ef86da9911b955c29117d23acb1a65e7b8d9",
-            "2026-10-22",
-            "Round 240: owner rejects 8 sources; new \"Sources to replace\" list with 15 flags"
+            "100329beb1f40fea524d91679c173ba4c573b0c4",
+            "2026-11-05",
+            "Round 358: 2 candidates applied, 19 flags merged upstream"
           ]
         ]
       },
       "starred-repos": {
         "first": "2026-09-03",
-        "last": "2026-10-29",
+        "last": "2026-11-04",
         "weeks": {
           "2026-08-31": 2,
           "2026-09-14": 1,
           "2026-09-21": 1,
           "2026-10-12": 2,
           "2026-10-19": 5,
-          "2026-10-26": 7
+          "2026-10-26": 7,
+          "2026-11-02": 4
         },
         "recent": [
+          [
+            "c847645465da9d480711e9b36153238f142e14e8",
+            "2026-11-04",
+            "Register: seven more candidates from a sweep of the notes"
+          ],
+          [
+            "92035179073f5c0f594276ec53d69062598d3294",
+            "2026-11-04",
+            "F20: JPL's outbound legs, a Lambert solver fix, and a revision register"
+          ],
           [
             "8573cac9a80d2c39ba3d8bf30bc342de5c4a18dd",
             "2026-10-29",
             "README: where each finding now stands in the pipeline"
-          ],
-          [
-            "391257c6cac46995a9996acf2cfcb27198ef3b59",
-            "2026-10-29",
-            "Self-checking repo, recorded network inputs, and five more probes (F15-F19)"
-          ],
-          [
-            "ee2c37f492afe72596d1481a584671ea9be845a0",
-            "2026-10-29",
-            "Four probes from the starred repos: taxonomy prior, perihelion, spin, covariance (F11-F14) (#5)"
           ]
         ]
       },
       "asteroid-belt-gradient": {
         "first": "2026-09-23",
-        "last": "2026-10-27",
+        "last": "2026-11-03",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 1,
           "2026-10-05": 19,
-          "2026-10-26": 1
+          "2026-10-26": 1,
+          "2026-11-02": 4
         },
         "recent": [
           [
-            "04d0693dae95e6dd8550529df1800439089399ab",
-            "2026-10-27",
-            "Paper: fix a printed \"mboxC-types\" and sharpen five statements (#24)"
+            "04a395b7b9fb9f3ca1c024ab2bdb755ae4d53e84",
+            "2026-11-03",
+            "Say what happens to the families that cannot be classified (v2.6.6) (#28)"
           ],
           [
-            "9fbe7f5ec00f4a81e7da6b154fb04424458a8bb8",
-            "2026-10-11",
-            "Paper: plainer prose, without stock phrasing (#23)"
+            "ac502d5702ced3adcbdc667a1e3a59bbcea7ab87",
+            "2026-11-03",
+            "Fig. 12 shows K/L; the paper states three more results the data support (v2.6.5) (#27)"
           ],
           [
-            "09e4a95650912c38a5d097d7b92724125e643e5c",
-            "2026-10-10",
-            "Paper: cite the 2026 work on the belt's composition and implantation (#22)"
+            "f0e7cbbbe8a2dcf71e412ff1b0bfd90ff2188993",
+            "2026-11-03",
+            "Write the D/P share to four decimals (v2.6.4) (#26)"
           ]
         ]
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-11-02",
+        "last": "2026-11-05",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 33,
           "2026-10-26": 52,
-          "2026-11-02": 12
+          "2026-11-02": 45
         },
         "recent": [
           [
-            "35b78939694a6adb7c4f9d842b31b1d054eff19a",
-            "2026-11-02",
-            "D35: qualify the seven-class U-Net's balanced-accuracy lead"
+            "342be45c88860b92c722cb2d91871c40084c72a1",
+            "2026-11-05",
+            "Freeze edits tried on a scratch copy; the committed paper PDF rebuilt, 21 pages (KB 69.78)"
           ],
           [
-            "f370322651829ab98b2045c144061e70cd434e1d",
-            "2026-11-02",
-            "A16: v2 seven-class maps scored on the 1,652 v3 held-out polygons"
+            "a169d00d2ae1ddfe21bfab21a5d7500cd8dd7124",
+            "2026-11-05",
+            "v3 tiles read for sanity after the predictions were pushed; sync skips live tile scratch (KB 69.77)"
           ],
           [
-            "5d9a440f10091bcb8c8a4a19afdac0a35605e4c3",
-            "2026-11-02",
-            "D34: flat Tharsis fan deposits admitted as apron in the v3 labels"
+            "6bce524495b75a55447f4cae66b2f2b9c318af12",
+            "2026-11-05",
+            "v3 maps' other checks registered before any v3 map; what a pick of v3 needs (KB 69.77)"
           ]
         ]
       },
@@ -422,27 +430,28 @@
       },
       "Satellite-Space-Flight": {
         "first": "2026-09-29",
-        "last": "2026-10-27",
+        "last": "2026-11-05",
         "weeks": {
           "2026-09-28": 59,
           "2026-10-05": 6,
-          "2026-10-26": 2
+          "2026-10-26": 2,
+          "2026-11-02": 6
         },
         "recent": [
           [
-            "a02c5eb26cc044651a760e6b863153621c1b8b32",
-            "2026-10-27",
-            "Start menu: set up a new simulation first, open a file second, examples last"
+            "e94c3d0d706b3b76763218495c1c82690f50e893",
+            "2026-11-05",
+            "MATLAB toolkit and Export MATLAB live scripts"
           ],
           [
-            "e39cc2c6d922664e984fea6ff18db8c732dd70b3",
-            "2026-10-11",
-            "Fix CI: tolerate last-bit float noise in generated scenarios; pass a negative --advance as --advance=-1h"
+            "ad67bc002b2ff9975bf40bd09769da2c81475d95",
+            "2026-11-03",
+            "Find box, right-click menu, clickable events, a notice on delete"
           ],
           [
-            "5defe512a6af7be32693d554402f620e822c76ea",
-            "2026-10-11",
-            "CI on Python 3.14 and Windows, selfcheck step; document the no-silent-failure rules"
+            "a563fbb06ba321eba80bfefb0a54b4261f4025bf",
+            "2026-11-03",
+            "Option lists, caret editing, Now on the start menu, a scrollable event log"
           ]
         ]
       },
@@ -723,24 +732,128 @@
     }
   ],
   "flybys": {
-    "from": "2026-11-03",
-    "to": "2026-11-10",
+    "from": "2026-11-06",
+    "to": "2026-11-13",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
       {
-        "des": "2021 VC4",
-        "time": "2026-Nov-03 17:30",
-        "dist_au": 0.0153190362722433,
-        "v_kms": 11.1747381789748,
-        "h": 26.88,
+        "des": "2026 VG3",
+        "time": "2026-Nov-07 00:00",
+        "dist_au": 0.00164362309602263,
+        "v_kms": 7.96117529915236,
+        "h": 27.621,
         "diameter_km": null
       },
       {
-        "des": "2017 WJ2",
-        "time": "2026-Nov-05 01:14",
-        "dist_au": 0.0377394593905357,
-        "v_kms": 11.9612706992463,
-        "h": 22.4,
+        "des": "2026 VN1",
+        "time": "2026-Nov-06 06:55",
+        "dist_au": 0.00400383182471888,
+        "v_kms": 17.1579861275071,
+        "h": 28.621,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VK2",
+        "time": "2026-Nov-08 02:09",
+        "dist_au": 0.00580262236544885,
+        "v_kms": 4.86314869014557,
+        "h": 30.229,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VY1",
+        "time": "2026-Nov-08 13:28",
+        "dist_au": 0.0106593786180543,
+        "v_kms": 13.5868197601491,
+        "h": 26.313,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VT3",
+        "time": "2026-Nov-10 10:04",
+        "dist_au": 0.011108104337949,
+        "v_kms": 9.81025763153351,
+        "h": 27.205,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VO2",
+        "time": "2026-Nov-08 18:48",
+        "dist_au": 0.0125191065353056,
+        "v_kms": 7.12613499286241,
+        "h": 27.836,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 UG4",
+        "time": "2026-Nov-08 13:49",
+        "dist_au": 0.0171187819401584,
+        "v_kms": 7.17409738418971,
+        "h": 25.083,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VW2",
+        "time": "2026-Nov-08 15:40",
+        "dist_au": 0.0204116351123911,
+        "v_kms": 14.7097661959383,
+        "h": 26.757,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VX1",
+        "time": "2026-Nov-11 15:18",
+        "dist_au": 0.0204314802096541,
+        "v_kms": 4.28635698676009,
+        "h": 27.728,
+        "diameter_km": null
+      },
+      {
+        "des": "2023 VF3",
+        "time": "2026-Nov-11 08:45",
+        "dist_au": 0.0216543559130317,
+        "v_kms": 8.83920587644142,
+        "h": 26.38,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VB1",
+        "time": "2026-Nov-08 12:42",
+        "dist_au": 0.0227148505947317,
+        "v_kms": 14.1701536936112,
+        "h": 25.756,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VK1",
+        "time": "2026-Nov-10 10:43",
+        "dist_au": 0.0246297938265538,
+        "v_kms": 9.07778276720142,
+        "h": 26.866,
+        "diameter_km": null
+      },
+      {
+        "des": "2015 VH65",
+        "time": "2026-Nov-10 00:24",
+        "dist_au": 0.0249087786115373,
+        "v_kms": 7.97537698967337,
+        "h": 27.7,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VY",
+        "time": "2026-Nov-11 10:54",
+        "dist_au": 0.0470536474079091,
+        "v_kms": 6.53380900043784,
+        "h": 26.351,
+        "diameter_km": null
+      },
+      {
+        "des": "2012 YD7",
+        "time": "2026-Nov-10 20:05",
+        "dist_au": 0.047599602611746,
+        "v_kms": 7.46427303345919,
+        "h": 24.3,
         "diameter_km": null
       },
       {
@@ -754,25 +867,17 @@
       {
         "des": "2001 KF54",
         "time": "2026-Nov-06 03:38",
-        "dist_au": 0.0484212697109624,
-        "v_kms": 16.4248937921821,
+        "dist_au": 0.0484215851279475,
+        "v_kms": 16.4249035300446,
         "h": 19.79,
         "diameter_km": null
       },
       {
         "des": "2026 UX",
         "time": "2026-Nov-07 12:01",
-        "dist_au": 0.0502649713980513,
-        "v_kms": 9.73656481076981,
-        "h": 24.791,
-        "diameter_km": null
-      },
-      {
-        "des": "2016 VZ1",
-        "time": "2026-Nov-05 19:58",
-        "dist_au": 0.0511845157815688,
-        "v_kms": 13.4824050171346,
-        "h": 26.1,
+        "dist_au": 0.0502508809648017,
+        "v_kms": 9.73394909927482,
+        "h": 24.808,
         "diameter_km": null
       }
     ]
@@ -820,10 +925,10 @@
     {
       "domain": "01_density_and_population",
       "tiers": [
-        41,
+        43,
         3,
         11,
-        1
+        4
       ]
     },
     {
@@ -832,7 +937,7 @@
         42,
         5,
         3,
-        1
+        2
       ]
     },
     {
@@ -841,7 +946,7 @@
         16,
         38,
         0,
-        3
+        4
       ]
     },
     {
@@ -850,7 +955,7 @@
         6,
         18,
         11,
-        117
+        118
       ]
     },
     {
@@ -859,7 +964,7 @@
         4,
         15,
         2,
-        1
+        4
       ]
     },
     {
@@ -868,7 +973,7 @@
         0,
         3,
         5,
-        3
+        4
       ]
     },
     {
@@ -877,7 +982,7 @@
         0,
         5,
         2,
-        0
+        1
       ]
     },
     {
@@ -913,7 +1018,7 @@
         0,
         13,
         1,
-        1
+        3
       ]
     },
     {
@@ -931,7 +1036,7 @@
         0,
         1,
         2,
-        7
+        20
       ]
     },
     {
@@ -939,8 +1044,8 @@
       "tiers": [
         0,
         8,
-        5,
-        7
+        6,
+        10
       ]
     },
     {
@@ -949,16 +1054,16 @@
         6,
         17,
         3,
-        3
+        6
       ]
     },
     {
       "domain": "16_reliability_learning_service_life",
       "tiers": [
         4,
-        18,
+        19,
         1,
-        2
+        4
       ]
     },
     {
@@ -967,7 +1072,7 @@
         2,
         3,
         6,
-        1
+        2
       ]
     },
     {
@@ -985,7 +1090,7 @@
         12,
         10,
         0,
-        0
+        4
       ]
     },
     {
@@ -994,7 +1099,7 @@
         1,
         9,
         0,
-        1
+        2
       ]
     },
     {
@@ -1003,7 +1108,7 @@
         1,
         13,
         0,
-        2
+        3
       ]
     },
     {
@@ -1048,7 +1153,7 @@
         0,
         19,
         0,
-        0
+        2
       ]
     },
     {

@@ -7,7 +7,7 @@
   @media (prefers-reduced-motion: reduce) { .draw, .fade { animation: none; } }
 </style>
 <line x1="7" y1="41" x2="233" y2="41" stroke="#2a3b63" stroke-width="1.5"/>
-<polygon class="fade" points="7.0,41 7.0,10.7 44.7,7.0 82.3,11.1 120.0,18.6 157.7,18.1 195.3,23.5 233.0,34.4 233.0,41" fill="#5ba3dc" fill-opacity="0.3"/>
-<polyline class="draw" points="7.0,10.7 44.7,7.0 82.3,11.1 120.0,18.6 157.7,18.1 195.3,23.5 233.0,34.4" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<circle class="fade" cx="233.0" cy="34.4" r="5" fill="#e8c27a" stroke="#5ba3dc" stroke-width="2"/>
+<polygon class="fade" points="7.0,41 7.0,10.7 44.7,7.0 82.3,11.1 120.0,18.6 157.7,18.1 195.3,23.5 233.0,32.9 233.0,41" fill="#5ba3dc" fill-opacity="0.3"/>
+<polyline class="draw" points="7.0,10.7 44.7,7.0 82.3,11.1 120.0,18.6 157.7,18.1 195.3,23.5 233.0,32.9" fill="none" stroke="#5ba3dc" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle class="fade" cx="233.0" cy="32.9" r="5" fill="#e8c27a" stroke="#5ba3dc" stroke-width="2"/>
 </svg>

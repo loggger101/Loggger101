@@ -10,7 +10,7 @@ files are code:
   with code and a trailing comment does. Python docstrings count as comments (cloc's
   default), and notebooks count their code cells only.
 - Programming and markup languages count (Python, JavaScript, HTML, CSS, shell, Perl,
-  PowerShell, batch, VBScript, Dockerfiles, scripts found by their #! line). Data and
+  PowerShell, batch, VBScript, MATLAB, Dockerfiles, scripts found by their #! line). Data and
   prose don't (JSON, YAML, TOML, CSV, Markdown, TeX).
 - Files a repo marks linguist-generated, linguist-vendored or linguist-documentation in
   its .gitattributes don't count, nor do vendored folders and minified files. Identical
@@ -119,7 +119,7 @@ BY_EXT = {
     ".html": "html", ".htm": "html",
     ".sh": "hash", ".bash": "hash", ".command": "hash", ".r": "hash",
     ".pl": "perl", ".pm": "perl", ".ps1": "powershell",
-    ".bat": "batch", ".cmd": "batch", ".vbs": "vbscript",
+    ".bat": "batch", ".cmd": "batch", ".vbs": "vbscript", ".m": "matlab",
 }
 BY_NAME = {"Dockerfile": "hash", "Makefile": "hash"}
 BY_SHEBANG = {"python": "python", "node": "c", "perl": "perl"}  # anything else uses '#'
@@ -133,7 +133,7 @@ NAME_BY_EXT = {
     ".html": "HTML", ".htm": "HTML",
     ".sh": "Shell", ".bash": "Shell", ".command": "Shell", ".r": "R",
     ".pl": "Perl", ".pm": "Perl", ".ps1": "PowerShell",
-    ".bat": "Batchfile", ".cmd": "Batchfile", ".vbs": "VBScript",
+    ".bat": "Batchfile", ".cmd": "Batchfile", ".vbs": "VBScript", ".m": "MATLAB",
 }
 # An extensionless script's language follows from the syntax its #! line gave it.
 NAME_BY_SHEBANG = {"python": "Python", "c": "JavaScript", "perl": "Perl", "hash": "Shell"}
@@ -244,6 +244,9 @@ def count(path, lang):
         return nonblank(src, r"(?i)\s*@?(rem\b|::)")
     if lang == "vbscript":
         return nonblank(src, r"(?i)\s*('|rem\b)")
+    if lang == "matlab":
+        # %{ and %} open and close a block comment only alone on their lines.
+        return nonblank(re.sub(r"(?ms)^\s*%\{\s*$.*?^\s*%\}\s*$", "", src), r"\s*%")
     if lang == "powershell":
         src = strip_blocks(src, "<#", "#>")
     if lang == "perl":

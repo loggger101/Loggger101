@@ -68,7 +68,7 @@ NEEDS = {"links.py": Path(r"C:\Windows\Fonts\segoeuib.ttf")}   # measures labels
 # In docs/ but not made by a generator above.
 NOT_GENERATED = {"spacer.svg"}
 # In docs/ but not referenced by path: the logos reach the README inside badge URLs.
-UNREFERENCED_OK = {"logos/astropy.svg", "logos/pygame.svg"}
+UNREFERENCED_OK = {"logos/astropy.svg", "logos/pygame.svg", "logos/matlab.svg"}
 
 problems = []
 
@@ -251,6 +251,8 @@ FACTS = [
     ("and then of 194 more", "starred-repos", "the 194 stars added"),
     ("a guessed taxonomy is right about half the time", "starred-repos", "a guessed class is right about half the time"),
     ("42 of the 69 near-Earth asteroids", "starred-repos", "42 of the 69 top-100 NEOs"),
+    ("the 1.39 km/s gap to JPL's outbound legs", "starred-repos", "JPL's outbound leg sits 1.39 km/s above shipped"),
+    ("sits only 0.36 km/s above", "starred-repos", "sits only 0.36 above it"),
     ("carbonaceous asteroids carried in from beyond Jupiter", "asteroid-belt-gradient/paper/main.tex",
      "implantation of carbonaceous bodies from beyond Jupiter"),
     ("the paper favors C-types carried in from beyond Jupiter", "asteroid-belt-gradient/paper/main.tex",
@@ -259,6 +261,7 @@ FACTS = [
     ("from four classes to seven", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "four classes to seven"),
     ("a U-Net already scores 69.0%", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "U-Net on v2 69.0 %"),
     ("against 42.5% for the SVM", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "seven-class SVM scores 42.5 %"),
+    ("a lead that rests on two blocks around Tharsis", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "it rests on the two Tharsis blocks"),
     ("due 8 December", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "8 December 2026"),
     ("On 14k held-out cutouts", "star-spectral-classifier", "14,406"),
     ("gets the letter right 84.3% of the time", "star-spectral-classifier", "84.30%"),
@@ -269,6 +272,8 @@ FACTS = [
     ("91.3% on valid/invalid", "drone-target-id", "91.31%"),
     ("27,362 held-out targets", "drone-target-id", "27,362"),
     ("fifteen real launch complexes", "Satellite-Space-Flight", "fifteen real launch complexes"),
+    ("runs again inside MATLAB", "Satellite-Space-Flight", "runs it again inside MATLAB"),
+    ("to within meters over hours", "Satellite-Space-Flight", "agree to within metres over hours"),
     ("1,584 Starlink satellites in one shell", "Satellite-Space-Flight", "1,584-satellite Walker shell"),
     ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
     ("28-job model campaign", "quietqueue", "28-job"),

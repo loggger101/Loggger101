@@ -38,6 +38,7 @@ src = "use strict;\n# c\n=pod\n\nabout\n\n=cut\nprint 1;\n__END__\nnot code\n"
 p = HERE / "t.pl"; p.write_text(src, encoding="utf-8"); eq("perl", m.count(p, "perl"), 2)
 p = HERE / "t.bat"; p.write_text("@echo off\nREM c\n@rem c\n:: c\necho hi\n", encoding="utf-8"); eq("batch", m.count(p, "batch"), 2)
 p = HERE / "t.vbs"; p.write_text("' c\nRem c\nDim x\nx = 1 ' trailing\n", encoding="utf-8"); eq("vbscript", m.count(p, "vbscript"), 2)
+p = HERE / "t.m"; p.write_text("% c\n%% section\n%{\nblock\n%}\nx = 1; % trailing\ns = sprintf('%{');\n\ny = 2;\n", encoding="utf-8"); eq("matlab", m.count(p, "matlab"), 3)
 p = HERE / "t.ps1"; p.write_text("<#\nhelp\n#>\n# c\nWrite-Host 1\n", encoding="utf-8"); eq("powershell", m.count(p, "powershell"), 1)
 p = HERE / "t.ipynb"; p.write_text('{"cells":[{"cell_type":"code","source":["%matplotlib inline\\n","\\"\\"\\"doc\\"\\"\\"\\n","x = 1\\n","!pip install y\\n"]},{"cell_type":"markdown","source":["# Title"]}]}', encoding="utf-8")
 eq("notebook", m.count(p, "notebook"), 3)

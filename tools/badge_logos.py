@@ -1,4 +1,4 @@
-"""Draw the badge logos shields.io has no icon for (Astropy, pygame) and print their badge URLs.
+"""Draw the badge logos shields.io has no icon for (Astropy, pygame, MATLAB) and print their badge URLs.
 
 Each logo is a white glyph on a 24x24 grid, written to docs/logos/<name>.svg for reference
 and embedded in its badge as a base64 data URI (shields' custom-logo form), because a
@@ -31,11 +31,13 @@ LOGOS = {
 M6 8.6v1.9H4.1v2.2H6v1.9h2.2v-1.9h1.9v-2.2H8.2V8.6Z
 M15.05 10.2a1.35 1.35 0 1 0 2.7 0a1.35 1.35 0 1 0-2.7 0Z
 M17.45 12.6a1.35 1.35 0 1 0 2.7 0a1.35 1.35 0 1 0-2.7 0Z"/>""",
+    # A peak rising from a plane, for the surfaces MATLAB plots.
+    "matlab": """<path fill="#fff" d="M1.5 15.5 7.2 11l2.4 1.6L14.6 3.5c1.2 1.4 4.2 9 7.9 14.4-1.9-1.1-3.4-2.7-4.6-3.3-1.6 1.8-3.2 4.8-5.2 6.9-1.2-2.7-2.6-5.2-4.7-6.2Z"/>""",
 }
 
 for name, body in LOGOS.items():
     svg = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{body}</svg>'
     (OUT / f"{name}.svg").write_text(svg + "\n", encoding="utf-8", newline="\n")
     uri = "data:image/svg+xml;base64," + base64.b64encode(svg.encode()).decode()
-    label = {"astropy": "Astropy", "pygame": "pygame"}[name]
+    label = {"astropy": "Astropy", "pygame": "pygame", "matlab": "MATLAB"}[name]
     print(f"https://img.shields.io/badge/{label}-1f3354?style=flat-square&logo={urllib.parse.quote(uri, safe='')}")

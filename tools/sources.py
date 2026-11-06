@@ -3,7 +3,7 @@ asteroid-mining pipeline's numbers rest on, one bar for each domain of General_R
 registry, the most sources first.
 
 Each bar is split by the registry's tiers of authority, from T1 (peer-reviewed papers) to
-T4 (grey sources: company documents, price pages, news); the three cited tiers are steps
+T4 (grey sources: company documents, price pages, news, my audit records); the three cited tiers are steps
 of one blue, brightest for the most authoritative, and T4 is drawn hollow, so the tiers
 read apart without colour too. Beside each bar, its count.
 
