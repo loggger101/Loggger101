@@ -164,7 +164,7 @@ CARDS = {
                   "Satellite-Space-Flight", "The ISS orbit, live elements and ground-station passes"),
     "belt": (lambda: fit(dark(Image.open(GH / "asteroid-belt-gradient/figures/fig1b_stacked_composition.png"))),
              "asteroid-belt-gradient", "S-types give way to C-types farther from the Sun"),
-    "mars": (lambda: cover(Image.open(GH / "Mars_Terrestrial_GlobalMosaic_GIS-Data/Mars Project/Global60/layouts/04b_global60_landforms_v2.png"), (68, 238, 964, 742)),
+    "mars": (lambda: cover(Image.open(GH / "Mars_Terrestrial_GlobalMosaic_GIS-Data/Mars Project/Global60/layouts/04c_global60_landforms_v3.png"), (68, 238, 964, 742)),
              "Mars Global Mosaic", "Seven SVM landform classes across Tharsis and Valles Marineris"),
     "drone": (lambda: cover(Image.open(GH / "website/assets/projects/drone/overlay_demo_poster.jpg")),
               "drone-target-id", "Per-target valid/invalid scores on aerial footage"),
@@ -300,7 +300,7 @@ FIGURES = {
                        "Athabasca Valles", "Flood lava once read as a water-cut channel, outlined"),
     "mars-retinanet": (lambda: cover(Image.open(MARS / "Global60/layouts/16_x5_detections.png"), (84, 650, 650, 1100)),
                        "RetinaNet detections", "A detector's boxes on ground it never trained on"),
-    "mars-unet": (lambda: cover(Image.open(MARS / "Global60/layouts/17b_unet_v2_provinces.png"), (84, 650, 650, 1100)),
+    "mars-unet": (lambda: cover(Image.open(MARS / "Global60/layouts/17c_unet_v3_provinces.png"), (84, 650, 650, 1100)),
                   "U-Net classes", "Seven landform classes on a held-out block"),
 }
 
