@@ -272,7 +272,7 @@ FACTS = [
     ("27,362 held-out targets", "drone-target-id", "27,362"),
     ("fifteen real launch complexes", "Satellite-Space-Flight", "fifteen real launch complexes"),
     ("runs again inside MATLAB", "Satellite-Space-Flight", "runs it again inside MATLAB"),
-    ("to within meters over hours", "Satellite-Space-Flight", "agree to within metres over hours"),
+    ("to within meters over hours", "Satellite-Space-Flight", "within centimetres to metres over hours"),
     ("1,584 Starlink satellites in one shell", "Satellite-Space-Flight", "1,584-satellite Walker shell"),
     ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
     ("28-job model campaign", "quietqueue", "28-job"),

@@ -21,7 +21,7 @@ Outside of school I'm CTO of [AspireCURES](https://www.aspirecures.com), a compa
   <a href="https://github.com/loggger101/AsteroidCatalog"><picture><source media="(max-width: 600px)" srcset="docs/stats/catalog-compact.svg"><img src="docs/stats/catalog.svg" width="23.5%" alt="1.58M asteroids cataloged (AsteroidCatalog)"></picture></a>
   <a href="https://github.com/loggger101/asteroid-belt-gradient"><picture><source media="(max-width: 600px)" srcset="docs/stats/belt-compact.svg"><img src="docs/stats/belt.svg" width="23.5%" alt="161,659 classified asteroids analyzed (asteroid-belt-gradient)"></picture></a>
   <a href="https://github.com/loggger101/General_Research"><picture><source media="(max-width: 600px)" srcset="docs/stats/sources-compact.svg"><img src="docs/stats/sources.svg" width="23.5%" alt="742 research sources (General_Research)"></picture></a>
-  <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="253 agent skills (Hermes_Skills)"></picture></a>
+  <a href="https://github.com/loggger101/Hermes_Skills"><picture><source media="(max-width: 600px)" srcset="docs/stats/skills-compact.svg"><img src="docs/stats/skills.svg" width="23.5%" alt="254 agent skills (Hermes_Skills)"></picture></a>
 </p>
 
 <p align="center">
@@ -88,7 +88,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>Code and paper for <i>Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data</i>. It tests whether the belt's switch from S-types to C-types dates back to formation, using 161,659 classified asteroids from AsteroidCatalog after collapsing collisional families and correcting for the brightness bias that favors S-types. The code rebuilds every figure and number in the paper from two public input files.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/scipy.svg" alt="SciPy"></picture> <picture><img src="docs/badges/latex.svg" alt="LaTeX"></picture> <a href="https://github.com/loggger101/asteroid-belt-gradient/releases/latest"><img src="docs/badges/release-asteroid-belt-gradient.svg" alt="Latest release"></a> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="docs/badges/paper.svg" alt="Paper"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>28,231 lines of code</sub><br/><sub>1,626,417 total lines</sub><br/><picture><img src="docs/sparks/Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" width="120" alt="My commits to Mars Global Mosaic each week since October 2026: 186 in all, 52 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>28,935 lines of code</sub><br/><sub>1,637,338 total lines</sub><br/><picture><img src="docs/sparks/Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" width="120" alt="My commits to Mars Global Mosaic each week since October 2026: 193 in all, 52 in the busiest week"></picture></td>
     <td valign="top"><p>My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S to map lava flows, river channels and impact craters. A support vector machine classifies the landforms across that whole band, scoring 73.8% on areas it never trained on, and I've since trained RetinaNet and U-Net models to compare against it. I'm now widening the map from four classes to seven for the final paper, due 8 December; on the reviewed seven-class labels a U-Net already scores 69.0% on held-out areas, against 42.5% for the SVM, a lead that rests on two blocks around Tharsis.</p><picture><img src="docs/badges/arcgis-pro.svg" alt="ArcGIS Pro"></picture> <picture><img src="docs/badges/python.svg" alt="Python"></picture> <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/latest"><img src="docs/badges/release-Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" alt="Latest release"></a></td>
   </tr>
 </table>
@@ -141,7 +141,7 @@ How each model's mistakes fall on held-out data (each links to the full size):
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Satellite-Space-Flight">Satellite-Space-Flight</a></b><br/><sub>orbit simulator</sub><br/><sub>16,396 lines of code</sub><br/><sub>26,587 total lines</sub><br/><picture><img src="docs/sparks/Satellite-Space-Flight.svg" width="120" alt="My commits to Satellite-Space-Flight each week since September 2026: 73 in all, 59 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Satellite-Space-Flight">Satellite-Space-Flight</a></b><br/><sub>orbit simulator</sub><br/><sub>19,407 lines of code</sub><br/><sub>30,202 total lines</sub><br/><picture><img src="docs/sparks/Satellite-Space-Flight.svg" width="120" alt="My commits to Satellite-Space-Flight each week since September 2026: 85 in all, 59 in the busiest week"></picture></td>
     <td valign="top"><p>A 3-D Earth orbit simulator in pure Python. The physics runs in numpy (J2 to J4 gravity, drag, Sun and Moon, solar radiation pressure, maneuvers) and pygame draws it. You can also fly a multi-stage rocket to orbit from anywhere on Earth, or from one of fifteen real launch complexes. A MATLAB toolkit builds scenarios and plots the results, and a running simulation exports as a live script that runs again inside MATLAB with no Python; satellites in orbit agree with the simulator to within meters over hours.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/numpy.svg" alt="NumPy"></picture> <picture><img src="docs/badges/pygame.svg" alt="pygame"></picture> <picture><img src="docs/badges/matlab.svg" alt="MATLAB"></picture></td>
   </tr>
 </table>
@@ -192,7 +192,7 @@ Both repos are private, but the sites are public.
   </tr>
   <tr>
     <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Hermes_Skills">Hermes_Skills</a></b><br/><sub>agent skills</sub><br/><picture><img src="docs/sparks/Hermes_Skills.svg" width="120" alt="My commits to Hermes_Skills each week since August 2026: 410 in all, 195 in the busiest week"></picture></td>
-    <td valign="top"><p>My library of 253 agent skills in 23 categories, built for my Hermes agent setup.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/markdown.svg" alt="Markdown"></picture></td>
+    <td valign="top"><p>My library of 254 agent skills in 23 categories, built for my Hermes agent setup.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/markdown.svg" alt="Markdown"></picture></td>
   </tr>
 </table>
 
@@ -201,18 +201,18 @@ Both repos are private, but the sites are public.
 Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 6 Nov 2026, drawn as one orbit per section of this page: 3,502 in all, Space economics 786, Planetary science 227, Deep learning 15, Simulation 73, Rare-disease work 493, Elsewhere 1,908. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: spacevalue, 5 Nov 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 8 Nov 2026, drawn as one orbit per section of this page: 3,521 in all, Space economics 786, Planetary science 234, Deep learning 15, Simulation 85, Rare-disease work 493, Elsewhere 1,908. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: Satellite-Space-Flight, 7 Nov 2026."></picture>
 </p>
 
 My latest commits:
 
 <!-- latest commits -->
+- 7 Nov · [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight/commit/afbfcce7ca56f0fe1567fe7dc28776a2e81eb765): MATLAB export: Live Editor animation, night side, maneuvers and approaches
+- 7 Nov · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/d5705aa269912597675ee4492e3424b2fbd2b46f): Extra runs' text drafted; pixel caveat in the paper; README to the v3 lead
+- 7 Nov · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/da2b695765866da11c71039fbf1e02fff1206802): Extra runs: queue exit codes fixed; base's route gate by score
+- 6 Nov · [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight/commit/6e004a59025b26ac48f711b358b20c7ddaa10208): MATLAB export: passes, eclipses and an animation of the run
 - 5 Nov · [spacevalue](https://github.com/loggger101/spacevalue/commit/e3d87f7e72ec43d8db06e4807bad9429597e1bea): sold\_as\_is: the as-is route as a table a mission search can try (0.5.0)
 - 5 Nov · [spacevalue](https://github.com/loggger101/spacevalue/commit/29ec0696155984b4754f2f0e3e88ceedc498c0da): One in-space demand class is one market (rc-261, contract 1.19.0)
-- 5 Nov · [economicspace](https://github.com/loggger101/economicspace/commit/8a9a226f5fe857b6d60a50565ddfa78754302ea9): Skip combos that provably cannot beat the incumbent (master v1.68.0, calc v1.41.0)
-- 5 Nov · [economicspace](https://github.com/loggger101/economicspace/commit/6ff87e6bd8c82c796a71643f00db0a3465b81cca): versions.md: twenty-nine stamps that are not performance-only (no stamp)
-- 5 Nov · [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight/commit/e94c3d0d706b3b76763218495c1c82690f50e893): MATLAB toolkit and Export MATLAB live scripts
-- 5 Nov · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/342be45c88860b92c722cb2d91871c40084c72a1): Freeze edits tried on a scratch copy; the committed paper PDF rebuilt, 21 pages
 <!-- /latest commits -->
 
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
@@ -220,7 +220,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="128,243 lines of code in 11 languages: Python 106,088 (82.7%), Perl 6,705 (5.2%), JavaScript 5,326 (4.2%), HTML 4,254 (3.3%), CSS 2,375 (1.9%), MATLAB 1,798 (1.4%), Shell, PowerShell, Batchfile, VBScript and Dockerfile 1,697 (1.3%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="131,958 lines of code in 11 languages: Python 107,407 (81.4%), Perl 6,705 (5.1%), JavaScript 5,326 (4.0%), HTML 4,254 (3.2%), MATLAB 4,149 (3.1%), CSS 2,375 (1.8%), Shell, PowerShell, Batchfile, VBScript and Dockerfile 1,742 (1.3%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
@@ -228,7 +228,7 @@ The lines of code under each repo's name, added up by language.
 The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. On the dial, each one sits at the day and distance of its closest approach. The sizes are estimates from each body's brightness, as almost none has been measured.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 6–12 Nov 2026 (NASA/JPL close-approach data): 18 in all. 2026 VG3, 0.6 lunar distances on Sat 7 Nov, 8–18 m, 8.0 km/s; 2026 VN1, 1.6 lunar distances on Fri 6 Nov, 5–11 m, 17.2 km/s; 2026 VK2, 2.3 lunar distances on Sun 8 Nov, 2–5 m, 4.9 km/s; 2026 VY1, 4.1 lunar distances on Sun 8 Nov, 15–32 m, 13.6 km/s; 2026 VT3, 4.3 lunar distances on Tue 10 Nov, 10–22 m, 9.8 km/s; 2026 VO2, 4.9 lunar distances on Sun 8 Nov, 7–16 m, 7.1 km/s; 2026 UG4, 6.7 lunar distances on Sun 8 Nov, 26–57 m, 7.2 km/s; 2026 VW2, 7.9 lunar distances on Sun 8 Nov, 12–26 m, 14.7 km/s; and 10 more farther out."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 8–14 Nov 2026 (NASA/JPL close-approach data): 21 in all. 2026 VK2, 2.3 lunar distances on Sun 8 Nov, 2–5 m, 4.9 km/s; 2026 VY1, 4.1 lunar distances on Sun 8 Nov, 15–33 m, 13.6 km/s; 2026 VT3, 4.3 lunar distances on Tue 10 Nov, 10–22 m, 9.8 km/s; 2026 VO2, 4.7 lunar distances on Sun 8 Nov, 6–14 m, 7.0 km/s; 2026 UG4, 6.7 lunar distances on Sun 8 Nov, 26–58 m, 7.2 km/s; 2026 VX1, 7.9 lunar distances on Wed 11 Nov, 7–16 m, 4.3 km/s; 2026 VW2, 8.0 lunar distances on Sun 8 Nov, 12–28 m, 14.8 km/s; 2023 VF3, 8.4 lunar distances on Wed 11 Nov, 14–31 m, 8.8 km/s; and 13 more farther out."></picture>
 </p>
 
 ### <picture><img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""></picture> Get in touch
