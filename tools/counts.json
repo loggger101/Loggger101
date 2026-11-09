@@ -10,10 +10,10 @@
     "General_Research": 2555,
     "starred-repos": 3864,
     "asteroid-belt-gradient": 3148,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 28935,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 29464,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
-    "Satellite-Space-Flight": 19407,
+    "Satellite-Space-Flight": 19745,
     "website": 7615,
     "quietlaunch": 1094,
     "quietqueue": 653,
@@ -29,10 +29,10 @@
     "General_Research": 75040,
     "starred-repos": 11530,
     "asteroid-belt-gradient": 6938,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1637338,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1648870,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
-    "Satellite-Space-Flight": 30202,
+    "Satellite-Space-Flight": 30626,
     "website": 10124,
     "quietlaunch": 2359,
     "quietqueue": 1714,
@@ -71,9 +71,9 @@
       "Python": 3148
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 28301,
-      "PowerShell": 323,
-      "HTML": 222,
+      "Python": 28667,
+      "HTML": 384,
+      "PowerShell": 324,
       "Batchfile": 89
     },
     "star-spectral-classifier": {
@@ -83,8 +83,8 @@
       "Python": 1509
     },
     "Satellite-Space-Flight": {
-      "Python": 15207,
-      "MATLAB": 4149,
+      "Python": 15264,
+      "MATLAB": 4430,
       "Batchfile": 28,
       "Shell": 23
     },
@@ -123,7 +123,7 @@
     }
   },
   "activity": {
-    "as_of": "2026-11-08",
+    "as_of": "2026-11-09",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
@@ -350,29 +350,30 @@
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-11-07",
+        "last": "2026-11-09",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 33,
           "2026-10-26": 52,
-          "2026-11-02": 52
+          "2026-11-02": 54,
+          "2026-11-09": 8
         },
         "recent": [
           [
-            "d5705aa269912597675ee4492e3424b2fbd2b46f",
-            "2026-11-07",
-            "Extra runs' text drafted; pixel caveat in the paper; README to the v3 lead"
+            "3845c2c07c4912780bfe9c3d50187a9560dba172",
+            "2026-11-09",
+            "Noth's apron drop is one block's, not apron's (KB \u00a769.92)"
           ],
           [
-            "da2b695765866da11c71039fbf1e02fff1206802",
-            "2026-11-07",
-            "Extra runs: queue exit codes fixed; base's route gate by score (KB 69.83)"
+            "37b79d8f173b81f140c701840765523a34ed9538",
+            "2026-11-09",
+            "Where cut falls short of base: Crater; edifice on Tharsis the other way (KB \u00a769.92)"
           ],
           [
-            "abb2a0a1d97f48a214b90dbac0d33cc89bdba50d",
-            "2026-11-07",
-            "D36: both v3 maps lead the final; sheets, paper and deck moved (KB 69.82)"
+            "c50156c4988abf9773192913397b19a9ec16a40c",
+            "2026-11-09",
+            "Noth's drop is apron read as edifice in the Tharsis block (KB \u00a769.91)"
           ]
         ]
       },
@@ -430,28 +431,28 @@
       },
       "Satellite-Space-Flight": {
         "first": "2026-09-29",
-        "last": "2026-11-07",
+        "last": "2026-11-08",
         "weeks": {
           "2026-09-28": 59,
           "2026-10-05": 6,
           "2026-10-26": 2,
-          "2026-11-02": 18
+          "2026-11-02": 22
         },
         "recent": [
+          [
+            "13b7d9d9436b11cd5bd09a50a1e33a9bcdf88866",
+            "2026-11-08",
+            "MATLAB export: station coverage, beta angle, save results"
+          ],
+          [
+            "81c92dcbed9d9a8219fe3ab58751632c920a10a6",
+            "2026-11-08",
+            "MATLAB export: orbit evolution, sky plot, readable elements plot"
+          ],
           [
             "afbfcce7ca56f0fe1567fe7dc28776a2e81eb765",
             "2026-11-07",
             "MATLAB export: Live Editor animation, night side, maneuvers and approaches"
-          ],
-          [
-            "6e004a59025b26ac48f711b358b20c7ddaa10208",
-            "2026-11-06",
-            "MATLAB export: passes, eclipses and an animation of the run"
-          ],
-          [
-            "80c5f3e680d64a7d06d122d47c106217b07afd7a",
-            "2026-11-06",
-            "MATLAB export: cleaner, self-explaining scripts that pass the Code Analyzer"
           ]
         ]
       },
@@ -732,26 +733,10 @@
     }
   ],
   "flybys": {
-    "from": "2026-11-08",
-    "to": "2026-11-15",
+    "from": "2026-11-09",
+    "to": "2026-11-16",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
-      {
-        "des": "2026 VK2",
-        "time": "2026-Nov-08 01:57",
-        "dist_au": 0.00582725465227592,
-        "v_kms": 4.91223438407177,
-        "h": 30.254,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 VY1",
-        "time": "2026-Nov-08 13:28",
-        "dist_au": 0.0106597054712274,
-        "v_kms": 13.5866505474286,
-        "h": 26.268,
-        "diameter_km": null
-      },
       {
         "des": "2026 VT3",
         "time": "2026-Nov-10 10:04",
@@ -761,35 +746,11 @@
         "diameter_km": null
       },
       {
-        "des": "2026 VO2",
-        "time": "2026-Nov-08 18:16",
-        "dist_au": 0.0120381721767869,
-        "v_kms": 7.03878172667429,
-        "h": 28.101,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 UG4",
-        "time": "2026-Nov-08 13:49",
-        "dist_au": 0.0171324605282399,
-        "v_kms": 7.17979198121151,
-        "h": 25.07,
-        "diameter_km": null
-      },
-      {
         "des": "2026 VX1",
         "time": "2026-Nov-11 15:19",
         "dist_au": 0.0203944764979054,
         "v_kms": 4.27937543366739,
         "h": 27.799,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 VW2",
-        "time": "2026-Nov-08 15:40",
-        "dist_au": 0.0204854555366915,
-        "v_kms": 14.7654707944201,
-        "h": 26.671,
         "diameter_km": null
       },
       {
@@ -802,18 +763,18 @@
       },
       {
         "des": "2026 VN4",
-        "time": "2026-Nov-11 03:53",
-        "dist_au": 0.0221383812472241,
-        "v_kms": 3.62449701711119,
-        "h": 27.186,
+        "time": "2026-Nov-11 03:52",
+        "dist_au": 0.022140248064888,
+        "v_kms": 3.62439571559415,
+        "h": 27.179,
         "diameter_km": null
       },
       {
-        "des": "2026 VB1",
-        "time": "2026-Nov-08 12:42",
-        "dist_au": 0.0227094180326885,
-        "v_kms": 14.1646020286251,
-        "h": 25.934,
+        "des": "2026 VF7",
+        "time": "2026-Nov-14 17:58",
+        "dist_au": 0.0244913184161599,
+        "v_kms": 7.43649810384325,
+        "h": 24.962,
         "diameter_km": null
       },
       {
@@ -834,10 +795,10 @@
       },
       {
         "des": "2026 VO1",
-        "time": "2026-Nov-13 06:01",
-        "dist_au": 0.0252109813450028,
-        "v_kms": 14.250124934347,
-        "h": 24.797,
+        "time": "2026-Nov-13 05:59",
+        "dist_au": 0.0251761245324103,
+        "v_kms": 14.2353460161421,
+        "h": 24.829,
         "diameter_km": null
       },
       {
@@ -857,6 +818,14 @@
         "diameter_km": null
       },
       {
+        "des": "2026 VV5",
+        "time": "2026-Nov-13 09:11",
+        "dist_au": 0.0389211122747972,
+        "v_kms": 12.9833271737175,
+        "h": 24.159,
+        "diameter_km": null
+      },
+      {
         "des": "2025 VG5",
         "time": "2026-Nov-13 03:15",
         "dist_au": 0.0465759103731449,
@@ -866,10 +835,10 @@
       },
       {
         "des": "2026 VY",
-        "time": "2026-Nov-11 10:54",
-        "dist_au": 0.0470536474079091,
-        "v_kms": 6.53380900043784,
-        "h": 26.351,
+        "time": "2026-Nov-11 10:30",
+        "dist_au": 0.0470616916677657,
+        "v_kms": 6.51780979270384,
+        "h": 26.456,
         "diameter_km": null
       },
       {
@@ -1218,6 +1187,6 @@
     }
   ],
   "badges": {
-    "as_of": "2026-11-08"
+    "as_of": "2026-11-09"
   }
 }
