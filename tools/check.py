@@ -257,7 +257,7 @@ FACTS = [
     ("the paper favors C-types carried in from beyond Jupiter", "asteroid-belt-gradient/paper/main.tex",
      "implantation of carbonaceous bodies from beyond Jupiter"),
     ("scoring 73.8% on areas", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "73.8%"),
-    ("from four classes to seven", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "four classes to seven"),
+    ("from four classes to seven", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "Classification, seven classes"),
     ("a larger third label set", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "On a third label set of 10,269 training polygons"),
     ("the U-Net scores 87.6%", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "a U-Net scores 87.6 %, κ 0.844 on the 237 held-out polygons"),
     ("against 39.1% for the SVM", "Mars_Terrestrial_GlobalMosaic_GIS-Data", "the SVM there scores 39.1 %"),
