@@ -11,6 +11,13 @@ that spins once round and stops on its own. Every character is placed by itself,
 columns line up; ADVANCE has Segoe UI Bold's widths (Arial Bold's are within a few
 percent, so the number only spaces a little looser there). With reduced motion the number
 just stands there, as does a still render: the columns rest on the real digits.
+
+Under the label each desktop tile draws a thin strip of its own data, which grows in
+from the left as the number rolls: the belt's density across it from the catalog, with the
+Kirkwood gaps (belt_profile.json); the paper's turn from S-type gold to C-type blue, its
+corrected midpoint and the snow line; the sources' four tiers of authority, coloured as in
+the sources chart; and one segment for each category of skills. Phones get no strip: at
+about 70px a tile has no room for one.
 """
 import json
 import random
@@ -31,6 +38,8 @@ ROLL = 1.8              # seconds a digit column spins
 # The numbers are in counts.json, which refresh_counts.py keeps current: the belt's from the
 # paper's results, the catalog's size from its latest release, and the two that grow.
 COUNTS = json.loads((Path(__file__).parent / "counts.json").read_text(encoding="utf-8"))
+
+PROFILE = json.loads((Path(__file__).parent / "belt_profile.json").read_text(encoding="utf-8"))
 
 # name: (number, label, short label for the compact tile, repo)
 TILES = {
@@ -69,7 +78,9 @@ def frame(i, label, body):
   @keyframes tw {{ 0%, 100% {{ opacity: 0.15; }} 50% {{ opacity: 1; }} }}
   .roll {{ animation: roll {ROLL}s cubic-bezier(0.15, 0.85, 0.25, 1) both; }}
   @keyframes roll {{ from {{ transform: translateY(var(--from)); }} }}
-  @media (prefers-reduced-motion: reduce) {{ .tw, .roll {{ animation: none; }} }}
+  {panel.GROW[0]}
+  {panel.GROW[1]}
+  @media (prefers-reduced-motion: reduce) {{ .tw, .roll, .grow {{ animation: none; }} }}
 </style>
 <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10" fill="url(#g)" stroke="#2a3b63"/>
 {stars}
@@ -106,11 +117,92 @@ def odometer(num, x, y, size, centred=False):
     return "\n".join(out)
 
 
+# The data strip under the label on desktop tiles.
+SX, SY, SW, SH = 20, 103, W - 40, 5
+BLUE, DIM, TRACK = "#5ba3dc", "#7d8fb3", "#1b2a4f"
+# sources.py's tier colours, T1 to T3; T4 (grey sources) is hollow, as there.
+TIER_FILL = ("#d2e9fb", "#6aaee6", "#3474b8", None)
+GOLD = "#e8c27a"            # crossover.py's S-type gold; its C-type blue is BLUE
+BELT_AU = (1.6, 3.6)        # the span of the paper's strip, au
+
+
+def gradient(stops):
+    """A left-to-right gradient across the strip, from (offset, colour, opacity) stops."""
+    return (f'<linearGradient id="strip" x1="{SX}" x2="{SX + SW}" gradientUnits="userSpaceOnUse">'
+            + "".join(f'<stop offset="{o:.3f}" stop-color="{c}" stop-opacity="{a:.3f}"/>' for o, c, a in stops)
+            + "</linearGradient>")
+
+
+def catalog_strip():
+    """The belt's density across 1.75 to 3.5 au from the catalog's proper orbits, two
+    bins to a stop, on a square-root scale so the thin inner and outer edges still show
+    and the Kirkwood gaps break it."""
+    counts = PROFILE["count"]
+    sums = [sum(counts[i:i + 2]) for i in range(0, len(counts), 2)]
+    peak, n = max(sums), len(sums)
+    stops = [((j + 0.5) / n, BLUE, (c / peak) ** 0.5) for j, c in enumerate(sums)]
+    return [gradient(stops), f'<rect x="{SX}" y="{SY}" width="{SW}" height="{SH}" rx="{SH / 2}" fill="url(#strip)"/>']
+
+
+def belt_strip():
+    """The paper's finding across 1.6 to 3.6 au: gold turning to blue over the corrected
+    samples' mean 10-90% width, a white dot at their mean midpoint, and the snow line."""
+    corrected = [c for c in COUNTS["belt"]["crossover"] if c["sample"] != "raw"]
+    a50 = sum(c["a50"] for c in corrected) / len(corrected)
+    width = sum(c["width"] for c in corrected) / len(corrected)
+    lo, hi = BELT_AU
+    frac = lambda a: (a - lo) / (hi - lo)
+    x = lambda a: SX + SW * frac(a)
+    snow = COUNTS["belt"]["snow_line_au"]
+    return [gradient([(max(frac(a50 - width / 2), 0), GOLD, 0.9), (min(frac(a50 + width / 2), 1), BLUE, 0.9)]),
+            f'<rect x="{SX}" y="{SY}" width="{SW}" height="{SH}" rx="{SH / 2}" fill="url(#strip)"/>',
+            f'<line x1="{x(snow):.1f}" y1="{SY - 3}" x2="{x(snow):.1f}" y2="{SY + SH + 3}" stroke="#e8c27a" stroke-width="1.2"/>',
+            f'<circle cx="{x(a50):.1f}" cy="{SY + SH / 2}" r="3.4" fill="#eef4ff" stroke="#0f1e3d" stroke-width="1"/>']
+
+
+def segments(widths, fills):
+    """Segments of the given widths along the strip, 2px apart; a None fill is hollow."""
+    parts, at = [], SX
+    for w, fill in zip(widths, fills):
+        drawn = max(w - 2, 1.5)
+        if fill:
+            parts.append(f'<rect x="{at:.1f}" y="{SY}" width="{drawn:.1f}" height="{SH}" rx="1.5" fill="{fill}"/>')
+        else:
+            parts.append(f'<rect x="{at + 0.6:.1f}" y="{SY + 0.6}" width="{max(drawn - 1.2, 0.5):.1f}" height="{SH - 1.2:.1f}" '
+                         f'rx="1.5" fill="{DIM}" fill-opacity="0.15" stroke="{DIM}" stroke-width="1.2"/>')
+        at += w
+    return parts
+
+
+def sources_strip():
+    """All the sources split by tier, T1 to T4, as the sources chart splits each domain."""
+    tiers = [sum(r["tiers"][t] for r in COUNTS["research"]) for t in range(4)]
+    total = sum(tiers)
+    return segments([SW * n / total for n in tiers if n], [f for n, f in zip(tiers, TIER_FILL) if n])
+
+
+def skills_strip():
+    """One segment for each category of skills (the library says how many, not their sizes)."""
+    n = COUNTS["skill_categories"]
+    return segments([SW / n] * n, [BLUE] * n)
+
+
+STRIPS = {"catalog": catalog_strip, "belt": belt_strip, "sources": sources_strip, "skills": skills_strip}
+
+
+def strip(name):
+    """The strip for tile name over a faint track, growing in from the left as the number
+    rolls (the snow line and midpoint grow with it)."""
+    return "\n".join([f'<rect x="{SX}" y="{SY}" width="{SW}" height="{SH}" rx="{SH / 2}" fill="{TRACK}" opacity="0.7"/>',
+                      '<g class="grow" style="animation-delay:0.3s">', *STRIPS[name](), "</g>"])
+
+
 for i, (name, (num, label, short, repo)) in enumerate(TILES.items()):
     body = f"""<g font-family="{FONT}">
-{odometer(num, 20, 62, 44)}
-<text x="20" y="96" font-size="20" fill="#dbe3f5">{label}</text>
+{odometer(num, 20, 58, 44)}
+<text x="20" y="90" font-size="20" fill="#dbe3f5">{label}</text>
 </g>
+{strip(name)}
 </svg>
 """
     full = frame(i, f"{num} {label}, {repo}", body) + body

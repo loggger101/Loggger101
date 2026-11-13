@@ -9,7 +9,7 @@ Mondays) fetches it again and redraws them.
 |---|---|---|---|
 | banner, typing line, link buttons, section icons | `banner.py`, `typing_line.py`, `links.py`, `icons.py` | the scripts alone | when changed |
 | footer | `belt_profile.py`, `footer.py` | the AsteroidCatalog release the paper pins (`pyarrow`), binned into `belt_profile.json` | by hand, with a new catalog release |
-| stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest and asteroid-belt-gradient's `results/summary.json` (`refresh_counts.py`) | weekly |
+| stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest and asteroid-belt-gradient's `results/summary.json` (`refresh_counts.py`); the catalog tile's strip, `belt_profile.json` | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
 | figure grids in Deep learning, Simulation and Planetary science | `gallery.py` (`FIGURES`) | the two classifiers' confusion matrices, the scenes the simulator's own `make_screenshots.py` draws, the paper's figures, and a map panel from four of the Mars project's layout sheets | by hand |
 | repo diagram | `pipeline.py` | the repos' READMEs, read by hand | when a link changes |
