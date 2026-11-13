@@ -5,7 +5,9 @@ registry, the most sources first.
 Each bar is split by the registry's tiers of authority, from T1 (peer-reviewed papers) to
 T4 (grey sources: company documents, price pages, news, my audit records); the three cited tiers are steps
 of one blue, brightest for the most authoritative, and T4 is drawn hollow, so the tiers
-read apart without colour too. Beside each bar, its count.
+read apart without colour too. Beside each bar, its count. On desktop, the second
+column's short bars leave its right side empty, and a ring there splits all the sources
+by tier the same way, with the share in T1 and T2 (the README's figure) in the middle.
 
 The numbers are refresh_counts.py's, read from General_Research's sources.csv and kept in
 tools/counts.json ("research"), so this draws the same thing until they change. When the
@@ -18,6 +20,7 @@ it in with <picture>.
 """
 import html
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -63,6 +66,7 @@ NAMES = {
     "30_volatiles_chemicals_catalysts_inspace_use": "Volatiles and chemicals",
 }
 COMPACT_ROWS = 10
+RING_R = 92                 # outer radius of the tier ring on the desktop chart
 
 
 def label(domain):
@@ -103,7 +107,43 @@ ALT = (f"What the asteroid-mining pipeline's numbers rest on: {TOTAL:,} sources 
 
 
 def background(w, h, seed):
-    return panel.background(w, h, seed, ALT, rules=panel.GROW, animated=("grow",))
+    return panel.background(w, h, seed, ALT, rules=panel.GROW + panel.FADE, animated=("grow", "fade"))
+
+
+def sector(cx, cy, r_out, r_in, a0, a1, tier):
+    """The ring's piece from angle a0 to a1 (radians, clockwise from twelve) in tier's
+    colour, or hollow for T4, as the bars draw it."""
+    pt = lambda r, a: (cx + r * math.sin(a), cy - r * math.cos(a))
+    big = int(a1 - a0 > math.pi)
+    (x0, y0), (x1, y1) = pt(r_out, a0), pt(r_out, a1)
+    (x2, y2), (x3, y3) = pt(r_in, a1), pt(r_in, a0)
+    d = (f"M{x0:.1f} {y0:.1f} A{r_out} {r_out} 0 {big} 1 {x1:.1f} {y1:.1f} "
+         f"L{x2:.1f} {y2:.1f} A{r_in} {r_in} 0 {big} 0 {x3:.1f} {y3:.1f} Z")
+    colour = TIERS[tier][2]
+    if colour:
+        return f'<path d="{d}" fill="{colour}"/>'
+    return f'<path d="{d}" fill="{DIM}" fill-opacity="0.15" stroke="{DIM}" stroke-width="1.5" stroke-linejoin="round"/>'
+
+
+def ring(cx, cy, r, size):
+    """All the sources split by tier as one ring, T1 from twelve o'clock clockwise, with the
+    share in T1 and T2 (the README's sentence) in the middle. Each piece fades in once the
+    bars have grown."""
+    totals = [sum(row["tiers"][t] for row in ROWS) for t in range(len(TIERS))]
+    gap = 0.035                                  # radians between pieces
+    parts, at = [], 0.0
+    for t, n in enumerate(totals):
+        if not n:
+            continue
+        sweep = 2 * math.pi * n / TOTAL
+        parts.append(f'<g class="fade" style="animation-delay:{1.1 + 0.15 * t:.2f}s">'
+                     f'{sector(cx, cy, r, r * 0.68, at + gap / 2, at + sweep - gap / 2, t)}</g>')
+        at += sweep
+    parts.append(f'<text x="{cx}" y="{cy + size * 0.35:.1f}" text-anchor="middle" font-size="{size * 1.9:.1f}" '
+                 f'font-weight="700" fill="{TEXT}">{share(ROWS, (0, 1)):.0f}%</text>')
+    parts.append(f'<text x="{cx}" y="{cy + size * 1.75:.1f}" text-anchor="middle" font-size="{size * SMALL:.1f}" '
+                 f'fill="{DIM}">T1 or T2</text>')
+    return parts
 
 
 def swatch(x, y, s, tier):
@@ -160,11 +200,13 @@ def render(w, seed, pad, big, size, row_gap, name_w, cols, shown, legend_rows):
         parts.append(swatch(x, y - s * 0.9, s, t))
         parts.append(f'<text x="{x + s + size * 0.4:.1f}" y="{y:.1f}" font-size="{size * SMALL:.1f}" fill="{LABEL}">'
                      f'<tspan font-weight="700">{tier}</tspan> {name}</text>')
+    ends = []                                    # where each row's count ends, by column
     for k, r in enumerate(rows):
         c, i = divmod(k, per_col)
         x = pad + c * (col_w + col_gap)
         y = top + i * row_gap
         n = sum(r["tiers"])
+        ends.append((c, x + name_w + n * unit + size * 0.4 + len(str(n)) * size * SMALL * 0.6))
         parts.append(f'<text x="{x:.1f}" y="{y + size * 0.35:.1f}" font-size="{size}" fill="{LABEL}">{html.escape(label(r["domain"]))}</text>')
         parts.append(f'<g class="grow" style="animation-delay:{0.15 + 0.04 * k:.2f}s">')
         parts += bar(x + name_w, y - size * 0.36, size * 0.72, r["tiers"], unit)
@@ -175,6 +217,13 @@ def render(w, seed, pad, big, size, row_gap, name_w, cols, shown, legend_rows):
         y = top + (per_col - 1) * row_gap + row_gap * 1.2
         parts.append(f'<text x="{pad}" y="{y + size * 0.35:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">'
                      f'and {len(rest)} more, with {sum(sum(r["tiers"]) for r in rest)} sources between them</text>')
+    # The ring sits in the last column's empty right side, where its short bars leave room,
+    # centred on the rows; it is left out wherever a row's count would reach it.
+    if cols > 1:
+        r_ring = min(RING_R, (per_col - 1) * row_gap / 2)
+        cx, cy = w - pad - r_ring, top + (per_col - 1) * row_gap / 2
+        if max(e for c, e in ends if c == cols - 1) + size * 2 < cx - r_ring:
+            parts += ring(cx, cy, r_ring, size)
     parts.append("</g>\n</svg>\n")
     return panel.keep_clear("\n".join(parts))
 
