@@ -96,9 +96,11 @@ is the exception: it types with SMIL, which CSS can't stop, so `typing_line.py` 
 `links.py` and `icons.py` draw their glyphs from `glyphs.py`.
 
 `banner.py` and `footer.py` draw the same star and orbit from `star.py`; change it
-there and rerun both. The banner also draws `star.belt()`: three lanes of rocks with gaps
-between them, gold S-types inside giving way to blue-grey C-types outside, each lane turning
-at its Kepler period. A lane is a circle in a group squashed to the orbit's tilt, so a plain
+there and rerun both. The banner also draws `star.belt()`, from the catalog's profile
+(`belt_profile.json`): four lanes of rocks, the real belt's stretches between the 3:1, 5:2,
+7:3 and 2:1 Kirkwood gaps, each holding rocks in proportion to its bodies and colouring
+them by the measured bright share at their distance, so gold S-types inside give way to
+blue-grey C-types outside. Each lane turns at its Kepler period. A lane is a circle in a group squashed to the orbit's tilt, so a plain
 rotation carries it along its ellipse, and each rock turns back as fast so it stays round.
 
 The footer's star is the Sun of a side view drawn to scale across: Earth at 1 au, Mars at

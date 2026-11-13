@@ -7,20 +7,53 @@ so a page that wants the system somewhere else, or smaller, places it with a nes
 <svg> viewport (see `nested`) rather than a transform, which would move the origin.
 """
 
+import json
 import math
 import random
+from pathlib import Path
 
 CX, CY = 170, 150
 BOX_W, BOX_H = 340, 300
 
-# The belt: three lanes outside the body's orbit (rx 125), with gaps between them, as the
-# Kirkwood gaps split the real one. Seen at the orbit's tilt, so flattened to its 42/125.
-# Inner lanes turn faster (Kepler's third law: period goes as radius^1.5), and the rocks go
-# from stony gold inside to carbonaceous blue-grey outside, as the S/C gradient does.
+# The belt, drawn from the catalog (belt_profile.json, which belt_profile.py writes): its
+# lanes are the real belt's stretches between the Kirkwood gaps, from 2.1 au to the 2:1
+# resonance, laid from just outside the body's orbit (rx 125) at RADII. Each lane holds
+# rocks in proportion to the bodies in its stretch, each rock at a distance drawn as the
+# catalog's are and gold or blue-grey by the share of bright and dark bodies with a
+# measured albedo there, so the belt turns from S-type gold to C-type blue outward as the
+# real one does. Seen at the orbit's tilt, so flattened to its 42/125. Inner lanes turn
+# faster (Kepler's third law: period goes as radius^1.5).
 TILT, FLAT = -18, 42 / 125
-LANES = ((138, 145, 34), (149, 156, 40), (160, 166, 46))     # (inner radius, outer radius, rocks)
+PROFILE = json.loads((Path(__file__).parent / "belt_profile.json").read_text(encoding="utf-8"))
+# The lanes' edges, au: the belt's inner edge, then the 3:1, 5:2, 7:3 and 2:1 resonances.
+EDGES = (2.1, 2.502, 2.825, 2.958, 3.279)
+RADII = (138, 168)                    # where 2.1 au and 3.279 au fall
+GAP_PX = 1.2                          # each lane stops this short of a gap, so the gaps show
+ROCKS = 120
 LANE_PERIOD = 90                                             # seconds per turn for the first lane
 S_TYPE, C_TYPE = (0xe8, 0xc2, 0x7a), (0x8f, 0xa8, 0xc8)
+
+
+def radius(a):
+    """The banner radius of a distance a (au) from the Sun."""
+    return RADII[0] + (RADII[1] - RADII[0]) * (a - EDGES[0]) / (EDGES[-1] - EDGES[0])
+
+
+def lanes():
+    """(inner radius, outer radius, [(bin index, weight)]) for each stretch between gaps."""
+    lo, _, step = PROFILE["au"]
+    out = []
+    for a0, a1 in zip(EDGES, EDGES[1:]):
+        bins = [(i, n) for i, n in enumerate(PROFILE["count"]) if a0 <= lo + (i + 0.5) * step < a1 and n]
+        out.append((radius(a0) + (GAP_PX if a0 != EDGES[0] else 0), radius(a1) - GAP_PX, bins))
+    return out
+
+
+def bright_share(i, spread=2):
+    """The share of bright bodies among those with a measured albedo, over bin i and spread
+    either side; 0.5 where there are none."""
+    b, d = PROFILE["bright"][max(0, i - spread):i + spread + 1], PROFILE["dark"][max(0, i - spread):i + spread + 1]
+    return sum(b) / (sum(b) + sum(d)) if sum(b) + sum(d) else 0.5
 
 DEFS = """  <radialGradient id="corona" cx="0.5" cy="0.5" r="0.5">
     <stop offset="0" stop-color="#ffffff" stop-opacity="0.9"/>
@@ -79,15 +112,20 @@ def belt():
     panel.keep_clear, which reads circles at their untransformed place, leaves them be."""
     rng = random.Random(7)
     parts = [f'<g transform="translate({CX} {CY}) rotate({TILT}) scale(1 {FLAT:.4f})">']
-    outer = LANES[-1][1]
-    for k, (r0, r1, n) in enumerate(LANES):
-        period = LANE_PERIOD * (((r0 + r1) / 2) / ((LANES[0][0] + LANES[0][1]) / 2)) ** 1.5
+    ls = lanes()
+    total = sum(n for *_, bins in ls for _, n in bins)
+    lo, _, step = PROFILE["au"]
+    first = (ls[0][0] + ls[0][1]) / 2
+    gold, blue = ("#" + "".join(f"{c:02x}" for c in rgb) for rgb in (S_TYPE, C_TYPE))
+    for r0, r1, bins in ls:
+        period = LANE_PERIOD * (((r0 + r1) / 2) / first) ** 1.5
         parts.append(f'<g class="lane" style="--t:{period:.1f}s;--d:-{rng.uniform(0, period):.1f}s">')
-        for _ in range(n):
-            a, r = rng.uniform(0, 2 * math.pi), rng.uniform(r0, r1)
-            # The share of C-types rises outward, with scatter, as in the belt.
-            c = min(max((r - LANES[0][0]) / (outer - LANES[0][0]) + rng.uniform(-0.35, 0.35), 0), 1)
-            colour = "#" + "".join(f"{round(s + (t - s) * c):02x}" for s, t in zip(S_TYPE, C_TYPE))
+        n = round(ROCKS * sum(w for _, w in bins) / total)
+        for i in rng.choices([i for i, _ in bins], weights=[w for _, w in bins], k=n):
+            # Where in its bin, then onto the lane (kept inside its edges).
+            r = min(max(radius(lo + (i + rng.random()) * step), r0), r1)
+            a = rng.uniform(0, 2 * math.pi)
+            colour = gold if rng.random() < bright_share(i) else blue
             size = rng.choice((0.9, 1.1, 1.3, 1.6))
             parts.append(f'<ellipse cx="{r * math.cos(a):.1f}" cy="{r * math.sin(a):.1f}" rx="{size}" ry="{size / FLAT:.2f}" '
                          f'fill="{colour}" opacity="{rng.uniform(0.45, 0.9):.2f}"/>')
