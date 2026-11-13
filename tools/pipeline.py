@@ -6,6 +6,11 @@ README swaps it in with <picture>, as it does for the stat tiles.
 
 Solid arrows carry data (a pinned release or an installed package); dashed arrows are
 citations. Check an edge against the two repos' READMEs before adding or moving it.
+Packages economicspace installs side by side share one line into it (a bus): the others
+join it as branches without heads of their own (`wide_branches`, `tall_branches`).
+
+Card widths are set so the longest title, "asteroid-belt-gradient", fits even in a font as
+wide as Verdana, which stands in for DejaVu Sans on Linux machines without Arial.
 
 It moves the way the banner does: points of light run along the data arrows in the
 direction the data goes, the citations' dashes creep toward what cites them, and a few
@@ -104,15 +109,17 @@ FLOW_GAP = 48          # px between the points of light on a data arrow
 FLOW_SECONDS = 1.4     # time for each to travel FLOW_GAP
 
 
-def arrow(d, dashed):
+def arrow(d, dashed, head=True):
     """The path d as a citation (dashed, its dashes creeping forward) or as a data arrow
     with points of light running along it. A dash offset falling to 0 moves the pattern
     toward the end of the path. Each point of light is a wide faint dot under a small bright
-    one; the group's dash offset, which both inherit, moves them together."""
+    one; the group's dash offset, which both inherit, moves them together. Without a head,
+    it is a branch that joins another arrow's line."""
     if dashed:
         return f'<path class="cite" d="{d}" fill="none" stroke="#7d8fb3" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-dim)"/>'
     dots = f'fill="none" stroke-linecap="round" stroke-dasharray="0.01 {FLOW_GAP - 0.01}"'
-    return (f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5" marker-end="url(#arrow)"/>'
+    marker = ' marker-end="url(#arrow)"' if head else ""
+    return (f'<path d="{d}" fill="none" stroke="#5ba3dc" stroke-width="2.5"{marker}/>'
             f'<g class="flow"><path d="{d}" {dots} stroke="#5ba3dc" stroke-opacity="0.45" stroke-width="13"/>'
             f'<path d="{d}" {dots} stroke="#ffffff" stroke-width="6"/></g>')
 
@@ -132,7 +139,7 @@ def edge(a, b, dashed, horizontal):
     return arrow(d, dashed)
 
 
-def elbow(points, dashed, r=8):
+def elbow(points, dashed, head=True, r=8):
     """An arrow along straight runs through points, with each corner rounded."""
     d = f"M{points[0][0]:.1f} {points[0][1]:.1f}"
     for (x0, y0), (x1, y1), (x2, y2) in zip(points, points[1:], points[2:]):
@@ -141,25 +148,15 @@ def elbow(points, dashed, r=8):
         vx, vy = (x2 > x1) - (x2 < x1), (y2 > y1) - (y2 < y1)
         d += f" L{x1 - ux * r:.1f} {y1 - uy * r:.1f} Q{x1:.1f} {y1:.1f} {x1 + vx * r:.1f} {y1 + vy * r:.1f}"
     d += f" L{points[-1][0]:.1f} {points[-1][1]:.1f}"
-    return arrow(d, dashed)
+    return arrow(d, dashed, head)
 
 
-def from_below(a, e, dashed, frac, lane):
-    """An arrow into economicspace (e) from a card in a row below it, on phones, where
-    targets sits under economicspace: it climbs the gap between the columns at x=lane and
-    turns into economicspace's left side, frac of the way down. (On desktop the cards below
-    come in along lanes of their own.)"""
-    ax, ay, aw, ah = a
-    ex, ey, ew, eh = e
-    y1, y2 = ay + ah / 2, ey + eh * frac
-    return elbow([(ax + aw if ax < lane else ax, y1), (lane, y1), (lane, y2), (ex - 3, y2)], dashed)
-
-
-def route(a, b, dashed, boxes, horizontal, below, lanes):
+def route(a, b, dashed, boxes, horizontal, lanes, branches):
+    """The arrow for edge a -> b. An edge in branches has no head of its own: its lane ends
+    on another arrow's line (the trunk), which carries it the rest of the way, so packages
+    economicspace installs side by side arrive as one line instead of a bundle of them."""
     if (a, b) in lanes:
-        return elbow(lanes[a, b](boxes), dashed)
-    if a in below:
-        return from_below(boxes[a], boxes[b], dashed, *below[a])
+        return elbow(lanes[a, b](boxes), dashed, (a, b) not in branches)
     return edge(boxes[a], boxes[b], dashed, horizontal)
 
 
@@ -172,9 +169,9 @@ def legend(x, y, size):
 </g>"""
 
 
-def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, below, lanes):
+def render(w, h, boxes, horizontal, title_size, line_size, legend_at, seed, lanes, branches):
     parts = [background(w, h, seed), f'<g font-family="{FONT}">']
-    parts += [route(a, b, dashed, boxes, horizontal, below, lanes) for a, b, dashed in EDGES]
+    parts += [route(a, b, dashed, boxes, horizontal, lanes, branches) for a, b, dashed in EDGES]
     parts += [card(k, *boxes[k], title_size, line_size) for k in NODES]
     parts.append(legend(*legend_at, line_size - 1))
     parts.append("</g>\n</svg>\n")
@@ -191,8 +188,13 @@ def at(box, fx, fy):
 # second from spacecost to the mining targets, and the cards in the third row feed
 # economicspace from below. Citations from General_Research run along a lane between the top
 # two rows, and the data AsteroidCatalog sends economicspace along a lane above that.
-CW = {1: 250, 2: 220, 3: 270, 4: 226}
-CX = {1: 24, 2: 336, 3: 618, 4: 950}
+# The third column is the widest so "asteroid-belt-gradient" fits even in a font as wide as
+# Verdana (DejaVu Sans, on Linux machines without Arial); the gaps hold an arrow and its head.
+CW = {1: 250, 2: 224, 3: 300, 4: 216}
+GAP = 54
+CX = {1: 24}
+for col in (2, 3, 4):
+    CX[col] = CX[col - 1] + CW[col - 1] + GAP
 TOP, MID, CH = 34, 200, 104
 wide = {
     "gr": (CX[1], TOP, CW[1], CH),
@@ -205,17 +207,28 @@ wide = {
     "targets": (CX[4], MID, CW[4], CH),
 }
 CITE_LANE, DATA_LANE = TOP + CH + 44, TOP + CH + 22
-# Under economicspace, the lanes into its bottom: the further right an arrow comes in, the
-# lower its lane, so none crosses another's climb. The third row sits under the lowest.
-SC_LANE, SB_LANE, QL_LANE = MID + CH + 14, MID + CH + 28, MID + CH + 42
-R3 = QL_LANE + 16
+# Under the second row, one bus carries the four packages economicspace installs: spacecost
+# drops into it, the trunk, and samebytes, quietlaunch and quietqueue climb into it from the
+# third row. It rises into economicspace's bottom at TRUNK_X, straight over quietqueue. The
+# audit's citation runs at the same height to the right of it, where the bus has ended.
+BUS = MID + CH + 26
+R3 = BUS + 26
 wide.update({
     "sb": (CX[1], R3, CW[1], CH),
     "ql": (CX[2], R3, CW[2], CH),
     "qq": (CX[3], R3, CW[3], CH),
     "sr": (CX[4], R3, CW[4], CH),
 })
-SR_LANE = R3 - 14
+TRUNK_X = CX[3] + CW[3] * 0.45
+
+
+def onto_bus(b, key, fx):
+    """Up out of key's top, fx along it, to the bus."""
+    x = at(b[key], fx, 0)[0]
+    return [(x, R3), (x, BUS)]
+
+
+wide_branches = {("sb", "es"), ("ql", "es"), ("qq", "es")}
 wide_lanes = {
     ("gr", "sc"): lambda b: [at(b["gr"], 0.5, 1), (at(b["sc"], 0.5, 0)[0], b["sc"][1] - 3)],
     ("gr", "sv"): lambda b: [at(b["gr"], 0.8, 1), (at(b["gr"], 0.8, 1)[0], CITE_LANE),
@@ -226,43 +239,44 @@ wide_lanes = {
     ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), ((CX[2] + CW[2] + CX[3]) / 2, at(b["ac"], 1, 0.75)[1]),
                              ((CX[2] + CW[2] + CX[3]) / 2, DATA_LANE), (at(b["es"], 0.6, 0)[0], DATA_LANE),
                              (at(b["es"], 0.6, 0)[0], MID - 3)],
-    # Under spacevalue, and up into economicspace from below.
-    ("sc", "es"): lambda b: [at(b["sc"], 0.5, 1), (at(b["sc"], 0.5, 1)[0], SC_LANE),
-                             (at(b["es"], 0.15, 1)[0], SC_LANE), (at(b["es"], 0.15, 1)[0], MID + CH + 3)],
-    ("sb", "es"): lambda b: [at(b["sb"], 0.8, 0), (at(b["sb"], 0.8, 0)[0], SB_LANE),
-                             (at(b["es"], 0.27, 1)[0], SB_LANE), (at(b["es"], 0.27, 1)[0], MID + CH + 3)],
-    ("ql", "es"): lambda b: [at(b["ql"], 0.6, 0), (at(b["ql"], 0.6, 0)[0], QL_LANE),
-                             (at(b["es"], 0.4, 1)[0], QL_LANE), (at(b["es"], 0.4, 1)[0], MID + CH + 3)],
-    # quietqueue sits right under economicspace.
-    ("qq", "es"): lambda b: [at(b["qq"], 0.6, 0), (at(b["es"], 0.6, 1)[0], MID + CH + 3)],
+    # The bus's trunk: down out of spacecost, under spacevalue, and up into economicspace.
+    ("sc", "es"): lambda b: [at(b["sc"], 0.3, 1), (at(b["sc"], 0.3, 1)[0], BUS),
+                             (TRUNK_X, BUS), (TRUNK_X, MID + CH + 3)],
+    ("sb", "es"): lambda b: onto_bus(b, "sb", 0.7),
+    ("ql", "es"): lambda b: onto_bus(b, "ql", 0.5),
+    # Straight up into the trunk's climb, past its corner, so the two read as one line.
+    ("qq", "es"): lambda b: [(TRUNK_X, R3), (TRUNK_X, BUS - 8)],
     # Up out of the audit and over to economicspace's lower right, under the mining targets.
-    ("sr", "es"): lambda b: [at(b["sr"], 0.12, 0), (at(b["sr"], 0.12, 0)[0], SR_LANE),
-                             (at(b["es"], 0.88, 1)[0], SR_LANE), (at(b["es"], 0.88, 1)[0], MID + CH + 3)],
+    ("sr", "es"): lambda b: [at(b["sr"], 0.15, 0), (at(b["sr"], 0.15, 0)[0], BUS),
+                             (at(b["es"], 0.85, 1)[0], BUS), (at(b["es"], 0.85, 1)[0], MID + CH + 3)],
 }
 # Phones: six rows, top to bottom, two cards a row, starred-repos beside General_Research.
 # The citations leave General_Research's right side and come down the middle of the gap
 # between the columns, AsteroidCatalog's data left of them, and quietlaunch and quietqueue
 # climb a lane right of them to economicspace's lower left. On the right edge spacecost's
 # data runs down past spacevalue, the audit's citation down the outside of it, and
-# samebytes's climbs from under the mining targets, each in its own stretch.
-PW, PH, ROW = 300, 118, 168
-PWIDTH, left, right = 736, 12, 392
+# samebytes's climbs from under the mining targets, each in its own stretch. The left
+# column is wider (LW) so "asteroid-belt-gradient" fits in a font as wide as Verdana.
+PW, LW, PH, ROW = 300, 324, 118, 168
+PWIDTH, left = 760, 12
+right = left + LW + 80
 tall = {
-    "gr": (left, 20, PW, PH),
+    "gr": (left, 20, LW, PH),
     "sr": (right, 20, PW, PH),
-    "ac": (left, 20 + ROW, PW, PH),
+    "ac": (left, 20 + ROW, LW, PH),
     "sc": (right, 20 + ROW, PW, PH),
-    "abg": (left, 20 + 2 * ROW, PW, PH),
+    "abg": (left, 20 + 2 * ROW, LW, PH),
     "sv": (right, 20 + 2 * ROW, PW, PH),
-    "paper": (left, 20 + 3 * ROW, PW, PH),
+    "paper": (left, 20 + 3 * ROW, LW, PH),
     "es": (right, 20 + 3 * ROW, PW, PH),
-    "ql": (left, 20 + 4 * ROW, PW, PH),
+    "ql": (left, 20 + 4 * ROW, LW, PH),
     "targets": (right, 20 + 4 * ROW, PW, PH),
-    "qq": (left, 20 + 5 * ROW, PW, PH),
+    "qq": (left, 20 + 5 * ROW, LW, PH),
     "sb": (right, 20 + 5 * ROW, PW, PH),
 }
-GAP_X = (left + PW + right) / 2
+GAP_X = (left + LW + right) / 2
 EDGE_IN, EDGE_OUT = right + PW + 15, right + PW + 28
+PKG_LANE = right - 26
 
 
 def cite_from_gr(b, key, fy):
@@ -275,22 +289,26 @@ tall_lanes = {
     ("gr", "sc"): lambda b: cite_from_gr(b, "sc", 0.5),
     ("gr", "sv"): lambda b: cite_from_gr(b, "sv", 0.3),
     ("gr", "es"): lambda b: cite_from_gr(b, "es", 0.2),
-    ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), (left + PW + 14, at(b["ac"], 1, 0.75)[1]),
-                             (left + PW + 14, at(b["es"], 0, 0.45)[1]), (right - 3, at(b["es"], 0, 0.45)[1])],
+    ("ac", "es"): lambda b: [at(b["ac"], 1, 0.75), (left + LW + 14, at(b["ac"], 1, 0.75)[1]),
+                             (left + LW + 14, at(b["es"], 0, 0.45)[1]), (right - 3, at(b["es"], 0, 0.45)[1])],
     ("sc", "es"): lambda b: [at(b["sc"], 1, 0.75), (EDGE_IN, at(b["sc"], 1, 0.75)[1]),
                              (EDGE_IN, at(b["es"], 1, 0.3)[1]), (right + PW + 3, at(b["es"], 1, 0.3)[1])],
     ("sr", "es"): lambda b: [at(b["sr"], 1, 0.5), (EDGE_OUT, at(b["sr"], 1, 0.5)[1]),
                              (EDGE_OUT, at(b["es"], 1, 0.6)[1]), (right + PW + 3, at(b["es"], 1, 0.6)[1])],
     ("sb", "es"): lambda b: [at(b["sb"], 1, 0.5), (EDGE_IN, at(b["sb"], 1, 0.5)[1]),
                              (EDGE_IN, at(b["es"], 1, 0.85)[1]), (right + PW + 3, at(b["es"], 1, 0.85)[1])],
+    # quietqueue's climb is the trunk into economicspace's lower left; quietlaunch joins it.
+    ("qq", "es"): lambda b: [at(b["qq"], 1, 0.5), (PKG_LANE, at(b["qq"], 1, 0.5)[1]),
+                             (PKG_LANE, at(b["es"], 0, 0.72)[1]), (right - 3, at(b["es"], 0, 0.72)[1])],
+    ("ql", "es"): lambda b: [at(b["ql"], 1, 0.5), (PKG_LANE, at(b["ql"], 1, 0.5)[1])],
 }
+tall_branches = {("ql", "es")}
 
 files = {
     "pipeline.svg": render(1200, R3 + CH + 56, wide, True, 22, 17, (CX[1], R3 + CH + 40), 7,
-                           {}, wide_lanes),
-    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 25, 22,
-                                   (left + 4, 20 + 5 * ROW + PH + 42), 8,
-                                   {"ql": (0.72, right - 26), "qq": (0.72, right - 26)}, tall_lanes),
+                           wide_lanes, wide_branches),
+    "pipeline-compact.svg": render(PWIDTH, 20 + 5 * ROW + PH + 64, tall, False, 24, 22,
+                                   (left + 4, 20 + 5 * ROW + PH + 42), 8, tall_lanes, tall_branches),
 }
 for name, svg in files.items():
     (OUT / name).write_text(svg, encoding="utf-8", newline="\n")
