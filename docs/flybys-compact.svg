@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1208" width="680" height="1208" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 12–18 Nov 2026 (NASA/JPL close-approach data): 22 in all. 2026 VC11, 0.3 lunar distances on Thu 12 Nov, 4–8 m, 9.7 km/s; 2026 VP8, 2.9 lunar distances on Fri 13 Nov, 9–20 m, 6.2 km/s; 2026 VV8, 3.6 lunar distances on Sat 14 Nov, 15–35 m, 6.3 km/s; 2026 VT12, 6.4 lunar distances on Fri 13 Nov, 23–52 m, 20.2 km/s; 2022 VB2, 7.7 lunar distances on Tue 17 Nov, 25–55 m, 9.0 km/s; 2026 VK8, 7.8 lunar distances on Thu 12 Nov, 25–56 m, 22.6 km/s; 2026 VM3, 8.1 lunar distances on Mon 16 Nov, 9–20 m, 3.7 km/s; 2026 VF7, 9.5 lunar distances on Sat 14 Nov, 26–58 m, 7.4 km/s; and 14 more farther out.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 1237" width="680" height="1237" role="img" aria-label="Asteroids passing Earth within 20 lunar distances, 12–18 Nov 2026 (NASA/JPL close-approach data): 22 in all. 2026 VC11, 0.3 lunar distances on Thu 12 Nov, 4–8 m, 9.7 km/s; 2026 VP8, 2.9 lunar distances on Fri 13 Nov, 9–20 m, 6.2 km/s; 2026 VV8, 3.6 lunar distances on Sat 14 Nov, 15–35 m, 6.3 km/s; 2026 VT12, 6.4 lunar distances on Fri 13 Nov, 23–52 m, 20.2 km/s; 2022 VB2, 7.7 lunar distances on Tue 17 Nov, 25–55 m, 9.0 km/s; 2026 VK8, 7.8 lunar distances on Thu 12 Nov, 25–56 m, 22.6 km/s; 2026 VM3, 8.1 lunar distances on Mon 16 Nov, 9–20 m, 3.7 km/s; 2026 VF7, 9.5 lunar distances on Sat 14 Nov, 26–58 m, 7.4 km/s; and 14 more farther out.">
 <defs>
 <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1020"/><stop offset="0.6" stop-color="#0f1e3d"/><stop offset="1" stop-color="#112650"/></linearGradient>
 <radialGradient id="earth" cx="0.35" cy="0.35" r="0.7"><stop offset="0" stop-color="#9fd4ff"/><stop offset="0.5" stop-color="#3d7fc4"/><stop offset="1" stop-color="#173a6b"/></radialGradient>
@@ -14,87 +14,88 @@
   @keyframes fade { from { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .tw, .fly, .fade { animation: none; } }
 </style>
-<rect x="0.5" y="0.5" width="679" height="1207" rx="16" fill="url(#g)" stroke="#2a3b63"/>
-<circle cx="432.6" cy="37.8" r="0.8" fill="#fff" opacity="0.30"/><circle cx="65.7" cy="510.9" r="0.6" fill="#fff" opacity="0.24"/><circle cx="162.5" cy="725.6" r="1.0" fill="#fff" opacity="0.28"/><circle cx="233.9" cy="193.3" r="0.8" fill="#fff" opacity="0.24"/><circle cx="543.9" cy="877.8" r="1.0" fill="#fff" opacity="0.25"/><circle cx="575.9" cy="1040.8" r="0.8" fill="#fff" opacity="0.31"/><circle cx="29.3" cy="384.0" r="0.8" fill="#fff" opacity="0.23"/><circle cx="614.3" cy="684.1" r="1.0" fill="#fff" opacity="0.33"/><circle cx="153.6" cy="1197.1" r="1.0" fill="#fff" opacity="0.40"/><circle cx="509.8" cy="1034.4" r="0.6" fill="#fff" opacity="0.45"/><circle cx="579.6" cy="21.7" r="1.0" fill="#fff" opacity="0.25"/><circle cx="595.5" cy="903.0" r="1.0" fill="#fff" opacity="0.34"/><circle cx="202.9" cy="196.5" r="0.6" fill="#fff" opacity="0.58"/><circle cx="589.6" cy="322.0" r="1.0" fill="#fff" opacity="0.50"/><circle cx="432.3" cy="733.9" r="0.6" fill="#fff" opacity="0.35"/><circle cx="591.5" cy="999.3" r="0.8" fill="#fff" opacity="0.30"/><circle cx="93.3" cy="574.5" r="1.0" fill="#fff" opacity="0.27"/><circle cx="509.5" cy="830.3" r="1.0" fill="#fff" opacity="0.32"/><circle cx="668.8" cy="782.7" r="0.8" fill="#fff" opacity="0.56"/><circle cx="539.6" cy="138.2" r="0.6" fill="#fff" opacity="0.28"/><circle cx="623.1" cy="1019.6" r="0.6" fill="#fff" opacity="0.36"/><circle cx="9.4" cy="473.4" r="0.8" fill="#fff" opacity="0.31"/><circle cx="41.3" cy="576.3" r="1.0" fill="#fff" opacity="0.26"/><circle cx="599.2" cy="301.5" r="1.0" fill="#fff" opacity="0.22"/><circle cx="628.6" cy="251.5" r="1.0" fill="#fff" opacity="0.33"/><circle cx="184.4" cy="164.0" r="1.0" fill="#fff" opacity="0.32"/><circle cx="591.8" cy="448.5" r="0.6" fill="#fff" opacity="0.38"/><circle cx="591.1" cy="323.2" r="0.6" fill="#fff" opacity="0.50"/><circle cx="94.9" cy="1175.9" r="0.6" fill="#fff" opacity="0.50"/><circle cx="635.5" cy="831.7" r="0.6" fill="#fff" opacity="0.42"/><circle cx="35.8" cy="442.7" r="0.6" fill="#fff" opacity="0.56"/><circle cx="622.7" cy="290.2" r="0.6" fill="#fff" opacity="0.59"/><circle cx="546.4" cy="1058.6" r="0.6" fill="#fff" opacity="0.27"/><circle cx="621.9" cy="940.6" r="0.8" fill="#fff" opacity="0.52"/><circle cx="581.7" cy="974.4" r="0.8" fill="#fff" opacity="0.26"/><circle cx="552.8" cy="1046.6" r="0.6" fill="#fff" opacity="0.21"/><circle cx="652.3" cy="220.9" r="0.8" fill="#fff" opacity="0.22"/><circle cx="661.5" cy="145.8" r="1.0" fill="#fff" opacity="0.28"/><circle cx="37.5" cy="527.8" r="1.0" fill="#fff" opacity="0.57"/><circle cx="632.4" cy="815.4" r="0.6" fill="#fff" opacity="0.45"/><circle cx="535.0" cy="1152.1" r="1.0" fill="#fff" opacity="0.27"/><circle cx="64.3" cy="622.4" r="1.0" fill="#fff" opacity="0.45"/><circle cx="661.3" cy="736.6" r="0.6" fill="#fff" opacity="0.38"/><circle cx="596.4" cy="694.2" r="1.0" fill="#fff" opacity="0.48"/><circle cx="600.7" cy="1033.6" r="0.6" fill="#fff" opacity="0.51"/><circle cx="41.3" cy="305.0" r="0.6" fill="#fff" opacity="0.38"/><circle cx="540.1" cy="803.8" r="1.0" fill="#fff" opacity="0.44"/><circle cx="638.8" cy="1070.6" r="1.0" fill="#fff" opacity="0.53"/><circle cx="600.3" cy="516.7" r="1.0" fill="#fff" opacity="0.38"/><circle cx="50.6" cy="493.9" r="1.0" fill="#fff" opacity="0.39"/><circle cx="11.9" cy="427.3" r="0.8" fill="#fff" opacity="0.54"/><circle cx="641.1" cy="507.5" r="1.0" fill="#fff" opacity="0.49"/><circle cx="539.1" cy="1078.2" r="0.8" fill="#fff" opacity="0.29"/><circle cx="297.4" cy="42.6" r="0.8" fill="#fff" opacity="0.47"/><circle cx="538.0" cy="871.2" r="0.8" fill="#fff" opacity="0.57"/><circle cx="659.2" cy="644.7" r="0.8" fill="#fff" opacity="0.44"/><circle cx="639.6" cy="510.5" r="0.6" fill="#fff" opacity="0.39"/><circle cx="638.5" cy="245.6" r="0.6" fill="#fff" opacity="0.45"/><circle cx="438.0" cy="23.1" r="0.8" fill="#fff" opacity="0.53"/><circle cx="313.3" cy="190.4" r="0.6" fill="#fff" opacity="0.49"/><circle cx="649.1" cy="329.9" r="1.0" fill="#fff" opacity="0.51"/><circle cx="573.5" cy="998.2" r="0.6" fill="#fff" opacity="0.31"/><circle cx="259.6" cy="42.2" r="0.8" fill="#fff" opacity="0.27"/><circle cx="501.3" cy="1141.4" r="1.0" fill="#fff" opacity="0.27"/><circle cx="512.8" cy="719.4" r="0.6" fill="#fff" opacity="0.53"/><circle cx="471.1" cy="158.5" r="0.8" fill="#fff" opacity="0.24"/><circle cx="16.1" cy="346.9" r="0.8" fill="#fff" opacity="0.38"/><circle cx="51.4" cy="594.2" r="1.0" fill="#fff" opacity="0.45"/><circle cx="43.6" cy="185.8" r="1.0" fill="#fff" opacity="0.58"/><circle cx="64.6" cy="303.8" r="1.0" fill="#fff" opacity="0.51"/>
-<circle class="tw" cx="665.4" cy="372.0" r="1.1" fill="#dbe7ff" style="animation-delay:-2.44s;animation-duration:5.22s"/><circle class="tw" cx="637.2" cy="255.7" r="1.1" fill="#dbe7ff" style="animation-delay:-1.06s;animation-duration:3.24s"/><circle class="tw" cx="25.2" cy="280.9" r="1.1" fill="#dbe7ff" style="animation-delay:-4.00s;animation-duration:5.02s"/><circle class="tw" cx="616.3" cy="224.3" r="1.3" fill="#dbe7ff" style="animation-delay:-2.54s;animation-duration:4.48s"/>
+<rect x="0.5" y="0.5" width="679" height="1236" rx="16" fill="url(#g)" stroke="#2a3b63"/>
+<circle cx="432.6" cy="38.5" r="0.8" fill="#fff" opacity="0.30"/><circle cx="65.7" cy="523.2" r="0.6" fill="#fff" opacity="0.24"/><circle cx="162.5" cy="743.1" r="1.0" fill="#fff" opacity="0.28"/><circle cx="233.9" cy="197.8" r="0.8" fill="#fff" opacity="0.24"/><circle cx="543.9" cy="899.0" r="1.0" fill="#fff" opacity="0.25"/><circle cx="620.4" cy="104.2" r="0.8" fill="#fff" opacity="0.53"/><circle cx="418.7" cy="1060.1" r="1.0" fill="#fff" opacity="0.28"/><circle cx="575.9" cy="1066.0" r="0.8" fill="#fff" opacity="0.31"/><circle cx="412.5" cy="217.0" r="1.0" fill="#fff" opacity="0.30"/><circle cx="29.3" cy="393.2" r="0.8" fill="#fff" opacity="0.23"/><circle cx="614.3" cy="700.5" r="1.0" fill="#fff" opacity="0.33"/><circle cx="153.6" cy="1226.0" r="1.0" fill="#fff" opacity="0.40"/><circle cx="509.8" cy="1059.4" r="0.6" fill="#fff" opacity="0.45"/><circle cx="579.6" cy="22.0" r="1.0" fill="#fff" opacity="0.25"/><circle cx="595.5" cy="924.8" r="1.0" fill="#fff" opacity="0.34"/><circle cx="202.9" cy="201.1" r="0.6" fill="#fff" opacity="0.58"/><circle cx="589.6" cy="329.6" r="1.0" fill="#fff" opacity="0.50"/><circle cx="432.3" cy="751.6" r="0.6" fill="#fff" opacity="0.35"/><circle cx="591.5" cy="1023.5" r="0.8" fill="#fff" opacity="0.30"/><circle cx="330.7" cy="92.5" r="1.0" fill="#fff" opacity="0.51"/><circle cx="93.3" cy="588.3" r="1.0" fill="#fff" opacity="0.27"/><circle cx="509.5" cy="850.3" r="1.0" fill="#fff" opacity="0.32"/><circle cx="668.8" cy="801.5" r="0.8" fill="#fff" opacity="0.56"/><circle cx="578.8" cy="94.5" r="0.6" fill="#fff" opacity="0.31"/><circle cx="661.5" cy="128.2" r="0.8" fill="#fff" opacity="0.49"/><circle cx="588.7" cy="100.0" r="1.0" fill="#fff" opacity="0.24"/><circle cx="623.1" cy="1044.3" r="0.6" fill="#fff" opacity="0.36"/><circle cx="9.4" cy="484.7" r="0.8" fill="#fff" opacity="0.31"/><circle cx="331.1" cy="239.9" r="0.6" fill="#fff" opacity="0.59"/><circle cx="41.3" cy="590.2" r="1.0" fill="#fff" opacity="0.26"/><circle cx="646.0" cy="105.8" r="0.6" fill="#fff" opacity="0.23"/><circle cx="599.2" cy="308.6" r="1.0" fill="#fff" opacity="0.22"/><circle cx="628.6" cy="257.4" r="1.0" fill="#fff" opacity="0.33"/><circle cx="591.8" cy="459.2" r="0.6" fill="#fff" opacity="0.38"/><circle cx="591.1" cy="330.9" r="0.6" fill="#fff" opacity="0.50"/><circle cx="143.2" cy="782.4" r="0.8" fill="#fff" opacity="0.40"/><circle cx="94.9" cy="1204.3" r="0.6" fill="#fff" opacity="0.50"/><circle cx="635.5" cy="851.7" r="0.6" fill="#fff" opacity="0.42"/><circle cx="35.8" cy="453.2" r="0.6" fill="#fff" opacity="0.56"/><circle cx="622.7" cy="297.1" r="0.6" fill="#fff" opacity="0.59"/><circle cx="546.4" cy="1084.2" r="0.6" fill="#fff" opacity="0.27"/><circle cx="621.9" cy="963.3" r="0.8" fill="#fff" opacity="0.52"/><circle cx="581.7" cy="997.9" r="0.8" fill="#fff" opacity="0.26"/><circle cx="552.8" cy="1071.9" r="0.6" fill="#fff" opacity="0.21"/><circle cx="652.3" cy="226.0" r="0.8" fill="#fff" opacity="0.22"/><circle cx="661.5" cy="149.2" r="1.0" fill="#fff" opacity="0.28"/><circle cx="37.5" cy="540.4" r="1.0" fill="#fff" opacity="0.57"/><circle cx="632.4" cy="835.0" r="0.6" fill="#fff" opacity="0.45"/><circle cx="147.6" cy="967.4" r="1.0" fill="#fff" opacity="0.46"/><circle cx="535.0" cy="1180.0" r="1.0" fill="#fff" opacity="0.27"/><circle cx="64.3" cy="637.4" r="1.0" fill="#fff" opacity="0.45"/><circle cx="157.2" cy="251.1" r="0.6" fill="#fff" opacity="0.22"/><circle cx="661.3" cy="754.4" r="0.6" fill="#fff" opacity="0.38"/><circle cx="596.4" cy="710.9" r="1.0" fill="#fff" opacity="0.48"/><circle cx="600.7" cy="1058.6" r="0.6" fill="#fff" opacity="0.51"/><circle cx="41.3" cy="312.3" r="0.6" fill="#fff" opacity="0.38"/><circle cx="540.1" cy="823.1" r="1.0" fill="#fff" opacity="0.44"/><circle cx="638.8" cy="1096.4" r="1.0" fill="#fff" opacity="0.53"/><circle cx="600.3" cy="529.1" r="1.0" fill="#fff" opacity="0.38"/><circle cx="50.6" cy="505.7" r="1.0" fill="#fff" opacity="0.39"/><circle cx="11.9" cy="437.5" r="0.8" fill="#fff" opacity="0.54"/><circle cx="641.1" cy="519.6" r="1.0" fill="#fff" opacity="0.49"/><circle cx="539.1" cy="1104.2" r="0.8" fill="#fff" opacity="0.29"/><circle cx="297.4" cy="43.4" r="0.8" fill="#fff" opacity="0.47"/><circle cx="538.0" cy="892.2" r="0.8" fill="#fff" opacity="0.57"/><circle cx="659.2" cy="660.2" r="0.8" fill="#fff" opacity="0.44"/><circle cx="448.2" cy="110.5" r="0.8" fill="#fff" opacity="0.25"/><circle cx="639.6" cy="522.7" r="0.6" fill="#fff" opacity="0.39"/><circle cx="638.5" cy="251.4" r="0.6" fill="#fff" opacity="0.45"/><circle cx="411.2" cy="921.2" r="0.6" fill="#fff" opacity="0.51"/><circle cx="482.8" cy="100.8" r="1.0" fill="#fff" opacity="0.53"/><circle cx="438.0" cy="23.4" r="0.8" fill="#fff" opacity="0.53"/><circle cx="313.3" cy="194.8" r="0.6" fill="#fff" opacity="0.49"/><circle cx="649.1" cy="337.8" r="1.0" fill="#fff" opacity="0.51"/><circle cx="573.5" cy="1022.3" r="0.6" fill="#fff" opacity="0.31"/><circle cx="259.6" cy="43.0" r="0.8" fill="#fff" opacity="0.27"/><circle cx="637.5" cy="112.5" r="1.0" fill="#fff" opacity="0.36"/><circle cx="501.3" cy="1169.0" r="1.0" fill="#fff" opacity="0.27"/><circle cx="512.8" cy="736.7" r="0.6" fill="#fff" opacity="0.53"/><circle cx="16.1" cy="355.2" r="0.8" fill="#fff" opacity="0.38"/><circle cx="51.4" cy="608.4" r="1.0" fill="#fff" opacity="0.45"/><circle cx="43.6" cy="190.2" r="1.0" fill="#fff" opacity="0.58"/><circle cx="64.6" cy="311.0" r="1.0" fill="#fff" opacity="0.51"/><circle cx="665.4" cy="380.9" r="1.0" fill="#fff" opacity="0.22"/><circle cx="645.5" cy="129.2" r="0.6" fill="#fff" opacity="0.45"/><circle cx="57.8" cy="11.3" r="0.8" fill="#fff" opacity="0.48"/>
+<circle class="tw" cx="212.3" cy="922.5" r="1.3" fill="#dbe7ff" style="animation-delay:-1.76s;animation-duration:4.41s"/><circle class="tw" cx="25.2" cy="287.5" r="1.1" fill="#dbe7ff" style="animation-delay:-4.00s;animation-duration:5.02s"/><circle class="tw" cx="616.3" cy="229.6" r="1.3" fill="#dbe7ff" style="animation-delay:-2.54s;animation-duration:4.48s"/>
 
 <g font-family="'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif">
 <text x="36" y="74.4" font-size="66.0" font-weight="700" fill="#5ba3dc">22</text>
 <text x="132.2" y="74.4" font-size="24" fill="#dbe3f5">asteroids pass Earth within 20 LD</text>
-<text x="36" y="112.8" font-size="21.1" fill="#7d8fb3">12–18 Nov 2026. Closest: 2026 VC11, 0.3 LD on Thu 12 Nov.</text>
-<text x="36" y="141.6" font-size="21.1" fill="#7d8fb3">Clockwise: the week. Outward: distance.</text>
-<circle cx="340.0" cy="462.8" r="38.4" fill="url(#halo)"/>
-<circle cx="340.0" cy="462.8" r="20.4" fill="url(#earth)"/>
-<line x1="340.0" y1="426.8" x2="340.0" y2="226.8" stroke="#2a3b63" stroke-width="1"/>
-<text x="457.5" y="226.0" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Thu</text>
-<line x1="368.1" y1="440.4" x2="524.5" y2="315.7" stroke="#2a3b63" stroke-width="1"/>
-<text x="604.0" y="409.7" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Fri</text>
-<line x1="375.1" y1="470.8" x2="570.1" y2="515.3" stroke="#2a3b63" stroke-width="1"/>
-<text x="551.7" y="638.8" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Sat</text>
-<line x1="355.6" y1="495.2" x2="442.4" y2="675.4" stroke="#2a3b63" stroke-width="1"/>
-<text x="340.0" y="740.8" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Sun</text>
-<line x1="324.4" y1="495.2" x2="237.6" y2="675.4" stroke="#2a3b63" stroke-width="1"/>
-<text x="128.3" y="638.8" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Mon</text>
-<line x1="304.9" y1="470.8" x2="109.9" y2="515.3" stroke="#2a3b63" stroke-width="1"/>
-<text x="76.0" y="409.7" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Tue</text>
-<line x1="311.9" y1="440.4" x2="155.5" y2="315.7" stroke="#2a3b63" stroke-width="1"/>
-<text x="222.5" y="226.0" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Wed</text>
-<circle cx="340.0" cy="462.8" r="79.4" fill="none" stroke="#e8c27a" stroke-opacity="0.65" stroke-dasharray="3 4" stroke-width="1.2"/>
-<circle cx="340.0" cy="462.8" r="133.0" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
-<circle cx="340.0" cy="462.8" r="173.2" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
-<circle cx="340.0" cy="462.8" r="230.0" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
-<text x="344.0" y="325.8" font-size="21.1" fill="#7d8fb3">5 LD</text>
-<text x="344.0" y="285.6" font-size="21.1" fill="#7d8fb3">10 LD</text>
-<text x="344.0" y="228.8" font-size="21.1" fill="#7d8fb3">20 LD</text>
-<text x="423.4" y="470.0" font-size="21.1" fill="#e8c27a">Moon</text>
-<circle class="fly" cx="344.0" cy="402.8" r="8.9" fill="url(#rock)" style="--dx:14.7px;--dy:-217.4px;animation-delay:0.20s"/>
-<text class="fade" x="366.1" y="411.5" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.20s">1</text>
-<circle class="fly" cx="431.8" cy="401.2" r="10.7" fill="url(#rock)" style="--dx:139.1px;--dy:-93.3px;animation-delay:0.35s"/>
-<text class="fade" x="445.1" y="428.3" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.35s">2</text>
-<circle class="fly" cx="393.6" cy="568.1" r="12.1" fill="url(#rock)" style="--dx:72.6px;--dy:142.4px;animation-delay:0.50s"/>
-<text class="fade" x="371.1" y="586.8" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.50s">3</text>
-<circle class="fly" cx="475.7" cy="409.5" r="13.5" fill="url(#rock)" style="--dx:123.1px;--dy:-48.4px;animation-delay:0.65s"/>
-<text class="fade" x="485.4" y="441.5" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.65s">4</text>
-<circle class="fly" cx="193.3" cy="407.9" r="13.7" fill="url(#rock)" style="--dx:-113.7px;--dy:-42.5px;animation-delay:0.80s"/>
-<text class="fade" x="202.7" y="390.0" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.80s">5</text>
-<circle class="fly" cx="412.2" cy="323.4" r="13.7" fill="url(#rock)" style="--dx:55.7px;--dy:-107.4px;animation-delay:0.95s"/>
-<text class="fade" x="436.2" y="343.0" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:1.95s">6</text>
-<circle class="fly" cx="199.9" cy="538.3" r="10.7" fill="url(#rock)" style="--dx:-104.6px;--dy:56.4px;animation-delay:1.10s"/>
-<text class="fade" x="188.5" y="524.5" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:2.10s">7</text>
-<circle class="fly" cx="446.1" cy="595.5" r="13.9" fill="url(#rock)" style="--dx:67.5px;--dy:84.4px;animation-delay:1.25s"/>
-<text class="fade" x="425.0" y="619.6" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" style="animation-delay:2.25s">8</text>
-<circle cx="49.2" cy="776.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="782.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">1</text>
-<text x="74.4" y="784.0" font-size="24" fill="#b9c6e4">2026 VC11</text>
-<text class="fade" x="213.6" y="784.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.20s">0.3 LD · 4–8 m · Thu</text>
-<circle cx="49.2" cy="822.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="828.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">2</text>
-<text x="74.4" y="830.0" font-size="24" fill="#b9c6e4">2026 VP8</text>
-<text class="fade" x="213.6" y="830.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.35s">2.9 LD · 9–20 m · Fri</text>
-<circle cx="49.2" cy="868.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="874.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">3</text>
-<text x="74.4" y="876.0" font-size="24" fill="#b9c6e4">2026 VV8</text>
-<text class="fade" x="213.6" y="876.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.50s">3.6 LD · 15–35 m · Sat</text>
-<circle cx="49.2" cy="914.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="920.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">4</text>
-<text x="74.4" y="922.0" font-size="24" fill="#b9c6e4">2026 VT12</text>
-<text class="fade" x="213.6" y="922.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.65s">6.4 LD · 23–52 m · Fri</text>
-<circle cx="49.2" cy="960.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="966.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">5</text>
-<text x="74.4" y="968.0" font-size="24" fill="#b9c6e4">2022 VB2</text>
-<text class="fade" x="213.6" y="968.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.80s">7.7 LD · 25–55 m · Tue</text>
-<circle cx="49.2" cy="1006.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="1012.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">6</text>
-<text x="74.4" y="1014.0" font-size="24" fill="#b9c6e4">2026 VK8</text>
-<text class="fade" x="213.6" y="1014.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.95s">7.8 LD · 25–56 m · Thu</text>
-<circle cx="49.2" cy="1052.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="1058.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">7</text>
-<text x="74.4" y="1060.0" font-size="24" fill="#b9c6e4">2026 VM3</text>
-<text class="fade" x="213.6" y="1060.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:1.10s">8.1 LD · 9–20 m · Mon</text>
-<circle cx="49.2" cy="1098.1" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
-<text x="49.2" y="1104.8" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">8</text>
-<text x="74.4" y="1106.0" font-size="24" fill="#b9c6e4">2026 VF7</text>
-<text class="fade" x="213.6" y="1106.0" font-size="21.6" fill="#dbe3f5" style="animation-delay:1.25s">9.5 LD · 26–58 m · Sat</text>
-<text x="36" y="1142.8" font-size="21.1" fill="#7d8fb3">And 14 more farther out. </text>
+<text x="36" y="112.8" font-size="21.1" fill="#7d8fb3">12–18 Nov 2026.</text>
+<text x="36" y="141.6" font-size="21.1" fill="#7d8fb3">Closest: 2026 VC11, 0.3 LD on Thu 12 Nov.</text>
+<text x="36" y="170.4" font-size="21.1" fill="#7d8fb3">Clockwise: the week. Outward: distance.</text>
+<circle cx="340.0" cy="491.6" r="38.4" fill="url(#halo)"/>
+<circle cx="340.0" cy="491.6" r="20.4" fill="url(#earth)"/>
+<line x1="340.0" y1="455.6" x2="340.0" y2="255.6" stroke="#2a3b63" stroke-width="1"/>
+<text x="457.5" y="254.8" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Thu</text>
+<line x1="368.1" y1="469.2" x2="524.5" y2="344.5" stroke="#2a3b63" stroke-width="1"/>
+<text x="604.0" y="438.5" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Fri</text>
+<line x1="375.1" y1="499.6" x2="570.1" y2="544.1" stroke="#2a3b63" stroke-width="1"/>
+<text x="551.7" y="667.6" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Sat</text>
+<line x1="355.6" y1="524.0" x2="442.4" y2="704.2" stroke="#2a3b63" stroke-width="1"/>
+<text x="340.0" y="769.6" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Sun</text>
+<line x1="324.4" y1="524.0" x2="237.6" y2="704.2" stroke="#2a3b63" stroke-width="1"/>
+<text x="128.3" y="667.6" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Mon</text>
+<line x1="304.9" y1="499.6" x2="109.9" y2="544.1" stroke="#2a3b63" stroke-width="1"/>
+<text x="76.0" y="438.5" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Tue</text>
+<line x1="311.9" y1="469.2" x2="155.5" y2="344.5" stroke="#2a3b63" stroke-width="1"/>
+<text x="222.5" y="254.8" text-anchor="middle" font-size="21.1" fill="#7d8fb3">Wed</text>
+<circle cx="340.0" cy="491.6" r="79.4" fill="none" stroke="#e8c27a" stroke-opacity="0.65" stroke-dasharray="3 4" stroke-width="1.2"/>
+<circle cx="340.0" cy="491.6" r="133.0" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
+<circle cx="340.0" cy="491.6" r="173.2" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
+<circle cx="340.0" cy="491.6" r="230.0" fill="none" stroke="#2a3b63" stroke-width="1.2"/>
+<text x="344.0" y="354.6" font-size="21.1" fill="#7d8fb3" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke">5 LD</text>
+<text x="344.0" y="314.4" font-size="21.1" fill="#7d8fb3" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke">10 LD</text>
+<text x="344.0" y="257.6" font-size="21.1" fill="#7d8fb3" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke">20 LD</text>
+<text x="423.4" y="498.8" font-size="21.1" fill="#e8c27a" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke">Moon</text>
+<circle class="fly" cx="344.0" cy="431.6" r="8.9" fill="url(#rock)" style="--dx:14.7px;--dy:-217.4px;animation-delay:0.20s"/>
+<text class="fade" x="366.1" y="440.3" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.20s">1</text>
+<circle class="fly" cx="431.8" cy="430.0" r="10.7" fill="url(#rock)" style="--dx:139.1px;--dy:-93.3px;animation-delay:0.35s"/>
+<text class="fade" x="445.1" y="457.1" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.35s">2</text>
+<circle class="fly" cx="393.6" cy="596.9" r="12.1" fill="url(#rock)" style="--dx:72.6px;--dy:142.4px;animation-delay:0.50s"/>
+<text class="fade" x="371.1" y="615.6" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.50s">3</text>
+<circle class="fly" cx="475.7" cy="438.3" r="13.5" fill="url(#rock)" style="--dx:123.1px;--dy:-48.4px;animation-delay:0.65s"/>
+<text class="fade" x="485.4" y="470.3" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.65s">4</text>
+<circle class="fly" cx="193.3" cy="436.7" r="13.7" fill="url(#rock)" style="--dx:-113.7px;--dy:-42.5px;animation-delay:0.80s"/>
+<text class="fade" x="202.7" y="418.8" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.80s">5</text>
+<circle class="fly" cx="412.2" cy="352.2" r="13.7" fill="url(#rock)" style="--dx:55.7px;--dy:-107.4px;animation-delay:0.95s"/>
+<text class="fade" x="436.2" y="371.8" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:1.95s">6</text>
+<circle class="fly" cx="199.9" cy="567.1" r="10.7" fill="url(#rock)" style="--dx:-104.6px;--dy:56.4px;animation-delay:1.10s"/>
+<text class="fade" x="188.5" y="553.3" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:2.10s">7</text>
+<circle class="fly" cx="446.1" cy="624.3" r="13.9" fill="url(#rock)" style="--dx:67.5px;--dy:84.4px;animation-delay:1.25s"/>
+<text class="fade" x="425.0" y="648.4" text-anchor="middle" font-size="19.2" font-weight="700" fill="#dbe3f5" stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke" style="animation-delay:2.25s">8</text>
+<circle cx="49.2" cy="804.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="811.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">1</text>
+<text x="74.4" y="812.8" font-size="24" fill="#b9c6e4">2026 VC11</text>
+<text class="fade" x="213.6" y="812.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.20s">0.3 LD · 4–8 m · Thu</text>
+<circle cx="49.2" cy="850.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="857.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">2</text>
+<text x="74.4" y="858.8" font-size="24" fill="#b9c6e4">2026 VP8</text>
+<text class="fade" x="213.6" y="858.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.35s">2.9 LD · 9–20 m · Fri</text>
+<circle cx="49.2" cy="896.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="903.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">3</text>
+<text x="74.4" y="904.8" font-size="24" fill="#b9c6e4">2026 VV8</text>
+<text class="fade" x="213.6" y="904.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.50s">3.6 LD · 15–35 m · Sat</text>
+<circle cx="49.2" cy="942.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="949.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">4</text>
+<text x="74.4" y="950.8" font-size="24" fill="#b9c6e4">2026 VT12</text>
+<text class="fade" x="213.6" y="950.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.65s">6.4 LD · 23–52 m · Fri</text>
+<circle cx="49.2" cy="988.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="995.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">5</text>
+<text x="74.4" y="996.8" font-size="24" fill="#b9c6e4">2022 VB2</text>
+<text class="fade" x="213.6" y="996.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.80s">7.7 LD · 25–55 m · Tue</text>
+<circle cx="49.2" cy="1034.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="1041.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">6</text>
+<text x="74.4" y="1042.8" font-size="24" fill="#b9c6e4">2026 VK8</text>
+<text class="fade" x="213.6" y="1042.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:0.95s">7.8 LD · 25–56 m · Thu</text>
+<circle cx="49.2" cy="1080.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="1087.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">7</text>
+<text x="74.4" y="1088.8" font-size="24" fill="#b9c6e4">2026 VM3</text>
+<text class="fade" x="213.6" y="1088.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:1.10s">8.1 LD · 9–20 m · Mon</text>
+<circle cx="49.2" cy="1126.9" r="13.9" fill="none" stroke="#e8c27a" stroke-opacity="0.7" stroke-width="1.2"/>
+<text x="49.2" y="1133.6" text-anchor="middle" font-size="18.0" font-weight="700" fill="#dbe3f5">8</text>
+<text x="74.4" y="1134.8" font-size="24" fill="#b9c6e4">2026 VF7</text>
+<text class="fade" x="213.6" y="1134.8" font-size="21.6" fill="#dbe3f5" style="animation-delay:1.25s">9.5 LD · 26–58 m · Sat</text>
+<text x="36" y="1171.6" font-size="21.1" fill="#7d8fb3">And 14 more farther out.</text>
 </g>
 </svg>

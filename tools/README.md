@@ -7,7 +7,8 @@ Mondays) fetches it again and redraws them.
 
 | on the profile | drawn by | from | refreshed |
 |---|---|---|---|
-| banner, typing line, footer, link buttons, section icons | `banner.py`, `typing_line.py`, `footer.py`, `links.py`, `icons.py` | the scripts alone | when changed |
+| banner, typing line, link buttons, section icons | `banner.py`, `typing_line.py`, `links.py`, `icons.py` | the scripts alone | when changed |
+| footer | `belt_profile.py`, `footer.py` | the AsteroidCatalog release the paper pins (`pyarrow`), binned into `belt_profile.json` | by hand, with a new catalog release |
 | stat tiles | `tiles.py` | General_Research's `sources.csv`, Hermes_Skills' README and AsteroidCatalog's release manifest and asteroid-belt-gradient's `results/summary.json` (`refresh_counts.py`) | weekly |
 | gallery cards | `gallery.py`, `sim_clip.py` | the project clones: screenshots, figures, map layouts, a demo video, the simulator running, and the AsteroidCatalog release the paper pins (`pyarrow`) | by hand |
 | figure grids in Deep learning, Simulation and Planetary science | `gallery.py` (`FIGURES`) | the two classifiers' confusion matrices, the scenes the simulator's own `make_screenshots.py` draws, the paper's figures, and a map panel from four of the Mars project's layout sheets | by hand |
@@ -45,6 +46,7 @@ python tools/flybys.py docs            # the week's close approaches, plus -comp
 python tools/gallery.py docs/gallery   # project cards (three animated) and, into docs/figures, the figure grids; name some (mars sim-launch) to make only those
 python tools/banner.py docs            # the banner, plus -compact
 python tools/typing_line.py docs/typing.svg
+python tools/belt_profile.py           # the main belt, binned for the footer (needs the release on disk, as gallery.py does)
 python tools/footer.py docs            # the strip that closes the page, plus -compact
 python tools/links.py docs/links       # the link buttons (Website, CV, LinkedIn, Kaggle, Contact form)
 python tools/icons.py docs/icons       # the icons beside the section headings
@@ -98,6 +100,14 @@ there and rerun both. The banner also draws `star.belt()`: three lanes of rocks 
 between them, gold S-types inside giving way to blue-grey C-types outside, each lane turning
 at its Kepler period. A lane is a circle in a group squashed to the orbit's tilt, so a plain
 rotation carries it along its ellipse, and each rock turns back as fast so it stays round.
+
+The footer's star is the Sun of a side view drawn to scale across: Earth at 1 au, Mars at
+1.52, then the belt to 3.5 au as points drawn in proportion to the catalog's proper
+semimajor axes, so the Kirkwood gaps open at 2.50, 2.82, 2.95 and 3.27 au, over a faint haze
+as bright as the belt is dense. Each point is gold or blue by the share of bright and dark
+bodies (p_V 0.10, as in asteroid-belt-gradient's `albedo.py`) with a measured albedo at its
+distance. `belt_profile.py` bins the release into `belt_profile.json`, which `footer.py`
+reads, so CI can redraw the footer without the catalog.
 
 `gallery.py` reads each project's images from the local clones under
 the `GitHub` folder this repo sits in and needs Pillow and numpy. The satellite, Mars and

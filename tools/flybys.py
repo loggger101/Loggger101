@@ -146,8 +146,8 @@ def dial(cx, cy, r_max, size, full):
         style = f'stroke="{GOLD}" stroke-opacity="0.65" stroke-dasharray="3 4"' if v == 1 else 'stroke="#2a3b63"'
         parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{rad(v):.1f}" fill="none" {style} stroke-width="1.2"/>')
     for v in (5, 10, MAX_LD):
-        parts.append(f'<text x="{cx + 4:.1f}" y="{cy - rad(v) - 4:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{v} LD</text>')
-    parts.append(f'<text x="{cx + rad(1) + 4:.1f}" y="{cy + size * 0.3:.1f}" font-size="{size * SMALL:.1f}" fill="{GOLD}">Moon</text>')
+        parts.append(f'<text x="{cx + 4:.1f}" y="{cy - rad(v) - 4:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}" {HALO}>{v} LD</text>')
+    parts.append(f'<text x="{cx + rad(1) + 4:.1f}" y="{cy + size * 0.3:.1f}" font-size="{size * SMALL:.1f}" fill="{GOLD}" {HALO}>Moon</text>')
     biggest = max((size_m(r)[1] for r in ROWS if size_m(r)), default=1)
     for k, r in enumerate(ROWS):
         a = turn(moment(r))
@@ -161,12 +161,17 @@ def dial(cx, cy, r_max, size, full):
         # Its number beside it, clockwise of it (out of the day names' way), once it has arrived.
         off = radius + size * 0.55
         parts.append(f'<text class="fade" x="{x - math.sin(a) * off:.1f}" y="{y + math.cos(a) * off + size * 0.3:.1f}" '
-                     f'text-anchor="middle" font-size="{size * 0.8:.1f}" font-weight="700" fill="{TEXT}" '
+                     f'text-anchor="middle" font-size="{size * 0.8:.1f}" font-weight="700" fill="{TEXT}" {HALO} '
                      f'style="{delay(k, 1.0)}">{k + 1}</text>')
     return parts
 
 
+# A dark outline drawn under a label on the dial, so a spoke or ring passing behind it
+# breaks round the letters instead of striking through them.
+HALO = 'stroke="#0c172e" stroke-width="4" stroke-linejoin="round" paint-order="stroke"'
+
 KEY = "Clockwise: the week. Outward: distance. Dot: likely width."
+SOURCE = "From NASA/JPL close-approach data, every Monday."
 
 
 def header(x, y, size, full):
@@ -175,16 +180,15 @@ def header(x, y, size, full):
     unit = "lunar distances" if full else "LD"
     closest = (f"Closest: {CLOSEST['des']}, {ld(CLOSEST):.1f} {unit} on {when(CLOSEST)}." if CLOSEST else "None this week.")
     line1 = f'{"asteroid passes" if COUNT == 1 else "asteroids pass"} Earth within {MAX_LD} {unit}'
-    line2 = f"{span()}. {closest}"
-    # Phones get the key under the header, where the dial follows.
-    key = [] if full else [f'<text x="{x}" y="{y + big * 0.8 + size * 2.8:.1f}" font-size="{size * SMALL:.1f}" '
-                           f'fill="{DIM}">Clockwise: the week. Outward: distance.</text>']
+    # On phones the closest pass gets a line of its own under the week, so a long
+    # designation can't push it past the edge; the key follows, where the dial does.
+    under = [f"{span()}. {closest}"] if full else [f"{span()}.", closest, "Clockwise: the week. Outward: distance."]
     base = y + big * 0.8
     return [f'<text x="{x}" y="{base:.1f}" font-size="{big:.1f}" font-weight="700" fill="{BLUE}">{COUNT}</text>',
             f'<text x="{x + big * 0.62 * len(str(COUNT)) + size * 0.6:.1f}" y="{base:.1f}" font-size="{size}" '
             f'fill="{TEXT}">{line1}</text>',
-            f'<text x="{x}" y="{base + size * 1.6:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">{html.escape(line2)}</text>',
-            *key], base + size * (1.6 if full else 2.8)
+            *(f'<text x="{x}" y="{base + size * (1.6 + 1.2 * k):.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">'
+              f'{html.escape(line)}</text>' for k, line in enumerate(under))], base + size * (1.6 if full else 4.0)
 
 
 def listing(x, top, size, row_gap, full):
@@ -203,13 +207,15 @@ def listing(x, top, size, row_gap, full):
                  else f"{ld(r):.1f} LD · {size_text(r)} · {when(r).split()[0]}")
         parts.append(f'<text class="fade" x="{x + size * 7.4:.1f}" y="{y:.1f}" font-size="{size * 0.9:.1f}" '
                      f'fill="{TEXT}" style="{delay(k)}">{html.escape(facts)}</text>')
-    more = f"And {COUNT - len(ROWS)} more farther out. " if COUNT > len(ROWS) else ""
-    if more or full:
-        parts.append(f'<text x="{x}" y="{top + (len(ROWS) - 0.2) * row_gap:.1f}" font-size="{size * SMALL:.1f}" '
-                     f'fill="{DIM}">{more}{"From NASA/JPL close-approach data, every Monday." if full else ""}</text>')
+    # Under the list: how many more there are, then on the desktop the key and the source,
+    # each on a line of its own (the source shared one with "And N more", which a busy
+    # week could push past the edge).
+    notes = ([f"And {COUNT - len(ROWS)} more farther out."] if COUNT > len(ROWS) else [])
     if full:
-        parts.append(f'<text x="{x}" y="{top + (len(ROWS) + 0.7) * row_gap:.1f}" font-size="{size * SMALL:.1f}" fill="{DIM}">'
-                     f'{KEY}</text>')
+        notes += [KEY, SOURCE]
+    for k, note in enumerate(notes):
+        parts.append(f'<text x="{x}" y="{top + (len(ROWS) - 0.2 + 0.75 * k) * row_gap:.1f}" '
+                     f'font-size="{size * SMALL:.1f}" fill="{DIM}">{note}</text>')
     return parts
 
 

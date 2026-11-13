@@ -243,4 +243,4 @@ The asteroids coming within 20 lunar distances of Earth in the week ahead, from 
 <p align="center"><sub>The charts, counts and cards on this page are drawn by Python scripts from the repos' own data, and most of them refresh every Monday. <a href="https://github.com/loggger101/Loggger101/tree/main/tools">See how they're made</a>.</sub></p>
 
 <br/>
-<p align="center"><picture><source media="(max-width: 600px)" srcset="docs/footer-compact.svg"><img src="docs/footer.svg" width="100%" alt=""></picture></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="docs/footer-compact.svg"><img src="docs/footer.svg" width="100%" alt="The inner solar system to scale, from the Sun past Earth and Mars to the main belt, drawn from about a million asteroids in the catalog: the Kirkwood gaps open where they are, and the belt turns from bright, mostly S-type gold to dark, mostly C-type blue outward."></picture></p>
