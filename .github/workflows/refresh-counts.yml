@@ -78,7 +78,8 @@ jobs:
 
   links:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # check.py waits out a busy server's 503s before calling a link broken.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v7

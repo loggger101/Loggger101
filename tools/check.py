@@ -355,23 +355,44 @@ def check_fresh(today=None, readme=None):
 LINK_STATUS_OK = {"www.linkedin.com": {999}}
 
 
-def check_links(readme):
-    """Every link in the README answers. Online, so only with --links."""
+# Answers that say "try again later", not "this link is broken": github.com meets a burst of
+# requests from a CI runner with 503s (it failed eleven good links at once on 17 Nov 2026).
+# These, and a link that doesn't answer at all, are asked again after each wait; one is
+# reported only if it lasts through all of them.
+TRANSIENT = {429, 500, 502, 503, 504}
+RETRY_WAITS = (5, 15, 45)
+
+
+def link_status(url):
+    """The HTTP status url answers with, or the error that kept it from answering."""
     import urllib.error
-    import urllib.parse
     import urllib.request
+    req = urllib.request.Request(url.replace("&amp;", "&"), headers={"User-Agent": "Mozilla/5.0 (profile link check)"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return r.status
+    except urllib.error.HTTPError as e:
+        return e.code
+    except (urllib.error.URLError, TimeoutError) as e:
+        return e
+
+
+def check_links(readme, status_of=link_status, wait=None):
+    """Every link in the README answers. Online, so only with --links."""
+    import time
+    import urllib.parse
+    wait = wait or time.sleep
     urls = sorted(set(re.findall(r'(?:href|src)="(https?://[^"]+)"', readme)))
     for url in urls:
-        req = urllib.request.Request(url.replace("&amp;", "&"), headers={"User-Agent": "Mozilla/5.0 (profile link check)"})
-        try:
-            with urllib.request.urlopen(req, timeout=30) as r:
-                status = r.status
-        except urllib.error.HTTPError as e:
-            status = e.code
-        except (urllib.error.URLError, TimeoutError) as e:
-            problems.append(f"link unreachable: {url} ({e})")
-            continue
-        if status >= 400 and status not in LINK_STATUS_OK.get(urllib.parse.urlsplit(url).hostname, set()):
+        status = status_of(url)
+        for delay in RETRY_WAITS:
+            if not (isinstance(status, Exception) or status in TRANSIENT):
+                break
+            wait(delay)
+            status = status_of(url)
+        if isinstance(status, Exception):
+            problems.append(f"link unreachable: {url} ({status})")
+        elif status >= 400 and status not in LINK_STATUS_OK.get(urllib.parse.urlsplit(url).hostname, set()):
             problems.append(f"link answers {status}: {url}")
     print(f"checked {len(urls)} links")
 

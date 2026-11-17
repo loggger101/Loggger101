@@ -296,6 +296,23 @@ eq("stars on a word and a line go", ('cx="30.0"' in kept, 'cx="300.0"' in kept),
 eq("a star clear of all stays", 'cx="200.0"' in kept, True)
 eq("a star by a dot goes", 'cx="380.0"' in kept, False)
 
+# Link check (check.py --links): a busy server's 503 is asked again, a broken link isn't
+# excused, and a 503 that lasts is still reported.
+def answers(*statuses):
+    left = list(statuses)
+    return lambda url: left.pop(0) if len(left) > 1 else left[0]
+waits = []
+for name, statuses, want_problems, want_waits in (
+        ("a 503 that clears is fine", (503, 503, 200), 0, [5, 15]),
+        ("a 404 is reported at once", (404,), 1, []),
+        ("a 503 that lasts is reported", (503,), 1, [5, 15, 45]),
+        ("no answer that lasts is reported", (TimeoutError("timed out"),), 1, [5, 15, 45])):
+    ck.problems.clear()
+    waits.clear()
+    ck.check_links('<a href="https://example.org/x">x</a>', status_of=answers(*statuses), wait=waits.append)
+    eq(name, (len(ck.problems), waits), (want_problems, want_waits))
+ck.problems.clear()
+
 # A refresh that stops part way leaves README.md and counts.json as they were.
 import tempfile
 sw = load("safe_write")
