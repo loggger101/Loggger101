@@ -159,6 +159,9 @@ def update_readme(readme, counts):
 
 
 def main():
+    # The summary below prints the paper's sample names ("D ≥ 53 km"), which a Windows
+    # console's cp1252 can't encode; without this the run dies after writing everything.
+    sys.stdout.reconfigure(encoding="utf-8")
     counts = live_counts()
     readme_path = ROOT / "README.md"
     readme = update_readme(readme_path.read_text(encoding="utf-8"), counts)

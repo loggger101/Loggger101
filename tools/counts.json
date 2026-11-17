@@ -1,6 +1,6 @@
 {
-  "sources": 1272,
-  "skills": 255,
+  "sources": 1395,
+  "skills": 256,
   "skill_categories": 23,
   "loc": {
     "economicspace": 23975,
@@ -9,8 +9,8 @@
     "spacecost": 9515,
     "General_Research": 2555,
     "starred-repos": 3864,
-    "asteroid-belt-gradient": 3148,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 33158,
+    "asteroid-belt-gradient": 3170,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 34112,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
     "Satellite-Space-Flight": 21540,
@@ -26,10 +26,10 @@
     "AsteroidCatalog": 14887,
     "spacevalue": 8310,
     "spacecost": 19074,
-    "General_Research": 82986,
+    "General_Research": 84669,
     "starred-repos": 11530,
-    "asteroid-belt-gradient": 6938,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1684790,
+    "asteroid-belt-gradient": 6980,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1686614,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
     "Satellite-Space-Flight": 33368,
@@ -68,10 +68,10 @@
       "Python": 3864
     },
     "asteroid-belt-gradient": {
-      "Python": 3148
+      "Python": 3170
     },
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
-      "Python": 31969,
+      "Python": 32923,
       "HTML": 654,
       "PowerShell": 446,
       "Batchfile": 89
@@ -123,7 +123,7 @@
     }
   },
   "activity": {
-    "as_of": "2026-11-16",
+    "as_of": "2026-11-17",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
@@ -265,7 +265,7 @@
       },
       "General_Research": {
         "first": "2026-09-17",
-        "last": "2026-11-15",
+        "last": "2026-11-17",
         "weeks": {
           "2026-09-14": 42,
           "2026-09-21": 53,
@@ -275,9 +275,15 @@
           "2026-10-19": 14,
           "2026-10-26": 3,
           "2026-11-02": 12,
-          "2026-11-09": 17
+          "2026-11-09": 17,
+          "2026-11-16": 2
         },
         "recent": [
+          [
+            "3d1d8295d048a1d4f9e4c12aa215991bde52e423",
+            "2026-11-17",
+            "Rounds 779-837: rc-649 to rc-712 opened; rc-193 reopened, rc-628 closed"
+          ],
           [
             "01fed80d9cdf0484358ccc5d7a6d1da632b1834d",
             "2026-11-15",
@@ -287,11 +293,6 @@
             "e7ff7b99b7e9c108a9732ca6e40796f36b667cd9",
             "2026-11-14",
             "Rounds 672-735: rc-534 to rc-602 opened; rc-356 and rc-361 reopened"
-          ],
-          [
-            "87a6401e93d5ac06ab8efef941ea35dff3604481",
-            "2026-11-12",
-            "Round 671: economicspace's six citation candidates applied upstream"
           ]
         ]
       },
@@ -327,58 +328,60 @@
       },
       "asteroid-belt-gradient": {
         "first": "2026-09-23",
-        "last": "2026-11-03",
+        "last": "2026-11-16",
         "weeks": {
           "2026-09-21": 16,
           "2026-09-28": 1,
           "2026-10-05": 19,
           "2026-10-26": 1,
-          "2026-11-02": 4
+          "2026-11-02": 4,
+          "2026-11-16": 3
         },
         "recent": [
           [
-            "04a395b7b9fb9f3ca1c024ab2bdb755ae4d53e84",
-            "2026-11-03",
-            "Say what happens to the families that cannot be classified (v2.6.6) (#28)"
+            "9059f8d5fda6c4b494ae6e71c3007fb92d056ef5",
+            "2026-11-16",
+            "Paper: state the FU Orionis accretion rate as the source does; keep Data availability on one page"
           ],
           [
-            "ac502d5702ced3adcbdc667a1e3a59bbcea7ab87",
-            "2026-11-03",
-            "Fig. 12 shows K/L; the paper states three more results the data support (v2.6.5) (#27)"
+            "902ea5aedc75ec1b8aef0e7c993d6949f0858a6e",
+            "2026-11-16",
+            "Use exact 2 ln 9 for the transition width; close the audit's open points (v2.6.7)"
           ],
           [
-            "f0e7cbbbe8a2dcf71e412ff1b0bfd90ff2188993",
-            "2026-11-03",
-            "Write the D/P share to four decimals (v2.6.4) (#26)"
+            "0a561788e3066d907f4b068844ff8ff44763a181",
+            "2026-11-16",
+            "Paper audit: correct the pre-main-sequence luminosity statement and three smaller errors"
           ]
         ]
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-11-13",
+        "last": "2026-11-17",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
           "2026-10-19": 33,
           "2026-10-26": 52,
           "2026-11-02": 54,
-          "2026-11-09": 76
+          "2026-11-09": 76,
+          "2026-11-16": 11
         },
         "recent": [
           [
-            "5109abe9f1129cdea3cbbb6df3c67f21cb5e4529",
-            "2026-11-13",
-            "Material-label tests T14-T17, H4 below 100 km, block-size check; paper section and figures"
+            "d49db438939b6d9cb75ba38fd6d623eb38fb21d0",
+            "2026-11-17",
+            "Six new layouts (21-26): T1 and T17 mapped, the held-out blocks, the three label sets"
           ],
           [
-            "706ca321dc8770f993acedd5d1dcaf9248f7219b",
-            "2026-11-12",
-            "T12 (label edges x classifier), T13 (lead maps on thermophysical units), H2 stage-2 settings: KB \u00a769.135-137, paper, deck, README"
+            "0b464213d843660be06c13b3070ab7dec994fdb4",
+            "2026-11-17",
+            "Paper: layouts 11, 19 and 14 as figures (depressions against Robbins, routed channels against the valleys, the review)"
           ],
           [
-            "28325a195b00061928112b3f809b0b3409d344af",
-            "2026-11-12",
-            "T11: thermophysical units (TES inertia x TES albedo) as material labels; KB \u00a769.134, paper, deck, README"
+            "3f0742177f10fa903dc411551686f2fed87173bf",
+            "2026-11-17",
+            "Paper: the third label set (layout 20) and the lead maps against SIM 3292, as two new figures"
           ]
         ]
       },
@@ -740,10 +743,18 @@
     }
   ],
   "flybys": {
-    "from": "2026-11-16",
-    "to": "2026-11-23",
+    "from": "2026-11-17",
+    "to": "2026-11-24",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
+      {
+        "des": "2026 WA",
+        "time": "2026-Nov-17 07:59",
+        "dist_au": 0.000844938687608272,
+        "v_kms": 6.70807169244967,
+        "h": 29.151,
+        "diameter_km": null
+      },
       {
         "des": "2026 VJ13",
         "time": "2026-Nov-17 05:36",
@@ -753,11 +764,11 @@
         "diameter_km": null
       },
       {
-        "des": "2026 VW15",
-        "time": "2026-Nov-16 05:26",
-        "dist_au": 0.0131390874922617,
-        "v_kms": 6.06052157958389,
-        "h": 27.113,
+        "des": "2026 WD",
+        "time": "2026-Nov-23 18:38",
+        "dist_au": 0.0114341635641782,
+        "v_kms": 13.884834059115,
+        "h": 26.939,
         "diameter_km": null
       },
       {
@@ -771,17 +782,9 @@
       {
         "des": "2022 VB2",
         "time": "2026-Nov-17 15:34",
-        "dist_au": 0.0198705192578925,
-        "v_kms": 8.95050373953794,
+        "dist_au": 0.0198705198103645,
+        "v_kms": 8.9505037710248,
         "h": 25.17,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 VM3",
-        "time": "2026-Nov-16 16:47",
-        "dist_au": 0.0207275062037755,
-        "v_kms": 3.69660977244505,
-        "h": 27.318,
         "diameter_km": null
       },
       {
@@ -794,10 +797,10 @@
       },
       {
         "des": "2026 VY15",
-        "time": "2026-Nov-21 21:21",
-        "dist_au": 0.0246604252700822,
-        "v_kms": 13.3279014698648,
-        "h": 25.539,
+        "time": "2026-Nov-21 21:20",
+        "dist_au": 0.0246540258650729,
+        "v_kms": 13.3266470437299,
+        "h": 25.467,
         "diameter_km": null
       },
       {
@@ -811,9 +814,9 @@
       {
         "des": "2026 VY18",
         "time": "2026-Nov-18 18:27",
-        "dist_au": 0.0257696322380057,
-        "v_kms": 17.5345958541775,
-        "h": 25.026,
+        "dist_au": 0.0257825105699808,
+        "v_kms": 17.5398358967381,
+        "h": 24.969,
         "diameter_km": null
       },
       {
@@ -822,6 +825,14 @@
         "dist_au": 0.026109595731734,
         "v_kms": 4.67254650940549,
         "h": 25.245,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 VF18",
+        "time": "2026-Nov-23 10:16",
+        "dist_au": 0.026784598542802,
+        "v_kms": 7.50384997640115,
+        "h": 26.641,
         "diameter_km": null
       },
       {
@@ -838,6 +849,14 @@
         "dist_au": 0.0310534980783074,
         "v_kms": 9.87433765522401,
         "h": 23.632,
+        "diameter_km": null
+      },
+      {
+        "des": "2007 WK3",
+        "time": "2026-Nov-19 07:19",
+        "dist_au": 0.0365712065732752,
+        "v_kms": 7.76018604283615,
+        "h": 26.2,
         "diameter_km": null
       },
       {
@@ -862,14 +881,6 @@
         "dist_au": 0.0470991947664407,
         "v_kms": 10.1012078051812,
         "h": 27.16,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 VQ2",
-        "time": "2026-Nov-16 07:56",
-        "dist_au": 0.0501444879461032,
-        "v_kms": 12.6389208864311,
-        "h": 25.215,
         "diameter_km": null
       },
       {
@@ -900,7 +911,7 @@
         "a50": 2.8407,
         "lo": 2.8378,
         "hi": 2.8431,
-        "width": 1.7168,
+        "width": 1.7169,
         "n": 135381
       },
       {
@@ -908,7 +919,7 @@
         "a50": 2.4603,
         "lo": 2.4338,
         "hi": 2.4852,
-        "width": 1.3937,
+        "width": 1.3939,
         "n": 2264
       },
       {
@@ -916,7 +927,7 @@
         "a50": 2.4724,
         "lo": 2.3856,
         "hi": 2.5298,
-        "width": 1.3763,
+        "width": 1.3765,
         "n": 330
       },
       {
@@ -924,7 +935,7 @@
         "a50": 2.4068,
         "lo": 2.306,
         "hi": 2.4876,
-        "width": 1.4859,
+        "width": 1.4861,
         "n": 247
       }
     ]
@@ -933,10 +944,10 @@
     {
       "domain": "01_density_and_population",
       "tiers": [
-        48,
+        49,
         3,
         12,
-        12
+        15
       ]
     },
     {
@@ -945,25 +956,25 @@
         74,
         11,
         14,
-        75
+        83
       ]
     },
     {
       "domain": "03_dv_propulsion",
       "tiers": [
-        17,
-        53,
+        18,
+        63,
         1,
-        38
+        63
       ]
     },
     {
       "domain": "04_launch_economics",
       "tiers": [
         6,
+        29,
         28,
-        27,
-        193
+        210
       ]
     },
     {
@@ -972,7 +983,7 @@
         4,
         17,
         3,
-        10
+        12
       ]
     },
     {
@@ -981,7 +992,7 @@
         0,
         4,
         13,
-        17
+        23
       ]
     },
     {
@@ -1017,7 +1028,7 @@
         4,
         17,
         0,
-        1
+        2
       ]
     },
     {
@@ -1034,8 +1045,8 @@
       "tiers": [
         19,
         3,
-        9,
-        3
+        12,
+        9
       ]
     },
     {
@@ -1050,10 +1061,10 @@
     {
       "domain": "14_propellant_consumable_prices",
       "tiers": [
-        0,
-        8,
-        8,
-        25
+        1,
+        10,
+        14,
+        41
       ]
     },
     {
@@ -1062,16 +1073,16 @@
         6,
         20,
         3,
-        22
+        26
       ]
     },
     {
       "domain": "16_reliability_learning_service_life",
       "tiers": [
         12,
-        25,
+        26,
         1,
-        18
+        21
       ]
     },
     {
@@ -1096,9 +1107,9 @@
       "domain": "19_asteroid_excavation_beneficiation",
       "tiers": [
         18,
-        24,
+        25,
         1,
-        33
+        36
       ]
     },
     {
@@ -1143,7 +1154,7 @@
         1,
         14,
         1,
-        0
+        1
       ]
     },
     {
@@ -1202,6 +1213,6 @@
     }
   ],
   "badges": {
-    "as_of": "2026-11-16"
+    "as_of": "2026-11-17"
   }
 }
