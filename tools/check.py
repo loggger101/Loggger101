@@ -377,6 +377,9 @@ def check_links(readme):
 
 
 def main():
+    # A problem quotes the README ("κ 0.844", "D ≥ 53 km"), which a Windows console's cp1252
+    # can't encode; without this the report dies on the first such problem and loses the rest.
+    sys.stdout.reconfigure(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     check_generated()
     check_references(readme)

@@ -24,6 +24,8 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+from safe_write import all_or_nothing, write
+
 ROOT = Path(__file__).resolve().parent.parent
 COUNTS = ROOT / "tools" / "counts.json"
 LOGOS = ROOT / "docs" / "logos"
@@ -127,11 +129,12 @@ def main():
         if why := problem_with(name, fetched[name]):
             sys.exit(f"the {name} badge {why}")
     out.mkdir(parents=True, exist_ok=True)
-    for name, svg in fetched.items():
-        (out / f"{name}.svg").write_text(svg.rstrip() + "\n", encoding="utf-8", newline="\n")
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
     data["badges"] = {"as_of": today.isoformat()}
-    COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
+    with all_or_nothing(COUNTS, *(out / f"{name}.svg" for name in fetched)):
+        for name, svg in fetched.items():
+            write(out / f"{name}.svg", svg.rstrip() + "\n")
+        write(COUNTS, json.dumps(data, indent=2) + "\n")
     print(f"{len(fetched)} badges")
 
 

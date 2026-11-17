@@ -20,6 +20,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from safe_write import all_or_nothing, write
+
 ROOT = Path(__file__).resolve().parent.parent
 COUNTS = ROOT / "tools" / "counts.json"
 API = "https://ssd-api.jpl.nasa.gov/cad.api"
@@ -60,11 +62,11 @@ def main():
     data = json.loads(COUNTS.read_text(encoding="utf-8"))
     data["flybys"] = {"from": today.isoformat(), "to": (today + dt.timedelta(days=7)).isoformat(),
                       "source": "NASA/JPL SBDB Close Approach Data API", "rows": rows}
-    COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import flybys       # reads the counts just written
     readme_path = ROOT / "README.md"
-    readme_path.write_text(flybys.update_readme(readme_path.read_text(encoding="utf-8")),
-                           encoding="utf-8", newline="\n")
+    with all_or_nothing(COUNTS, readme_path):
+        write(COUNTS, json.dumps(data, indent=2) + "\n")
+        import flybys       # reads the counts just written
+        write(readme_path, flybys.update_readme(readme_path.read_text(encoding="utf-8")))
     print(f"{len(rows)} approaches within {MAX_AU} au, {today} to {today + dt.timedelta(days=7)}")
 
 

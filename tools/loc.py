@@ -49,6 +49,8 @@ import tokenize
 from fnmatch import fnmatch
 from pathlib import Path, PurePosixPath
 
+from safe_write import all_or_nothing, write
+
 ROOT = Path(__file__).resolve().parent.parent
 COUNTS = ROOT / "tools" / "counts.json"
 
@@ -403,9 +405,10 @@ def main():
     data["loc"] = {name: loc[name] for name in REPOS}
     data["lines"] = {name: lines[name] for name in REPOS}
     data["languages"] = {name: languages[name] for name in REPOS}
-    COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import languages as panel     # reads the counts just written
-    readme_path.write_text(panel.update_readme(readme), encoding="utf-8", newline="\n")
+    with all_or_nothing(COUNTS, readme_path):
+        write(COUNTS, json.dumps(data, indent=2) + "\n")
+        import languages as panel     # reads the counts just written
+        write(readme_path, panel.update_readme(readme))
 
 
 if __name__ == "__main__":

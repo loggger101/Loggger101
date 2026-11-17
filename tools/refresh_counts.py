@@ -35,6 +35,8 @@ import sys
 import urllib.request
 from pathlib import Path
 
+from safe_write import all_or_nothing, write
+
 ROOT = Path(__file__).resolve().parent.parent
 RAW = "https://raw.githubusercontent.com/loggger101"
 MANIFEST = "https://github.com/loggger101/AsteroidCatalog/releases/latest/download/manifest.json"
@@ -164,16 +166,16 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     counts = live_counts()
     readme_path = ROOT / "README.md"
-    readme = update_readme(readme_path.read_text(encoding="utf-8"), counts)
-    readme_path.write_text(readme, encoding="utf-8", newline="\n")
-    # counts.json also holds loc.py's line counts; keep them.
     path = ROOT / "tools" / "counts.json"
-    data = json.loads(path.read_text(encoding="utf-8")) | counts
-    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import breakeven, crossover, sources    # read the counts just written
-    for chart in (breakeven, crossover, sources):
-        readme_path.write_text(chart.update_readme(readme_path.read_text(encoding="utf-8")),
-                               encoding="utf-8", newline="\n")
+    with all_or_nothing(readme_path, path):
+        readme = update_readme(readme_path.read_text(encoding="utf-8"), counts)
+        write(readme_path, readme)
+        # counts.json also holds loc.py's line counts; keep them.
+        data = json.loads(path.read_text(encoding="utf-8")) | counts
+        write(path, json.dumps(data, indent=2) + "\n")
+        import breakeven, crossover, sources    # read the counts just written
+        for chart in (breakeven, crossover, sources):
+            write(readme_path, chart.update_readme(readme_path.read_text(encoding="utf-8")))
     print(" ".join(f"{k}={v}" for k, v in counts.items() if k not in ("economics", "belt", "research")))
     print(" ".join(f"{r['dest']}={r['best']}" for r in counts["economics"]))
     print(" ".join(f"{r['sample']}={r['a50']}" for r in counts["belt"]["crossover"]))

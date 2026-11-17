@@ -59,7 +59,7 @@ Before committing, run
 ```bash
 python tools/check.py           # add --links to also check every link in the README, --facts every figure quoted from another repo (both online)
 python tools/test_loc.py        # loc.py's counting rules
-python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, the sources by domain and tier, flyby alt text, shields' error badges, commit subjects, anchors, the panel frame
+python tools/test_tools.py      # the economicspace and JPL readers, the break-even verdict, the crossover fits and their wording, the sources by domain and tier, flyby alt text, shields' error badges, commit subjects, anchors, the panel frame, the all-or-nothing writes
 ```
 
 `check.py` reruns the generators and fails if anything in `docs/` differs from their output,
@@ -73,6 +73,13 @@ profile quotes from another repo (`FACTS` in `check.py`: 84.3%, 161,659, "fiftee
 launch complexes" and the rest) is still in that repo's README. When a project changes a
 result, that job turns red until the profile catches up. So does a phrase that is true only
 until a date (`DATED` in `check.py`, such as the Mars final being "due 8 December"), the day after.
+
+A refresh can't leave the profile half-changed. Each fetch script checks what it read before
+writing anything, then writes `README.md` and `counts.json` through `safe_write.py`: every
+file goes to a temporary copy that is renamed over the old one (so a crash, a kill or an
+OneDrive lock can't leave a file cut off), and if the run stops part way, Ctrl+C included,
+every file it touched goes back as it was. The weekly workflow commits only `README.md`,
+`docs/` and `counts.json`, and fails rather than commit if anything else changed.
 
 The wide panels (activity, languages, break-even, flybys, repo diagram) open with
 `panel.background` from `panel.py`: the frame, the stars and the reduced-motion rule, which

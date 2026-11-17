@@ -296,4 +296,24 @@ eq("stars on a word and a line go", ('cx="30.0"' in kept, 'cx="300.0"' in kept),
 eq("a star clear of all stays", 'cx="200.0"' in kept, True)
 eq("a star by a dot goes", 'cx="380.0"' in kept, False)
 
+# A refresh that stops part way leaves README.md and counts.json as they were.
+import tempfile
+sw = load("safe_write")
+with tempfile.TemporaryDirectory() as tmp:
+    kept, made = Path(tmp) / "kept.md", Path(tmp) / "made.json"
+    kept.write_bytes(b"old\n")
+    try:
+        with sw.all_or_nothing(kept, made):
+            sw.write(kept, "new\r\n")
+            sw.write(made, "{}\n")
+            sys.exit("a README sentence went missing")
+    except SystemExit:
+        pass
+    eq("a stopped refresh puts a file back", kept.read_bytes(), b"old\n")
+    eq("and removes one it made", made.exists(), False)
+    with sw.all_or_nothing(kept):
+        sw.write(kept, "new\r\n")
+    eq("a finished one keeps its write, LF only", kept.read_bytes(), b"new\n")
+    eq("no temporary file is left", sorted(p.name for p in Path(tmp).iterdir()), ["kept.md"])
+
 sys.exit(f"{fails} failed" if fails else 0)

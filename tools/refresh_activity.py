@@ -27,6 +27,7 @@ import tempfile
 from pathlib import Path
 
 from loc import REPOS
+from safe_write import all_or_nothing, write
 
 ROOT = Path(__file__).resolve().parent.parent
 COUNTS = ROOT / "tools" / "counts.json"
@@ -79,12 +80,13 @@ def main():
         repos[name] = repo_activity(name, private)
         print(f"{sum(repos[name]['weeks'].values()):>6,} commits, last {repos[name]['last']}  {name}")
     data["activity"] = {"as_of": today.isoformat(), "repos": repos}
-    COUNTS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8", newline="\n")
-    import activity     # these two read the counts just written
-    import sparks
     readme_path = ROOT / "README.md"
-    readme = activity.update_readme(readme_path.read_text(encoding="utf-8"))
-    readme_path.write_text(sparks.update_readme(readme), encoding="utf-8", newline="\n")
+    with all_or_nothing(COUNTS, readme_path):
+        write(COUNTS, json.dumps(data, indent=2) + "\n")
+        import activity     # these two read the counts just written
+        import sparks
+        readme = activity.update_readme(readme_path.read_text(encoding="utf-8"))
+        write(readme_path, sparks.update_readme(readme))
 
 
 if __name__ == "__main__":
