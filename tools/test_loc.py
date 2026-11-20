@@ -30,6 +30,17 @@ eq("js program in a template literal", m.c_lines('const PAGE = `<script>\n  // a
 eq("js unclosed quote ends at newline", m.c_lines("const s = 'it\nlet x = 1;\n// c\n"), 2)
 eq("css", m.c_lines('a { content: "/* no */"; }\n/* c */\nb { }\n', line_comments=False), 2)
 eq("css url //", m.c_lines('a { background: url(//cdn/x.png); }\n', line_comments=False), 1)
+# Rust: doc and line comments, nested block comments, multi-line and raw strings, chars vs lifetimes.
+eq("rust", m.rust_lines('//! crate doc\n/// fn doc\nfn main() { // hi\n\n    let x = 1;\n}\n'), 3)
+eq("rust nested block comment", m.rust_lines('/* a /* b */ still\n comment */\nlet y = 2;\n'), 1)
+eq("rust string runs over lines", m.rust_lines('let s = "one\n// not a comment\n";\n'), 3)
+eq("rust raw string", m.rust_lines('let r = r#"a "quoted" /* no\n*/ "#;\nlet z = 3;\n'), 3)
+eq("rust lifetime opens nothing", m.rust_lines("fn f<'a>(s: &'a str) -> &'a str { s } /* c\n c */\n"), 1)
+eq("rust char literals", m.rust_lines("let q = '\"'; let b = '\\''; let u = '\\u{1F600}';\n// c\n"), 1)
+eq("rust escaped quote", m.rust_lines('let e = "a\\"b // no";\n// c\n'), 1)
+eq("rust ident ending in r", m.rust_lines('let bar = 1; let s = br"x";\n/* c */\n'), 1)
+eq("lang .rs", m.language("src/lib.rs", None), "rust")
+eq("name .rs", m.language_name("src/lib.rs", "rust"), "Rust")
 # Python: docstrings out, other strings in, trailing comments in.
 eq("python", m.python_lines('"""doc"""\nx = 1  # c\n# c\ndef f():\n    """doc\n    two"""\n    return """a\n    b"""\n'), 4)
 eq("python blank lines in a string", m.python_lines('x = """a\n\n   \nb"""\n'), 2)

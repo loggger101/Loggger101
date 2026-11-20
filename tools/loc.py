@@ -9,7 +9,7 @@ files are code:
 - A line of code has code on it. Blank lines and comment-only lines don't count; a line
   with code and a trailing comment does. Python docstrings count as comments (cloc's
   default), and notebooks count their code cells only.
-- Programming and markup languages count (Python, JavaScript, HTML, CSS, shell, Perl,
+- Programming and markup languages count (Python, Rust, JavaScript, HTML, CSS, shell, Perl,
   PowerShell, batch, VBScript, MATLAB, Dockerfiles, scripts found by their #! line). Data and
   prose don't (JSON, YAML, TOML, CSV, Markdown, TeX).
 - Files a repo marks linguist-generated, linguist-vendored or linguist-documentation in
@@ -121,7 +121,7 @@ BY_EXT = {
     ".html": "html", ".htm": "html",
     ".sh": "hash", ".bash": "hash", ".command": "hash", ".r": "hash",
     ".pl": "perl", ".pm": "perl", ".ps1": "powershell",
-    ".bat": "batch", ".cmd": "batch", ".vbs": "vbscript", ".m": "matlab",
+    ".bat": "batch", ".cmd": "batch", ".vbs": "vbscript", ".m": "matlab", ".rs": "rust",
 }
 BY_NAME = {"Dockerfile": "hash", "Makefile": "hash"}
 BY_SHEBANG = {"python": "python", "node": "c", "perl": "perl"}  # anything else uses '#'
@@ -135,7 +135,7 @@ NAME_BY_EXT = {
     ".html": "HTML", ".htm": "HTML",
     ".sh": "Shell", ".bash": "Shell", ".command": "Shell", ".r": "R",
     ".pl": "Perl", ".pm": "Perl", ".ps1": "PowerShell",
-    ".bat": "Batchfile", ".cmd": "Batchfile", ".vbs": "VBScript", ".m": "MATLAB",
+    ".bat": "Batchfile", ".cmd": "Batchfile", ".vbs": "VBScript", ".m": "MATLAB", ".rs": "Rust",
 }
 # An extensionless script's language follows from the syntax its #! line gave it.
 NAME_BY_SHEBANG = {"python": "Python", "c": "JavaScript", "perl": "Perl", "hash": "Shell"}
@@ -210,6 +210,70 @@ def c_lines(src, line_comments=True):
     return len(code)
 
 
+RUST_CHAR = re.compile(r"'(?:\\(?:u\{[0-9a-fA-F]{1,6}\}|x[0-9a-fA-F]{2}|.)|[^\\'\n])'")
+RUST_RAW = re.compile(r'b?r(#*)"')
+
+
+def rust_lines(src):
+    """Lines with code in Rust. Like c_lines, but block comments nest, a string runs over
+    lines until its closing quote, r"..." and r#"..."# are raw strings (no escapes, and a
+    raw string ends only at a quote followed by as many #s), and a ' is a char literal
+    ('x', '\\n', '\\u{1F600}') or else a lifetime ('a, 'static), which opens nothing.
+    Doc comments (///, //!) are comments, as cloc counts them."""
+    code, line, i, n = set(), 1, 0, len(src)
+    depth = 0                 # block comments open
+    end = None                # the closing text of the string we're in, or None
+    while i < n:
+        ch, two = src[i], src[i:i + 2]
+        if ch == "\n":
+            line += 1
+            i += 1
+            continue
+        if depth:
+            if two == "/*":
+                depth, i = depth + 1, i + 2
+            elif two == "*/":
+                depth, i = depth - 1, i + 2
+            else:
+                i += 1
+            continue
+        if end is not None:
+            if not ch.isspace():
+                code.add(line)
+            if end == '"' and ch == "\\":
+                i += 2
+                if i - 1 < n and src[i - 1] == "\n":
+                    line += 1
+                continue
+            if src.startswith(end, i):
+                i, end = i + len(end), None
+                continue
+            i += 1
+            continue
+        if two == "//":
+            nl = src.find("\n", i)
+            i = n if nl == -1 else nl
+            continue
+        if two == "/*":
+            depth, i = 1, i + 2
+            continue
+        if ch.isspace():
+            i += 1
+            continue
+        code.add(line)
+        prev = src[i - 1] if i else " "
+        raw = RUST_RAW.match(src, i) if ch in "br" and not (prev.isalnum() or prev == "_") else None
+        if raw:
+            end, i = '"' + raw[1], raw.end()
+        elif ch == '"':
+            end, i = '"', i + 1
+        elif ch == "'" and (m := RUST_CHAR.match(src, i)):
+            i = m.end()
+        else:
+            i += 1
+    return len(code)
+
+
 def strip_blocks(src, start, end):
     return re.sub(re.escape(start) + r".*?" + re.escape(end), lambda m: "\n" * m[0].count("\n"), src, flags=re.S)
 
@@ -238,6 +302,8 @@ def count(path, lang):
         sys.exit(f"can't tokenize {path}: {e}")
     if lang == "c":
         return c_lines(src)
+    if lang == "rust":
+        return rust_lines(src)
     if lang == "css":
         return c_lines(src, line_comments=False)
     if lang == "html":

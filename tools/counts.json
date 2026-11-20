@@ -3,9 +3,9 @@
   "skills": 256,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 25792,
+    "economicspace": 27947,
     "AsteroidCatalog": 6573,
-    "spacevalue": 3737,
+    "spacevalue": 4326,
     "spacecost": 9676,
     "General_Research": 2555,
     "starred-repos": 3864,
@@ -43,6 +43,7 @@
   "languages": {
     "economicspace": {
       "Python": 25093,
+      "Rust": 2155,
       "Shell": 402,
       "Batchfile": 228,
       "VBScript": 39,
@@ -55,6 +56,7 @@
     },
     "spacevalue": {
       "Python": 3718,
+      "Rust": 589,
       "Shell": 19
     },
     "spacecost": {

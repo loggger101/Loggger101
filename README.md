@@ -43,7 +43,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>25,792 lines of code</sub><br/><sub>104,605 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 411 in all, 54 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>27,947 lines of code</sub><br/><sub>104,605 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 411 in all, 54 in the busiest week"></picture></td>
     <td valign="top"><p>The main pipeline. It installs a pinned catalog release from AsteroidCatalog and pinned prices from spacevalue, costs the transport with spacecost, then runs the rocket equation and a cost cascade to rank targets by profit.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/pandas.svg" alt="pandas"></picture> <picture><img src="docs/badges/docker.svg" alt="Docker"></picture></td>
   </tr>
   <tr>
@@ -51,7 +51,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>The pipeline's catalog stage, moved into its own repo. About 1.58 million asteroids from JPL SBDB, SsODNet, NEOWISE and MP3C, cross-matched, with the source of every value recorded and a cited composition estimate for each taxonomy class. Releases are frozen so other projects can pin one.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/parquet.svg" alt="Parquet"></picture> <a href="https://github.com/loggger101/AsteroidCatalog/releases/latest"><img src="docs/badges/release-AsteroidCatalog.svg" alt="Latest release"></a> <a href="https://www.loganmedwardsastrophy.com/asteroid-catalog.html"><img src="docs/badges/project-page.svg" alt="Project page"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/spacevalue">spacevalue</a></b><br/><sub>Stage 2: mineral prices</sub><br/><sub>3,737 lines of code</sub><br/><sub>10,131 total lines</sub><br/><picture><img src="docs/sparks/spacevalue.svg" width="120" alt="My commits to spacevalue each week since August 2026: 108 in all, 23 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/spacevalue">spacevalue</a></b><br/><sub>Stage 2: mineral prices</sub><br/><sub>4,326 lines of code</sub><br/><sub>10,131 total lines</sub><br/><picture><img src="docs/sparks/spacevalue.svg" width="120" alt="My commits to spacevalue each week since August 2026: 108 in all, 23 in the busiest week"></picture></td>
     <td valign="top"><p>The pipeline's pricing stage as an installable Python package: what a kilogram of each mineral and element is worth at eight places you could deliver it, from Earth's surface to Mars. Away from Earth a material is worth the better of being used there, which saves launching it, or being flown home and sold. Prices come from recorded quotes, so a build can be repeated, and each dated release carries all eight tables as CSVs.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/pandas.svg" alt="pandas"></picture> <a href="https://github.com/loggger101/spacevalue/releases/latest"><img src="docs/badges/release-spacevalue.svg" alt="Latest release"></a></td>
   </tr>
   <tr>
@@ -220,7 +220,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="148,439 lines of code in 11 languages: Python 121,161 (81.6%), Perl 6,705 (4.5%), MATLAB 6,143 (4.1%), JavaScript 5,326 (3.6%), HTML 4,686 (3.2%), CSS 2,375 (1.6%), Shell, PowerShell, Batchfile, VBScript and Dockerfile 2,043 (1.4%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="151,183 lines of code in 12 languages: Python 121,161 (80.1%), Perl 6,705 (4.4%), MATLAB 6,143 (4.1%), JavaScript 5,326 (3.5%), HTML 4,686 (3.1%), Rust 2,744 (1.8%), CSS, Shell, PowerShell, Batchfile, VBScript and Dockerfile 4,418 (2.9%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
