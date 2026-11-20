@@ -282,7 +282,7 @@ FACTS = [
     ("fifteen real launch complexes", "Satellite-Space-Flight", "fifteen real launch complexes"),
     ("runs again inside MATLAB", "Satellite-Space-Flight", "runs it again inside MATLAB"),
     ("rocket ascents included", "Satellite-Space-Flight", "the rocket ascent from pad to separation"),
-    ("plays the run back as an animation", "Satellite-Space-Flight", "plays the run back as an animation"),
+    ("plays the run back twice", "Satellite-Space-Flight", "the run back twice: the ground track beside the orbits"),
     ("to within meters over hours", "Satellite-Space-Flight", "within centimetres to metres over hours"),
     ("1,584 Starlink satellites in one shell", "Satellite-Space-Flight", "1,584-satellite Walker shell"),
     ("tested on Windows, Linux and macOS", "quietlaunch", "CI runs all three"),
