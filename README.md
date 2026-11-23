@@ -43,7 +43,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>27,947 lines of code</sub><br/><sub>104,605 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 411 in all, 54 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/economicspace">economicspace</a></b><br/><sub>the pipeline</sub><br/><sub>28,027 lines of code</sub><br/><sub>104,825 total lines</sub><br/><picture><img src="docs/sparks/economicspace.svg" width="120" alt="My commits to economicspace each week since August 2026: 413 in all, 54 in the busiest week"></picture></td>
     <td valign="top"><p>The main pipeline. It installs a pinned catalog release from AsteroidCatalog and pinned prices from spacevalue, costs the transport with spacecost, then runs the rocket equation and a cost cascade to rank targets by profit.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/pandas.svg" alt="pandas"></picture> <picture><img src="docs/badges/docker.svg" alt="Docker"></picture></td>
   </tr>
   <tr>
@@ -88,7 +88,7 @@ The first five repos work together to estimate whether an uncrewed asteroid mini
     <td valign="top"><p>Code and paper for <i>Constraints on the Origin of the Asteroid Belt's Compositional Gradient from Debiased Taxonomic Data</i>. It tests whether the belt's switch from S-types to C-types dates back to formation, using 161,659 classified asteroids from AsteroidCatalog after collapsing collisional families and correcting for the brightness bias that favors S-types. The code rebuilds every figure and number in the paper from two public input files.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/scipy.svg" alt="SciPy"></picture> <picture><img src="docs/badges/latex.svg" alt="LaTeX"></picture> <a href="https://github.com/loggger101/asteroid-belt-gradient/releases/latest"><img src="docs/badges/release-asteroid-belt-gradient.svg" alt="Latest release"></a> <a href="https://github.com/loggger101/asteroid-belt-gradient/tree/main/paper"><img src="docs/badges/paper.svg" alt="Paper"></a></td>
   </tr>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>34,126 lines of code</sub><br/><sub>1,686,879 total lines</sub><br/><picture><img src="docs/sparks/Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" width="120" alt="My commits to Mars Global Mosaic each week since October 2026: 292 in all, 76 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data">Mars Global Mosaic</a></b><br/><sub>Mars GIS mapping</sub><br/><sub>34,126 lines of code</sub><br/><sub>1,686,892 total lines</sub><br/><picture><img src="docs/sparks/Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" width="120" alt="My commits to Mars Global Mosaic each week since October 2026: 293 in all, 76 in the busiest week"></picture></td>
     <td valign="top"><p>My project for OCN 4704 (Remote Sensing). In ArcGIS Pro I lined up Viking color, THEMIS day and night infrared, and HRSC/MOLA elevation between 60°N and 60°S to map lava flows, river channels and impact craters. A support vector machine classifies the landforms across that whole band, scoring 73.8% on areas it never trained on. Widened from four classes to seven on a larger third label set, a U-Net, which sees each pixel's surroundings, scores 87.6% on the held-out areas, against 39.1% for the SVM, but only 49.6% on a random sample of points across the map. The landforms come from terrain more than color or heat: the thermal bands add 1.4 to 2.0 points, and lava flows can't be told apart in these bands at all, so three of the project's four hypotheses aren't supported. The project is finished; its paper and deck went final on 12 November, due 8 December.</p><picture><img src="docs/badges/arcgis-pro.svg" alt="ArcGIS Pro"></picture> <picture><img src="docs/badges/python.svg" alt="Python"></picture> <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/releases/latest"><img src="docs/badges/release-Mars_Terrestrial_GlobalMosaic_GIS-Data.svg" alt="Latest release"></a> <a href="https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/blob/main/Mars%20Remote%20Sensing%20Project/Deliverables/Final/paper/mars_global_mosaic.pdf"><img src="docs/badges/paper.svg" alt="Paper"></a></td>
   </tr>
 </table>
@@ -141,7 +141,7 @@ How each model's mistakes fall on held-out data (each links to the full size):
 
 <table>
   <tr>
-    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Satellite-Space-Flight">Satellite-Space-Flight</a></b><br/><sub>orbit simulator</sub><br/><sub>27,170 lines of code</sub><br/><sub>44,207 total lines</sub><br/><picture><img src="docs/sparks/Satellite-Space-Flight.svg" width="120" alt="My commits to Satellite-Space-Flight each week since September 2026: 121 in all, 59 in the busiest week"></picture></td>
+    <td width="24%" valign="top"><b><a href="https://github.com/loggger101/Satellite-Space-Flight">Satellite-Space-Flight</a></b><br/><sub>orbit simulator</sub><br/><sub>29,695 lines of code</sub><br/><sub>49,283 total lines</sub><br/><picture><img src="docs/sparks/Satellite-Space-Flight.svg" width="120" alt="My commits to Satellite-Space-Flight each week since September 2026: 139 in all, 59 in the busiest week"></picture></td>
     <td valign="top"><p>A 3-D Earth orbit simulator in pure Python. The physics runs in numpy (J2 to J4 gravity, drag, Sun and Moon, solar radiation pressure, maneuvers) and pygame draws it. You can also fly a multi-stage rocket to orbit from anywhere on Earth, or from one of fifteen real launch complexes. A MATLAB toolkit builds scenarios and plots the results, and a running simulation exports as a live script that runs again inside MATLAB with no Python, rocket ascents included, and plays the run back twice, as animations; satellites in orbit agree with the simulator to within meters over hours.</p><picture><img src="docs/badges/python.svg" alt="Python"></picture> <picture><img src="docs/badges/numpy.svg" alt="NumPy"></picture> <picture><img src="docs/badges/pygame.svg" alt="pygame"></picture> <picture><img src="docs/badges/matlab.svg" alt="MATLAB"></picture></td>
   </tr>
 </table>
@@ -201,18 +201,18 @@ Both repos are private, but the sites are public.
 Every commit I've made to the repos above, from the first to this week. Each ring is one section of this page, the outermost the first; time runs clockwise from twelve o'clock, and a bigger dot is a busier week. Bots' commits aren't counted.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 20 Nov 2026, drawn as one orbit per section of this page: 3,896 in all, Space economics 1,022, Planetary science 336, Deep learning 15, Simulation 121, Rare-disease work 493, Elsewhere 1,909. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: spacevalue, 20 Nov 2026."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/activity-compact.svg"><img src="docs/activity.svg" width="100%" alt="Every commit I've made to these repos, from the first on 23 Nov 2025 to 23 Nov 2026, drawn as one orbit per section of this page: 3,917 in all, Space economics 1,024, Planetary science 337, Deep learning 15, Simulation 139, Rare-disease work 493, Elsewhere 1,909. Busiest week: 356 commits, the week of 5 Oct 2026. Latest: economicspace, 23 Nov 2026."></picture>
 </p>
 
 My latest commits:
 
 <!-- latest commits -->
+- 23 Nov · [economicspace](https://github.com/loggger101/economicspace/commit/c2efb18187132dbb2c87f1cda6a22f3f84eacbdb): Rust for Stage 4 by default; sizing loop ports separate\_ep\_units (master 1.86.1, 1.87.0)
+- 23 Nov · [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight/commit/874302b8b3b03a699cd19739c84af48b94d9c878): Circular speeds see the EGM2008 field; payload Cd and Cr on the launch form
+- 23 Nov · [Satellite-Space-Flight](https://github.com/loggger101/Satellite-Space-Flight/commit/9d77f1398e553ec6f9d1b84a9d6a17c704d3c076): Walker dialog: area and drag coefficient for each satellite
+- 23 Nov · [Mars Global Mosaic](https://github.com/loggger101/Mars_Terrestrial_GlobalMosaic_GIS-Data/commit/e25782e1eb676dc1ea7f23d33c932cfcb2602717): Paper keywords as UAT 6.0.0 concepts, PDF rebuilt
 - 20 Nov · [spacevalue](https://github.com/loggger101/spacevalue/commit/c1852ce1401204e1c247ddddc22913cac39e9a8d): 0.8.7: spacecost repinned to v0.19.0 (no value moves)
 - 20 Nov · [economicspace](https://github.com/loggger101/economicspace/commit/525478e92cde4e6555c768bc8041decd8d71b54a): Worked calculation: document the calc 1.47.0 gap (separate\_ep\_units, entry-speed shield) and name…
-- 20 Nov · [economicspace](https://github.com/loggger101/economicspace/commit/0de8fee1affb4f0184cd8e601de53f48b15c116f): master 1.86.0: versions entry for the repin; worked calculation adds the handling row to dig energy
-- 19 Nov · [spacevalue](https://github.com/loggger101/spacevalue/commit/0b5ad79c4e439fd381a736fca111dd0348f95daa): 0.8.6: spacevalue build writes a manifest naming what to cite
-- 19 Nov · [spacecost](https://github.com/loggger101/spacecost/commit/9f6e0d482a48b27ac9a9c4a8e7492cd7fedde197): 0.19.0 (contract 1.28.0): EOS bottle densities, excavation 5.7 Wh/kg plus a handling row…
-- 19 Nov · [spacecost](https://github.com/loggger101/spacecost/commit/02d7d55f6cadf207f5db3e29b24e57aa4eb7f268): 0.18.9 (contract 1.27.9): NEXT-class mass note cites each figure (rc-865)
 <!-- /latest commits -->
 
 ### <picture><img src="docs/icons/languages.svg" width="24" height="24" align="top" alt=""></picture> Languages
@@ -220,7 +220,7 @@ My latest commits:
 The lines of code under each repo's name, added up by language.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="151,183 lines of code in 12 languages: Python 121,161 (80.1%), Perl 6,705 (4.4%), MATLAB 6,143 (4.1%), JavaScript 5,326 (3.5%), HTML 4,686 (3.1%), Rust 2,744 (1.8%), CSS, Shell, PowerShell, Batchfile, VBScript and Dockerfile 4,418 (2.9%)."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/languages-compact.svg"><img src="docs/languages.svg" width="100%" alt="153,788 lines of code in 12 languages: Python 122,604 (79.7%), MATLAB 7,240 (4.7%), Perl 6,705 (4.4%), JavaScript 5,326 (3.5%), HTML 4,686 (3.0%), Rust 2,809 (1.8%), CSS, Shell, PowerShell, Batchfile, VBScript and Dockerfile 4,418 (2.9%)."></picture>
 </p>
 
 ### <picture><img src="docs/icons/flybys.svg" width="24" height="24" align="top" alt=""></picture> Passing Earth this week
@@ -228,7 +228,7 @@ The lines of code under each repo's name, added up by language.
 The asteroids coming within 20 lunar distances of Earth in the week ahead, from NASA/JPL's close-approach data, refreshed every Monday. On the dial, each one sits at the day and distance of its closest approach. The sizes are estimates from each body's brightness, as almost none has been measured.
 
 <p align="center">
-  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 20–26 Nov 2026 (NASA/JPL close-approach data): 14 in all. 2026 WA1, 1.2 lunar distances on Sat 21 Nov, 3–8 m, 13.6 km/s; 2026 WJ, 1.7 lunar distances on Sun 22 Nov, 11–24 m, 9.2 km/s; 2026 WB1, 1.9 lunar distances on Sat 21 Nov, 7–16 m, 14.0 km/s; 2026 VQ19, 3.9 lunar distances on Thu 26 Nov, 24–53 m, 6.8 km/s; 2026 WD, 4.4 lunar distances on Mon 23 Nov, 11–25 m, 13.9 km/s; 2026 VN11, 5.2 lunar distances on Sat 21 Nov, 31–69 m, 7.1 km/s; 2026 VQ5, 5.2 lunar distances on Wed 25 Nov, 44–98 m, 11.7 km/s; 2026 WC1, 5.9 lunar distances on Sun 22 Nov, 12–26 m, 19.7 km/s; and 6 more farther out."></picture>
+  <picture><source media="(max-width: 600px)" srcset="docs/flybys-compact.svg"><img src="docs/flybys.svg" width="100%" alt="Asteroids passing Earth within 20 lunar distances, 23–29 Nov 2026 (NASA/JPL close-approach data): 8 in all. 2026 VQ19, 3.9 lunar distances on Thu 26 Nov, 22–50 m, 6.8 km/s; 2026 WD, 4.4 lunar distances on Mon 23 Nov, 11–25 m, 13.9 km/s; 2026 VQ5, 5.2 lunar distances on Wed 25 Nov, 45–100 m, 11.7 km/s; 2026 WF, 6.7 lunar distances on Mon 23 Nov, 15–33 m, 10.9 km/s; 2026 VF18, 10.4 lunar distances on Mon 23 Nov, 12–27 m, 7.5 km/s; 2026 WU1, 12.5 lunar distances on Fri 27 Nov, 30–67 m, 12.4 km/s; 2026 WX1, 13.9 lunar distances on Thu 26 Nov, 8–18 m, 8.7 km/s; 2026 VV11, 16.1 lunar distances on Wed 25 Nov, 31–69 m, 8.7 km/s."></picture>
 </p>
 
 ### <picture><img src="docs/icons/contact.svg" width="24" height="24" align="top" alt=""></picture> Get in touch

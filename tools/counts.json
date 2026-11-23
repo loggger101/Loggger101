@@ -3,7 +3,7 @@
   "skills": 256,
   "skill_categories": 23,
   "loc": {
-    "economicspace": 27947,
+    "economicspace": 28027,
     "AsteroidCatalog": 6573,
     "spacevalue": 4326,
     "spacecost": 9676,
@@ -13,7 +13,7 @@
     "Mars_Terrestrial_GlobalMosaic_GIS-Data": 34126,
     "star-spectral-classifier": 2946,
     "drone-target-id": 1509,
-    "Satellite-Space-Flight": 27170,
+    "Satellite-Space-Flight": 29695,
     "website": 7615,
     "quietlaunch": 1094,
     "quietqueue": 653,
@@ -22,17 +22,17 @@
     "SistersHopeFoundation": 5219
   },
   "lines": {
-    "economicspace": 104605,
+    "economicspace": 104825,
     "AsteroidCatalog": 15883,
     "spacevalue": 10131,
     "spacecost": 19832,
     "General_Research": 88667,
     "starred-repos": 11530,
     "asteroid-belt-gradient": 6980,
-    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1686879,
+    "Mars_Terrestrial_GlobalMosaic_GIS-Data": 1686892,
     "star-spectral-classifier": 7333,
     "drone-target-id": 4779,
-    "Satellite-Space-Flight": 44207,
+    "Satellite-Space-Flight": 49283,
     "website": 10124,
     "quietlaunch": 2359,
     "quietqueue": 1714,
@@ -42,8 +42,8 @@
   },
   "languages": {
     "economicspace": {
-      "Python": 25093,
-      "Rust": 2155,
+      "Python": 25108,
+      "Rust": 2220,
       "Shell": 402,
       "Batchfile": 228,
       "VBScript": 39,
@@ -85,8 +85,8 @@
       "Python": 1509
     },
     "Satellite-Space-Flight": {
-      "Python": 20976,
-      "MATLAB": 6143,
+      "Python": 22404,
+      "MATLAB": 7240,
       "Batchfile": 28,
       "Shell": 23
     },
@@ -125,11 +125,11 @@
     }
   },
   "activity": {
-    "as_of": "2026-11-20",
+    "as_of": "2026-11-23",
     "repos": {
       "economicspace": {
         "first": "2026-08-05",
-        "last": "2026-11-20",
+        "last": "2026-11-23",
         "weeks": {
           "2026-08-03": 54,
           "2026-08-10": 22,
@@ -146,9 +146,15 @@
           "2026-10-26": 19,
           "2026-11-02": 20,
           "2026-11-09": 23,
-          "2026-11-16": 45
+          "2026-11-16": 45,
+          "2026-11-23": 2
         },
         "recent": [
+          [
+            "c2efb18187132dbb2c87f1cda6a22f3f84eacbdb",
+            "2026-11-23",
+            "Rust for Stage 4 by default; sizing loop ports separate_ep_units (master 1.86.1, 1.87.0)"
+          ],
           [
             "525478e92cde4e6555c768bc8041decd8d71b54a",
             "2026-11-20",
@@ -158,11 +164,6 @@
             "0de8fee1affb4f0184cd8e601de53f48b15c116f",
             "2026-11-20",
             "master 1.86.0: versions entry for the repin; worked calculation adds the handling row to dig energy"
-          ],
-          [
-            "8b374b0f43bbdcedb6d376862d304a7b62b9d821",
-            "2026-11-20",
-            "Repin spacecost v0.19.0, spacevalue v0.8.7 and prices-2026-11-20 (master 1.86.0, calc 1.48.0)"
           ]
         ]
       },
@@ -363,7 +364,7 @@
       },
       "Mars_Terrestrial_GlobalMosaic_GIS-Data": {
         "first": "2026-10-06",
-        "last": "2026-11-18",
+        "last": "2026-11-23",
         "weeks": {
           "2026-10-05": 37,
           "2026-10-12": 19,
@@ -371,9 +372,15 @@
           "2026-10-26": 52,
           "2026-11-02": 54,
           "2026-11-09": 76,
-          "2026-11-16": 21
+          "2026-11-16": 21,
+          "2026-11-23": 1
         },
         "recent": [
+          [
+            "e25782e1eb676dc1ea7f23d33c932cfcb2602717",
+            "2026-11-23",
+            "Paper keywords as UAT 6.0.0 concepts, PDF rebuilt (KB \u00a769.160)"
+          ],
           [
             "adad8fd3db9c2cef55d5ffe13dd06edcd82f4e8b",
             "2026-11-18",
@@ -381,11 +388,6 @@
           ],
           [
             "5941c01ed25be0f3b9500f804bc893a9abfbf601",
-            "2026-11-18",
-            "Sync from the project drive, 2026-11-18"
-          ],
-          [
-            "0d68b833e5b5b5fe77052510a31ee540ca2cfb5a",
             "2026-11-18",
             "Sync from the project drive, 2026-11-18"
           ]
@@ -445,30 +447,31 @@
       },
       "Satellite-Space-Flight": {
         "first": "2026-09-29",
-        "last": "2026-11-19",
+        "last": "2026-11-23",
         "weeks": {
           "2026-09-28": 59,
           "2026-10-05": 6,
           "2026-10-26": 2,
           "2026-11-02": 22,
           "2026-11-09": 5,
-          "2026-11-16": 27
+          "2026-11-16": 35,
+          "2026-11-23": 10
         },
         "recent": [
           [
-            "ee95c766a28768f7c1a1e6bb39a6edaa5000042d",
-            "2026-11-19",
-            "Replay in the app: Sentinel-1 truth from the precise orbits, beside simulated twins"
+            "874302b8b3b03a699cd19739c84af48b94d9c878",
+            "2026-11-23",
+            "Circular speeds see the EGM2008 field; payload Cd and Cr on the launch form"
           ],
           [
-            "72e129e717134814da8eed10207afcd296a5d6aa",
-            "2026-11-19",
-            "Fitting and burns: orbit fits to Sentinel-1 truth, with IERS polar motion"
+            "9d77f1398e553ec6f9d1b84a9d6a17c704d3c076",
+            "2026-11-23",
+            "Walker dialog: area and drag coefficient for each satellite"
           ],
           [
-            "6029311d9e6809402da78c1171be5d3d1796d2bd",
-            "2026-11-18",
-            "Forces: EGM2008 to 70x70, Sun and Moon gravity, sunlight pressure"
+            "ebb06597f67f96e045fbba95cc89fd81ea995b83",
+            "2026-11-23",
+            "Reflectivity Cr in the satellite dialogs; refuse a bad Cr when adding"
           ]
         ]
       },
@@ -750,40 +753,16 @@
     }
   ],
   "flybys": {
-    "from": "2026-11-20",
-    "to": "2026-11-27",
+    "from": "2026-11-23",
+    "to": "2026-11-30",
     "source": "NASA/JPL SBDB Close Approach Data API",
     "rows": [
       {
-        "des": "2026 WA1",
-        "time": "2026-Nov-21 22:28",
-        "dist_au": 0.00317316043631339,
-        "v_kms": 13.6274509415369,
-        "h": 29.432,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 WJ",
-        "time": "2026-Nov-22 04:21",
-        "dist_au": 0.00431377033879308,
-        "v_kms": 9.23442574051564,
-        "h": 26.989,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 WB1",
-        "time": "2026-Nov-21 19:54",
-        "dist_au": 0.00489234101882721,
-        "v_kms": 13.9795528288454,
-        "h": 27.901,
-        "diameter_km": null
-      },
-      {
         "des": "2026 VQ19",
         "time": "2026-Nov-26 10:15",
-        "dist_au": 0.0101171246847062,
-        "v_kms": 6.77438286473686,
-        "h": 25.246,
+        "dist_au": 0.0101247755371244,
+        "v_kms": 6.77876286475024,
+        "h": 25.363,
         "diameter_km": null
       },
       {
@@ -795,27 +774,11 @@
         "diameter_km": null
       },
       {
-        "des": "2026 VN11",
-        "time": "2026-Nov-21 06:47",
-        "dist_au": 0.0132443440986561,
-        "v_kms": 7.10270527620886,
-        "h": 24.678,
-        "diameter_km": null
-      },
-      {
         "des": "2026 VQ5",
-        "time": "2026-Nov-25 21:21",
-        "dist_au": 0.0134188986310323,
-        "v_kms": 11.6779035824466,
-        "h": 23.916,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 WC1",
-        "time": "2026-Nov-22 23:54",
-        "dist_au": 0.015095395861493,
-        "v_kms": 19.6806971022749,
-        "h": 26.773,
+        "time": "2026-Nov-25 21:22",
+        "dist_au": 0.0134336930784905,
+        "v_kms": 11.6901566158064,
+        "h": 23.879,
         "diameter_km": null
       },
       {
@@ -827,22 +790,6 @@
         "diameter_km": null
       },
       {
-        "des": "2026 VY15",
-        "time": "2026-Nov-21 21:20",
-        "dist_au": 0.0246840682140329,
-        "v_kms": 13.3435886272918,
-        "h": 25.465,
-        "diameter_km": null
-      },
-      {
-        "des": "2026 VD9",
-        "time": "2026-Nov-21 21:15",
-        "dist_au": 0.0261095531873701,
-        "v_kms": 4.67229684558409,
-        "h": 25.23,
-        "diameter_km": null
-      },
-      {
         "des": "2026 VF18",
         "time": "2026-Nov-23 10:24",
         "dist_au": 0.02682419391563,
@@ -851,19 +798,27 @@
         "diameter_km": null
       },
       {
-        "des": "2026 VD6",
-        "time": "2026-Nov-20 10:36",
-        "dist_au": 0.0268406380805425,
-        "v_kms": 9.4479780955015,
-        "h": 26.811,
+        "des": "2026 WU1",
+        "time": "2026-Nov-27 04:33",
+        "dist_au": 0.0322250298756685,
+        "v_kms": 12.3655536523895,
+        "h": 24.735,
+        "diameter_km": null
+      },
+      {
+        "des": "2026 WX1",
+        "time": "2026-Nov-26 20:15",
+        "dist_au": 0.0356464934987276,
+        "v_kms": 8.70945662690876,
+        "h": 27.577,
         "diameter_km": null
       },
       {
         "des": "2026 VV11",
-        "time": "2026-Nov-25 21:22",
-        "dist_au": 0.0417833979605851,
-        "v_kms": 8.78704330116148,
-        "h": 24.727,
+        "time": "2026-Nov-25 21:20",
+        "dist_au": 0.0414932467382157,
+        "v_kms": 8.72993134451695,
+        "h": 24.684,
         "diameter_km": null
       }
     ]
@@ -1180,6 +1135,6 @@
     }
   ],
   "badges": {
-    "as_of": "2026-11-20"
+    "as_of": "2026-11-23"
   }
 }
